@@ -184,9 +184,7 @@
 		"navigation": {
 			"name": "Navigation with Keybinds",
 			"type": "custom",
-			"platforms": [
-				"windows", "macos"
-			]
+			"platforms": ["windows"]
 		},
 		"pageNavAnywhere": {
 			"name": "Arrow Keys in Pages",
