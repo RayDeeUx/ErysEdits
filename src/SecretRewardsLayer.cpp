@@ -1,3 +1,4 @@
+#ifdef GEODE_IS_WINDOWS
 #include <Geode/modify/SecretRewardsLayer.hpp>
 #include "Utils.hpp"
 
@@ -8,3 +9,4 @@ class $modify(MySecretRewardsLayer, SecretRewardsLayer) {
 		if (Utils::shiftDown()) { SecretRewardsLayer::onShop(sender); }
 	}
 };
+#endif

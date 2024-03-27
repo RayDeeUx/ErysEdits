@@ -39,7 +39,9 @@ namespace Utils {
 	bool is4GBPatchEnabled();
 	#endif
 
+	#ifdef GEODE_IS_WINDOWS
 	bool shiftDown();
+	#endif
 	
 	void decompLevelDisablesSFX(gd::string levelString);
 	

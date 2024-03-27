@@ -1,3 +1,4 @@
+#ifdef GEODE_IS_WINDOWS
 #include <Geode/modify/OptionsLayer.hpp>
 #include "Utils.hpp"
 
@@ -8,3 +9,4 @@ class $modify(MyOptionsLayer, OptionsLayer) {
 		if (Utils::shiftDown()) { OptionsLayer::onSecretVault(sender); }
 	}
 };
+#endif

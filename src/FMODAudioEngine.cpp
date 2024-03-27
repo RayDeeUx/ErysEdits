@@ -12,6 +12,6 @@ class $modify(MyFMODAudioEngine, FMODAudioEngine) {
 		auto manager = Manager::getSharedInstance();
 		if (std::find(badSFX.begin(), badSFX.end(), std::string(p0)) == badSFX.end() || !(Utils::modEnabled() && Utils::get("disableRewardsSFX")) || !manager->isPlayerDead) {
 			FMODAudioEngine::playEffect(p0, p1, p2, p3);
-        }
+		}
 	}
 };

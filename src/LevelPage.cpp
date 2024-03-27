@@ -10,7 +10,9 @@ class $modify(MyLevelPage, LevelPage) {
 		if (Utils::modEnabled() && Utils::get("forcePlayDeathSFXOnDeath") && Utils::get("advancedForceDeathSFX") && Utils::isRandDeathSounds()) { Utils::decompLevelDisablesSFX(m_level->m_levelString); }
 		LevelPage::onPlay(sender);
 	}
+	#ifdef GEODE_IS_WINDOWS
 	void onSecretDoor(CCObject* sender) {
 		if (Utils::shiftDown()) { LevelPage::onSecretDoor(sender); }
 	}
+	#endif
 };

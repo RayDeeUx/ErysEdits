@@ -193,9 +193,11 @@ namespace Utils {
 	}
 	#endif
 	
+	#ifdef GEODE_IS_WINDOWS
 	bool shiftDown() {
 		return (Manager::getSharedInstance()->isShiftKeyDown || !(Utils::modEnabled() && Utils::get("shiftForVault")));
 	}
+	#endif
 	
 	void decompLevelDisablesSFX(gd::string levelString) {
 		std::regex optionsTriggerDisableSFX("\\d+,2899(?:,-?\\d+)+,576,1.*");

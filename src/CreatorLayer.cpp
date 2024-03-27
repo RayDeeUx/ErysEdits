@@ -1,3 +1,4 @@
+#ifdef GEODE_IS_WINDOWS
 #include <Geode/modify/CreatorLayer.hpp>
 #include "Utils.hpp"
 
@@ -19,3 +20,4 @@ class $modify(MyCreatorLayer, CreatorLayer) {
 		if (Utils::shiftDown()) { CreatorLayer::onTreasureRoom(sender); }
 	}
 };
+#endif
