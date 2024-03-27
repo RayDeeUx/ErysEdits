@@ -168,7 +168,8 @@ namespace Utils {
 		
 		return level;
 	}
-
+	
+	#ifndef GEODE_IS_MOBILE
 	// 4GB Patch detection code written by cvolton
 	// code reuse consent implied from here: https://discord.com/channels/911701438269386882/911702535373475870/1221183808708153444
 
@@ -190,7 +191,8 @@ namespace Utils {
 		manager->fourGBChecked = true;
 		return manager->isFourGB;
 	}
-
+	#endif
+	
 	bool shiftDown() {
 		return (Manager::getSharedInstance()->isShiftKeyDown || !(Utils::modEnabled() && Utils::get("shiftForVault")));
 	}

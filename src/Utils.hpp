@@ -35,7 +35,9 @@ namespace Utils {
 	std::string buildPlayerStatusString(PlayerObject* thePlayer, GJGameLevel* theLevel, PlayLayer* playLayer, bool isPlayerTwo);
 	std::string buildLevelTraitsString(GJGameLevel* theLevel);
 
+	#ifndef GEODE_IS_MOBILE
 	bool is4GBPatchEnabled();
+	#endif
 
 	bool shiftDown();
 	
