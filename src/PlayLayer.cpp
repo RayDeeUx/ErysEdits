@@ -20,6 +20,14 @@ class $modify(MyPlayLayer, PlayLayer) {
 		Utils::restoreOrigGMGVs(GameManager::get(), false);
 		PlayLayer::onExit();
 	}
+	#ifdef GEODE_IS_MACOS
+	void addObject(GameObject* p0) {
+		auto mTS = Manager::getSharedInstance()->miscIDToSetting;
+		bool dontSkip = true;
+		if (mTS.find(p0->m_objectID) != mTS.end() && Utils::get(mTS.find(p0->m_objectID)->second)) { dontSkip = false; }
+		if (dontSkip) { PlayLayer::addObject(p0); }
+	}
+	#endif
 	void postUpdate(float dt) {
 		if (!Utils::modEnabled()) {
 			PlayLayer::postUpdate(dt);

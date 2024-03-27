@@ -42,4 +42,4 @@ Several mods I would've made into smaller standalone mods when I was an ignorant
 - [Cooper](https://gdbrowser.com/u/21207551), for allowing me to reuse code for custom setting headers
 - [sofabeddd](https://gdbrowser.com/u/7976112), for the occasional reality check
 
-This [Geode mod](https://geode-sdk.org) is licensed under LGPLv2.
+This [Geode mod](https://geode-sdk.org) is licensed under LGPLv2. Not all features of ErysEdits are available across all platforms; check your settings for this mod.

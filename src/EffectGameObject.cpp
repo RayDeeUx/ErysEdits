@@ -11,7 +11,7 @@ class $modify(MyEffectGameObject, EffectGameObject) {
 		if (GameManager::sharedState()->getPlayLayer() == nullptr) { return true; }
 		if (!Utils::modEnabled()) { return true; }
 		auto mTS = Manager::getSharedInstance()->miscToSetting;
-		if (mTS.find(p0) != mTS.end() && Mod::get()->getSettingValue<bool>(mTS.find(p0)->second)) { return false; }
+		if (mTS.find(p0) != mTS.end() && Utils::get(mTS.find(p0)->second)) { return false; }
 		return true;
 	}
 };

@@ -31,12 +31,20 @@ public:
 	std::string forwardCompat = "";
 	std::string fourGBStatus = "";
 
-	std::map<std::string, std::string> miscToSetting = {
+	const std::map<std::string, std::string> miscToSetting = {
 		{ "edit_ePulseBtn_001.png", "disablePulse" },
 		{ "edit_eAreaTintBtn_001.png", "disableAreaTint" },
 		{ "edit_eShakeBtn_001.png", "disableShake" },
 		{ "edit_eSFXBtn_001.png", "disableSFX" },
 		{ "edit_eEditSFXBtn_001.png", "disableEditSFX" }
+	};
+
+	const std::map<int, std::string> miscIDToSetting = {
+		{ 1006, "disablePulse" },
+		{ 3010, "disableAreaTint" },
+		{ 1520, "disableShake" },
+		{ 3602, "disableSFX" },
+		{ 3603, "disableEditSFX" }
 	};
 
 	bool isShiftKeyDown = false;
