@@ -211,7 +211,7 @@
 			"description": "Enables a keybind (set to Ctrl + S by default) to save your level in the editor immediately <cy>without a confirmation</c>.",
 			"type": "bool",
             "platforms": [
-                "windows", "macos"
+                "windows"
             ],
 			"default": true
 		},

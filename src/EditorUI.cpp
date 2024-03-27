@@ -1,4 +1,4 @@
-#ifndef GEODE_IS_MOBILE
+#ifdef GEODE_IS_WINDOWS
 #include <Geode/modify/EditorUI.hpp>
 #include <geode.custom-keybinds/include/Keybinds.hpp>
 #include "Utils.hpp"
@@ -16,7 +16,7 @@ class $modify(MyEditorUI, EditorUI) {
 		}, id);
 	}
 	bool init(LevelEditorLayer* p0) {
-		if (!EditorUI::init(p0)) { return false;}
+		if (!EditorUI::init(p0)) { return false; }
 		this->defineKeybind("save-editor-level"_spr, [this]() {
 			if (Utils::modEnabled() && Utils::get("saveEditorLevel")) {
 				auto editorPauseLayer = EditorPauseLayer::create(this->m_editorLayer);

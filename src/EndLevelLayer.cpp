@@ -1,3 +1,4 @@
+#ifndef GEODE_IS_MACOS
 #include <Geode/modify/EndLevelLayer.hpp>
 #include "Manager.hpp"
 #include "Utils.hpp"
@@ -10,3 +11,4 @@ class $modify(MyEndLevelLayer, EndLevelLayer) {
 		EndLevelLayer::onMenu(sender);
 	}
 };
+#endif
