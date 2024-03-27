@@ -20,9 +20,17 @@ class $modify(MyInfoLayer, InfoLayer) {
 		if (getChildByIDRecursive("refresh-button")) {
 			this->defineKeybind("refresh-page"_spr, [this]() {
 				if (Utils::isInfoLayer() || Utils::isInfoLayerRecursive()) { // infoLayerRecursive because sometimes it's a child of profilePage
+					#ifdef GEODE_IS_WINDOWS
 					if (Utils::modEnabled() && Utils::get("refreshAnywhere")) {
 						InfoLayer::onRefreshComments(nullptr);
 					} else { Utils::refreshKeybindDisabled(); }
+					#else
+					FLAlertLayer::create(
+						"Refresh Comments Disabled!",
+						"Due to incomplete Geode bindings, refreshing comments via keybind is unavailable for macOS at this time.",
+						"OK"
+					)->show();
+					#endif
 				}
 			});
 		}
