@@ -4,7 +4,7 @@ Several mods I would've made into smaller standalone mods when I was an ignorant
 ## Features
 - Various Info Label tweaks, including improved readibility, conditiona displays, and debug text logging
 
-![demoOne](raydeeux.erysedits/demoOne.png) ![demoTwoPointFive](raydeeux.erysedits/demoOnePointFive.png)
+![demoOne](raydeeux.erysedits/demoOne.png) ![demoOnePointFive](raydeeux.erysedits/demoOnePointFive.png)
 ![demoOnePointSeventyFive](raydeeux.erysedits/demoOnePointSeventyFive.png)
 ![demoOnePointEightHundredSeventyFive](raydeeux.erysedits/demoOnePointEightHundredSeventyFive.png)
 
