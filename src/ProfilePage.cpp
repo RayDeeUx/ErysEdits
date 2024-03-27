@@ -29,18 +29,34 @@ class $modify(MyProfilePage, ProfilePage) {
 		if (getChildByIDRecursive("prev-page-button")) {
 			this->defineKeybind("previous-page"_spr, [this]() {
 				if (Utils::isProfilePage() && getChildByIDRecursive("prev-page-button")->isVisible()) {
+					#ifndef GEODE_IS_MACOS
 					if (Utils::modEnabled() && Utils::get("pageNavAnywhere")) {
 						ProfilePage::onPrevPage(nullptr);
 					} else { Utils::arrowKeyNavDisabled(); }
+					#else
+					FLAlertLayer::create(
+						"Profile Page Navigation Disabled!",
+						"Due to incomplete Geode bindings, navigating profile page comments/posts via keybind is unavailable for macOS at this time.",
+						"OK"
+					);
+					#endif
 				}
 			});
 		}
 		if (getChildByIDRecursive("next-page-button")) {
 			this->defineKeybind("next-page"_spr, [this]() {
 				if (Utils::isProfilePage() && getChildByIDRecursive("next-page-button")->isVisible()) {
+					#ifndef GEODE_IS_MACOS
 					if (Utils::modEnabled() && Utils::get("pageNavAnywhere")) {
 						ProfilePage::onNextPage(nullptr);
 					} else { Utils::arrowKeyNavDisabled(); }
+					#else
+					FLAlertLayer::create(
+						"Profile Page Navigation Disabled!",
+						"Due to incomplete Geode bindings, navigating profile page comments/posts via keybind is unavailable for macOS at this time.",
+						"OK"
+					);
+					#endif
 				}
 			});
 		}

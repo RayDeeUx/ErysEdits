@@ -16,10 +16,12 @@ class $modify(MyPlayLayer, PlayLayer) {
 		if (Utils::modEnabled() && Utils::get("hideLevelCompleteVisuals")) { Manager::getSharedInstance()->isLevelComplete = false; }
 		PlayLayer::onQuit();
 	}
+	#ifndef GEODE_IS_MACOS
 	void onExit() {
 		Utils::restoreOrigGMGVs(GameManager::get(), false);
 		PlayLayer::onExit();
 	}
+	#endif
 	#ifdef GEODE_IS_MACOS
 	void addObject(GameObject* p0) {
 		auto mTS = Manager::getSharedInstance()->miscIDToSetting;
