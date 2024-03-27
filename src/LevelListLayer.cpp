@@ -1,4 +1,4 @@
-#ifndef GEODE_IS_MOBILE
+#ifdef GEODE_IS_WINDOWS
 #include <Geode/modify/LevelListLayer.hpp>
 #include <geode.custom-keybinds/include/Keybinds.hpp>
 #include "Utils.hpp"

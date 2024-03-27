@@ -1,4 +1,4 @@
-#ifndef GEODE_IS_MOBILE
+#ifdef GEODE_IS_WINDOWS
 #include <Geode/modify/LeaderboardsLayer.hpp>
 #include <geode.custom-keybinds/include/Keybinds.hpp>
 #include "Utils.hpp"

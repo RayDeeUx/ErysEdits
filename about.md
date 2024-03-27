@@ -1,6 +1,8 @@
 # ErysEdits
 Several mods I would've made into smaller standalone mods when I was an ignorant Geode developer. (And I still probably am by several accounts, but who's keeping track? `/j`)
 
+Not all features of ErysEdits are available across all platforms; check your settings for this mod after installing to verify.
+
 ## Features
 - Various Info Label tweaks, including improved readibility, conditiona displays, and debug text logging
 
@@ -41,4 +43,4 @@ Several mods I would've made into smaller standalone mods when I was an ignorant
 - [Cooper](user:21207551), for allowing me to reuse code for custom setting headers
 - [sofabeddd](user:7976112), for the occasional reality check
 
-This [Geode mod](https://geode-sdk.org) is licensed under LGPLv2. Not all features of ErysEdits are available across all platforms; check your settings for this mod.
+This [Geode mod](https://geode-sdk.org) is licensed under LGPLv2.

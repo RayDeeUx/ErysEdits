@@ -6,7 +6,7 @@ using namespace geode::prelude;
 using namespace keybinds;
 
 class $modify(MyLevelBrowserLayer, LevelBrowserLayer) {
-	#ifndef GEODE_IS_MOBILE
+	#ifdef GEODE_IS_WINDOWS
 	void defineKeybind(const char* id, std::function<void()> callback) {
 		this->template addEventListener<InvokeBindFilter>([=](InvokeBindEvent* event) {
 			if (event->isDown()) {
@@ -25,7 +25,7 @@ class $modify(MyLevelBrowserLayer, LevelBrowserLayer) {
 				getChildByIDRecursive("select-all-text")->setVisible(false);
 			}
 		}
-		#ifndef GEODE_IS_MOBILE
+		#ifdef GEODE_IS_WINDOWS
 		else if (getChildByIDRecursive("refresh-button")) {
 			this->defineKeybind("refresh-page"_spr, [this]() {
 				if (Utils::isSceneRunning("LevelBrowserLayer") && Utils::nothingElse()) {
