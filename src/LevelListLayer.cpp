@@ -1,3 +1,4 @@
+#ifndef GEODE_IS_MOBILE
 #include <Geode/modify/LevelListLayer.hpp>
 #include <geode.custom-keybinds/include/Keybinds.hpp>
 #include "Utils.hpp"
@@ -29,3 +30,4 @@ class $modify(MyLevelListLayer, LevelListLayer) {
 		return true;
 	}
 };
+#endif

@@ -1,3 +1,4 @@
+#ifndef GEODE_IS_MOBILE
 #include <Geode/modify/LikeItemLayer.hpp>
 #include <geode.custom-keybinds/include/Keybinds.hpp>
 #include "Utils.hpp"
@@ -33,3 +34,4 @@ class $modify(MyLikeItemLayer, LikeItemLayer) {
 		return true;
 	}
 };
+#endif

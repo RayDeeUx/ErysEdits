@@ -38,6 +38,7 @@ $on_mod(Loaded) {
 	// proof of consent: https://discord.com/channels/911701438269386882/911702535373475870/1222262244528754819
 }
 
+#ifndef GEODE_IS_MOBILE
 $execute {
 	BindManager::get()->registerBindable({
 		"save-editor-level"_spr,
@@ -103,3 +104,4 @@ $execute {
 		Category::GLOBAL
 	});
 }
+#endif

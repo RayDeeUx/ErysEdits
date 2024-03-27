@@ -6,6 +6,7 @@ using namespace geode::prelude;
 using namespace keybinds;
 
 class $modify(MyLevelBrowserLayer, LevelBrowserLayer) {
+	#ifndef GEODE_IS_MOBILE
 	void defineKeybind(const char* id, std::function<void()> callback) {
 		this->template addEventListener<InvokeBindFilter>([=](InvokeBindEvent* event) {
 			if (event->isDown()) {
@@ -14,6 +15,7 @@ class $modify(MyLevelBrowserLayer, LevelBrowserLayer) {
 			return ListenerResult::Propagate;
 		}, id);
 	}
+	#endif
 	bool init(GJSearchObject* searchObject) {
 		if (!LevelBrowserLayer::init(searchObject)) { return false; }
 		if (searchObject->m_searchType == SearchType::MyLevels && Utils::modEnabled() && Utils::get("compactEditorLevels")) {
@@ -22,7 +24,9 @@ class $modify(MyLevelBrowserLayer, LevelBrowserLayer) {
 				deleteMenu->setVisible(false);
 				getChildByIDRecursive("select-all-text")->setVisible(false);
 			}
-		} else if (getChildByIDRecursive("refresh-button")) {
+		}
+		#ifndef GEODE_IS_MOBILE
+		else if (getChildByIDRecursive("refresh-button")) {
 			this->defineKeybind("refresh-page"_spr, [this]() {
 				if (Utils::isSceneRunning("LevelBrowserLayer") && Utils::nothingElse()) {
 					if (Utils::modEnabled() && Utils::get("refreshAnywhere")) {
@@ -62,6 +66,7 @@ class $modify(MyLevelBrowserLayer, LevelBrowserLayer) {
 				}
 			});
 		}
+		#endif
 		return true;
 	}
 };

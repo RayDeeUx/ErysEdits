@@ -6,6 +6,7 @@ using namespace geode::prelude;
 using namespace keybinds;
 
 class $modify(MyLevelInfoLayer, LevelInfoLayer) {
+	#ifndef GEODE_IS_MOBILE
 	void defineKeybind(const char* id, std::function<void()> callback) {
 		this->template addEventListener<InvokeBindFilter>([=](InvokeBindEvent* event) {
 			if (event->isDown()) {
@@ -14,9 +15,10 @@ class $modify(MyLevelInfoLayer, LevelInfoLayer) {
 			return ListenerResult::Propagate;
 		}, id);
 	}
-	// preserve GMGVs in case some crackpot mod skips the menulayer (online levels)
+	#endif
 	bool init(GJGameLevel* p0, bool p1) {
 		if (!LevelInfoLayer::init(p0, p1)) return false;
+		#ifndef GEODE_IS_MOBILE
 		if (getChildByIDRecursive("refresh-button")) {
 			this->defineKeybind("refresh-page"_spr, [this]() {
 				if (Utils::isSceneRunning("LevelInfoLayer") && Utils::nothingElse()) {
@@ -35,6 +37,7 @@ class $modify(MyLevelInfoLayer, LevelInfoLayer) {
 				}
 			});
 		}
+		#endif
 		if (Utils::modEnabled() && Utils::get("forcePlayDeathSFXOnDeath") && Utils::get("advancedForceDeathSFX") && Utils::isRandDeathSounds()) { Utils::decompLevelDisablesSFX(p0->m_levelString); }
 		return true;
 	}

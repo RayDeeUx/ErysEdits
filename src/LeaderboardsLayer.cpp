@@ -1,3 +1,4 @@
+#ifndef GEODE_IS_MOBILE
 #include <Geode/modify/LeaderboardsLayer.hpp>
 #include <geode.custom-keybinds/include/Keybinds.hpp>
 #include "Utils.hpp"
@@ -40,3 +41,4 @@ class $modify(MyLeaderboardsLayer, LeaderboardsLayer) {
 		return true;
 	}
 };
+#endif

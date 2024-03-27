@@ -1,3 +1,4 @@
+#ifndef GEODE_IS_MOBILE
 #include <Geode/modify/LevelLeaderboard.hpp>
 #include <geode.custom-keybinds/include/Keybinds.hpp>
 #include "Utils.hpp"
@@ -28,3 +29,4 @@ class $modify(MyLevelLeaderboard, LevelLeaderboard) {
 		return true;
 	}
 };
+#endif

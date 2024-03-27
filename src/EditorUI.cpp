@@ -1,3 +1,4 @@
+#ifndef GEODE_IS_MOBILE
 #include <Geode/modify/EditorUI.hpp>
 #include <geode.custom-keybinds/include/Keybinds.hpp>
 #include "Utils.hpp"
@@ -45,3 +46,4 @@ class $modify(MyEditorUI, EditorUI) {
 		return true;
 	}
 };
+#endif
