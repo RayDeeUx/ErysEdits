@@ -36,8 +36,6 @@ jobs:
         uses: geode-sdk/build-geode-mod@main
         with:
           bindings: "RayDeeUx/bindings"
-          configure-args: "-DGEODE_REVERT_TODO_RETURN=On"
-          build-args: "-DGEODE_REVERT_TODO_RETURN=On"
           combine: true
           target: ${{ matrix.config.target }}
 
