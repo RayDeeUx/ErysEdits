@@ -40,3 +40,5 @@ Several mods I would've made into smaller standalone mods when I was an ignorant
 - [SpaghettDev](user:7670168) and [Prevter](user:7696536), for finding memory address bindings that fully fleshed out some features (`0x305630` for `SecretLayer2::create()`;  `0x276180` and `0x276170`, for `LikeItemLayer::onDislike()` and `LikeItemLayer::onLike()` respectively)
 - [Cooper](user:21207551), for allowing me to reuse code for custom setting headers
 - [sofabeddd](user:7976112), for the occasional reality check
+
+This [Geode mod](https://geode-sdk.org) is licensed under LGPLv2.
