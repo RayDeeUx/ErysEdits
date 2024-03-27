@@ -1,3 +1,4 @@
+#ifndef GEODE_IS_MACOS
 #include <Geode/modify/EffectGameObject.hpp>
 #include "Manager.hpp"
 #include "Utils.hpp"
@@ -14,3 +15,4 @@ class $modify(MyEffectGameObject, EffectGameObject) {
 		return true;
 	}
 };
+#endif
