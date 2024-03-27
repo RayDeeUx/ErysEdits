@@ -1,3 +1,4 @@
+#ifdef GEODE_IS_WINDOWS
 #include <Geode/modify/CCKeyboardDispatcher.hpp>
 #include "Manager.hpp"
 #include "Utils.hpp"
@@ -15,3 +16,4 @@ class $modify(MyCCKeyboardDispatcher, CCKeyboardDispatcher) {
 		return true;
 	}
 };
+#endif
