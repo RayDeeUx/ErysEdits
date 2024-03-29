@@ -27,7 +27,7 @@ $on_mod(Loaded) {
 	#endif
 	manager->canCall = false;
 	
-	// the following four lines were based on similar lines of code from coopeeo's hide+ mod with full consent
+	// the following several lines were based on similar lines of code from coopeeo's hide+ mod with full consent
 	// proof of consent: https://discord.com/channels/911701438269386882/911702535373475870/1222262244528754819
 	Mod::get()->addCustomSetting<SectionSettingValue>("erysedits", "none");
 	Mod::get()->addCustomSetting<SectionSettingValue>("debug-text", "none");
@@ -36,7 +36,7 @@ $on_mod(Loaded) {
 	Mod::get()->addCustomSetting<SectionSettingValue>("navigation", "none");
 	#endif
 	Mod::get()->addCustomSetting<SectionSettingValue>("misc", "none");
-	// the above four lines were based on similar lines of code from coopeeo's hide+ mod with full consent
+	// the above several lines were based on similar lines of code from coopeeo's hide+ mod with full consent
 	// proof of consent: https://discord.com/channels/911701438269386882/911702535373475870/1222262244528754819
 }
 

@@ -223,7 +223,7 @@
 		},
 		"shiftForVault": {
 			"name": "Shift Click to Vaults/Chambers/Treasure",
-			"description": "Requires holding the Shift key to enter (vanilla GD) menus that change the menu loop music.",
+			"description": "Requires holding the Shift key to enter (vanilla GD) menus that change the menu loop music.\n\nNote that this will not apply to The Tower.",
 			"type": "bool",
 			"platforms": ["windows"],
 			"default": true

@@ -32,6 +32,7 @@ Not all features of ErysEdits are available across all platforms; check your set
 - Force levels to stop music on death
 - Force levels to play your death SFX on death (compatible with Adam_729's Random Death Sounds and ControlVanillaSFX, see mod settings for more details)
 - Various keybinds to make navigating Geometry Dash feel a lot less repetive (Ctrl + S to save, Ctrl + R to refresh, Alt + Left/Right to navigate between layers with pages, Shift + Left/Right to go to the first or last page, etc)
+- Requiring Shift key to enter shops and vaults (to avoid changing menu loop music)
 - Disable Shake, Pulse, Area Tint, SFX, and Edit SFX triggers
 - Compact view of user profile comments/posts
 
