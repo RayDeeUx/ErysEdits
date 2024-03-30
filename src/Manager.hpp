@@ -58,7 +58,11 @@ public:
 	const std::list<std::string> badSFX = { "magicExplosion.ogg", "gold02.ogg", "secretKey.ogg" };
 
 	std::string lastPlayedSong = "N/A";
+	#ifndef GEODE_IS_MACOS
 	std::string lastPlayedEffect = "N/A";
+	#else
+	std::string lastPlayedEffect = "[MacOS issue]";
+	#endif
 	
 	// GLenum glBlendFuncs[] = {GL_ZERO, GL_ONE, GL_SRC_COLOR, GL_ONE_MINUS_SRC_COLOR, GL_DST_COLOR, GL_ONE_MINUS_DST_COLOR, GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA, GL_DST_ALPHA, GL_ONE_MINUS_DST_ALPHA, GL_CONSTANT_COLOR, GL_ONE_MINUS_CONSTANT_COLOR, GL_CONSTANT_ALPHA, GL_ONE_MINUS_CONSTANT_ALPHA, GL_SRC_ALPHA_SATURATE };
 

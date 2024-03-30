@@ -16,7 +16,11 @@ class $modify(MyPlayLayer, PlayLayer) {
 		auto manager = Manager::getSharedInstance();
 		if (Utils::modEnabled() && Utils::get("hideLevelCompleteVisuals")) { manager->isLevelComplete = false; }
 		manager->lastPlayedSong = "N/A";
+		#ifndef GEODE_IS_MACOS
 		manager->lastPlayedEffect = "N/A";
+		#else
+		manager->lastPlayedEffect = "[MacOS issue]";
+		#endif
 		PlayLayer::onQuit();
 	}
 	#ifndef GEODE_IS_MACOS

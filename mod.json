@@ -65,7 +65,7 @@
 		},
 		"lastPlayedSong": {
 			"name": "Add Recently Loaded Song/Effect",
-			"description": "Includes the filename of the most recently loaded song and sound effect.",
+			"description": "Includes the filename of the most recently loaded song <cy>(and sound effect, if not on macOS)</c> in the Audio section of the info label of PlayLayer.",
 			"type": "bool",
 			"default": true
 		},
