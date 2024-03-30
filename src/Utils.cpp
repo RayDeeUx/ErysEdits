@@ -55,7 +55,10 @@ namespace Utils {
 
 	void restoreOrigGMGVs(GameManager* gameManager, bool changeCanCall, bool isEnteringLevel) {
 		auto manager = Manager::getSharedInstance();
-		if (!isEnteringLevel) { manager->isLevelDisablingDeathSFX = false; }
+		if (!isEnteringLevel) {
+			manager->isLevelDisablingDeathSFX = false;
+		}
+		
 		if (Utils::modEnabled() && Utils::get("unverifiedPercent")) {
 			gameManager->m_showProgressBar = manager->originalShowProgressBarValue;
 			gameManager->setGameVariable("0040", manager->originalShowPercentageValue);
@@ -210,5 +213,9 @@ namespace Utils {
 	
 	bool isRandDeathSounds() {
 		return Loader::get()->isModLoaded("adam_729.randdeathsounds") && Loader::get()->getLoadedMod("adam_729.randdeathsounds")->getSettingValue<bool>("enabled");
+	}
+	
+	bool isSupportedExtension(std::string extension) {
+		return (strcmp(".mp3", extension.c_str()) == 0 || strcmp(".wav", extension.c_str()) == 0 || strcmp(".ogg", extension.c_str()) == 0);
 	}
 }

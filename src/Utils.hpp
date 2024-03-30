@@ -1,6 +1,5 @@
 #pragma once
 
-
 #include <Geode/Bindings.hpp>
 #include "Manager.hpp"
 
@@ -46,4 +45,6 @@ namespace Utils {
 	void decompLevelDisablesSFX(gd::string levelString);
 	
 	bool isRandDeathSounds();
+	
+	bool isSupportedExtension(std::string extension);
 }

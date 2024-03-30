@@ -13,7 +13,10 @@ class $modify(MyPlayLayer, PlayLayer) {
 	}
 	void onQuit() {
 		Utils::restoreOrigGMGVs(GameManager::get(), true, false);
-		if (Utils::modEnabled() && Utils::get("hideLevelCompleteVisuals")) { Manager::getSharedInstance()->isLevelComplete = false; }
+		auto manager = Manager::getSharedInstance();
+		if (Utils::modEnabled() && Utils::get("hideLevelCompleteVisuals")) { manager->isLevelComplete = false; }
+		manager->lastPlayedSong = "N/A";
+		manager->lastPlayedEffect = "N/A";
 		PlayLayer::onQuit();
 	}
 	#ifndef GEODE_IS_MACOS
@@ -66,12 +69,17 @@ class $modify(MyPlayLayer, PlayLayer) {
 				debugText.find("-- Area --") == std::string::npos
 			) { continue; }
 			if (Utils::get("logDebugText")) { log::info("--- LOGGED DEBUG TEXT [BEFORE ERYSEDITS] ---:\n{}", debugText); }
+			if (Utils::get("lastPlayedSong")) {
+				debugText = std::regex_replace(debugText, std::regex("\n-- Audio --\nSongs: "), fmt::format("\n-- Audio --\nLast Song: {}\nLast SFX: {}\nSongs: ", manager->lastPlayedSong, manager->lastPlayedEffect));
+			}
 			if (Utils::get("conditionalValues")) {
 				debugText = std::regex_replace(debugText, std::regex("\nTimeWarp: 1"), "");
 				debugText = std::regex_replace(debugText, std::regex("\nGravity: 1"), "");
 				debugText = std::regex_replace(debugText, std::regex("\nGradients: 0"), "");
 				debugText = std::regex_replace(debugText, std::regex("\nParticles: 0"), "");
 				debugText = std::regex_replace(debugText, std::regex("\nMove: 0\n"), "\n");
+				debugText = std::regex_replace(debugText, std::regex("\nSongs: 0\n"), "\n");
+				debugText = std::regex_replace(debugText, std::regex("\nSFX: 0\n"), "\n");
 				debugText = std::regex_replace(debugText, std::regex("\nRotate: 0\n"), "\n");
 				debugText = std::regex_replace(debugText, std::regex("\nScale: 0\n"), "\n");
 				debugText = std::regex_replace(debugText, std::regex("\nFollow: 0\n"), "\n");
@@ -113,7 +121,7 @@ class $modify(MyPlayLayer, PlayLayer) {
 				if (debugText.find("Gradients: ") != std::string::npos) { debugText = std::regex_replace(debugText, std::regex("\nParticles: "), " | Particles: "); } // Gradients and Particles
 				debugText = std::regex_replace(debugText, std::regex("\nY: "), " | Y: "); // X and Y position
 			}
-			if (Utils::get("compactAudioSection")) { debugText = std::regex_replace(debugText, std::regex("\nSFX: "), " | SFX: "); }
+			if (Utils::get("compactAudioSection") && debugText.find("Songs: ") != std::string::npos) { debugText = std::regex_replace(debugText, std::regex("\nSFX: "), " | SFX: "); }
 			if (Utils::get("expandPerformance")) { debugText = std::regex_replace(debugText, std::regex("-- Perf --"), "-- Performance --"); }
 			if (Utils::get("tapsToClicks")) {
 				if (theLevel->isPlatformer()) { debugText = std::regex_replace(debugText, std::regex("Taps: "), "Actions: "); }

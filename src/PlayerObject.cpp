@@ -31,7 +31,11 @@ class $modify(MyPlayerObject, PlayerObject) {
 				// mimic adam_729's randomdeathsounds' behavior
 				if (randDeathSounds && randDeathSounds->getSettingValue<bool>("enabled")) {
 					std::vector<std::string> deathSounds;
-					for (const auto& file : std::filesystem::directory_iterator((randDeathSounds->getSaveDir() / "deathsounds").string())) { deathSounds.push_back(file.path().string()); }
+					for (const auto& file : std::filesystem::directory_iterator((randDeathSounds->getSaveDir() / "deathsounds").string())) {
+						if (Utils::isSupportedExtension(file.path().extension().string())) {
+							deathSounds.push_back(file.path().string());
+						}
+					}
 					if (!deathSounds.empty()) { deathSFX = deathSounds[rand() % deathSounds.size()].c_str(); }
 				}
 				// mimic controlvanillasfx's behavior
