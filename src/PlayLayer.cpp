@@ -21,6 +21,7 @@ class $modify(MyPlayLayer, PlayLayer) {
 		#else
 		manager->lastPlayedEffect = "[MacOS issue]";
 		#endif
+		manager->currentChannel = 0;
 		PlayLayer::onQuit();
 	}
 	#ifndef GEODE_IS_MACOS
@@ -73,14 +74,22 @@ class $modify(MyPlayLayer, PlayLayer) {
 				debugText.find("-- Area --") == std::string::npos
 			) { continue; }
 			if (Utils::get("logDebugText")) { log::info("--- LOGGED DEBUG TEXT [BEFORE ERYSEDITS] ---:\n{}", debugText); }
+			if (Utils::get("addCurrentChannel")) {
+				debugText = std::regex_replace(debugText, std::regex("\n-- Audio --"), fmt::format("\nChannel: {}\n\r-- Audio --", manager->currentChannel));
+			}
 			if (Utils::get("lastPlayedSong")) {
-				debugText = std::regex_replace(debugText, std::regex("\n-- Audio --\nSongs: "), fmt::format("\n-- Audio --\nLast Song: {}\nLast SFX: {}\nSongs: ", manager->lastPlayedSong, manager->lastPlayedEffect));
+				debugText = std::regex_replace(debugText, std::regex("\n(\r)?-- Audio --\nSongs: "), fmt::format("\n-- Audio --\nLast Song: {}\nLast SFX: {}\nSongs: ", manager->lastPlayedSong, manager->lastPlayedEffect));
+			}
+			if (Utils::get("accuratePosition")) {
+				debugText = std::regex_replace(debugText, std::regex("\nX: (\\d)+\n"), fmt::format("\nX: {:.{}f}\n", m_player1->m_position.x, 4));
+				debugText = std::regex_replace(debugText, std::regex("\nY: (\\d)+\n"), fmt::format("\nY: {:.{}f}\n", m_player1->m_position.y, 4));
 			}
 			if (Utils::get("conditionalValues")) {
 				debugText = std::regex_replace(debugText, std::regex("\nTimeWarp: 1"), "");
 				debugText = std::regex_replace(debugText, std::regex("\nGravity: 1"), "");
 				debugText = std::regex_replace(debugText, std::regex("\nGradients: 0"), "");
 				debugText = std::regex_replace(debugText, std::regex("\nParticles: 0"), "");
+				debugText = std::regex_replace(debugText, std::regex("\nChannel: 0"), "");
 				debugText = std::regex_replace(debugText, std::regex("\nMove: 0\n"), "\n");
 				debugText = std::regex_replace(debugText, std::regex("\nSongs: 0\n"), "\n");
 				debugText = std::regex_replace(debugText, std::regex("\nSFX: 0\n"), "\n");

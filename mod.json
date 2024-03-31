@@ -63,15 +63,27 @@
 			"type": "bool",
 			"default": true
 		},
+		"addCurrentChannel": {
+			"name": "Show Current Channel",
+			"description": "Shows the currently active channel in the first section of the info label of PlayLayer.",
+			"type": "bool",
+			"default": true
+		},
+		"accuratePosition": {
+			"name": "Accurate Player Position",
+			"description": "Adds four more decimal points to the player's X and Y positions in the first section of the info label of PlayLayer.",
+			"type": "bool",
+			"default": true
+		},
 		"lastPlayedSong": {
-			"name": "Add Recently Loaded Song/Effect",
+			"name": "Show Most Recent Song/Effect",
 			"description": "Includes the filename of the most recently loaded song <cy>(and sound effect, if not on macOS)</c> in the Audio section of the info label of PlayLayer.",
 			"type": "bool",
 			"default": true
 		},
 		"compactAudioSection": {
 			"name": "Compact \"Audio\" Section",
-			"description": "Condenses Songs and SFX info in the info label of PlayLayer into one line.",
+			"description": "Condenses Song and SFX counts from the Audio section of the info label of PlayLayer into one line.",
 			"type": "bool",
 			"default": true
 		},
