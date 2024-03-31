@@ -11,7 +11,13 @@ class $modify(MyLevelCell, LevelCell) {
 	void onLevelDesc(CCObject* sender) {
 		auto theLevel = this->m_level;
 		std::string levelDesc = theLevel->getUnpackedLevelDescription();
-		if (strcmp(levelDesc.c_str(), "") == 0) { levelDesc = "(No description provided)"; }
+		if (strcmp(levelDesc.c_str(), "") == 0) {
+			if (Manager::getSharedInstance()->isInSavedLevels) {
+				levelDesc = "(No description provided. Try downloading the level again.)";
+			} else {
+				levelDesc = "(No description provided)";
+			}
+		}
 		FLAlertLayer::create(
 			nullptr,
 			std::string(theLevel->m_levelName).c_str(),
@@ -40,23 +46,21 @@ class $modify(MyLevelCell, LevelCell) {
 		if (!(Utils::modEnabled() && Utils::get("levelDescFromList"))) { return; }
 		if (auto viewButton = getChildByIDRecursive("view-button")) {
 			auto infoButton = CCSprite::createWithSpriteFrameName("GJ_infoIcon_001.png");
-			#ifndef GEODE_IS_MOBILE
 			infoButton->setScale(.6f);
-			#else
-			infoButton->setScale(.75f);
-			#endif
 			auto descButton = CCMenuItemSpriteExtra::create(infoButton, this, menu_selector(MyLevelCell::onLevelDesc));
 			descButton->setID("level-desc-button"_spr);
 			#ifndef GEODE_IS_MOBILE
 			descButton->setPosition({
-				viewButton->getPositionX() + (viewButton->getContentSize().width / 2),
-				viewButton->getPositionY() - (viewButton->getContentSize().height / 2)
+				viewButton->getPositionX() + (viewButton->getContentSize().width / 2.f),
+				viewButton->getPositionY() - (viewButton->getContentSize().height / 2.f)
 			});
 			#else
-			descButton->setPosition({
-				viewButton->getPositionX() - (viewButton->getContentSize().width / 2),
-				viewButton->getPositionY()
-			});
+			if (auto mainLayer = getChildByID("main-layer")) {
+				descButton->setPosition({
+					mainLayer->getPositionX() - (mainLayer->getContentSize().width / 2.f) + 7.5f,
+					mainLayer->getPositionY() - (mainLayer->getContentSize().height / 2.f) + 7.5f
+				});
+			}
 			#endif
 			getChildByIDRecursive("main-menu")->addChild(descButton);
 		}

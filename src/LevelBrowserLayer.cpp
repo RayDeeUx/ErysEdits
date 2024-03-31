@@ -1,5 +1,6 @@
 #include <Geode/modify/LevelBrowserLayer.hpp>
 #include <geode.custom-keybinds/include/Keybinds.hpp>
+#include "Manager.hpp"
 #include "Utils.hpp"
 
 using namespace geode::prelude;
@@ -18,6 +19,11 @@ class $modify(MyLevelBrowserLayer, LevelBrowserLayer) {
 	#endif
 	bool init(GJSearchObject* searchObject) {
 		if (!LevelBrowserLayer::init(searchObject)) { return false; }
+		if (getChildByIDRecursive("saved-menu")) {
+			Manager::getSharedInstance()->isInSavedLevels = true;
+		} else {
+			Manager::getSharedInstance()->isInSavedLevels = false;
+		}
 		if (searchObject->m_searchType == SearchType::MyLevels && Utils::modEnabled() && Utils::get("compactEditorLevels")) {
 			if (auto deleteMenu = getChildByIDRecursive("delete-menu")) {
 				// hide the deletion checkboxes because every level in the list has been cast to BoomListType::Level4
