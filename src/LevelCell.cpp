@@ -50,12 +50,12 @@ class $modify(MyLevelCell, LevelCell) {
 			#ifndef GEODE_IS_MOBILE
 			descButton->setPosition({
 				viewButton->getPositionX() + (viewButton->getContentSize().width / 2),
-				viewButton->getPositionY()
+				viewButton->getPositionY() - (viewButton->getContentSize().height / 2)
 			});
 			#else
 			descButton->setPosition({
 				viewButton->getPositionX() - (viewButton->getContentSize().width / 2),
-				viewButton->getPositionY() + (viewButton->getContentSize().height / 2)
+				viewButton->getPositionY()
 			});
 			#endif
 			getChildByIDRecursive("main-menu")->addChild(descButton);
