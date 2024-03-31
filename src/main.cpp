@@ -36,6 +36,7 @@ $on_mod(Loaded) {
 	Mod::get()->addCustomSetting<SectionSettingValue>("navigation", "none");
 	#endif
 	Mod::get()->addCustomSetting<SectionSettingValue>("misc", "none");
+	Mod::get()->addCustomSetting<SectionSettingValue>("alert-layers", "none");
 	// the above several lines were based on similar lines of code from coopeeo's hide+ mod with full consent
 	// proof of consent: https://discord.com/channels/911701438269386882/911702535373475870/1222262244528754819
 }

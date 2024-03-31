@@ -253,6 +253,46 @@
 			"platforms": ["windows"],
 			"default": true
 		},
+		"alert-layers": {
+			"name": "Alert Layers",
+			"type": "custom"
+		},
+		"flAlertWidthMultiplier": {
+			"name": "Width Multiplier",
+			"description": "Multiplies the width of <cy>most</c> Alert Layers\n(such as this one you're viewing).\n\nDon't worry, the mod will cap all widths to <cg>420</c> units.\n\n<cy>(Enabling the \"Text Scroll\" setting a bit further below this one will override whatever value you've set here.)</c>",
+			"type": "float",
+			"default": 1.0,
+			"min": 1.0,
+			"max": 1.5,
+			"control": {
+				"arrows": false,
+				"slider-step": 0.01
+			}
+		},
+		"textScale": {
+			"name": "Text Scale",
+			"description": "Changes the text scale of <cy>most</c> Alert Layers\n(such as this one you're viewing).\n\n<cy>(Enabling the \"Text Scroll\" setting a bit below this one will override whatever value you've set here.)</c>",
+			"type": "float",
+			"default": 1.0,
+			"min": 0.1,
+			"max": 2.0,
+			"control": {
+				"arrows": false,
+				"slider-step": 0.01
+			}
+		},
+		"textScroll": {
+			"name": "Text Scroll",
+			"description": "Enable (with 1), ignore (with 0), or disable (with -1) text scrolling in <cy>most</c> Alert Layers\n(such as this one you're viewing).\n\n<cy>Note that enabling text scroll will override your \"Width Multiplier\"  and \"Text Scale\" settings above this one.</c>",
+			"type": "int",
+			"default": 0,
+			"min": -1,
+			"max": 1,
+			"control": {
+				"arrows": false,
+				"slider-step": 1
+			}
+		},
 		"misc": {
 			"name": "Miscellaneous",
 			"type": "custom"
@@ -280,18 +320,6 @@
 			"description": "Fix the overlap in buttons when viewing your own comments while Cvolton's BetterInfo and TastyForReal's Google Translate mod installed.",
 			"type": "bool",
 			"default": true
-		},
-		"flAlertWidthMultiplier": {
-			"name": "Alert Layers: Width Multiplier",
-			"description": "Multiplies the width of <cy>most</c> FLAlertLayers\n(such as this one you're viewing!).\n\nDon't worry, the mod will cap all widths to <cg>420</c> units.",
-			"type": "float",
-			"default": 1.0,
-			"min": 1.0,
-			"max": 1.5,
-			"control": {
-				"arrows": false,
-				"slider-step": 0.01
-			}
 		}
 	},
 	"resources": {
