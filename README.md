@@ -50,6 +50,7 @@ Not all features of ErysEdits are available across all platforms; check your set
 - [Alphalaneous](https://gdbrowser.com/u/1139015) and [dankmeme](https://gdbrowser.com/u/9735891), for supplemental CMake/C++ expertise
 - [SpaghettDev](https://gdbrowser.com/u/7670168) and [Prevter](https://gdbrowser.com/u/7696536), for finding memory address bindings that fully fleshed out some features (`0x305630` for `SecretLayer2::create()`;  `0x276180` and `0x276170`, for `LikeItemLayer::onDislike()` and `LikeItemLayer::onLike()` respectively)
 - [Cooper](https://gdbrowser.com/u/21207551), for allowing me to reuse code for custom setting headers
+- [CatXus](https://gdbrowser.com/u/14467409), for extensively testing this mod on Android, and for helping me sing "You Are a Pirate" from LazyTown ;)
 - [sofabeddd](https://gdbrowser.com/u/7976112), for the occasional reality check
 
 This [Geode mod](https://geode-sdk.org) is licensed under LGPLv2.
