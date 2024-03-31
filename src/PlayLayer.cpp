@@ -44,20 +44,20 @@ class $modify(MyPlayLayer, PlayLayer) {
 			return;
 		}
 		auto manager = Manager::getSharedInstance();
+
+		PlayLayer::postUpdate(dt);
+		/*
+			calling the original function in this specific position per cvolton's advice in https://discord.com/channels/911701438269386882/979402752121765898/1213615245260627999
+			> whether its before or after original depends on where you put your code
+			> if its before the call to original or after the call to original
+		*/
 		if (Utils::get("debugTextToggle")) {
 			auto theLevel = this->m_level;
 			std::string status = Utils::buildPlayerStatusString(m_player1, theLevel, this, false);
 			std::string statusTwo = "";
 			if (manager->isDualsTime) { statusTwo = Utils::buildPlayerStatusString(m_player2, theLevel, this, true); }
 			std::string level = Utils::buildLevelTraitsString(theLevel);
-	
-			PlayLayer::postUpdate(dt);
 			
-			/*
-				calling the original function in this specific position per cvolton's advice in https://discord.com/channels/911701438269386882/979402752121765898/1213615245260627999
-				> whether its before or after original depends on where you put your code
-				> if its before the call to original or after the call to original
-			*/
 			std::string ending = "\n-- Area --\n";
 			std::string endingTwo = "\n-- Perf --\n--";
 			for (int i = this->getChildrenCount(); i-- > 0; ) {
