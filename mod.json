@@ -29,7 +29,7 @@
 		},
 		"debugTextToggle": {
 			"name": "Enable Debug Text Changes",
-			"description": "A soft toggle specifically for this mod's changes to the info label in PlayLayer.\n(Useful for the small population of users who still have xdBot installed before it was de-listed from the Geode index.)",
+			"description": "A soft toggle for this mod's edits to the info label in PlayLayer.\n(Useful to prevent massive FPS loss for the small population of users who still have Zilko's xdBot installed before it was de-listed from the Geode index.)",
 			"type": "bool",
 			"default": true
 		},
