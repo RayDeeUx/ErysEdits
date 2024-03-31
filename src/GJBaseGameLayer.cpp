@@ -7,7 +7,11 @@ using namespace geode::prelude;
 class $modify(MyGJBaseGameLayer, GJBaseGameLayer) {
 	void update(float dt) {
 		GJBaseGameLayer::update(dt);
+		#ifndef GEODE_IS_MACOS
 		Manager::getSharedInstance()->currentChannel = m_gameState.m_currentChannel;
+		#else
+		Manager::getSharedInstance()->currentChannel = m_gameState.m_unk190;
+		#endif
 	}
 	void toggleDualMode(GameObject * p0, bool p1, PlayerObject * p2, bool p3) {
 		GJBaseGameLayer::toggleDualMode(p0, p1, p2, p3);
