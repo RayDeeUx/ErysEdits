@@ -22,6 +22,7 @@ add_library(
 	src/EditorUI.cpp
 	src/EffectGameObject.cpp
 	src/EndLevelLayer.cpp
+	src/FLAlertLayer.cpp
 	src/FMODAudioEngine.cpp
 	src/GameManager.cpp
 	src/GJBaseGameLayer.cpp

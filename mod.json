@@ -261,6 +261,18 @@
 			"description": "Fix the overlap in buttons when viewing your own comments while Cvolton's BetterInfo and TastyForReal's Google Translate mod installed.",
 			"type": "bool",
 			"default": true
+		},
+		"flAlertWidthMultiplier": {
+			"name": "Alert Layers: Width Multiplier",
+			"description": "Multiplies the width of <cy>most</c> FLAlertLayers\n(such as this one you're viewing!).\n\nDon't worry, the mod will cap all widths to <cg>420</c> units.",
+			"type": "float",
+			"default": 1.0,
+			"min": 1.0,
+			"max": 1.5,
+			"control": {
+				"arrows": false,
+				"slider-step": 0.01
+            }
 		}
 	},
 	"resources": {

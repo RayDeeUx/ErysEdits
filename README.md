@@ -29,13 +29,20 @@ Not all features of ErysEdits are available across all platforms; check your set
 
 ![demoFive](https://github.com/RayDeeUx/ErysEdits/blob/main/resources/demoFive.png)
 
+- Compact view of user profile comments/posts
+
+![demoSix](https://github.com/RayDeeUx/ErysEdits/blob/main/resources/demoSix.png)
+
+- Wider FLAlertLayers
+
+![demoSeven](https://github.com/RayDeeUx/ErysEdits/blob/main/resources/demoSeven.png)
+
 - Hidden progress bar and percentage on unverified local levels
 - Force levels to stop music on death
 - Force levels to play your death SFX on death (compatible with Adam_729's Random Death Sounds and ControlVanillaSFX, see mod settings for more details)
 - Various keybinds to make navigating Geometry Dash feel a lot less repetive (Ctrl + S to save, Ctrl + R to refresh, Alt + Left/Right to navigate between layers with pages, Shift + Left/Right to go to the first or last page, etc)
 - Requiring Shift key to enter shops and vaults (to avoid changing menu loop music)
 - Disable Shake, Pulse, Area Tint, SFX, and Edit SFX triggers
-- Compact view of user profile comments/posts
 
 ## Special Thanks
 - [acaruso](https://gdbrowser.com/u/25012294), for moral support + massive optimizations in codebase during development
