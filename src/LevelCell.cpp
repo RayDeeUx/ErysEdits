@@ -55,10 +55,17 @@ class $modify(MyLevelCell, LevelCell) {
 				viewButton->getPositionY() - (viewButton->getContentSize().height / 2.f)
 			});
 			#else
-			if (auto mainLayer = getChildByID("main-layer")) {
+			if (!Utils::isSceneRunning("DailyLevelPage")) {
+				if (auto mainLayer = getChildByID("main-layer")) {
+					descButton->setPosition({
+						mainLayer->getPositionX() - (mainLayer->getContentSize().width / 2.f) + 7.5f,
+						mainLayer->getPositionY() - (mainLayer->getContentSize().height / 2.f) + 7.5f
+					});
+				}
+			} else {
 				descButton->setPosition({
-					mainLayer->getPositionX() - (mainLayer->getContentSize().width / 2.f) + 7.5f,
-					mainLayer->getPositionY() - (mainLayer->getContentSize().height / 2.f) + 7.5f
+					viewButton->getPositionX() + (viewButton->getContentSize().width / 2.f),
+					viewButton->getPositionY() - (viewButton->getContentSize().height / 2.f)
 				});
 			}
 			#endif

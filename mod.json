@@ -27,6 +27,12 @@
 			"name": "Info Label / Debug Text",
 			"type": "custom"
 		},
+		"debugTextToggle": {
+			"name": "Enable Debug Text Changes",
+			"description": "A soft toggle specifically for this mod's changes to the info label in PlayLayer.\n(Useful for the small population of users who still have xdBot installed before it was de-listed from the Geode index.)",
+			"type": "bool",
+			"default": true
+		},
 		"blendingDebugText": {
 			"name": "Readable Mode",
 			"description": "Make the info label easier to read across a far larger variety of scenarios.",
@@ -285,7 +291,7 @@
 			"control": {
 				"arrows": false,
 				"slider-step": 0.01
-            }
+			}
 		}
 	},
 	"resources": {
