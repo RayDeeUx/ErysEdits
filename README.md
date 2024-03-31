@@ -4,7 +4,7 @@ Several mods I would've made into smaller standalone mods when I was an ignorant
 Not all features of ErysEdits are available across all platforms; check your settings for this mod after installing to verify.
 
 ## Features
-- Various Info Label tweaks, including improved readibility, conditiona displays, and debug text logging
+- Various Info Label tweaks, including improved readibility, conditional displays, and debug text logging
 
 ![demoOne](https://github.com/RayDeeUx/ErysEdits/blob/main/resources/demoOne.png)
 ![demoOnePointFive](https://github.com/RayDeeUx/ErysEdits/blob/main/resources/demoOnePointFive.png)
