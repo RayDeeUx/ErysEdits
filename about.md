@@ -32,7 +32,7 @@ Not all features of ErysEdits are available across all platforms; check your set
 
 ![demoSix](raydeeux.erysedits/demoSix.png&scale:0.75)
 
-- Wider FLAlertLayers
+- Various FLAlertLayers tweaks (including wider alerts, smaller, text, and scrollable text)
 
 ![demoSeven](raydeeux.erysedits/demoSeven.png&scale:0.75)
 
