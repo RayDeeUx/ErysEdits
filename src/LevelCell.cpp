@@ -33,19 +33,31 @@ class $modify(MyLevelCell, LevelCell) {
 		LevelCell::loadLocalLevelCell();
 		if (!(Utils::modEnabled() && Utils::get("compactEditorLevels"))) { return; }
 		if (auto localLevelname = typeinfo_cast<CCLabelBMFont*>(getChildByIDRecursive("level-name"))) { localLevelname->limitLabelWidth(200.f, .6f, .01f); }
+		if (auto mainLayer = typeinfo_cast<CCLayer*>(getChildByIDRecursive("main-layer"))) { mainLayer->setPositionY(-3.5f); }
 	}
 	void loadCustomLevelCell() {
 		LevelCell::loadCustomLevelCell();
 		if (!(Utils::modEnabled() && Utils::get("levelDescFromList"))) { return; }
 		if (auto viewButton = getChildByIDRecursive("view-button")) {
 			auto infoButton = CCSprite::createWithSpriteFrameName("GJ_infoIcon_001.png");
+			#ifndef GEODE_IS_MOBILE
 			infoButton->setScale(.6f);
+			#else
+			infoButton->setScale(.75f);
+			#endif
 			auto descButton = CCMenuItemSpriteExtra::create(infoButton, this, menu_selector(MyLevelCell::onLevelDesc));
 			descButton->setID("level-desc-button"_spr);
+			#ifndef GEODE_IS_MOBILE
 			descButton->setPosition({
 				viewButton->getPositionX() + (viewButton->getContentSize().width / 2),
-				viewButton->getPositionY() - (viewButton->getContentSize().height / 2)
+				viewButton->getPositionY()
 			});
+			#else
+			descButton->setPosition({
+				viewButton->getPositionX() - (viewButton->getContentSize().width / 2),
+				viewButton->getPositionY() + (viewButton->getContentSize().height / 2)
+			});
+			#endif
 			getChildByIDRecursive("main-menu")->addChild(descButton);
 		}
 	}
