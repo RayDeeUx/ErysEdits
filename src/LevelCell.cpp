@@ -55,7 +55,7 @@ class $modify(MyLevelCell, LevelCell) {
 				viewButton->getPositionY() - (viewButton->getContentSize().height / 2.f)
 			});
 			#else
-			if (!Utils::isSceneRunning("DailyLevelPage")) {
+			if (!Utils::isSceneRunningRecursive("DailyLevelPage")) {
 				if (auto mainLayer = getChildByID("main-layer")) {
 					descButton->setPosition({
 						mainLayer->getPositionX() - (mainLayer->getContentSize().width / 2.f) + 7.5f,
