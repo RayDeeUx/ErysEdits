@@ -18,10 +18,10 @@ class $modify(MyPlayLayer, PlayLayer) {
 		manager->lastPlayedSong = "N/A";
 		#ifndef GEODE_IS_MACOS
 		manager->lastPlayedEffect = "N/A";
+		manager->currentChannel = 0;
 		#else
 		manager->lastPlayedEffect = "[MacOS issue]";
 		#endif
-		manager->currentChannel = 0;
 		PlayLayer::onQuit();
 	}
 	#ifndef GEODE_IS_MACOS
@@ -74,9 +74,11 @@ class $modify(MyPlayLayer, PlayLayer) {
 				debugText.find("-- Area --") == std::string::npos
 			) { continue; }
 			if (Utils::get("logDebugText")) { log::info("--- LOGGED DEBUG TEXT [BEFORE ERYSEDITS] ---:\n{}", debugText); }
+			#ifndef GEODE_IS_MACOS
 			if (Utils::get("addCurrentChannel")) {
 				debugText = std::regex_replace(debugText, std::regex("\n-- Audio --"), fmt::format("\nChannel: {}\n\r-- Audio --", manager->currentChannel));
 			}
+			#endif
 			if (Utils::get("lastPlayedSong")) {
 				debugText = std::regex_replace(debugText, std::regex("\n(\r)?-- Audio --\nSongs: "), fmt::format("\n-- Audio --\nLast Song: {}\nLast SFX: {}\nSongs: ", manager->lastPlayedSong, manager->lastPlayedEffect));
 			}

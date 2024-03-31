@@ -9,8 +9,6 @@ class $modify(MyGJBaseGameLayer, GJBaseGameLayer) {
 		GJBaseGameLayer::update(dt);
 		#ifndef GEODE_IS_MACOS
 		Manager::getSharedInstance()->currentChannel = m_gameState.m_currentChannel;
-		#else
-		Manager::getSharedInstance()->currentChannel = m_gameState.m_unk190;
 		#endif
 	}
 	void toggleDualMode(GameObject * p0, bool p1, PlayerObject * p2, bool p3) {
