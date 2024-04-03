@@ -10,7 +10,6 @@ class $modify(MyPlayerObject, PlayerObject) {
 		if (!(Utils::modEnabled() && Utils::get("disablePlatformerJumpAnim"))) { PlayerObject::animatePlatformerJump(p0); }
 	}
 	void playerDestroyed(bool p0) {
-		PlayerObject::playerDestroyed(p0);
 		auto gm = GameManager::get();
 		auto manager = Manager::getSharedInstance();
 		manager->isPlayerDead = true;
@@ -46,5 +45,6 @@ class $modify(MyPlayerObject, PlayerObject) {
 				fmod->playEffect(deathSFX, 1.f, 1.f, volume);
 			}
 		}
+		PlayerObject::playerDestroyed(p0);
 	}
 };
