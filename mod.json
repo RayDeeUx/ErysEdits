@@ -5,7 +5,7 @@
 		"android": "2.205",
 		"win": "2.204"
 	},
-	"version": "v1.0.1",
+	"version": "v1.0.2",
 	"id": "raydeeux.erysedits",
 	"name": "ErysEdits",
 	"developers": ["RayDeeUx", "acaruso"],
@@ -271,7 +271,7 @@
 		},
 		"textScale": {
 			"name": "Text Scale",
-			"description": "Changes the text scale of <cy>most</c> Alert Layers\n(such as this one you're viewing).\n\n<cy>(Enabling the \"Text Scroll\" setting a bit below this one will override whatever value you've set here.)</c>",
+			"description": "Changes the text scale of <cy>most</c> Alert Layers\n(such as this one you're viewing).\n\n<cy>(Enabling the \"Text Scroll\" setting a bit below this one will override whatever value you've set here. Text scales are also ignored in alerts with scrolling already enabled beforehand.)</c>",
 			"type": "float",
 			"default": 1.0,
 			"min": 0.1,
