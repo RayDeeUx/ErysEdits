@@ -36,11 +36,41 @@ class $modify(MyEditorUI, EditorUI) {
 					)->show();
 				}
 			} else {
-				FLAlertLayer::create(
-					"Editor Level Save Disabled!",
-					"You have either disabled the softtoggle for the ErysEdits mod, or you have disabled the keybind to save an editor level. Please double-check your mod configs and try again.",
-					"OK"
-				)->show();
+				Utils::keybindDisabledGeneric("Editor Level Save", "save an editor level");
+			}
+		});
+		/*
+			this->defineKeybind("save-and-play-editor"_spr, [this]() {
+				if (Utils::modEnabled() && Utils::get("saveAndPlay")) {
+					auto editorPauseLayer = EditorPauseLayer::create(this->m_editorLayer);
+					if (editorPauseLayer) {
+						editorPauseLayer->onSaveAndPlay(nullptr);
+					} else {
+						FLAlertLayer::create(
+							"Editor Save and Play Failed!",
+							"Your <cj>level</c> <cr>could not</c> be saved and playtested. Please try again.",
+							"OK"
+						)->show();
+					}
+				} else {
+					Utils::keybindDisabledGeneric("Editor Save and Play", "save and play an editor level");
+				}
+			});
+		*/
+		this->defineKeybind("save-and-exit-editor"_spr, [this]() {
+			if (Utils::modEnabled() && Utils::get("saveAndExit")) {
+				auto editorPauseLayer = EditorPauseLayer::create(this->m_editorLayer);
+				if (editorPauseLayer) {
+					editorPauseLayer->onSaveAndExit(nullptr);
+				} else {
+					FLAlertLayer::create(
+						"Editor Save and Exit Failed!",
+						"Your <cj>level</c> <cr>could not</c> be saved and exited from. Please try again.",
+						"OK"
+					)->show();
+				}
+			} else {
+				Utils::keybindDisabledGeneric("Editor Save and Exit", "save and exit from an editor level");
 			}
 		});
 		return true;

@@ -33,6 +33,7 @@ $on_mod(Loaded) {
 	Mod::get()->addCustomSetting<SectionSettingValue>("debug-text", "none");
 	Mod::get()->addCustomSetting<SectionSettingValue>("gameplay", "none");
 	#ifdef GEODE_IS_WINDOWS
+	Mod::get()->addCustomSetting<SectionSettingValue>("levelEditor", "none");
 	Mod::get()->addCustomSetting<SectionSettingValue>("navigation", "none");
 	#endif
 	Mod::get()->addCustomSetting<SectionSettingValue>("misc", "none");
@@ -48,6 +49,22 @@ $execute {
 		"Save Editing Level",
 		"Saves editing your level <cy>without a confirmation</c>, much like saving a file wherever else you can imagine.",
 		{ Keybind::create(KEY_S, Modifier::Control) },
+		Category::EDITOR
+	});
+	/*
+	BindManager::get()->registerBindable({
+		"save-and-play-editor"_spr,
+		"Save and Play Editor Level",
+		"Saves and playtests your editor level <cy>without a confirmation</c>.",
+		{ Keybind::create(KEY_S, Modifier::Shift | Modifier::Alt | Modifier::Control) },
+		Category::EDITOR
+	});
+	*/
+	BindManager::get()->registerBindable({
+		"save-and-exit-editor"_spr,
+		"Save and Exit Editor Level",
+		"Saves and exits your editor level <cy>without a confirmation</c>.",
+		{ Keybind::create(KEY_S, Modifier::Shift | Modifier::Control) },
 		Category::EDITOR
 	});
 	BindManager::get()->registerBindable({

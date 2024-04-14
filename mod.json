@@ -5,7 +5,7 @@
 		"android": "2.205",
 		"win": "2.204"
 	},
-	"version": "v1.0.2",
+	"version": "v1.1.0",
 	"id": "raydeeux.erysedits",
 	"name": "ErysEdits",
 	"developers": ["RayDeeUx", "acaruso"],
@@ -206,6 +206,25 @@
 			"type": "bool",
 			"default": false
 		},
+		"levelEditor": {
+			"name": "Level Editor Keybinds",
+			"type": "custom",
+			"platforms": ["windows"]
+		},
+		"saveEditorLevel": {
+			"name": "Save Editor Level",
+			"description": "Enables a keybind (set to Ctrl + S by default) to save your level in the editor immediately <cy>without a confirmation</c>.",
+			"type": "bool",
+			"platforms": ["windows"],
+			"default": true
+		},
+		"saveAndExit": {
+			"name": "Save And Exit",
+			"description": "Enables a keybind (set to Shift + Ctrl + S by default) to save your level in the editor and exit the editor <cy>without a confirmation</c>.",
+			"type": "bool",
+			"platforms": ["windows"],
+			"default": false
+		},
 		"navigation": {
 			"name": "Navigation with Keybinds",
 			"type": "custom",
@@ -224,13 +243,6 @@
 			"type": "bool",
 			"platforms": ["windows"],
 			"default": false
-		},
-		"saveEditorLevel": {
-			"name": "Save Editor Level",
-			"description": "Enables a keybind (set to Ctrl + S by default) to save your level in the editor immediately <cy>without a confirmation</c>.",
-			"type": "bool",
-			"platforms": ["windows"],
-			"default": true
 		},
 		"viewCommentsAnywhere": {
 			"name": "View Comments",
@@ -330,7 +342,7 @@
 	"dependencies": [
 		{
 			"id": "geode.node-ids",
-			"version": ">=1.8.0",
+			"version": ">=1.9.0",
 			"importance": "required"
 		},
 		{

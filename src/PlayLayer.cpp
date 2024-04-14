@@ -66,14 +66,9 @@ class $modify(MyPlayLayer, PlayLayer) {
 					ccCircleWave->setVisible(false);
 					continue;
 				}
-				auto theLastCCLabel = typeinfo_cast<CCLabelBMFont*>(theObject);
-				if (theLastCCLabel == nullptr || (strcmp(typeinfo_cast<CCNode*>(theLastCCLabel)->getID().c_str(), "") != 0 && strcmp(typeinfo_cast<CCNode*>(theLastCCLabel)->getID().c_str(), "debug-text") != 0)) { continue; }
-				std::string debugText = theLastCCLabel->getString();
-				if (
-					debugText.find("-- Audio --") == std::string::npos ||
-					debugText.find("-- Perf --") == std::string::npos ||
-					debugText.find("-- Area --") == std::string::npos
-				) { continue; }
+			}
+			if (auto debugTextNode = typeinfo_cast<CCLabelBMFont*>(getChildByIDRecursive("debug-text"))) {
+				std::string debugText = debugTextNode->getString();
 				if (Utils::get("logDebugText")) { log::info("--- LOGGED DEBUG TEXT [BEFORE ERYSEDITS] ---:\n{}", debugText); }
 				#ifndef GEODE_IS_MACOS
 				if (Utils::get("addCurrentChannel")) {
@@ -147,7 +142,7 @@ class $modify(MyPlayLayer, PlayLayer) {
 				if (Utils::get("pluralAttempts")) { debugText = std::regex_replace(debugText, std::regex("Attempt: "), "Attempts: "); }
 				if (Utils::get("addGameplayHeader")) { debugText = std::string("-- Gameplay --\n") + debugText; }
 				if (Utils::get("logDebugText")) { log::info("--- LOGGED DEBUG TEXT [AFTER ERYSEDITS] ---:\n{}", debugText); }
-				if (Utils::get("blendingDebugText")) { theLastCCLabel->setBlendFunc({GL_ONE_MINUS_DST_COLOR, GL_ONE_MINUS_SRC_ALPHA}); } // Manager::glBlendFuncs[5], Manager::glBlendFuncs[7]
+				if (Utils::get("blendingDebugText")) { debugTextNode->setBlendFunc({GL_ONE_MINUS_DST_COLOR, GL_ONE_MINUS_SRC_ALPHA}); } // Manager::glBlendFuncs[5], Manager::glBlendFuncs[7]
 				if (Utils::get("modLoaderInfo")) {
 					debugText = debugText +
 					fmt::format(
@@ -163,10 +158,9 @@ class $modify(MyPlayLayer, PlayLayer) {
 						manager->forwardCompat
 					);
 				}
-				theLastCCLabel->setString(debugText.c_str()); // set the string
-				theLastCCLabel->setScale(0.5 * (940.f / 1004.f)); // spaceUK style; capeling doesnt want watermarks for some reason D:<
-				theLastCCLabel->setPositionY(312.5f); // spaceUK style; capeling doesnt want watermarks for some reason D:<
-				break;
+				debugTextNode->setString(debugText.c_str()); // set the string
+				debugTextNode->setScale(0.5 * (940.f / 1004.f)); // spaceUK style; capeling doesnt want watermarks for some reason D:<
+				debugTextNode->setPositionY(312.5f); // spaceUK style; capeling doesnt want watermarks for some reason D:<
 			}
 		}
 		if (Utils::get("hideLevelCompleteVisuals") && manager->isLevelComplete) {
