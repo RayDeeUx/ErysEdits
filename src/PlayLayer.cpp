@@ -67,7 +67,8 @@ class $modify(MyPlayLayer, PlayLayer) {
 					continue;
 				}
 			}
-			if (auto debugTextNode = typeinfo_cast<CCLabelBMFont*>(getChildByIDRecursive("debug-text"))) {
+			auto debugTextNode = typeinfo_cast<CCLabelBMFont*>(getChildByIDRecursive("debug-text"));
+			if (debugTextNode->isVisible()) {
 				std::string debugText = debugTextNode->getString();
 				if (Utils::get("logDebugText")) { log::info("--- LOGGED DEBUG TEXT [BEFORE ERYSEDITS] ---:\n{}", debugText); }
 				#ifndef GEODE_IS_MACOS
