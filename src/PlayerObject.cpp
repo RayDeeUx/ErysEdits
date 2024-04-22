@@ -6,15 +6,16 @@
 using namespace geode::prelude;
 
 class $modify(MyPlayerObject, PlayerObject) {
+	static void onModify(auto & self)
+	{
+		self.setHookPriority("PlayerObject::playerDestroyed", INT64_MAX - 1);
+	}
 	void animatePlatformerJump(float p0) {
 		if (!(Utils::modEnabled() && Utils::get("disablePlatformerJumpAnim"))) { PlayerObject::animatePlatformerJump(p0); }
 	}
 	void playerDestroyed(bool p0) {
-		PlayerObject::playerDestroyed(p0);
-		auto gm = GameManager::get();
-		auto manager = Manager::getSharedInstance();
-		manager->isPlayerDead = true;
-		if (Utils::modEnabled() && gm->getPlayLayer()) {
+		Manager::getSharedInstance()->isPlayerDead = true;
+		if (Utils::modEnabled() && GameManager::get()->getPlayLayer()) {
 			auto fmod = FMODAudioEngine::sharedEngine();
 			auto pl = PlayLayer::get();
 			if (Utils::get("forceStopMusicOnDeath")) {
@@ -23,5 +24,6 @@ class $modify(MyPlayerObject, PlayerObject) {
 				fmod->stopAllEffects();
 			}
 		}
+		PlayerObject::playerDestroyed(p0);
 	}
 };
