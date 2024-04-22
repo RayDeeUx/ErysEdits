@@ -14,7 +14,7 @@ class $modify(MyFMODAudioEngine, FMODAudioEngine) {
 		auto vanillaSFX = manager->vanillaSFX;
 		std::string path = p0;
 		std::smatch match;
-		if (path.find("geode") != std::string::npos && path.find("mods") != std::string::npos) {
+		if (path.find("geode") != std::string::npos && (path.find("mods") != std::string::npos || path.find("config") != std::string::npos)) {
 			manager->lastPlayedEffect = "[From another Geode mod]";
 		} else if (std::find(vanillaSFX.begin(), vanillaSFX.end(), path) == vanillaSFX.end()) {
 			if (std::regex_match(path, match, songEffectRegex)) {
