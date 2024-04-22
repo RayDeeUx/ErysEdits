@@ -56,13 +56,13 @@ public:
 	const std::list<std::string> badSFX = { "achievement_01.ogg", "magicExplosion.ogg", "gold02.ogg", "secretKey.ogg" };
 
 	std::string lastPlayedSong = "N/A";
-	#ifndef GEODE_IS_MACOS
+	#ifndef __APPLE__
 	std::string lastPlayedEffect = "N/A";
 	#else
 	std::string lastPlayedEffect = "[MacOS issue]";
 	#endif
 	
-	#ifndef GEODE_IS_MACOS
+	#ifndef __APPLE__
 	int currentChannel = 0;
 	#endif
 	

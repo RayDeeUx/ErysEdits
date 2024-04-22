@@ -7,7 +7,7 @@ using namespace geode::prelude;
 class $modify(MyGJBaseGameLayer, GJBaseGameLayer) {
 	void update(float dt) {
 		GJBaseGameLayer::update(dt);
-		#ifndef GEODE_IS_MACOS
+		#ifndef __APPLE__
 		Manager::getSharedInstance()->currentChannel = m_gameState.m_currentChannel;
 		#endif
 	}

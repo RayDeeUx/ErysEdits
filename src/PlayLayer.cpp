@@ -16,7 +16,7 @@ class $modify(MyPlayLayer, PlayLayer) {
 		auto manager = Manager::getSharedInstance();
 		if (Utils::modEnabled() && Utils::get("hideLevelCompleteVisuals")) { manager->isLevelComplete = false; }
 		manager->lastPlayedSong = "N/A";
-		#ifndef GEODE_IS_MACOS
+		#ifndef __APPLE__
 		manager->lastPlayedEffect = "N/A";
 		manager->currentChannel = 0;
 		#else
@@ -24,13 +24,13 @@ class $modify(MyPlayLayer, PlayLayer) {
 		#endif
 		PlayLayer::onQuit();
 	}
-	#ifndef GEODE_IS_MACOS
+	#ifndef __APPLE__
 	void onExit() {
 		Utils::restoreOrigGMGVs(GameManager::get(), false);
 		PlayLayer::onExit();
 	}
 	#endif
-	#ifdef GEODE_IS_MACOS
+	#ifdef __APPLE__
 	void addObject(GameObject* p0) {
 		auto mTS = Manager::getSharedInstance()->miscIDToSetting;
 		bool dontSkip = true;
@@ -71,7 +71,7 @@ class $modify(MyPlayLayer, PlayLayer) {
 			if (debugTextNode->isVisible()) {
 				std::string debugText = debugTextNode->getString();
 				if (Utils::get("logDebugText")) { log::info("--- LOGGED DEBUG TEXT [BEFORE ERYSEDITS] ---:\n{}", debugText); }
-				#ifndef GEODE_IS_MACOS
+				#ifndef __APPLE__
 				if (Utils::get("addCurrentChannel")) {
 					debugText = std::regex_replace(debugText, std::regex("\n-- Audio --"), fmt::format("\nChannel: {}\n\r-- Audio --", manager->currentChannel));
 				}

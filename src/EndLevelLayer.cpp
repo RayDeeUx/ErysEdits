@@ -1,4 +1,4 @@
-#ifndef GEODE_IS_MACOS
+#ifndef __APPLE__
 #include <Geode/modify/EndLevelLayer.hpp>
 #include "Manager.hpp"
 #include "Utils.hpp"
