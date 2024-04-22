@@ -169,18 +169,6 @@
 			"type": "bool",
 			"default": true
 		},
-		"forcePlayDeathSFXOnDeath": {
-			"name": "Force Death SFX",
-			"description": "Forces the game to play death SFX, even if a level's option triggers demand otherwise.\n\n<cy>When dying on levels have multiple Option triggers, you might hear two death sound effects on death if you also have Death Sounds Randomizer (DSR) installed. This is a side effect of mimicking DSR's behavior, and Geode's currently limited bindings makes this difficult to fix.</c>",
-			"type": "bool",
-			"default": true
-		},
-		"advancedForceDeathSFX": {
-			"name": "Adv. Force Death SFX (READ!)",
-			"description": "Enables level string analysis to reduce the number of times you might hear two death SFXs with Death Sounds Randomizer installed, <cy>but causes brief freezes when loading levels.</c>\n<cr>BY ENABLING THIS, YOU ARE WILLING TO ENDURE FRAME DROPS AND WILL NOT HOLD ANYONE (BESIDES YOURSELF) RESPONSIBLE FOR ANY DAMAGES THIS MAY CAUSE.</c>",
-			"type": "bool",
-			"default": false
-		},
 		"disableShake": {
 			"name": "No Shake Triggers",
 			"type": "bool",
@@ -347,8 +335,16 @@
 		},
 		{
 			"id": "geode.custom-keybinds",
-			"version": ">=v1.5.0",
+			"version": ">=1.5.0",
 			"importance": "required",
+			"platforms": ["windows"]
+		}
+	],
+	"incompatibilities": [
+		{
+			"id": "adam_729.randdeathsounds",
+			"version": "<1.1.0",
+			"importance": "breaking",
 			"platforms": ["windows"]
 		}
 	]

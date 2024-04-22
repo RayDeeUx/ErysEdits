@@ -55,9 +55,6 @@ namespace Utils {
 
 	void restoreOrigGMGVs(GameManager* gameManager, bool changeCanCall, bool isEnteringLevel) {
 		auto manager = Manager::getSharedInstance();
-		if (!isEnteringLevel) {
-			manager->isLevelDisablingDeathSFX = false;
-		}
 		
 		if (Utils::modEnabled() && Utils::get("unverifiedPercent")) {
 			gameManager->m_showProgressBar = manager->originalShowProgressBarValue;
@@ -201,15 +198,6 @@ namespace Utils {
 		return (Manager::getSharedInstance()->isShiftKeyDown || !(Utils::modEnabled() && Utils::get("shiftForVault")));
 	}
 	#endif
-	
-	void decompLevelDisablesSFX(gd::string levelString) {
-		std::regex optionsTriggerDisableSFX("\\d+,2899(?:,-?\\d+)+,576,1.*");
-		std::string decompString = ZipUtils::decompressString(levelString.c_str(), true, 0);
-		std::smatch match;
-		if (std::regex_search(decompString, optionsTriggerDisableSFX)) {
-			Manager::getSharedInstance()->isLevelDisablingDeathSFX = true;
-		} else Manager::getSharedInstance()->isLevelDisablingDeathSFX = false;
-	}
 	
 	bool isRandDeathSounds() {
 		return Loader::get()->isModLoaded("adam_729.randdeathsounds") && Loader::get()->getLoadedMod("adam_729.randdeathsounds")->getSettingValue<bool>("enabled");

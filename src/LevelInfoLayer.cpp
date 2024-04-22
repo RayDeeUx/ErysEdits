@@ -38,12 +38,7 @@ class $modify(MyLevelInfoLayer, LevelInfoLayer) {
 			});
 		}
 		#endif
-		if (Utils::modEnabled() && Utils::get("forcePlayDeathSFXOnDeath") && Utils::get("advancedForceDeathSFX") && Utils::isRandDeathSounds()) { Utils::decompLevelDisablesSFX(p0->m_levelString); }
 		return true;
-	}
-	void levelDownloadFinished(GJGameLevel* p0) {
-		LevelInfoLayer::levelDownloadFinished(p0);
-		if (Utils::modEnabled() && Utils::get("forcePlayDeathSFXOnDeath") && Utils::get("advancedForceDeathSFX") && Utils::isRandDeathSounds()) { Utils::decompLevelDisablesSFX(p0->m_levelString); }
 	}
 	// apply the original values of the gamevars found during game launch (online levels)
 	void onPlay(CCObject* sender) {

@@ -7,7 +7,6 @@ using namespace geode::prelude;
 class $modify(MyLevelPage, LevelPage) {
 	void onPlay(CCObject* sender) {
 		Utils::restoreOrigGMGVs(GameManager::get(), true, true);
-		if (Utils::modEnabled() && Utils::get("forcePlayDeathSFXOnDeath") && Utils::get("advancedForceDeathSFX") && Utils::isRandDeathSounds()) { Utils::decompLevelDisablesSFX(m_level->m_levelString); }
 		LevelPage::onPlay(sender);
 	}
 	#ifdef GEODE_IS_WINDOWS

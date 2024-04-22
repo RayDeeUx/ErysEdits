@@ -7,7 +7,6 @@ using namespace geode::prelude;
 class $modify(MyEditLevelLayer, EditLevelLayer) {
 	void onPlay(CCObject* sender) {
 		Utils::applyGMGVs(m_level->m_isVerifiedRaw);
-		if (Utils::modEnabled() && Utils::get("forcePlayDeathSFXOnDeath") && Utils::get("advancedForceDeathSFX") && Utils::isRandDeathSounds()) { Utils::decompLevelDisablesSFX(m_level->m_levelString); }
 		EditLevelLayer::onPlay(sender);
 	}
 };

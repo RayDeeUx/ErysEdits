@@ -8,7 +8,6 @@ class $modify(MyEditorPauseLayer, EditorPauseLayer) {
 	void onSaveAndPlay(CCObject* sender) {
 		auto gameManager = GameManager::get();
 		Utils::applyGMGVs(m_editorLayer->m_level->m_isVerifiedRaw);
-		if (Utils::modEnabled() && Utils::get("forcePlayDeathSFXOnDeath") && Utils::get("advancedForceDeathSFX") && Utils::isRandDeathSounds()) { Utils::decompLevelDisablesSFX(m_editorLayer->m_level->m_levelString); }
 		EditorPauseLayer::onSaveAndPlay(sender);
 	}
 };
