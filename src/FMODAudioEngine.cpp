@@ -39,7 +39,7 @@ class $modify(MyFMODAudioEngine, FMODAudioEngine) {
 		std::smatch match;
 		if (path.find("fleym.") != std::string::npos) {
 			manager->lastPlayedSong = "[Replaced by Jukebox]";
-		} else if (path.find("geode") != std::string::npos && path.find("mods") != std::string::npos) {
+		} else if (path.find("geode") != std::string::npos && (path.find("mods") != std::string::npos || path.find("config") != std::string::npos)) {
 			manager->lastPlayedSong = "[From another Geode mod]";
 		} else if (std::regex_match(path, match, songEffectRegex)) {
 			manager->lastPlayedSong = fmt::format("{}.{}", match[1].str(), match[2].str());
