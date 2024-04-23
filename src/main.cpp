@@ -1,4 +1,5 @@
 #include <geode.custom-keybinds/include/Keybinds.hpp>
+#include <Geode/ui/GeodeUI.hpp>
 #include "Manager.hpp"
 #include "Utils.hpp"
 #include "Settings.hpp"
@@ -123,5 +124,51 @@ $execute {
 		{ Keybind::create(KEY_C, Modifier::Shift) },
 		Category::GLOBAL
 	});
+	BindManager::get()->registerBindable({
+		"erysedits-settings"_spr,
+		"ErysEdits Settings",
+		"Enables a keybind (set to Shift + Alt + Ctrl + E by default) to open the settings menu for ErysEdits.",
+		{ Keybind::create(KEY_E, Modifier::Shift | Modifier::Alt | Modifier::Control) },
+		Category::GLOBAL
+	});
+	BindManager::get()->registerBindable({
+		"geode-mods-list"_spr,
+		"Geode Mods List",
+		"Enables a keybind (set to Shift + Alt + Ctrl + G by default) to open the Geode mods list.",
+		{ Keybind::create(KEY_G, Modifier::Shift | Modifier::Alt | Modifier::Control) },
+		Category::GLOBAL
+	});
+	BindManager::get()->registerBindable({
+		"custom-keybinds"_spr,
+		"Custom Keybinds",
+		"Enables a keybind (set to Shift + Alt + Ctrl + K by default) to open your custom keybinds.",
+		{ Keybind::create(KEY_K, Modifier::Shift | Modifier::Alt | Modifier::Control) },
+		Category::GLOBAL
+	});
+	
+	new EventListener([=](InvokeBindEvent* event) {
+		if (!GJBaseGameLayer::get() && event->isDown()) { // event->isDown() to trigger only once (thank you dankmeme!)
+			if (Utils::modEnabled() && Utils::get("erysEditsSettings")) {
+				geode::openSettingsPopup(Mod::get());
+			} else { Utils::keybindDisabledGeneric("ErysEdits Settings", "open the settings menu for ErysEdits"); }
+		}
+		return ListenerResult::Propagate;
+	}, InvokeBindFilter(nullptr, "erysedits-settings"_spr));
+	new EventListener([=](InvokeBindEvent* event) {
+		if (!GJBaseGameLayer::get() && event->isDown()) { // event->isDown() to trigger only once (thank you dankmeme!)
+			if (Utils::modEnabled() && Utils::get("geodeModsList")) {
+				geode::openModsList();
+			} else { Utils::keybindDisabledGeneric("Geode Mods List", "open the Geode mods list"); }
+		}
+		return ListenerResult::Propagate;
+	}, InvokeBindFilter(nullptr, "geode-mods-list"_spr));
+	new EventListener([=](InvokeBindEvent* event) {
+		if (!GJBaseGameLayer::get() && event->isDown()) { // event->isDown() to trigger only once (thank you dankmeme!)
+			if (Utils::modEnabled() && Utils::get("customKeybinds")) {
+				MoreOptionsLayer::create()->onKeybindings(nullptr);
+			} else { Utils::keybindDisabledGeneric("Custom Keybinds", "open your custom keybinds"); }
+		}
+		return ListenerResult::Propagate;
+	}, InvokeBindFilter(nullptr, "custom-keybinds"_spr));
 }
 #endif

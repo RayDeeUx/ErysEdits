@@ -1,6 +1,8 @@
 # ErysEdits Changelog
 ## v1.1.0
 - Add an additional keybind to save and exit an editor level.
+- Add another keybind to open the Geode mods list, almost accessible anywhere.
+- Add another keybind to open this mod's settings, also almost accessible anywhere.
 - Remove forcing player death SFX settings (please use v1.1.0 of Adam729's Random Death Sounds mod instead).
 - Fix an issue where SFX in some levels would infinitely loop. Thank you, Aktimoose, for bringing this to my attention, and deepest apologies for rejecting your original claims. I hope this apology and this update is compensation enough for my harsh behavior at the time.
 - Added punctuation to changelogs.

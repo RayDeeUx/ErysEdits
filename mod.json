@@ -253,6 +253,27 @@
 			"platforms": ["windows"],
 			"default": true
 		},
+		"erysEditsSettings": {
+			"name": "ErysEdits Settings",
+			"description": "Enables a keybind (set to Shift + Alt + Ctrl + E by default) to open the settings menu for ErysEdits.",
+			"type": "bool",
+			"platforms": ["windows"],
+			"default": true
+		},
+		"geodeModsList": {
+			"name": "Geode Mods List",
+			"description": "Enables a keybind (set to Shift + Alt + Ctrl + G by default) to open the Geode mods list.",
+			"type": "bool",
+			"platforms": ["windows"],
+			"default": true
+		},
+		"customKeybinds": {
+			"name": "Custom Keybinds",
+			"description": "Enables a keybind (set to Shift + Alt + Ctrl + K by default) to open your custom keybinds.",
+			"type": "bool",
+			"platforms": ["windows"],
+			"default": true
+		},
 		"alert-layers": {
 			"name": "Alert Layers",
 			"type": "custom"
