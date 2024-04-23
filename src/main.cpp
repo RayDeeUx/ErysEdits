@@ -165,7 +165,7 @@ $execute {
 	new EventListener([=](InvokeBindEvent* event) {
 		if (!GJBaseGameLayer::get() && event->isDown()) { // event->isDown() to trigger only once (thank you dankmeme!)
 			if (Utils::modEnabled() && Utils::get("customKeybinds")) {
-				MoreOptionsLayer::create()->onKeybindings(nullptr);
+				MoreOptionsLayer::create()->onKeybindings(nullptr); // normally this would just open the vanilla keybinds menu. however since customkeybinds is a required dependency it'll open the one from customkeybinds instead. win-win!
 			} else { Utils::keybindDisabledGeneric("Custom Keybinds", "open your custom keybinds"); }
 		}
 		return ListenerResult::Propagate;
