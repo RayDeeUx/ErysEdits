@@ -69,6 +69,13 @@ $execute {
 		Category::EDITOR
 	});
 	BindManager::get()->registerBindable({
+		"resume-editor"_spr,
+		"Resume Editor",
+		"Enables a keybind (set to Shift + 1 by default) to resume editing a level.",
+		{ Keybind::create(KEY_One, Modifier::Shift) },
+		Category::EDITOR
+	});
+	BindManager::get()->registerBindable({
 		"new-editor-level"_spr,
 		"Create New Level/List",
 		"Enables a keybind (set to Ctrl + N by default) to create a new level/list.",

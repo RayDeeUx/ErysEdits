@@ -213,6 +213,13 @@
 			"platforms": ["windows"],
 			"default": true
 		},
+		"resumeShortcut": {
+			"name": "Resume Editor",
+			"description": "Enables a keybind (set to Shift + 1 by default) to resume editing a level.",
+			"type": "bool",
+			"platforms": ["windows"],
+			"default": true
+		},
 		"newEditorLevel": {
 			"name": "Create New Level/List",
 			"description": "Enables a keybind (set to Ctrl + N by default) to create a new level/list.",
