@@ -84,7 +84,16 @@ class $modify(MyLevelBrowserLayer, LevelBrowserLayer) {
 				if (Utils::isSceneRunning("LevelBrowserLayer") && Utils::nothingElse()) {
 					if (Utils::modEnabled() && Utils::get("toggleLevelLists")) {
 						LevelBrowserLayer::onLocalMode(nullptr);
-					} else { Utils::keybindDisabledGeneric("Toggle Level/Lists Mode", "toggle between viewing local editor levels and local level lists"); }
+					} else { Utils::keybindDisabledGeneric("Toggle Levels/Lists Mode", "toggle between viewing local editor levels and local level lists"); }
+				}
+			});
+		}
+		if (getChildByIDRecursive("my-levels-button")) {
+			this->defineKeybind("view-uploaded"_spr, [this]() {
+				if (Utils::isSceneRunning("LevelBrowserLayer") && Utils::nothingElse()) {
+					if (Utils::modEnabled() && Utils::get("viewUploaded")) {
+						LevelBrowserLayer::onMyOnlineLevels(nullptr);
+					} else { Utils::keybindDisabledGeneric("View Uploaded Levels/Lists", "view uploaded levels/level lists"); }
 				}
 			});
 		}

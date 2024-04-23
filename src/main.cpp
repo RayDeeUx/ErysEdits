@@ -77,9 +77,16 @@ $execute {
 	});
 	BindManager::get()->registerBindable({
 		"toggle-level-lists"_spr,
-		"Toggle Level/Lists Mode",
+		"Toggle Levels/Lists Mode",
 		"Enables a keybind (set to Shift + Ctrl + L by default) to toggle between viewing local editor levels and local level lists.",
 		{ Keybind::create(KEY_L, Modifier::Control | Modifier::Shift) },
+		Category::EDITOR
+	});
+	BindManager::get()->registerBindable({
+		"view-uploaded"_spr,
+		"View Uploaded Levels/Lists",
+		"Enables a keybind (set to Shift + Ctrl + Alt + L by default) (set to Shift + Ctrl + Alt + L by default) to view uploaded levels/level lists.",
+		{ Keybind::create(KEY_L, Modifier::Control | Modifier::Shift | Modifier::Alt) },
 		Category::EDITOR
 	});
 	BindManager::get()->registerBindable({
