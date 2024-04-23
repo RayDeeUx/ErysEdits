@@ -72,6 +72,22 @@ class $modify(MyLevelBrowserLayer, LevelBrowserLayer) {
 				}
 			});
 		}
+		if (getChildByIDRecursive("new-level-menu")) {
+			this->defineKeybind("new-editor-level"_spr, [this]() {
+				if (Utils::isSceneRunning("LevelBrowserLayer") && Utils::nothingElse()) {
+					if (Utils::modEnabled() && Utils::get("newEditorLevel")) {
+						LevelBrowserLayer::onNew(nullptr);
+					} else { Utils::keybindDisabledGeneric("Create New Level/List", "create a new level/list"); }
+				}
+			});
+			this->defineKeybind("toggle-level-lists"_spr, [this]() {
+				if (Utils::isSceneRunning("LevelBrowserLayer") && Utils::nothingElse()) {
+					if (Utils::modEnabled() && Utils::get("toggleLevelLists")) {
+						LevelBrowserLayer::onLocalMode(nullptr);
+					} else { Utils::keybindDisabledGeneric("Toggle Level/Lists Mode", "toggle between viewing local editor levels and local level lists"); }
+				}
+			});
+		}
 		#endif
 		return true;
 	}

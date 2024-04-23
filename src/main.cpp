@@ -69,6 +69,20 @@ $execute {
 		Category::EDITOR
 	});
 	BindManager::get()->registerBindable({
+		"new-editor-level"_spr,
+		"Create New Level/List",
+		"Enables a keybind (set to Ctrl + N by default) to create a new level/list.",
+		{ Keybind::create(KEY_N, Modifier::Control) },
+		Category::EDITOR
+	});
+	BindManager::get()->registerBindable({
+		"toggle-level-lists"_spr,
+		"Toggle Level/Lists Mode",
+		"Enables a keybind (set to Shift + Ctrl + L by default) to toggle between viewing local editor levels and local level lists.",
+		{ Keybind::create(KEY_L, Modifier::Control | Modifier::Shift) },
+		Category::EDITOR
+	});
+	BindManager::get()->registerBindable({
 		"refresh-page"_spr,
 		"Refresh Page",
 		"Enables a keybind (set to Ctrl + R by default) to refresh the layer you're on.\n<cy>Use this keybind with caution; abusing/spamming this keybind can get you rate-limited or banned from RobTop's servers. By using this keybind for any reason, you agree to hold harmless the mod developer (RayDeeUx) or any lead developer of Geode and assume all responsibility for any consequences.</c>",

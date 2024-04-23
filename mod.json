@@ -211,7 +211,21 @@
 			"description": "Enables a keybind (set to Shift + Ctrl + S by default) to save your level in the editor and exit the editor <cy>without a confirmation</c>.",
 			"type": "bool",
 			"platforms": ["windows"],
-			"default": false
+			"default": true
+		},
+		"newEditorLevel": {
+			"name": "Create New Level/List",
+			"description": "Enables a keybind (set to Ctrl + N by default) to create a new level/list.",
+			"type": "bool",
+			"platforms": ["windows"],
+			"default": true
+		},
+		"toggleLevelLists": {
+			"name": "Toggle Level/Lists Mode",
+			"description": "Enables a keybind (set to Shift + Ctrl + L by default) to toggle between viewing local editor levels and local level lists.",
+			"type": "bool",
+			"platforms": ["windows"],
+			"default": true
 		},
 		"navigation": {
 			"name": "Navigation with Keybinds",
