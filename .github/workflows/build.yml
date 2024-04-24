@@ -36,7 +36,7 @@ jobs:
         uses: geode-sdk/build-geode-mod@main
         with:
           bindings: "RayDeeUx/bindings" # comment this out to swap to "geode-sdk/bindings"
-          branch: "erysedits" # comment this out to use default branch
+          bindings-ref: "erysedits" # comment this out to use default branch
           combine: true
           target: ${{ matrix.config.target }}
 
