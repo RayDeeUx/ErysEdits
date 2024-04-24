@@ -289,6 +289,13 @@
 			"platforms": ["windows"],
 			"default": true
 		},
+		"navigateGauntlets": {
+			"name": "Navigate Gauntlets",
+			"description": "Enables several keybinds (Left/Right for previous/next pages, 1/2/3 for the first, second, and third gauntlets visible on screen) to navigate the Gauntlets.",
+			"type": "bool",
+			"platforms": ["windows"],
+			"default": true
+		},
 		"shiftForVault": {
 			"name": "Shift Click to Vaults/Chambers/Treasure",
 			"description": "Requires holding the Shift key to enter (vanilla GD) menus that change the menu loop music.\n\nNote that this will not apply to The Tower.",

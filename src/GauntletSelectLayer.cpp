@@ -1,6 +1,7 @@
 #ifdef GEODE_IS_WINDOWS
 #include <Geode/modify/GauntletSelectLayer.hpp>
 #include <geode.custom-keybinds/include/Keybinds.hpp>
+#include "Manager.hpp"
 #include "Utils.hpp"
 
 using namespace geode::prelude;
@@ -15,19 +16,58 @@ class $modify(MyGauntletSelectLayer, GauntletSelectLayer) {
 			return ListenerResult::Propagate;
 		}, id);
 	}
-	bool init(int p0) {
-		if (!GauntletSelectLayer::init(p0)) { return false; }
+	void findCurrentGauntletPageUsing(CCNode* pageButtons) {
+	    for (int i = 0; i < pageButtons->getChildrenCount(); i++) {
+			if (auto ccSprite = typeinfo_cast<CCSprite*>(pageButtons->getChildren()->objectAtIndex(i))) {
+				if (ccSprite->getDisplayedColor() == ccColor3B({255, 255, 255})) {
+					Manager::getSharedInstance()->currentGauntletPage = (i + 1);
+				}
+			}
+		}
+	}
+	void setupGauntlets() {
+		GauntletSelectLayer::setupGauntlets();
+		if (auto pageButtons = getChildByIDRecursive("page-buttons")) {
+			MyGauntletSelectLayer::findCurrentGauntletPageUsing(pageButtons);
+		}
 		this->defineKeybind("next-gauntlet"_spr, [this]() {
-			if (Utils::modEnabled()) { //  && Utils::get("refreshAnywhere")
+			if (Utils::modEnabled() && Utils::get("navigateGauntlets")) {
 				GauntletSelectLayer::onNext(nullptr);
-			} else { Utils::refreshKeybindDisabled(); }
+			} else { Utils::navigateGauntletsDisabled(); }
 		});
 		this->defineKeybind("previous-gauntlet"_spr, [this]() {
-			if (Utils::modEnabled()) { //  && Utils::get("refreshAnywhere")
+			if (Utils::modEnabled() && Utils::get("navigateGauntlets")) {
 				GauntletSelectLayer::onPrev(nullptr);
-			} else { Utils::refreshKeybindDisabled(); }
+			} else { Utils::navigateGauntletsDisabled(); }
 		});
-		return true;
+		this->defineKeybind("first-visible-gauntlet"_spr, [this]() {
+			if (Utils::modEnabled() && Utils::get("navigateGauntlets")) {
+				std::string nodeID = fmt::format("gauntlet-page-{}", Manager::getSharedInstance()->currentGauntletPage);
+				GauntletSelectLayer::onPlay(getChildByIDRecursive(nodeID)->getChildByIDRecursive("gauntlet-button-1"));
+			} else { Utils::navigateGauntletsDisabled(); }
+		});
+		this->defineKeybind("second-visible-gauntlet"_spr, [this]() {
+			if (Utils::modEnabled() && Utils::get("navigateGauntlets")) {
+				std::string nodeID = fmt::format("gauntlet-page-{}", Manager::getSharedInstance()->currentGauntletPage);
+				GauntletSelectLayer::onPlay(getChildByIDRecursive(nodeID)->getChildByIDRecursive("gauntlet-button-2"));
+			} else { Utils::navigateGauntletsDisabled(); }
+		});
+		this->defineKeybind("third-visible-gauntlet"_spr, [this]() {
+			if (Utils::modEnabled() && Utils::get("navigateGauntlets")) {
+				std::string nodeID = fmt::format("gauntlet-page-{}", Manager::getSharedInstance()->currentGauntletPage);
+				GauntletSelectLayer::onPlay(getChildByIDRecursive(nodeID)->getChildByIDRecursive("gauntlet-button-3"));
+			} else { Utils::navigateGauntletsDisabled(); }
+		});
+	}
+	void scrollLayerWillScrollToPage(BoomScrollLayer* p0, int p1) {
+		GauntletSelectLayer::scrollLayerWillScrollToPage(p0, p1);
+		if (auto pageButtons = getChildByIDRecursive("page-buttons")) {
+			MyGauntletSelectLayer::findCurrentGauntletPageUsing(pageButtons);
+		}
+	}
+	void onBack(cocos2d::CCObject* sender){
+		Manager::getSharedInstance()->currentGauntletPage = 0;
+		GauntletSelectLayer::onBack(sender);
 	}
 };
 #endif

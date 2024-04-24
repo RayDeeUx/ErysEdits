@@ -1,5 +1,6 @@
 # ErysEdits Changelog
 ## v1.1.0
+- Add keybinds to make navigating the gauntlets feel more natural.
 - Add an additional keybind to save and exit an editor level.
 - Add a keybind to open the Geode mods list, almost accessible anywhere.
 - Add a keybind to open this mod's settings, also almost accessible anywhere.

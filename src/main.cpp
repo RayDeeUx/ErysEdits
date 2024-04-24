@@ -176,15 +176,36 @@ $execute {
 	BindManager::get()->registerBindable({
 		"next-gauntlet"_spr,
 		"Next Gauntlet",
-		"Enables a keybind (set to Shift + Right by default) to view the next gauntlet page.",
-		{ Keybind::create(KEY_Right, Modifier::Shift) },
+		"Enables a keybind (set to Right by default) to view the next gauntlet page.",
+		{ Keybind::create(KEY_Right) },
 		Category::GLOBAL
 	});
 	BindManager::get()->registerBindable({
 		"previous-gauntlet"_spr,
 		"Previous Gauntlet",
-		"Enables a keybind (set to Shift + Left by default) to view the previous gauntlet page.",
-		{ Keybind::create(KEY_Left, Modifier::Shift) },
+		"Enables a keybind (set to Left by default) to view the previous gauntlet page.",
+		{ Keybind::create(KEY_Left) },
+		Category::GLOBAL
+	});
+	BindManager::get()->registerBindable({
+		"first-visible-gauntlet"_spr,
+		"First Gauntlet",
+		"Enables a keybind (set to 1 by default) to enter the first visible gauntlet.\n\n<cy>(Disclaimer: Results may not be accurate.)</c>",
+		{ Keybind::create(KEY_One) },
+		Category::GLOBAL
+	});
+	BindManager::get()->registerBindable({
+		"second-visible-gauntlet"_spr,
+		"Second Gauntlet",
+		"Enables a keybind (set to 2 by default) to enter the second visible gauntlet.\n\n<cy>(Disclaimer: Results may not be accurate.)</c>",
+		{ Keybind::create(KEY_Two) },
+		Category::GLOBAL
+	});
+	BindManager::get()->registerBindable({
+		"third-visible-gauntlet"_spr,
+		"Third Gauntlet",
+		"Enables a keybind (set to 3 by default) to enter the third visible gauntlet.\n\n<cy>(Disclaimer: Results may not be accurate.)</c>",
+		{ Keybind::create(KEY_Three) },
 		Category::GLOBAL
 	});
 	

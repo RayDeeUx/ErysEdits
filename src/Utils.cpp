@@ -36,6 +36,8 @@ namespace Utils {
 	void likeDislikeShortcutDisabled() { keybindDisabledGeneric("Like/Dislike Shortcut", "like/dislike content"); }
 	
 	void viewCommentsDisabled() { keybindDisabledGeneric("View Comments Shortcut", "view level comments/user comment history"); }
+	
+	void navigateGauntletsDisabled() { keybindDisabledGeneric("Navigate Gauntlets", "navigate the Gauntlets"); }
 
 	bool isSceneRunning(std::string sceneName) { return CCDirector::get()->getRunningScene()->getChildByID(sceneName.c_str()); }
 	
