@@ -173,6 +173,20 @@ $execute {
 		{ Keybind::create(KEY_K, Modifier::Shift | Modifier::Alt | Modifier::Control) },
 		Category::GLOBAL
 	});
+	BindManager::get()->registerBindable({
+		"next-gauntlet"_spr,
+		"Next Gauntlet",
+		"Enables a keybind (set to Shift + Right by default) to view the next gauntlet page.",
+		{ Keybind::create(KEY_Right, Modifier::Shift) },
+		Category::GLOBAL
+	});
+	BindManager::get()->registerBindable({
+		"previous-gauntlet"_spr,
+		"Previous Gauntlet",
+		"Enables a keybind (set to Shift + Left by default) to view the previous gauntlet page.",
+		{ Keybind::create(KEY_Left, Modifier::Shift) },
+		Category::GLOBAL
+	});
 	
 	new EventListener([=](InvokeBindEvent* event) {
 		if (!GJBaseGameLayer::get() && event->isDown()) { // event->isDown() to trigger only once (thank you dankmeme!)

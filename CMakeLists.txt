@@ -25,6 +25,7 @@ add_library(
 	src/FLAlertLayer.cpp
 	src/FMODAudioEngine.cpp
 	src/GameManager.cpp
+	src/GauntletSelectLayer.cpp
 	src/GJBaseGameLayer.cpp
 	src/GJGarageLayer.cpp
 	src/InfoLayer.cpp

@@ -35,7 +35,7 @@ jobs:
       - name: Build the mod
         uses: geode-sdk/build-geode-mod@main
         with:
-          bindings: "RayDeeUx/bindings" # comment this out to swap to "geode-sdk/bindings"
+          bindings: "RayDeeUx/bindings@erysedits" # comment this out to swap to "geode-sdk/bindings"
           combine: true
           target: ${{ matrix.config.target }}
 
