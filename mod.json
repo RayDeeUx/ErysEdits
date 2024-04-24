@@ -141,14 +141,14 @@
 			"type": "custom"
 		},
 		"compactEditorLevels": {
-			"name": "My Levels: Compact View",
+			"name": "My Levels",
 			"description": "Compacts your editor levels in \"My Levels\" menu.\n\n<cy>Due to how this feature is implemented, enabling this option also disables selecting multiple levels for deletion.</c>\n\nOriginal code by Cvolton.",
 			"type": "bool",
 			"default": true
 		},
 		"compactProfileComments": {
-			"name": "Profile Comments: Compact View",
-			"description": "Use the compact view on user profile comments.",
+			"name": "Profile Comments",
+			"description": "Use the compact view on user profile comments/posts.",
 			"type": "bool",
 			"default": true
 		},
