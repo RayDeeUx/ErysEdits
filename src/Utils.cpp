@@ -15,6 +15,10 @@ namespace Utils {
 	
 	bool get(std::string setting) { return Mod::get()->getSettingValue<bool>(setting); }
 	
+	int64_t getInt(std::string setting) { return Mod::get()->getSettingValue<int64_t>(setting); }
+	
+	double getDouble(std::string setting) { return Mod::get()->getSettingValue<double>(setting); }
+	
 	bool modEnabled() { return Utils::get("enabled"); }
 	
 	void keybindDisabledGeneric(std::string titleTemplate, std::string keybindDesc) {
@@ -198,12 +202,4 @@ namespace Utils {
 		return (Manager::getSharedInstance()->isShiftKeyDown || !(Utils::modEnabled() && Utils::get("shiftForVault")));
 	}
 	#endif
-	
-	bool isRandDeathSounds() {
-		return Loader::get()->isModLoaded("adam_729.randdeathsounds") && Loader::get()->getLoadedMod("adam_729.randdeathsounds")->getSettingValue<bool>("enabled");
-	}
-	
-	bool isSupportedExtension(std::string extension) {
-		return (strcmp(".mp3", extension.c_str()) == 0 || strcmp(".wav", extension.c_str()) == 0 || strcmp(".ogg", extension.c_str()) == 0);
-	}
 }

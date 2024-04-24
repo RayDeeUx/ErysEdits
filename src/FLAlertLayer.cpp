@@ -9,15 +9,15 @@ class $modify(MyFLAlertLayer, FLAlertLayer) {
 			bool desiredScroll = scroll;
 			float desiredScale = textScale;
 			float desiredWidth = width;
-			if (Mod::get()->getSettingValue<int64_t>("textScroll") < 1) {
-				if (!desiredScroll) { desiredScale = Mod::get()->getSettingValue<double>("textScale"); }
+			if (Utils::getInt("textScroll") < 1) {
+				if (!desiredScroll) { desiredScale = Utils::getDouble("textScale"); }
 				if (width <= 420.f) {
-					desiredWidth = width * Mod::get()->getSettingValue<double>("flAlertWidthMultiplier");
+					desiredWidth = width * Utils::getDouble("flAlertWidthMultiplier");
 					if (desiredWidth >= 420.f) { desiredWidth = 420.f; }
 				}
 			} else {
 				desiredWidth = 420.f;
-				desiredScroll = (Mod::get()->getSettingValue<int64_t>("textScroll") != -1);
+				desiredScroll = (Utils::getInt("textScroll") != -1);
 			}
 			return FLAlertLayer::init(delegate, title, desc, btn1, btn2, desiredWidth, desiredScroll, height, desiredScale);
 		} else {

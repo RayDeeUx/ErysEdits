@@ -169,6 +169,21 @@
 			"type": "bool",
 			"default": true
 		},
+		"alwaysLDM": {
+			"name": "Always Active LDM (READ!)",
+			"description": "<cp>INTENTIONALLY APPLIES TO ONLINE LEVELS ONLY.</c>\n<cp>INTENTIONALLY IGNORED IF \"ENABLE LOW DETAIL\" FROM YOUR PERFORMACE OPTIONS IS DISABLED.</c>\n\nAs of <cc>2.200</c>/<cl>2.204</c>/<cg>2.205</c> (for <cc>macOS</c>, <cl>Windows</c>, and <cg>Android</c> respectively), LDM toggles for individual levels might toggle themselves off after (re)downloading a level. This slider serves to avoid the hassle of opening the level settings to re-enable such toggles.\n\n0: Disables this setting.\n1: Enable on unrated online levels <cr>ONLY</c>.\n2: Enable on rated online levels <cr>ONLY</c>.\n3: Enable on all online levels regardless of star/moon rating.",
+			"type": "int",
+			"default": 0,
+			"min": 0,
+			"max": 3,
+			"control": {
+				"input": false,
+				"slider": true,
+				"arrows": false,
+				"arrow-step": 0,
+				"big-arrow-step": 0
+			}
+		},
 		"disableShake": {
 			"name": "No Shake Triggers",
 			"type": "bool",

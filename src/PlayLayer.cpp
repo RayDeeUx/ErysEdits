@@ -30,14 +30,17 @@ class $modify(MyPlayLayer, PlayLayer) {
 		PlayLayer::onExit();
 	}
 	#endif
-	#ifdef __APPLE__
 	void addObject(GameObject* p0) {
-		auto mTS = Manager::getSharedInstance()->miscIDToSetting;
 		bool dontSkip = true;
-		if (mTS.find(p0->m_objectID) != mTS.end() && Utils::get(mTS.find(p0->m_objectID)->second)) { dontSkip = false; }
+		if (Utils::modEnabled()) {
+			#ifdef __APPLE__
+			auto mTS = Manager::getSharedInstance()->miscIDToSetting;
+			if (mTS.find(p0->m_objectID) != mTS.end() && Utils::get(mTS.find(p0->m_objectID)->second)) { dontSkip = false; }
+			#endif
+			if (m_level->m_levelType == GJLevelType::Saved && p0->m_isHighDetail && GameManager::get()->getGameVariable("0108") && (Utils::getInt("alwaysLDM") == 3 || (Utils::getInt("alwaysLDM") == 2 && m_level->m_stars.value() != 0) || (Utils::getInt("alwaysLDM") == 1 && m_level->m_stars.value() == 0))) { dontSkip = false; }
+		}
 		if (dontSkip) { PlayLayer::addObject(p0); }
 	}
-	#endif
 	void postUpdate(float dt) {
 		if (!Utils::modEnabled()) {
 			PlayLayer::postUpdate(dt);

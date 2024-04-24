@@ -10,6 +10,8 @@ namespace Utils {
 	cocos2d::CCNode* getChildBySpriteFrameNameRecursive(cocos2d::CCNode* parent, char const* name);
 	
 	bool get(std::string setting);
+	int64_t getInt(std::string setting);
+	double getDouble(std::string setting);
 	bool modEnabled();
 	
 	void keybindDisabledGeneric(std::string titleTemplate, std::string keybindDesc);
@@ -41,10 +43,4 @@ namespace Utils {
 	#ifdef GEODE_IS_WINDOWS
 	bool shiftDown();
 	#endif
-	
-	void decompLevelDisablesSFX(gd::string levelString);
-	
-	bool isRandDeathSounds();
-	
-	bool isSupportedExtension(std::string extension);
 }
