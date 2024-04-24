@@ -4,8 +4,10 @@
 - Add a keybind to open the Geode mods list, almost accessible anywhere.
 - Add a keybind to open this mod's settings, also almost accessible anywhere.
 - Add keybinds to (toggle between viewing/creating new/viewing uploaded) custom levels and level lists.
-- New slider setting: `Always Active LDM` (make sure to read its config description!)
-- Remove forcing player death SFX settings (please use v1.1.0 of Adam729's Random Death Sounds mod instead).
+- Add a keybind to close the level editor's pause menu.
+- New slider setting: `Always Active LDM`. Make sure to read its config description!
+- Remove forcing player death SFX settings. Please use v1.1.0 of Adam729's Random Death Sounds mod instead.
+- Clarify descriptions when levels appear to have an empty description despite proven otherwise, especially when browsing level lists.
 - Fix an issue where SFX in some levels would infinitely loop. Thank you, Aktimoose, for bringing this to my attention, and deepest apologies for rejecting your original claims. I hope this apology and this update is compensation enough for my harsh behavior at the time.
 - Added punctuation to changelogs.
 - Bump Node IDs minimum requirement to v1.9.1.
