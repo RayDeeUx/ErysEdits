@@ -136,6 +136,22 @@
 			"type": "bool",
 			"default": false
 		},
+		"compact": {
+			"name": "Compact View",
+			"type": "custom"
+		},
+		"compactEditorLevels": {
+			"name": "My Levels: Compact View",
+			"description": "Compacts your editor levels in \"My Levels\" menu.\n\n<cy>Due to how this feature is implemented, enabling this option also disables selecting multiple levels for deletion.</c>\n\nOriginal code by Cvolton.",
+			"type": "bool",
+			"default": true
+		},
+		"compactProfileComments": {
+			"name": "Profile Comments: Compact View",
+			"description": "Use the compact view on user profile comments.",
+			"type": "bool",
+			"default": true
+		},
 		"gameplay": {
 			"name": "Gameplay",
 			"type": "custom"
@@ -368,21 +384,9 @@
 			"name": "Miscellaneous",
 			"type": "custom"
 		},
-		"compactEditorLevels": {
-			"name": "My Levels: Compact View",
-			"description": "Compacts your editor levels in \"My Levels\" menu.\n\n<cy>Due to how this feature is implemented, enabling this option also disables selecting multiple levels for deletion.</c>\n\nOriginal code by Cvolton.",
-			"type": "bool",
-			"default": true
-		},
 		"levelDescFromList": {
 			"name": "Level Lists: View Level Desc",
 			"description": "View an online level's description from the level list menu (and potentially without downloading the level first).",
-			"type": "bool",
-			"default": true
-		},
-		"compactProfileComments": {
-			"name": "Profile Comments: Compact View",
-			"description": "Use the compact view on user profile comments.",
 			"type": "bool",
 			"default": true
 		},

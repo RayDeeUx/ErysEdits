@@ -32,7 +32,8 @@ $on_mod(Loaded) {
 	// proof of consent: https://discord.com/channels/911701438269386882/911702535373475870/1222262244528754819
 	Mod::get()->addCustomSetting<SectionSettingValue>("erysedits", "none");
 	Mod::get()->addCustomSetting<SectionSettingValue>("debug-text", "none");
-	Mod::get()->addCustomSetting<SectionSettingValue>("gameplay", "none");
+	Mod::get()->addCustomSetting<SectionSettingValue>("misc", "none");
+	Mod::get()->addCustomSetting<SectionSettingValue>("compact", "none");
 	#ifdef GEODE_IS_WINDOWS
 	Mod::get()->addCustomSetting<SectionSettingValue>("levelEditor", "none");
 	Mod::get()->addCustomSetting<SectionSettingValue>("navigation", "none");
