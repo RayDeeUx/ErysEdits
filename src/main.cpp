@@ -259,7 +259,7 @@ $execute {
 		return ListenerResult::Propagate;
 	}, InvokeBindFilter(nullptr, "custom-keybinds"_spr));
 	new EventListener([=](InvokeBindEvent* event) {
-		if (!GJBaseGameLayer::get() && event->isDown() && !Loader::get()->isModLoaded("raydeeux.moreoptionslayer")) { // event->isDown() to trigger only once (thank you dankmeme!)
+		if (!GJBaseGameLayer::get() && event->isDown() && !Loader::get()->isModLoaded("raydeeux.moreoptionslayerkeybinds")) { // event->isDown() to trigger only once (thank you dankmeme!)
 			if (Utils::modEnabled() && Utils::get("moreOptions")) {
 				OptionsLayer::create()->onOptions(nullptr);
 			} else { Utils::moreOptionsDisabled(); }
