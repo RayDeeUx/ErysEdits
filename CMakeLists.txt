@@ -38,6 +38,7 @@ add_library(
 	src/LevelListLayer.cpp
 	src/LevelPage.cpp
 	src/LikeItemLayer.cpp
+	src/MoreOptionsLayer.cpp
 	src/OptionsLayer.cpp
 	src/PlayerObject.cpp
 	src/PlayLayer.cpp

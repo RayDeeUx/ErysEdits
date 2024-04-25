@@ -17,7 +17,7 @@ class $modify(MyGauntletSelectLayer, GauntletSelectLayer) {
 		}, id);
 	}
 	void findCurrentGauntletPageUsing(CCNode* pageButtons) {
-	    for (int i = 0; i < pageButtons->getChildrenCount(); i++) {
+		for (int i = 0; i < pageButtons->getChildrenCount(); i++) {
 			if (auto ccSprite = typeinfo_cast<CCSprite*>(pageButtons->getChildren()->objectAtIndex(i))) {
 				if (ccSprite->getDisplayedColor() == ccColor3B({255, 255, 255})) {
 					Manager::getSharedInstance()->currentGauntletPage = (i + 1);
@@ -43,19 +43,25 @@ class $modify(MyGauntletSelectLayer, GauntletSelectLayer) {
 		this->defineKeybind("first-visible-gauntlet"_spr, [this]() {
 			if (Utils::modEnabled() && Utils::get("navigateGauntlets")) {
 				std::string nodeID = fmt::format("gauntlet-page-{}", Manager::getSharedInstance()->currentGauntletPage);
-				GauntletSelectLayer::onPlay(getChildByIDRecursive(nodeID)->getChildByIDRecursive("gauntlet-button-1"));
+				if (auto theGauntlet = getChildByIDRecursive(nodeID)->getChildByIDRecursive("gauntlet-button-1")) {
+					GauntletSelectLayer::onPlay(theGauntlet);
+				}
 			} else { Utils::navigateGauntletsDisabled(); }
 		});
 		this->defineKeybind("second-visible-gauntlet"_spr, [this]() {
 			if (Utils::modEnabled() && Utils::get("navigateGauntlets")) {
 				std::string nodeID = fmt::format("gauntlet-page-{}", Manager::getSharedInstance()->currentGauntletPage);
-				GauntletSelectLayer::onPlay(getChildByIDRecursive(nodeID)->getChildByIDRecursive("gauntlet-button-2"));
+				if (auto theGauntlet = getChildByIDRecursive(nodeID)->getChildByIDRecursive("gauntlet-button-2")) {
+					GauntletSelectLayer::onPlay(theGauntlet);
+				}
 			} else { Utils::navigateGauntletsDisabled(); }
 		});
 		this->defineKeybind("third-visible-gauntlet"_spr, [this]() {
 			if (Utils::modEnabled() && Utils::get("navigateGauntlets")) {
 				std::string nodeID = fmt::format("gauntlet-page-{}", Manager::getSharedInstance()->currentGauntletPage);
-				GauntletSelectLayer::onPlay(getChildByIDRecursive(nodeID)->getChildByIDRecursive("gauntlet-button-3"));
+				if (auto theGauntlet = getChildByIDRecursive(nodeID)->getChildByIDRecursive("gauntlet-button-3")) {
+					GauntletSelectLayer::onPlay(theGauntlet);
+				}
 			} else { Utils::navigateGauntletsDisabled(); }
 		});
 	}

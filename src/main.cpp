@@ -82,140 +82,154 @@ $execute {
 		"Create New Level/List",
 		"Enables a keybind (set to Ctrl + N by default) to create a new level/list.",
 		{ Keybind::create(KEY_N, Modifier::Control) },
-		Category::EDITOR
+		"Global/ErysEdits/Custom Content Navigation"
 	});
 	BindManager::get()->registerBindable({
 		"toggle-level-lists"_spr,
 		"Toggle Levels/Lists Mode",
 		"Enables a keybind (set to Shift + Ctrl + L by default) to toggle between viewing local editor levels and local level lists.",
 		{ Keybind::create(KEY_L, Modifier::Control | Modifier::Shift) },
-		Category::EDITOR
+		"Global/ErysEdits/Custom Content Navigation"
 	});
 	BindManager::get()->registerBindable({
 		"view-uploaded"_spr,
 		"View Uploaded Levels/Lists",
 		"Enables a keybind (set to Shift + Ctrl + Alt + L by default) (set to Shift + Ctrl + Alt + L by default) to view uploaded levels/level lists.",
 		{ Keybind::create(KEY_L, Modifier::Control | Modifier::Shift | Modifier::Alt) },
-		Category::EDITOR
+		"Global/ErysEdits/Custom Content Navigation"
 	});
 	BindManager::get()->registerBindable({
 		"refresh-page"_spr,
 		"Refresh Page",
 		"Enables a keybind (set to Ctrl + R by default) to refresh the layer you're on.\n<cy>Use this keybind with caution; abusing/spamming this keybind can get you rate-limited or banned from RobTop's servers. By using this keybind for any reason, you agree to hold harmless the mod developer (RayDeeUx) or any lead developer of Geode and assume all responsibility for any consequences.</c>",
 		{ Keybind::create(KEY_R, Modifier::Control) },
-		Category::GLOBAL
+		"Global/ErysEdits/Browser-like Navigation"
 	});
 	BindManager::get()->registerBindable({
 		"previous-page"_spr,
 		"Go To Previous Page",
 		"Enables a keybind (set to Alt + Left Arrow by default) to go to the previous page.\n\nBecause RobTop's infinite wisdom allowed him to implement this feature with the main levels (and level browsing menus) <cr>and literally nowhere else</c> in Geometry Dash.\n\n<cj>No, I'm not mad about this. What makes you think that?</c>",
 		{ Keybind::create(KEY_Left, Modifier::Alt) },
-		Category::GLOBAL
+		"Global/ErysEdits/Browser-like Navigation"
 	});
 	BindManager::get()->registerBindable({
 		"next-page"_spr,
 		"Go To Next Page",
 		"Enables a keybind (set to Alt + Right Arrow by default) to go to the next page.\n\nBecause RobTop's infinite wisdom allowed him to implement this feature with the main levels (and level browsing menus) <cr>and literally nowhere else</c> in Geometry Dash.\n\n<cj>No, I'm not mad about this. What makes you think that?</c>",
 		{ Keybind::create(KEY_Right, Modifier::Alt) },
-		Category::GLOBAL
+		"Global/ErysEdits/Browser-like Navigation"
 	});
 	BindManager::get()->registerBindable({
 		"first-page"_spr,
 		"Go To First Page",
 		"Enables a keybind (set to Shift + Left Arrow by default) to go to the first page.",
 		{ Keybind::create(KEY_Left, Modifier::Shift) },
-		Category::GLOBAL
+		"Global/ErysEdits/Browser-like Navigation"
 	});
 	BindManager::get()->registerBindable({
 		"last-page"_spr,
 		"Go To Last Page",
 		"Enables a keybind (set to Shift + Right Arrow by default) to go to the last <cy>(estimated)</c> page.\n\n<cy>Results may be inaccurate.</c>",
 		{ Keybind::create(KEY_Right, Modifier::Shift) },
-		Category::GLOBAL
+		"Global/ErysEdits/Browser-like Navigation"
 	});
 	BindManager::get()->registerBindable({
 		"like"_spr,
 		"Like Content",
 		"Enables a keybind (set to Left Arrow by default) to like content.",
 		{ Keybind::create(KEY_Left) },
-		Category::GLOBAL
+		"Global/ErysEdits/Browser-like Navigation"
 	});
 	BindManager::get()->registerBindable({
 		"dislike"_spr,
 		"Dislike Content",
 		"Enables a keybind (set to Right Arrow by default) to dislike content.",
 		{ Keybind::create(KEY_Right) },
-		Category::GLOBAL
+		"Global/ErysEdits/Browser-like Navigation"
 	});
 	BindManager::get()->registerBindable({
 		"comments"_spr,
 		"View Comments",
 		"Enables a keybind (set to Shift + C by default) to view comments (either for a specific profile or for a level).",
 		{ Keybind::create(KEY_C, Modifier::Shift) },
-		Category::GLOBAL
+		"Global/ErysEdits/Browser-like Navigation"
 	});
 	BindManager::get()->registerBindable({
 		"erysedits-settings"_spr,
 		"ErysEdits Settings",
 		"Enables a keybind (set to Shift + Alt + Ctrl + E by default) to open the settings menu for ErysEdits.",
 		{ Keybind::create(KEY_E, Modifier::Shift | Modifier::Alt | Modifier::Control) },
-		Category::GLOBAL
+		"Global/ErysEdits/Misc. Navigation"
 	});
 	BindManager::get()->registerBindable({
 		"geode-mods-list"_spr,
 		"Geode Mods List",
 		"Enables a keybind (set to Shift + Alt + Ctrl + G by default) to open the Geode mods list.",
 		{ Keybind::create(KEY_G, Modifier::Shift | Modifier::Alt | Modifier::Control) },
-		Category::GLOBAL
+		"Global/ErysEdits/Misc. Navigation"
 	});
 	BindManager::get()->registerBindable({
 		"custom-keybinds"_spr,
 		"Custom Keybinds",
 		"Enables a keybind (set to Shift + Alt + Ctrl + K by default) to open your custom keybinds.",
 		{ Keybind::create(KEY_K, Modifier::Shift | Modifier::Alt | Modifier::Control) },
-		Category::GLOBAL
+		"Global/ErysEdits/Misc. Navigation"
 	});
 	BindManager::get()->registerBindable({
 		"next-gauntlet"_spr,
 		"Next Gauntlet",
 		"Enables a keybind (set to Right by default) to view the next gauntlet page.",
 		{ Keybind::create(KEY_Right) },
-		Category::GLOBAL
+		"Global/ErysEdits/Gauntlets Navigation"
 	});
 	BindManager::get()->registerBindable({
 		"previous-gauntlet"_spr,
 		"Previous Gauntlet",
 		"Enables a keybind (set to Left by default) to view the previous gauntlet page.",
 		{ Keybind::create(KEY_Left) },
-		Category::GLOBAL
+		"Global/ErysEdits/Gauntlets Navigation"
 	});
 	BindManager::get()->registerBindable({
 		"first-visible-gauntlet"_spr,
 		"First Gauntlet",
 		"Enables a keybind (set to 1 by default) to enter the first visible gauntlet.\n\n<cy>(Disclaimer: Results may not be accurate.)</c>",
 		{ Keybind::create(KEY_One) },
-		Category::GLOBAL
+		"Global/ErysEdits/Gauntlets Navigation"
 	});
 	BindManager::get()->registerBindable({
 		"second-visible-gauntlet"_spr,
 		"Second Gauntlet",
 		"Enables a keybind (set to 2 by default) to enter the second visible gauntlet.\n\n<cy>(Disclaimer: Results may not be accurate.)</c>",
 		{ Keybind::create(KEY_Two) },
-		Category::GLOBAL
+		"Global/ErysEdits/Gauntlets Navigation"
 	});
 	BindManager::get()->registerBindable({
 		"third-visible-gauntlet"_spr,
 		"Third Gauntlet",
 		"Enables a keybind (set to 3 by default) to enter the third visible gauntlet.\n\n<cy>(Disclaimer: Results may not be accurate.)</c>",
 		{ Keybind::create(KEY_Three) },
-		Category::GLOBAL
+		"Global/ErysEdits/Gauntlets Navigation"
 	});
 	BindManager::get()->registerBindable({
 		"more-options-layer"_spr,
 		"More Options Shortcuts",
 		"Enables a keybind (set to Ctrl + O by default) to open your GD settings.",
 		{ Keybind::create(KEY_O, Modifier::Control) },
-		Category::GLOBAL
+		"Global/ErysEdits/More Options Navigation"
+	});
+	BindManager::get()->registerBindable({
+		"next-options-page"_spr,
+		"Next Options Page",
+		"Enables a keybind (set to Right by default) to view the next Options page.",
+		{ Keybind::create(KEY_Right) },
+		"Global/ErysEdits/More Options Navigation"
+	});
+	BindManager::get()->registerBindable({
+		"previous-options-page"_spr,
+		"Previous Options Page",
+		"Enables a keybind (set to Left by default) to view the previous Options page.",
+		{ Keybind::create(KEY_Left) },
+		"Global/ErysEdits/More Options Navigation"
 	});
 	
 	new EventListener([=](InvokeBindEvent* event) {
@@ -246,7 +260,7 @@ $execute {
 		if (!GJBaseGameLayer::get() && event->isDown() && !Loader::get()->isModLoaded("raydeeux.moreoptionslayer")) { // event->isDown() to trigger only once (thank you dankmeme!)
 			if (Utils::modEnabled() && Utils::get("moreOptions")) {
 				OptionsLayer::create()->onOptions(nullptr);
-			} else { Utils::keybindDisabledGeneric("More Options Shortcuts", "open your GD settings"); }
+			} else { Utils::moreOptionsDisabled(); }
 		}
 		return ListenerResult::Propagate;
 	}, InvokeBindFilter(nullptr, "more-options-layer"_spr));

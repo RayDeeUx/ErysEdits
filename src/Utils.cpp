@@ -38,6 +38,8 @@ namespace Utils {
 	void viewCommentsDisabled() { keybindDisabledGeneric("View Comments Shortcut", "view level comments/user comment history"); }
 	
 	void navigateGauntletsDisabled() { keybindDisabledGeneric("Navigate Gauntlets", "navigate the Gauntlets"); }
+	
+	void moreOptionsDisabled() { keybindDisabledGeneric("More Options Shortcuts", "open your GD settings"); }
 
 	bool isSceneRunning(std::string sceneName) { return CCDirector::get()->getRunningScene()->getChildByID(sceneName.c_str()); }
 	

@@ -20,6 +20,7 @@ namespace Utils {
 	void likeDislikeShortcutDisabled();
 	void viewCommentsDisabled();
 	void navigateGauntletsDisabled();
+	void moreOptionsDisabled();
 	
 	bool isSceneRunning(std::string sceneName);
 	bool isSceneRunningRecursive(std::string sceneName);
