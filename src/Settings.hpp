@@ -36,12 +36,11 @@ protected:
 		// copied a bit from viper
 		theLabel->setScale(.75);
 		theLabel->setPositionX(0);
+		theLabel->limitLabelWidth(300.f, .75f, .25f); // added by Ery. max width is 346.f
 		theMenu->addChild(theLabel);
 		theMenu->setPosition(width / 2, 18.f);
 		
 		this->addChild(theMenu);
-
-
 
 		return true;
 	}

@@ -251,29 +251,8 @@
 			"platforms": ["windows"],
 			"default": true
 		},
-		"newEditorLevel": {
-			"name": "Create New Level/List",
-			"description": "Enables a keybind (set to Ctrl + N by default) to create a new level/list.",
-			"type": "bool",
-			"platforms": ["windows"],
-			"default": true
-		},
-		"toggleLevelLists": {
-			"name": "Toggle Levels/Lists Mode",
-			"description": "Enables a keybind (set to Shift + Ctrl + L by default) to toggle between viewing local editor levels and local level lists.",
-			"type": "bool",
-			"platforms": ["windows"],
-			"default": true
-		},
-		"viewUploaded": {
-			"name": "View Uploaded Levels/Lists",
-			"description": "Enables a keybind (set to Shift + Ctrl + Alt + L by default) to view uploaded levels/level lists.",
-			"type": "bool",
-			"platforms": ["windows"],
-			"default": true
-		},
-		"navigation": {
-			"name": "Navigation with Keybinds",
+		"browser": {
+			"name": "Browser-like Navigation Keybinds",
 			"type": "custom",
 			"platforms": ["windows"]
 		},
@@ -298,16 +277,47 @@
 			"platforms": ["windows"],
 			"default": true
 		},
-		"moreOptions": {
-			"name": "More Options Shortcuts",
-			"description": "Enables a keybind (set to Ctrl + O by default) to open your Geometry Dash settings.",
+		"likeDislikeShortcut": {
+			"name": "Like/Dislike",
+			"description": "Enables a keybind (set to Left for liking and Right for disliking) to like/dislike content.",
 			"type": "bool",
 			"platforms": ["windows"],
 			"default": true
 		},
-		"likeDislikeShortcut": {
-			"name": "Like/Dislike",
-			"description": "Enables a keybind (set to Left for liking and Right for disliking) to like/dislike content.",
+		"my-levels": {
+			"name": "\"My Levels\" Menu Keybinds",
+			"type": "custom",
+			"platforms": ["windows"]
+		},
+		"newEditorLevel": {
+			"name": "Create New Level/List",
+			"description": "Enables a keybind (set to Ctrl + N by default) to create a new level/list.",
+			"type": "bool",
+			"platforms": ["windows"],
+			"default": true
+		},
+		"toggleLevelLists": {
+			"name": "Toggle Levels/Lists Mode",
+			"description": "Enables a keybind (set to Shift + Ctrl + L by default) to toggle between viewing local editor levels and local level lists.",
+			"type": "bool",
+			"platforms": ["windows"],
+			"default": true
+		},
+		"viewUploaded": {
+			"name": "View Uploaded Levels/Lists",
+			"description": "Enables a keybind (set to Shift + Ctrl + Alt + L by default) to view uploaded levels/level lists.",
+			"type": "bool",
+			"platforms": ["windows"],
+			"default": true
+		},
+		"misc-keybinds": {
+			"name": "Misc. Keybinds",
+			"type": "custom",
+			"platforms": ["windows"]
+		},
+		"moreOptions": {
+			"name": "More Options Shortcuts",
+			"description": "Enables a keybind (set to Ctrl + O by default) to open your Geometry Dash settings.",
 			"type": "bool",
 			"platforms": ["windows"],
 			"default": true
@@ -341,7 +351,7 @@
 			"default": true
 		},
 		"customKeybinds": {
-			"name": "Custom Keybinds",
+			"name": "Open Custom Keybinds",
 			"description": "Enables a keybind (set to Shift + Alt + Ctrl + K by default) to open your custom keybinds.",
 			"type": "bool",
 			"platforms": ["windows"],
