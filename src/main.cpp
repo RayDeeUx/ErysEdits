@@ -34,6 +34,7 @@ $on_mod(Loaded) {
 	Mod::get()->addCustomSetting<SectionSettingValue>("debug-text", "none");
 	Mod::get()->addCustomSetting<SectionSettingValue>("misc", "none");
 	Mod::get()->addCustomSetting<SectionSettingValue>("compact", "none");
+	Mod::get()->addCustomSetting<SectionSettingValue>("gameplay", "none");
 	#ifdef GEODE_IS_WINDOWS
 	Mod::get()->addCustomSetting<SectionSettingValue>("levelEditor", "none");
 	Mod::get()->addCustomSetting<SectionSettingValue>("navigation", "none");
@@ -209,6 +210,13 @@ $execute {
 		{ Keybind::create(KEY_Three) },
 		Category::GLOBAL
 	});
+	BindManager::get()->registerBindable({
+		"more-options-layer"_spr,
+		"More Options Shortcuts",
+		"Enables a keybind (set to Ctrl + O by default) to open your GD settings.",
+		{ Keybind::create(KEY_O, Modifier::Control) },
+		Category::GLOBAL
+	});
 	
 	new EventListener([=](InvokeBindEvent* event) {
 		if (!GJBaseGameLayer::get() && event->isDown()) { // event->isDown() to trigger only once (thank you dankmeme!)
@@ -234,5 +242,13 @@ $execute {
 		}
 		return ListenerResult::Propagate;
 	}, InvokeBindFilter(nullptr, "custom-keybinds"_spr));
+	new EventListener([=](InvokeBindEvent* event) {
+		if (!GJBaseGameLayer::get() && event->isDown() && !Loader::get()->isModLoaded("raydeeux.moreoptionslayer")) { // event->isDown() to trigger only once (thank you dankmeme!)
+			if (Utils::modEnabled() && Utils::get("moreOptions")) {
+				OptionsLayer::create()->onOptions(nullptr);
+			} else { Utils::keybindDisabledGeneric("More Options Shortcuts", "open your GD settings"); }
+		}
+		return ListenerResult::Propagate;
+	}, InvokeBindFilter(nullptr, "more-options-layer"_spr));
 }
 #endif

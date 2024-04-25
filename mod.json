@@ -279,7 +279,7 @@
 		},
 		"pageNavAnywhere": {
 			"name": "Arrow Keys in Pages",
-			"description": "Enables a keybind (set to Alt + Left/Right for previous/next pages, Shift Left/Right for first/last pages) to refresh the layer you're on.\n\nBecause RobTop's infinite wisdom allowed him to implement this feature with the main levels (and level browsing menus) <cr>and literally nowhere else</c> in Geometry Dash.\n\n<cj>No, I'm not mad about this. What makes you think that?</c>",
+			"description": "Enables a keybind (set to Alt + Left/Right for previous/next pages, Shift Left/Right for first/last pages) to navigate between pages.\n\nBecause RobTop's infinite wisdom allowed him to implement this feature with the main levels (and level browsing menus) <cr>and literally nowhere else</c> in Geometry Dash.\n\n<cj>No, I'm not mad about this. What makes you think that?</c>",
 			"type": "bool",
 			"platforms": ["windows"],
 			"default": true
@@ -294,6 +294,13 @@
 		"viewCommentsAnywhere": {
 			"name": "View Comments",
 			"description": "Enables a keybind (set to Shift + C by default) to view comments (either for a specific profile or for a level).",
+			"type": "bool",
+			"platforms": ["windows"],
+			"default": true
+		},
+		"moreOptions": {
+			"name": "More Options Shortcuts",
+			"description": "Enables a keybind (set to Ctrl + O by default) to open your Geometry Dash settings.",
 			"type": "bool",
 			"platforms": ["windows"],
 			"default": true
