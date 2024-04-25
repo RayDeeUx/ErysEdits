@@ -78,27 +78,6 @@ $execute {
 		Category::EDITOR
 	});
 	BindManager::get()->registerBindable({
-		"new-editor-level"_spr,
-		"Create New Level/List",
-		"Enables a keybind (set to Ctrl + N by default) to create a new level/list.",
-		{ Keybind::create(KEY_N, Modifier::Control) },
-		"Global/ErysEdits/Custom Content Navigation"
-	});
-	BindManager::get()->registerBindable({
-		"toggle-level-lists"_spr,
-		"Toggle Levels/Lists Mode",
-		"Enables a keybind (set to Shift + Ctrl + L by default) to toggle between viewing local editor levels and local level lists.",
-		{ Keybind::create(KEY_L, Modifier::Control | Modifier::Shift) },
-		"Global/ErysEdits/Custom Content Navigation"
-	});
-	BindManager::get()->registerBindable({
-		"view-uploaded"_spr,
-		"View Uploaded Levels/Lists",
-		"Enables a keybind (set to Shift + Ctrl + Alt + L by default) (set to Shift + Ctrl + Alt + L by default) to view uploaded levels/level lists.",
-		{ Keybind::create(KEY_L, Modifier::Control | Modifier::Shift | Modifier::Alt) },
-		"Global/ErysEdits/Custom Content Navigation"
-	});
-	BindManager::get()->registerBindable({
 		"refresh-page"_spr,
 		"Refresh Page",
 		"Enables a keybind (set to Ctrl + R by default) to refresh the layer you're on.\n<cy>Use this keybind with caution; abusing/spamming this keybind can get you rate-limited or banned from RobTop's servers. By using this keybind for any reason, you agree to hold harmless the mod developer (RayDeeUx) or any lead developer of Geode and assume all responsibility for any consequences.</c>",
@@ -155,25 +134,25 @@ $execute {
 		"Global/ErysEdits/Browser-like Navigation"
 	});
 	BindManager::get()->registerBindable({
-		"erysedits-settings"_spr,
-		"ErysEdits Settings",
-		"Enables a keybind (set to Shift + Alt + Ctrl + E by default) to open the settings menu for ErysEdits.",
-		{ Keybind::create(KEY_E, Modifier::Shift | Modifier::Alt | Modifier::Control) },
-		"Global/ErysEdits/Misc. Navigation"
+		"new-editor-level"_spr,
+		"Create New Level/List",
+		"Enables a keybind (set to Ctrl + N by default) to create a new level/list.",
+		{ Keybind::create(KEY_N, Modifier::Control) },
+		"Global/ErysEdits/\"My Levels\" Navigation"
 	});
 	BindManager::get()->registerBindable({
-		"geode-mods-list"_spr,
-		"Geode Mods List",
-		"Enables a keybind (set to Shift + Alt + Ctrl + G by default) to open the Geode mods list.",
-		{ Keybind::create(KEY_G, Modifier::Shift | Modifier::Alt | Modifier::Control) },
-		"Global/ErysEdits/Misc. Navigation"
+		"toggle-level-lists"_spr,
+		"Toggle Levels/Lists Mode",
+		"Enables a keybind (set to Shift + Ctrl + L by default) to toggle between viewing local editor levels and local level lists.",
+		{ Keybind::create(KEY_L, Modifier::Control | Modifier::Shift) },
+		"Global/ErysEdits/\"My Levels\" Navigation"
 	});
 	BindManager::get()->registerBindable({
-		"custom-keybinds"_spr,
-		"Custom Keybinds",
-		"Enables a keybind (set to Shift + Alt + Ctrl + K by default) to open your custom keybinds.",
-		{ Keybind::create(KEY_K, Modifier::Shift | Modifier::Alt | Modifier::Control) },
-		"Global/ErysEdits/Misc. Navigation"
+		"view-uploaded"_spr,
+		"View Uploaded Levels/Lists",
+		"Enables a keybind (set to Shift + Ctrl + Alt + L by default) (set to Shift + Ctrl + Alt + L by default) to view uploaded levels/level lists.",
+		{ Keybind::create(KEY_L, Modifier::Control | Modifier::Shift | Modifier::Alt) },
+		"Global/ErysEdits/\"My Levels\" Navigation"
 	});
 	BindManager::get()->registerBindable({
 		"next-gauntlet"_spr,
@@ -230,6 +209,27 @@ $execute {
 		"Enables a keybind (set to Left by default) to view the previous Options page.",
 		{ Keybind::create(KEY_Left) },
 		"Global/ErysEdits/More Options Navigation"
+	});
+	BindManager::get()->registerBindable({
+		"erysedits-settings"_spr,
+		"ErysEdits Settings",
+		"Enables a keybind (set to Shift + Alt + Ctrl + E by default) to open the settings menu for ErysEdits.",
+		{ Keybind::create(KEY_E, Modifier::Shift | Modifier::Alt | Modifier::Control) },
+		"Global/ErysEdits/Misc. Navigation"
+	});
+	BindManager::get()->registerBindable({
+		"geode-mods-list"_spr,
+		"Geode Mods List",
+		"Enables a keybind (set to Shift + Alt + Ctrl + G by default) to open the Geode mods list.",
+		{ Keybind::create(KEY_G, Modifier::Shift | Modifier::Alt | Modifier::Control) },
+		"Global/ErysEdits/Misc. Navigation"
+	});
+	BindManager::get()->registerBindable({
+		"custom-keybinds"_spr,
+		"Custom Keybinds",
+		"Enables a keybind (set to Shift + Alt + Ctrl + K by default) to open your custom keybinds.",
+		{ Keybind::create(KEY_K, Modifier::Shift | Modifier::Alt | Modifier::Control) },
+		"Global/ErysEdits/Misc. Navigation"
 	});
 	
 	new EventListener([=](InvokeBindEvent* event) {
