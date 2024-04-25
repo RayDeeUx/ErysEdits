@@ -10,6 +10,7 @@
 - Remove forcing player death SFX settings. Please use v1.1.0 of Adam729's Random Death Sounds mod instead.
 - Clarify descriptions when levels appear to have an empty description despite proven otherwise, especially when browsing level lists.
 - Fix an issue where SFX in some levels would infinitely loop. Thank you, Aktimoose, for bringing this to my attention, and deepest apologies for rejecting your original claims. I hope this apology and this update is compensation enough for my harsh behavior at the time.
+- Recategorized a few settings.
 - Added punctuation to changelogs.
 - Bump Node IDs minimum requirement to v1.9.1.
 - [Windows only] Bump Custom Keybinds minimum requirement to v1.5.6.

@@ -13,7 +13,7 @@ class $modify(MyLevelCell, LevelCell) {
 		std::string levelDesc = theLevel->getUnpackedLevelDescription();
 		if (strcmp(levelDesc.c_str(), "") == 0) {
 			if (Manager::getSharedInstance()->isInSavedLevels || Utils::isSceneRunning("LevelListLayer")) {
-				levelDesc = "(No description visible. Try downloading the level.)";
+				levelDesc = "(No description visible. Try downloading the level, and exit + reenter this menu and view again.)";
 			} else {
 				levelDesc = "(No description provided)";
 			}
