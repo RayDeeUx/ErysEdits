@@ -3,10 +3,12 @@
 - Add keybinds for the level search menu. *[Windows only.]*
 - Add keybinds to make navigating the gauntlets feel more natural. *[Windows only.]*
 - Add keybinds to open the settings menus for both Geometry Dash and this mod. *[Windows only.]*
+- Add a keybind to open your Geode custom keybinds. *[Windows only.]*
 - Add an additional keybind to save and exit an editor level. *[Windows only.]*
 - Add a keybind to open the Geode mods list. *[Windows only.]*
 - Add keybinds to (toggle between viewing, creating new, or viewing uploaded) custom levels and level lists. *[Windows only.]*
 - Add a keybind to close the level editor's pause menu. *[Windows only.]*
+- Categorized keybinds properly. *[Windows only.]*
 - New slider setting: `Always Active LDM`. Make sure to read its config description!
 - Remove forcing player death SFX settings. Please use v1.1.0 of Adam729's Random Death Sounds mod instead.
 - Clarify descriptions when levels appear to have an empty description despite proven otherwise, especially when browsing level lists.
