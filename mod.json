@@ -289,6 +289,13 @@
 			"type": "custom",
 			"platforms": ["windows"]
 		},
+		"focusUnfocusSearch": {
+			"name": "Focus Search Bar",
+			"description": "Enables a keybind (set to Shift + L by default) to focus the level search menu's search bar.",
+			"type": "bool",
+			"platforms": ["windows"],
+			"default": true
+		},
 		"clearFilters": {
 			"name": "Clear Search Filters",
 			"description": "Enables a keybind (set to Shift + Delete by default) to prepare to clear your search filters.",
@@ -317,23 +324,30 @@
 			"platforms": ["windows"],
 			"default": true
 		},
+		"quickSearch": {
+			"name": "Quick Search Shortcuts",
+			"description": "Enables several keybinds (set to Ctrl + D(ownloads), Ctrl + T(rending), Ctrl + A(warded), Ctrl + L(ikes), Ctrl + R(ecent), Ctrl + F(ollowed), Ctrl + S(ent), Ctrl + M(agic), and Ctrl + (Fr)I(ends)) to open a quick search option.",
+			"type": "bool",
+			"platforms": ["windows"],
+			"default": true
+		},
 		"lengthFilter": {
 			"name": "Level Length Filters",
-			"description": "Enables a keybind (set to Alt + <cy>[1 through 6]</c> by default) to toggle a level length search filter.",
+			"description": "Enables several keybinds (set to Alt + <cy>[1 through 6]</c> by default) to toggle a level length search filter.",
 			"type": "bool",
 			"platforms": ["windows"],
 			"default": true
 		},
 		"difficultyFilter": {
 			"name": "Level Difficulty Filters",
-			"description": "Enables a keybind (set to Ctrl + <cy>[1 through 9]</c> by default) to toggle a level difficulty search filter.",
+			"description": "Enables several keybinds (set to Ctrl + <cy>[1 through 9]</c> by default) to toggle a level difficulty search filter.",
 			"type": "bool",
 			"platforms": ["windows"],
 			"default": true
 		},
 		"demonFilter": {
 			"name": "Demon Filters",
-			"description": "Enables a keybind (set to Shift + Ctrl + <cy>[1 through 6]</c> by default) to toggle a demon search filter.",
+			"description": "Enables several keybinds (set to Shift + Ctrl + <cy>[1 through 6]</c> by default) to toggle a demon search filter.",
 			"type": "bool",
 			"platforms": ["windows"],
 			"default": true

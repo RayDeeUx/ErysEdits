@@ -72,6 +72,10 @@ public:
 	int currentGauntletPage = 0;
 	#endif
 	
+	#ifdef GEODE_IS_WINDOWS
+	bool levelSearchLayerTextInputOpen = false;
+	#endif
+	
 	// GLenum glBlendFuncs[] = {GL_ZERO, GL_ONE, GL_SRC_COLOR, GL_ONE_MINUS_SRC_COLOR, GL_DST_COLOR, GL_ONE_MINUS_DST_COLOR, GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA, GL_DST_ALPHA, GL_ONE_MINUS_DST_ALPHA, GL_CONSTANT_COLOR, GL_ONE_MINUS_CONSTANT_COLOR, GL_CONSTANT_ALPHA, GL_ONE_MINUS_CONSTANT_ALPHA, GL_SRC_ALPHA_SATURATE };
 
 	static Manager* getSharedInstance() {

@@ -137,6 +137,13 @@ $execute {
 		"Global/ErysEdits/Browser-like Navigation"
 	});
 	BindManager::get()->registerBindable({
+		"level-search-focus-search"_spr,
+		"Focus Search Bar",
+		"Use this keybind (set to Shift + L by default) to focus the level search menu's search bar.",
+		{ Keybind::create(KEY_L, Modifier::Shift)},
+		"Global/ErysEdits/Level Search Menu Navigation"
+	});
+	BindManager::get()->registerBindable({
 		"level-search-clear-filters"_spr,
 		"Clear Search Filters",
 		"Use this keybind (set to Shift + Delete by default) to prepare to clear your search filters.",
@@ -153,7 +160,7 @@ $execute {
 	BindManager::get()->registerBindable({
 		"level-search-search-mode"_spr,
 		"Toggle Levels/Lists Mode",
-		"Use this keybind (set to Shift + Backspace by default) to toggle the star rate filter.",
+		"Use this keybind (set to Shift + Backspace by default) to switch between searching for levels and level lists.",
 		{ Keybind::create(KEY_Backspace, Modifier::Shift) },
 		"Global/ErysEdits/Level Search Menu Navigation"
 	});
@@ -163,6 +170,69 @@ $execute {
 		"Use this keybind (set to Alt + 0 by default) to toggle the star rate filter.",
 		{ Keybind::create(KEY_Zero, Modifier::Alt) },
 		"Global/ErysEdits/Level Search Menu Navigation"
+	});
+	BindManager::get()->registerBindable({
+		"level-search-quick-downloads"_spr,
+		"Downloads",
+		"Use this keybind (set to Ctrl + D and Alt + D by default) to open the \"Downloads\" Quick Search option.",
+		{ Keybind::create(KEY_D, Modifier::Control), Keybind::create(KEY_D, Modifier::Alt) },
+		"Global/ErysEdits/Level Search Menu Navigation/Quick Search Shortcuts"
+	});
+	BindManager::get()->registerBindable({
+		"level-search-quick-trending"_spr,
+		"Trending",
+		"Use this keybind (set to Ctrl + T and Alt + T by default) to open the \"Trending\" Quick Search option.",
+		{ Keybind::create(KEY_T, Modifier::Control), Keybind::create(KEY_T, Modifier::Alt) },
+		"Global/ErysEdits/Level Search Menu Navigation/Quick Search Shortcuts"
+	});
+	BindManager::get()->registerBindable({
+		"level-search-quick-awarded"_spr,
+		"Awarded",
+		"Use this keybind (set to Ctrl + A and Alt + A by default) to open the \"Awarded\" Quick Search option.",
+		{ Keybind::create(KEY_A, Modifier::Control), Keybind::create(KEY_A, Modifier::Alt) },
+		"Global/ErysEdits/Level Search Menu Navigation/Quick Search Shortcuts"
+	});
+	BindManager::get()->registerBindable({
+		"level-search-quick-likes"_spr,
+		"Likes",
+		"Use this keybind (set to Ctrl + L and Alt + L by default) to open the \"Likes\" Quick Search option.",
+		{ Keybind::create(KEY_L, Modifier::Control), Keybind::create(KEY_L, Modifier::Alt) },
+		"Global/ErysEdits/Level Search Menu Navigation/Quick Search Shortcuts"
+	});
+	BindManager::get()->registerBindable({
+		"level-search-quick-recent"_spr,
+		"Recent",
+		"Use this keybind (set to Ctrl + R and Alt + R by default) to open the \"Recent\" Quick Search option.",
+		{ Keybind::create(KEY_R, Modifier::Control), Keybind::create(KEY_R, Modifier::Alt) },
+		"Global/ErysEdits/Level Search Menu Navigation/Quick Search Shortcuts"
+	});
+	BindManager::get()->registerBindable({
+		"level-search-quick-following"_spr,
+		"Followed",
+		"Use this keybind (set to Ctrl + F and Alt + F by default) to open the \"Followed\" Quick Search option.",
+		{ Keybind::create(KEY_F, Modifier::Control), Keybind::create(KEY_F, Modifier::Alt) },
+		"Global/ErysEdits/Level Search Menu Navigation/Quick Search Shortcuts"
+	});
+	BindManager::get()->registerBindable({
+		"level-search-quick-sent"_spr,
+		"Sent",
+		"Use this keybind (set to Ctrl + S and Alt + S by default) to open the \"Sent\" Quick Search option.",
+		{ Keybind::create(KEY_S, Modifier::Control), Keybind::create(KEY_S, Modifier::Alt) },
+		"Global/ErysEdits/Level Search Menu Navigation/Quick Search Shortcuts"
+	});
+	BindManager::get()->registerBindable({
+		"level-search-quick-magic"_spr,
+		"Magic",
+		"Use this keybind (set to Ctrl + M and Alt + M by default) to open the \"Magic\" Quick Search option.",
+		{ Keybind::create(KEY_M, Modifier::Control), Keybind::create(KEY_M, Modifier::Alt) },
+		"Global/ErysEdits/Level Search Menu Navigation/Quick Search Shortcuts"
+	});
+	BindManager::get()->registerBindable({
+		"level-search-quick-friends"_spr,
+		"Friends",
+		"Use this keybind (set to Ctrl + I and Alt + I by default) to open the \"Friends\" Quick Search option.",
+		{ Keybind::create(KEY_I, Modifier::Control), Keybind::create(KEY_I, Modifier::Alt) },
+		"Global/ErysEdits/Level Search Menu Navigation/Quick Search Shortcuts"
 	});
 	BindManager::get()->registerBindable({
 		"level-search-length-tiny"_spr,

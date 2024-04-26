@@ -46,6 +46,8 @@ namespace Utils {
 	void levelDifficultyDisabled() { keybindDisabledGeneric("Level Difficulty Filters", "toggle level difficulty search filters"); }
 	
 	void demonFilterDisabled() { keybindDisabledGeneric("Demon Filters", "toggle demon search filters"); }
+	
+	void quickSearchDisabled() { keybindDisabledGeneric("Quick Search Shortcuts", "open a quick search option"); }
 
 	bool isSceneRunning(std::string sceneName) { return CCDirector::get()->getRunningScene()->getChildByID(sceneName.c_str()); }
 	
@@ -69,7 +71,7 @@ namespace Utils {
 	
 	bool noMoreOptionsLayer() { return !isMoreOptionsLayer(); }
 	
-	bool nothingElse() { return noProfilePage() && noInfoLayer() && noLevelLeaderboard() && noMoreOptionsLayer(); }
+	bool nothingElse() { return noProfilePage() && noInfoLayer() && noLevelLeaderboard() && noMoreOptionsLayer() && !isSceneRunningRecursive("DemonFilterSelectLayer") && !isSceneRunningRecursive("MoreSearchLayer"); }
 
 	void restoreOrigGMGVs(GameManager* gameManager, bool changeCanCall, bool isEnteringLevel) {
 		auto manager = Manager::getSharedInstance();
