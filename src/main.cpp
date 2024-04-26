@@ -202,8 +202,8 @@ $execute {
 	BindManager::get()->registerBindable({
 		"level-search-length-plat"_spr,
 		"Plat.",
-		"Use this keybind (set to Alt + 6 by default) to toggle the \"Plat.\" level length search filter.",
-		{ Keybind::create(KEY_Six, Modifier::Alt) },
+		"Use this keybind (set to Alt + 6 and Alt + 9 by default) to toggle the \"Plat.\" level length search filter.",
+		{ Keybind::create(KEY_Six, Modifier::Alt), Keybind::create(KEY_Nine, Modifier::Alt) },
 		"Global/ErysEdits/Level Search Menu Navigation/Level Length Filters"
 	});
 	BindManager::get()->registerBindable({
@@ -265,8 +265,8 @@ $execute {
 	BindManager::get()->registerBindable({
 		"level-search-demon-filter"_spr,
 		"Open Demon Filter",
-		"Use this keybind (set to Ctrl + 9 by default) to toggle the \"Demon\" level difficulty search filter.",
-		{ Keybind::create(KEY_Nine, Modifier::Control) },
+		"Use this keybind (set to Ctrl + 9 and Ctrl + 0 by default) to toggle the \"Demon\" level difficulty search filter.",
+		{ Keybind::create(KEY_Nine, Modifier::Control), Keybind::create(KEY_Zero, Modifier::Control) },
 		"Global/ErysEdits/Level Search Menu Navigation/Level Difficulty Filters"
 	});
 	BindManager::get()->registerBindable({

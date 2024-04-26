@@ -12,7 +12,9 @@ class $modify(MyLevelCell, LevelCell) {
 		auto theLevel = this->m_level;
 		std::string levelDesc = theLevel->getUnpackedLevelDescription();
 		if (strcmp(levelDesc.c_str(), "") == 0) {
-			if (Manager::getSharedInstance()->isInSavedLevels || Utils::isSceneRunning("LevelListLayer")) {
+			if (Utils::isSceneRunning("provider-popup") || Utils::isSceneRunning("dogotrigger.level_history/provider-popup")) {
+				levelDesc = "(No description available. You're probably viewing this level from a level history mod; there's not much more you can do from here.)";
+			} else if (Manager::getSharedInstance()->isInSavedLevels || Utils::isSceneRunning("LevelListLayer")) {
 				levelDesc = "(No description visible. Try downloading the level, then exit and re-enter this menu to view this level's description again.)";
 			} else {
 				levelDesc = "(No description provided)";
