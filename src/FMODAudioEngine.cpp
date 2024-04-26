@@ -16,7 +16,15 @@ class $modify(MyFMODAudioEngine, FMODAudioEngine) {
 		std::string path = p0;
 		std::smatch match;
 		if (path.find("geode") != std::string::npos && (path.find("mods") != std::string::npos || path.find("config") != std::string::npos)) {
-			manager->lastPlayedEffect = "[From another Geode mod]";
+			if (path.find("flafy.autonong") != std::string::npos || path.find(".autonong") != std::string::npos) {
+				manager->lastPlayedEffect = "[From Auto NONG]";
+			} else if (path.find("fleym.nongd") != std::string::npos || path.find(".nongd") != std::string::npos) {
+				manager->lastPlayedEffect = "[From Jukebox]";
+			} else if (path.find("adam_729.randdeathsounds") != std::string::npos || path.find(".randdeathsounds") != std::string::npos) {
+				manager->lastPlayedEffect = "[From RandDeathSounds]";
+			} else {
+				manager->lastPlayedEffect = "[From another Geode mod]";
+			}
 		} else if (std::find(vanillaSFX.begin(), vanillaSFX.end(), path) == vanillaSFX.end()) {
 			if (std::regex_match(path, match, songEffectRegex)) {
 				manager->lastPlayedEffect = fmt::format("{}.{}", match[1].str(), match[2].str());
@@ -37,10 +45,14 @@ class $modify(MyFMODAudioEngine, FMODAudioEngine) {
 		auto manager = Manager::getSharedInstance();
 		std::string path = p0;
 		std::smatch match;
-		if (path.find("fleym.") != std::string::npos) {
-			manager->lastPlayedSong = "[Replaced by Jukebox]";
-		} else if (path.find("geode") != std::string::npos && (path.find("mods") != std::string::npos || path.find("config") != std::string::npos)) {
-			manager->lastPlayedSong = "[From another Geode mod]";
+		if (path.find("geode") != std::string::npos && (path.find("mods") != std::string::npos || path.find("config") != std::string::npos)) {
+			if (path.find("flafy.autonong") != std::string::npos || path.find(".autonong") != std::string::npos) {
+				manager->lastPlayedSong = "[Replaced by Auto NONG]";
+			} else if (path.find("fleym.nongd") != std::string::npos || path.find(".nongd") != std::string::npos) {
+				manager->lastPlayedSong = "[Replaced by Jukebox]";
+			} else {
+				manager->lastPlayedSong = "[From another Geode mod]";
+			}
 		} else if (std::regex_match(path, match, songEffectRegex)) {
 			manager->lastPlayedSong = fmt::format("{}.{}", match[1].str(), match[2].str());
 		} else {
