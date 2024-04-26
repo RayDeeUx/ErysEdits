@@ -1,9 +1,10 @@
 # ErysEdits Changelog
 ## v1.1.0
+- Add keybinds for the level search menu. *[Windows only.]*
 - Add keybinds to make navigating the gauntlets feel more natural. *[Windows only.]*
-- Add keybinds to open the setings menus for both Geometry Dash and this mod, also almost accessible anywhere. *[Windows only.]*
+- Add keybinds to open the setings menus for both Geometry Dash and this mod. *[Windows only.]*
 - Add an additional keybind to save and exit an editor level. *[Windows only.]*
-- Add a keybind to open the Geode mods list, almost accessible anywhere. *[Windows only.]*
+- Add a keybind to open the Geode mods list. *[Windows only.]*
 - Add keybinds to (toggle between viewing, creating new, or viewing uploaded) custom levels and level lists. *[Windows only.]*
 - Add a keybind to close the level editor's pause menu. *[Windows only.]*
 - New slider setting: `Always Active LDM`. Make sure to read its config description!

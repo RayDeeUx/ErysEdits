@@ -38,6 +38,7 @@ $on_mod(Loaded) {
 	#ifdef GEODE_IS_WINDOWS
 	Mod::get()->addCustomSetting<SectionSettingValue>("levelEditor", "none");
 	Mod::get()->addCustomSetting<SectionSettingValue>("browser", "none");
+	Mod::get()->addCustomSetting<SectionSettingValue>("level-search-layer", "none");
 	Mod::get()->addCustomSetting<SectionSettingValue>("my-levels", "none");
 	Mod::get()->addCustomSetting<SectionSettingValue>("misc-keybinds", "none");
 	#endif
@@ -75,161 +76,336 @@ $execute {
 	BindManager::get()->registerBindable({
 		"resume-editor"_spr,
 		"Resume Editor",
-		"Enables a keybind (set to Shift + 1 by default) to resume editing a level.",
+		"Use this keybind (set to Shift + 1 by default) to resume editing a level.",
 		{ Keybind::create(KEY_One, Modifier::Shift) },
 		"Editor/ErysEdits"
 	});
 	BindManager::get()->registerBindable({
 		"refresh-page"_spr,
 		"Refresh Page",
-		"Enables a keybind (set to Ctrl + R by default) to refresh the layer you're on.\n<cy>Use this keybind with caution; abusing/spamming this keybind can get you rate-limited or banned from RobTop's servers. By using this keybind for any reason, you agree to hold harmless the mod developer (RayDeeUx) or any lead developer of Geode and assume all responsibility for any consequences.</c>",
+		"Use this keybind (set to Ctrl + R by default) to refresh the layer you're on.\n<cy>Use this keybind with caution; abusing/spamming this keybind can get you rate-limited or banned from RobTop's servers. By using this keybind for any reason, you agree to hold harmless the mod developer (RayDeeUx) or any lead developer of Geode and assume all responsibility for any consequences.</c>",
 		{ Keybind::create(KEY_R, Modifier::Control) },
 		"Global/ErysEdits/Browser-like Navigation"
 	});
 	BindManager::get()->registerBindable({
 		"previous-page"_spr,
 		"Go To Previous Page",
-		"Enables a keybind (set to Alt + Left Arrow by default) to go to the previous page.\n\nBecause RobTop's infinite wisdom allowed him to implement this feature with the main levels (and level browsing menus) <cr>and literally nowhere else</c> in Geometry Dash.\n\n<cj>No, I'm not mad about this. What makes you think that?</c>",
+		"Use this keybind (set to Alt + Left Arrow by default) to go to the previous page.\n\nBecause RobTop's infinite wisdom allowed him to implement this feature with the main levels (and level browsing menus) <cr>and literally nowhere else</c> in Geometry Dash.\n\n<cj>No, I'm not mad about this. What makes you think that?</c>",
 		{ Keybind::create(KEY_Left, Modifier::Alt) },
 		"Global/ErysEdits/Browser-like Navigation"
 	});
 	BindManager::get()->registerBindable({
 		"next-page"_spr,
 		"Go To Next Page",
-		"Enables a keybind (set to Alt + Right Arrow by default) to go to the next page.\n\nBecause RobTop's infinite wisdom allowed him to implement this feature with the main levels (and level browsing menus) <cr>and literally nowhere else</c> in Geometry Dash.\n\n<cj>No, I'm not mad about this. What makes you think that?</c>",
+		"Use this keybind (set to Alt + Right Arrow by default) to go to the next page.\n\nBecause RobTop's infinite wisdom allowed him to implement this feature with the main levels (and level browsing menus) <cr>and literally nowhere else</c> in Geometry Dash.\n\n<cj>No, I'm not mad about this. What makes you think that?</c>",
 		{ Keybind::create(KEY_Right, Modifier::Alt) },
 		"Global/ErysEdits/Browser-like Navigation"
 	});
 	BindManager::get()->registerBindable({
 		"first-page"_spr,
 		"Go To First Page",
-		"Enables a keybind (set to Shift + Left Arrow by default) to go to the first page.",
+		"Use this keybind (set to Shift + Left Arrow by default) to go to the first page.",
 		{ Keybind::create(KEY_Left, Modifier::Shift) },
 		"Global/ErysEdits/Browser-like Navigation"
 	});
 	BindManager::get()->registerBindable({
 		"last-page"_spr,
 		"Go To Last Page",
-		"Enables a keybind (set to Shift + Right Arrow by default) to go to the last <cy>(estimated)</c> page.\n\n<cy>Results may be inaccurate.</c>",
+		"Use this keybind (set to Shift + Right Arrow by default) to go to the last <cy>(estimated)</c> page.\n\n<cy>Results may be inaccurate.</c>",
 		{ Keybind::create(KEY_Right, Modifier::Shift) },
 		"Global/ErysEdits/Browser-like Navigation"
 	});
 	BindManager::get()->registerBindable({
 		"like"_spr,
 		"Like Content",
-		"Enables a keybind (set to Left Arrow by default) to like content.",
+		"Use this keybind (set to Left Arrow by default) to like content.",
 		{ Keybind::create(KEY_Left) },
 		"Global/ErysEdits/Browser-like Navigation"
 	});
 	BindManager::get()->registerBindable({
 		"dislike"_spr,
 		"Dislike Content",
-		"Enables a keybind (set to Right Arrow by default) to dislike content.",
+		"Use this keybind (set to Right Arrow by default) to dislike content.",
 		{ Keybind::create(KEY_Right) },
 		"Global/ErysEdits/Browser-like Navigation"
 	});
 	BindManager::get()->registerBindable({
 		"comments"_spr,
 		"View Comments",
-		"Enables a keybind (set to Shift + C by default) to view comments (either for a specific profile or for a level).",
+		"Use this keybind (set to Shift + C by default) to view comments (either for a specific profile or for a level).",
 		{ Keybind::create(KEY_C, Modifier::Shift) },
 		"Global/ErysEdits/Browser-like Navigation"
 	});
 	BindManager::get()->registerBindable({
+		"level-search-clear-filters"_spr,
+		"Clear Search Filters",
+		"Use this keybind (set to Shift + Delete by default) to prepare to clear your search filters.",
+		{ Keybind::create(KEY_Delete, Modifier::Shift) },
+		"Global/ErysEdits/Level Search Menu Navigation"
+	});
+	BindManager::get()->registerBindable({
+		"level-search-open-filters"_spr,
+		"Open Search Filters",
+		"Use this keybind (set to Shift + Minus by default) to open advanced search filters.",
+		{ Keybind::create(KEY_OEMMinus, Modifier::Shift) },
+		"Global/ErysEdits/Level Search Menu Navigation"
+	});
+	BindManager::get()->registerBindable({
+		"level-search-search-mode"_spr,
+		"Toggle Levels/Lists Mode",
+		"Use this keybind (set to Shift + Backspace by default) to toggle the star rate filter.",
+		{ Keybind::create(KEY_Backspace, Modifier::Shift) },
+		"Global/ErysEdits/Level Search Menu Navigation"
+	});
+	BindManager::get()->registerBindable({
+		"level-search-rate-filter"_spr,
+		"Star/Moon Rate",
+		"Use this keybind (set to Alt + 0 by default) to toggle the star rate filter.",
+		{ Keybind::create(KEY_Zero, Modifier::Alt) },
+		"Global/ErysEdits/Level Search Menu Navigation"
+	});
+	BindManager::get()->registerBindable({
+		"level-search-length-tiny"_spr,
+		"Tiny",
+		"Use this keybind (set to Alt + 1 by default) to toggle the \"Tiny\" level length search filter.",
+		{ Keybind::create(KEY_One, Modifier::Alt) },
+		"Global/ErysEdits/Level Search Menu Navigation/Level Length Filters"
+	});
+	BindManager::get()->registerBindable({
+		"level-search-length-short"_spr,
+		"Short",
+		"Use this keybind (set to Alt + 2 by default) to toggle the \"Short\" level length search filter.",
+		{ Keybind::create(KEY_Two, Modifier::Alt) },
+		"Global/ErysEdits/Level Search Menu Navigation/Level Length Filters"
+	});
+	BindManager::get()->registerBindable({
+		"level-search-length-medium"_spr,
+		"Medium",
+		"Use this keybind (set to Alt + 3 by default) to toggle the \"Medium\" level length search filter.",
+		{ Keybind::create(KEY_Three, Modifier::Alt) },
+		"Global/ErysEdits/Level Search Menu Navigation/Level Length Filters"
+	});
+	BindManager::get()->registerBindable({
+		"level-search-length-long"_spr,
+		"Long",
+		"Use this keybind (set to Alt + 4 by default) to toggle the \"Long\" level length search filter.",
+		{ Keybind::create(KEY_Four, Modifier::Alt) },
+		"Global/ErysEdits/Level Search Menu Navigation/Level Length Filters"
+	});
+	BindManager::get()->registerBindable({
+		"level-search-length-xl"_spr,
+		"XL",
+		"Use this keybind (set to Alt + 5 by default) to toggle the \"XL\" level length search filter.",
+		{ Keybind::create(KEY_Five, Modifier::Alt) },
+		"Global/ErysEdits/Level Search Menu Navigation/Level Length Filters"
+	});
+	BindManager::get()->registerBindable({
+		"level-search-length-plat"_spr,
+		"Plat.",
+		"Use this keybind (set to Alt + 6 by default) to toggle the \"Plat.\" level length search filter.",
+		{ Keybind::create(KEY_Six, Modifier::Alt) },
+		"Global/ErysEdits/Level Search Menu Navigation/Level Length Filters"
+	});
+	BindManager::get()->registerBindable({
+		"level-search-difficulty-na"_spr,
+		"NA",
+		"Use this keybind (set to Ctrl + 1 by default) to toggle the \"NA\" level difficulty search filter.",
+		{ Keybind::create(KEY_One, Modifier::Control) },
+		"Global/ErysEdits/Level Search Menu Navigation/Level Difficulty Filters"
+	});
+	BindManager::get()->registerBindable({
+		"level-search-difficulty-easy"_spr,
+		"Easy",
+		"Use this keybind (set to Ctrl + 2 by default) to toggle the \"Easy\" level difficulty search filter.",
+		{ Keybind::create(KEY_Two, Modifier::Control) },
+		"Global/ErysEdits/Level Search Menu Navigation/Level Difficulty Filters"
+	});
+	BindManager::get()->registerBindable({
+		"level-search-difficulty-normal"_spr,
+		"Normal",
+		"Use this keybind (set to Ctrl + 3 by default) to toggle the \"Normal\" level difficulty search filter.",
+		{ Keybind::create(KEY_Three, Modifier::Control) },
+		"Global/ErysEdits/Level Search Menu Navigation/Level Difficulty Filters"
+	});
+	BindManager::get()->registerBindable({
+		"level-search-difficulty-hard"_spr,
+		"Hard",
+		"Use this keybind (set to Ctrl + 4 by default) to toggle the \"Hard\" level difficulty search filter.",
+		{ Keybind::create(KEY_Four, Modifier::Control) },
+		"Global/ErysEdits/Level Search Menu Navigation/Level Difficulty Filters"
+	});
+	BindManager::get()->registerBindable({
+		"level-search-difficulty-harder"_spr,
+		"Harder",
+		"Use this keybind (set to Ctrl + 5 by default) to toggle the \"Harder\" level difficulty search filter.",
+		{ Keybind::create(KEY_Five, Modifier::Control) },
+		"Global/ErysEdits/Level Search Menu Navigation/Level Difficulty Filters"
+	});
+	BindManager::get()->registerBindable({
+		"level-search-difficulty-insane"_spr,
+		"Insane",
+		"Use this keybind (set to Ctrl + 6 by default) to toggle the \"Insane\" level difficulty search filter.",
+		{ Keybind::create(KEY_Six, Modifier::Control) },
+		"Global/ErysEdits/Level Search Menu Navigation/Level Difficulty Filters"
+	});
+	BindManager::get()->registerBindable({
+		"level-search-difficulty-demon"_spr,
+		"Demon",
+		"Use this keybind (set to Ctrl + 7 by default) to toggle the \"Demon\" level difficulty search filter.",
+		{ Keybind::create(KEY_Seven, Modifier::Control) },
+		"Global/ErysEdits/Level Search Menu Navigation/Level Difficulty Filters"
+	});
+	BindManager::get()->registerBindable({
+		"level-search-difficulty-auto"_spr,
+		"Auto",
+		"Use this keybind (set to Ctrl + 8 by default) to toggle the \"Auto\" level difficulty search filter.",
+		{ Keybind::create(KEY_Eight, Modifier::Control) },
+		"Global/ErysEdits/Level Search Menu Navigation/Level Difficulty Filters"
+	});
+	BindManager::get()->registerBindable({
+		"level-search-demon-filter"_spr,
+		"Open Demon Filter",
+		"Use this keybind (set to Ctrl + 9 by default) to toggle the \"Demon\" level difficulty search filter.",
+		{ Keybind::create(KEY_Nine, Modifier::Control) },
+		"Global/ErysEdits/Level Search Menu Navigation/Level Difficulty Filters"
+	});
+	BindManager::get()->registerBindable({
+		"level-search-all-demons"_spr,
+		"Demon",
+		"Use this keybind (set to Shift + Ctrl + 1 by default) to toggle the \"Demon\" filter.",
+		{ Keybind::create(KEY_One, Modifier::Shift | Modifier::Control) },
+		"Global/ErysEdits/Level Search Menu Navigation/Demon Filters"
+	});
+	BindManager::get()->registerBindable({
+		"level-search-easy-demon"_spr,
+		"Easy Demon",
+		"Use this keybind (set to Shift + Ctrl + 2 by default) to toggle the \"Easy Demon\" filter.",
+		{ Keybind::create(KEY_Two, Modifier::Shift | Modifier::Control) },
+		"Global/ErysEdits/Level Search Menu Navigation/Demon Filters"
+	});
+	BindManager::get()->registerBindable({
+		"level-search-medium-demon"_spr,
+		"Medium Demon",
+		"Use this keybind (set to Shift + Ctrl + 3 by default) to toggle the \"Medium Demon\" filter.",
+		{ Keybind::create(KEY_Three, Modifier::Shift | Modifier::Control) },
+		"Global/ErysEdits/Level Search Menu Navigation/Demon Filters"
+	});
+	BindManager::get()->registerBindable({
+		"level-search-hard-demon"_spr,
+		"Hard Demon",
+		"Use this keybind (set to Shift + Ctrl + 4 by default) to toggle the \"Hard Demon\" filter.",
+		{ Keybind::create(KEY_Four, Modifier::Shift | Modifier::Control) },
+		"Global/ErysEdits/Level Search Menu Navigation/Demon Filters"
+	});
+	BindManager::get()->registerBindable({
+		"level-search-insane-demon"_spr,
+		"Insane Demon",
+		"Use this keybind (set to Shift + Ctrl + 5 by default) to toggle the \"Insane Demon\" filter.",
+		{ Keybind::create(KEY_Five, Modifier::Shift | Modifier::Control) },
+		"Global/ErysEdits/Level Search Menu Navigation/Demon Filters"
+	});
+	BindManager::get()->registerBindable({
+		"level-search-extreme-demon"_spr,
+		"Extreme Demon",
+		"Use this keybind (set to Shift + Ctrl + 6 by default) to toggle the \"Extreme Demon\" filter.",
+		{ Keybind::create(KEY_Six, Modifier::Shift | Modifier::Control) },
+		"Global/ErysEdits/Level Search Menu Navigation/Demon Filters"
+	});
+	BindManager::get()->registerBindable({
 		"new-editor-level"_spr,
 		"Create New Level/List",
-		"Enables a keybind (set to Ctrl + N by default) to create a new level/list.",
+		"Use this keybind (set to Ctrl + N by default) to create a new level/list.",
 		{ Keybind::create(KEY_N, Modifier::Control) },
 		"Global/ErysEdits/\"My Levels\" Navigation"
 	});
 	BindManager::get()->registerBindable({
 		"toggle-level-lists"_spr,
 		"Toggle Levels/Lists Mode",
-		"Enables a keybind (set to Shift + Ctrl + L by default) to toggle between viewing local editor levels and local level lists.",
+		"Use this keybind (set to Shift + Ctrl + L by default) to toggle between viewing local editor levels and local level lists.",
 		{ Keybind::create(KEY_L, Modifier::Control | Modifier::Shift) },
 		"Global/ErysEdits/\"My Levels\" Navigation"
 	});
 	BindManager::get()->registerBindable({
 		"view-uploaded"_spr,
 		"View Uploaded Levels/Lists",
-		"Enables a keybind (set to Shift + Ctrl + Alt + L by default) (set to Shift + Ctrl + Alt + L by default) to view uploaded levels/level lists.",
+		"Use this keybind (set to Shift + Ctrl + Alt + L by default) (set to Shift + Ctrl + Alt + L by default) to view uploaded levels/level lists.",
 		{ Keybind::create(KEY_L, Modifier::Control | Modifier::Shift | Modifier::Alt) },
 		"Global/ErysEdits/\"My Levels\" Navigation"
 	});
 	BindManager::get()->registerBindable({
 		"next-gauntlet"_spr,
 		"Next Gauntlet",
-		"Enables a keybind (set to Right by default) to view the next gauntlet page.",
+		"Use this keybind (set to Right by default) to view the next gauntlet page.",
 		{ Keybind::create(KEY_Right) },
 		"Global/ErysEdits/Gauntlets Navigation"
 	});
 	BindManager::get()->registerBindable({
 		"previous-gauntlet"_spr,
 		"Previous Gauntlet",
-		"Enables a keybind (set to Left by default) to view the previous gauntlet page.",
+		"Use this keybind (set to Left by default) to view the previous gauntlet page.",
 		{ Keybind::create(KEY_Left) },
 		"Global/ErysEdits/Gauntlets Navigation"
 	});
 	BindManager::get()->registerBindable({
 		"first-visible-gauntlet"_spr,
 		"First Gauntlet",
-		"Enables a keybind (set to 1 by default) to enter the first visible gauntlet.\n\n<cy>(Disclaimer: Results may not be accurate.)</c>",
+		"Use this keybind (set to 1 by default) to enter the first visible gauntlet.\n\n<cy>(Disclaimer: Results may not be accurate.)</c>",
 		{ Keybind::create(KEY_One) },
 		"Global/ErysEdits/Gauntlets Navigation"
 	});
 	BindManager::get()->registerBindable({
 		"second-visible-gauntlet"_spr,
 		"Second Gauntlet",
-		"Enables a keybind (set to 2 by default) to enter the second visible gauntlet.\n\n<cy>(Disclaimer: Results may not be accurate.)</c>",
+		"Use this keybind (set to 2 by default) to enter the second visible gauntlet.\n\n<cy>(Disclaimer: Results may not be accurate.)</c>",
 		{ Keybind::create(KEY_Two) },
 		"Global/ErysEdits/Gauntlets Navigation"
 	});
 	BindManager::get()->registerBindable({
 		"third-visible-gauntlet"_spr,
 		"Third Gauntlet",
-		"Enables a keybind (set to 3 by default) to enter the third visible gauntlet.\n\n<cy>(Disclaimer: Results may not be accurate.)</c>",
+		"Use this keybind (set to 3 by default) to enter the third visible gauntlet.\n\n<cy>(Disclaimer: Results may not be accurate.)</c>",
 		{ Keybind::create(KEY_Three) },
 		"Global/ErysEdits/Gauntlets Navigation"
 	});
 	BindManager::get()->registerBindable({
 		"more-options-layer"_spr,
 		"More Options Shortcuts",
-		"Enables a keybind (set to Ctrl + O by default) to open your GD settings.",
+		"Use this keybind (set to Ctrl + O by default) to open your GD settings.",
 		{ Keybind::create(KEY_O, Modifier::Control) },
 		"Global/ErysEdits/More Options Navigation"
 	});
 	BindManager::get()->registerBindable({
 		"next-options-page"_spr,
 		"Next Options Page",
-		"Enables a keybind (set to Right by default) to view the next Options page.",
+		"Use this keybind (set to Right by default) to view the next Options page.",
 		{ Keybind::create(KEY_Right) },
 		"Global/ErysEdits/More Options Navigation"
 	});
 	BindManager::get()->registerBindable({
 		"previous-options-page"_spr,
 		"Previous Options Page",
-		"Enables a keybind (set to Left by default) to view the previous Options page.",
+		"Use this keybind (set to Left by default) to view the previous Options page.",
 		{ Keybind::create(KEY_Left) },
 		"Global/ErysEdits/More Options Navigation"
 	});
 	BindManager::get()->registerBindable({
 		"erysedits-settings"_spr,
 		"ErysEdits Settings",
-		"Enables a keybind (set to Shift + Alt + Ctrl + E by default) to open the settings menu for ErysEdits.",
+		"Use this keybind (set to Shift + Alt + Ctrl + E by default) to open the settings menu for ErysEdits.",
 		{ Keybind::create(KEY_E, Modifier::Shift | Modifier::Alt | Modifier::Control) },
 		"Global/ErysEdits/Misc. Navigation"
 	});
 	BindManager::get()->registerBindable({
 		"geode-mods-list"_spr,
 		"Geode Mods List",
-		"Enables a keybind (set to Shift + Alt + Ctrl + G by default) to open the Geode mods list.",
+		"Use this keybind (set to Shift + Alt + Ctrl + G by default) to open the Geode mods list.",
 		{ Keybind::create(KEY_G, Modifier::Shift | Modifier::Alt | Modifier::Control) },
 		"Global/ErysEdits/Misc. Navigation"
 	});
 	BindManager::get()->registerBindable({
 		"custom-keybinds"_spr,
 		"Custom Keybinds",
-		"Enables a keybind (set to Shift + Alt + Ctrl + K by default) to open your custom keybinds.",
+		"Use this keybind (set to Shift + Alt + Ctrl + K by default) to open your custom keybinds.",
 		{ Keybind::create(KEY_K, Modifier::Shift | Modifier::Alt | Modifier::Control) },
 		"Global/ErysEdits/Misc. Navigation"
 	});

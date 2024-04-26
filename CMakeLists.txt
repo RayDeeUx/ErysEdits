@@ -17,6 +17,7 @@ add_library(
 	src/CommentCell.cpp
 	src/CreatorLayer.cpp
 	src/CustomListView.cpp
+	src/DemonFilterSelectLayer.cpp
 	src/EditLevelLayer.cpp
 	src/EditorPauseLayer.cpp
 	src/EditorUI.cpp
@@ -37,8 +38,10 @@ add_library(
 	src/LevelLeaderboard.cpp
 	src/LevelListLayer.cpp
 	src/LevelPage.cpp
+	src/LevelSearchLayer.cpp
 	src/LikeItemLayer.cpp
 	src/MoreOptionsLayer.cpp
+	src/MoreSearchLayer.cpp
 	src/OptionsLayer.cpp
 	src/PlayerObject.cpp
 	src/PlayLayer.cpp

@@ -284,8 +284,62 @@
 			"platforms": ["windows"],
 			"default": true
 		},
+		"level-search-layer": {
+			"name": "Level Search Menu Navigation",
+			"type": "custom",
+			"platforms": ["windows"]
+		},
+		"clearFilters": {
+			"name": "Clear Search Filters",
+			"description": "Enables a keybind (set to Shift + Delete by default) to prepare to clear your search filters.",
+			"type": "bool",
+			"platforms": ["windows"],
+			"default": true
+		},
+		"openFilters": {
+			"name": "Open Search Filters",
+			"description": "Enables a keybind (set to Shift + Minus by default) to open advanced search filters.",
+			"type": "bool",
+			"platforms": ["windows"],
+			"default": true
+		},
+		"searchMode": {
+			"name": "Toggle Levels/Lists Mode",
+			"description": "Enables a keybind (set to Shift + Backspace by default) to switch between searching for levels and level lists.",
+			"type": "bool",
+			"platforms": ["windows"],
+			"default": true
+		},
+		"starToggle": {
+			"name": "Star/Moon Rate Filter",
+			"description": "Enables a keybind (set to Alt + 0 by default) to toggle the star rate filter.",
+			"type": "bool",
+			"platforms": ["windows"],
+			"default": true
+		},
+		"lengthFilter": {
+			"name": "Level Length Filters",
+			"description": "Enables a keybind (set to Alt + <cy>[1 through 6]</c> by default) to toggle a level length search filter.",
+			"type": "bool",
+			"platforms": ["windows"],
+			"default": true
+		},
+		"difficultyFilter": {
+			"name": "Level Difficulty Filters",
+			"description": "Enables a keybind (set to Ctrl + <cy>[1 through 9]</c> by default) to toggle a level difficulty search filter.",
+			"type": "bool",
+			"platforms": ["windows"],
+			"default": true
+		},
+		"demonFilter": {
+			"name": "Demon Filters",
+			"description": "Enables a keybind (set to Shift + Ctrl + <cy>[1 through 6]</c> by default) to toggle a demon search filter.",
+			"type": "bool",
+			"platforms": ["windows"],
+			"default": true
+		},
 		"my-levels": {
-			"name": "\"My Levels\" Menu Keybinds",
+			"name": "\"My Levels\" Navigation",
 			"type": "custom",
 			"platforms": ["windows"]
 		},
@@ -316,14 +370,14 @@
 			"platforms": ["windows"]
 		},
 		"moreOptions": {
-			"name": "More Options Shortcuts",
+			"name": "More Options Navigation",
 			"description": "Enables a keybind (set to Ctrl + O by default) to open your Geometry Dash settings.",
 			"type": "bool",
 			"platforms": ["windows"],
 			"default": true
 		},
 		"navigateGauntlets": {
-			"name": "Navigate Gauntlets",
+			"name": "Gauntlets Navigation",
 			"description": "Enables several keybinds (Left/Right for previous/next pages, 1/2/3 for the first, second, and third gauntlets visible on screen) to navigate the Gauntlets.",
 			"type": "bool",
 			"platforms": ["windows"],

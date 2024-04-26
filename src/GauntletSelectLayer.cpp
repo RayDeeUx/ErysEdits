@@ -31,17 +31,17 @@ class $modify(MyGauntletSelectLayer, GauntletSelectLayer) {
 			MyGauntletSelectLayer::findCurrentGauntletPageUsing(pageButtons);
 		}
 		this->defineKeybind("next-gauntlet"_spr, [this]() {
-			if (Utils::modEnabled() && Utils::get("navigateGauntlets")) {
+			if (Utils::modEnabled() && Utils::get("navigateGauntlets") && Utils::nothingElse()) {
 				GauntletSelectLayer::onNext(nullptr);
 			} else { Utils::navigateGauntletsDisabled(); }
 		});
 		this->defineKeybind("previous-gauntlet"_spr, [this]() {
-			if (Utils::modEnabled() && Utils::get("navigateGauntlets")) {
+			if (Utils::modEnabled() && Utils::get("navigateGauntlets") && Utils::nothingElse()) {
 				GauntletSelectLayer::onPrev(nullptr);
 			} else { Utils::navigateGauntletsDisabled(); }
 		});
 		this->defineKeybind("first-visible-gauntlet"_spr, [this]() {
-			if (Utils::modEnabled() && Utils::get("navigateGauntlets")) {
+			if (Utils::modEnabled() && Utils::get("navigateGauntlets") && Utils::nothingElse()) {
 				std::string nodeID = fmt::format("gauntlet-page-{}", Manager::getSharedInstance()->currentGauntletPage);
 				if (auto theGauntlet = getChildByIDRecursive(nodeID)->getChildByIDRecursive("gauntlet-button-1")) {
 					GauntletSelectLayer::onPlay(theGauntlet);
@@ -49,7 +49,7 @@ class $modify(MyGauntletSelectLayer, GauntletSelectLayer) {
 			} else { Utils::navigateGauntletsDisabled(); }
 		});
 		this->defineKeybind("second-visible-gauntlet"_spr, [this]() {
-			if (Utils::modEnabled() && Utils::get("navigateGauntlets")) {
+			if (Utils::modEnabled() && Utils::get("navigateGauntlets") && Utils::nothingElse()) {
 				std::string nodeID = fmt::format("gauntlet-page-{}", Manager::getSharedInstance()->currentGauntletPage);
 				if (auto theGauntlet = getChildByIDRecursive(nodeID)->getChildByIDRecursive("gauntlet-button-2")) {
 					GauntletSelectLayer::onPlay(theGauntlet);
@@ -57,7 +57,7 @@ class $modify(MyGauntletSelectLayer, GauntletSelectLayer) {
 			} else { Utils::navigateGauntletsDisabled(); }
 		});
 		this->defineKeybind("third-visible-gauntlet"_spr, [this]() {
-			if (Utils::modEnabled() && Utils::get("navigateGauntlets")) {
+			if (Utils::modEnabled() && Utils::get("navigateGauntlets") && Utils::nothingElse()) {
 				std::string nodeID = fmt::format("gauntlet-page-{}", Manager::getSharedInstance()->currentGauntletPage);
 				if (auto theGauntlet = getChildByIDRecursive(nodeID)->getChildByIDRecursive("gauntlet-button-3")) {
 					GauntletSelectLayer::onPlay(theGauntlet);

@@ -21,6 +21,9 @@ namespace Utils {
 	void viewCommentsDisabled();
 	void navigateGauntletsDisabled();
 	void moreOptionsDisabled();
+	void levelLengthDisabled();
+	void levelDifficultyDisabled();
+	void demonFilterDisabled();
 	
 	bool isSceneRunning(std::string sceneName);
 	bool isSceneRunningRecursive(std::string sceneName);
@@ -31,6 +34,8 @@ namespace Utils {
 	bool isInfoLayer();
 	bool isInfoLayerRecursive();
 	bool noInfoLayer();
+	bool isMoreOptionsLayer();
+	bool noMoreOptionsLayer();
 	bool nothingElse();
 	void restoreOrigGMGVs(GameManager* gameManager, bool changeCanCall = true, bool isEnteringLevel = false);
 	void applyGMGVs(bool isLevelVerified);

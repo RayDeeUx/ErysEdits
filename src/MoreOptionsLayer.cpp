@@ -18,14 +18,18 @@ class $modify(MyMoreOptionsLayer, MoreOptionsLayer) {
 	bool init() {
 		if (!MoreOptionsLayer::init()) { return false; }
 		this->defineKeybind("next-options-page"_spr, [this]() {
-			if (Utils::modEnabled() && Utils::get("moreOptions") && Utils::isSceneRunning("MoreOptionsLayer")) {
-				MoreOptionsLayer::onNextPage(nullptr);
-			} else { Utils::moreOptionsDisabled(); }
+			if (Utils::isSceneRunning("MoreOptionsLayer")) {
+				if (Utils::modEnabled() && Utils::get("moreOptions")) {
+					MoreOptionsLayer::onNextPage(nullptr);
+				} else { Utils::moreOptionsDisabled(); }
+			}
 		});
 		this->defineKeybind("previous-options-page"_spr, [this]() {
-			if (Utils::modEnabled() && Utils::get("moreOptions") && Utils::isSceneRunning("MoreOptionsLayer")) {
-				MoreOptionsLayer::onPrevPage(nullptr);
-			} else { Utils::moreOptionsDisabled(); }
+			if (Utils::isSceneRunning("MoreOptionsLayer")) {
+				if (Utils::modEnabled() && Utils::get("moreOptions")) {
+					MoreOptionsLayer::onPrevPage(nullptr);
+				} else { Utils::moreOptionsDisabled(); }
+			}
 		});
 		return true;
 	}
