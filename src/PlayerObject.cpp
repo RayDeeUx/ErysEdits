@@ -8,7 +8,7 @@ using namespace geode::prelude;
 class $modify(MyPlayerObject, PlayerObject) {
 	static void onModify(auto & self)
 	{
-		self.setHookPriority("PlayerObject::playerDestroyed", INT64_MAX - 1);
+		(void) self.setHookPriority("PlayerObject::playerDestroyed", INT64_MAX - 1);
 	}
 	void animatePlatformerJump(float p0) {
 		if (!(Utils::modEnabled() && Utils::get("disablePlatformerJumpAnim"))) { PlayerObject::animatePlatformerJump(p0); }

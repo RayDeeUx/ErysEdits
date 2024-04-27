@@ -21,17 +21,24 @@ class $modify(MyMenuLayer, MenuLayer) {
 		std::string modsString = "";
 		
 		std::for_each(mods.begin(), mods.end(), [&](const Mod *mod) {
-			std::string isEnabled = "Enabled";
+			std::string isEnabled = "<cg>";
 			if (!mod->isEnabled()) {
-				isEnabled = "Disabled";
+				isEnabled = "<cr>";
 				disabledMods++;
 			} else {
 				activeMods++;
 			}
-			modsString = modsString + fmt::format("{} by {} [{}] ({})\n", mod->getName(), mod->getDeveloper(), mod->getVersion().toString(), isEnabled);
+			modsString = modsString + fmt::format("{}{}'s {} [{}]</c>, ", isEnabled, mod->getDeveloper(), mod->getName(), mod->getVersion().toString());
 		});
 		
-		log::info("FOUND {} INSTALLED MODS (OF WHICH {} ARE ACTIVE and {} ARE DISABLED WITH {} PROBLEMS PRESENT):\n{}", mods.size(), activeMods, disabledMods, problems, modsString);
+		// remove ", " ending
+		if (!modsString.empty()) 
+		{
+			modsString.pop_back();
+			modsString.pop_back();
+		}
+		
+		// log::info("FOUND {} INSTALLED MODS (OF WHICH {} ARE ACTIVE and {} ARE DISABLED WITH {} PROBLEMS PRESENT):\n{}", mods.size(), activeMods, disabledMods, problems, modsString);
 		
 		manager->installedMods = mods.size();
 		manager->loadedMods = activeMods;
@@ -39,6 +46,8 @@ class $modify(MyMenuLayer, MenuLayer) {
 		manager->problems = problems;
 		
 		manager->modsInfo = modsString;
+		
+		// log::info("modsString: {}", modsString);
 		
 		return true;
 	}

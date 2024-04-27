@@ -475,6 +475,12 @@
 			"type": "bool",
 			"default": true
 		},
+		"showModsList": {
+			"name": "Level End Screen: Show Mods List",
+			"description": "Turns the \"Level Complete\" or \"Practice Complete\" text into a button that shows all of your installed Geode mods.\n\n<cy>Disclaimer: This feature is closer to a proof-of-concept than a concrete product. You can toggle this if you'd like, but not all of your installed mods will show up (especially if your installed mod count are in the triple digits).</c>",
+			"type": "bool",
+			"default": false
+		},
 		"fixBITranslateOverlap": {
 			"name": "Comments: Fix Overlap in Compact View",
 			"description": "Fix the overlap in buttons when viewing your own comments while Cvolton's BetterInfo and TastyForReal's Google Translate mod installed.",

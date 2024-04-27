@@ -6,7 +6,7 @@ using namespace geode::prelude;
 class $modify(MyLevelCell, LevelCell) {
 	static void onModify(auto & self)
 	{
-		self.setHookPriority("LevelCell::onClick", 9999);
+		(void) self.setHookPriority("LevelCell::onClick", 9999);
 	}
 	void onLevelDesc(CCObject* sender) {
 		auto theLevel = this->m_level;

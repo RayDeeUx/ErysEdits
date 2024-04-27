@@ -9,7 +9,7 @@ using namespace keybinds;
 
 class $modify(MyDemonFilterSelectLayer, DemonFilterSelectLayer) {
 	static void onModify(auto& self) {
-		self.setHookPriority("DemonFilterSelectLayer::init", INT64_MIN + 1);
+		(void) self.setHookPriority("DemonFilterSelectLayer::init", INT64_MIN + 1);
 	}
 	void defineKeybind(const char* id, std::function<void()> callback) {
 		this->template addEventListener<InvokeBindFilter>([=](InvokeBindEvent* event) {
