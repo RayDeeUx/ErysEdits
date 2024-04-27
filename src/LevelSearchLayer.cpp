@@ -304,6 +304,16 @@ class $modify(MyLevelSearchLayer, LevelSearchLayer) {
 				}
 			});
 		}
+		/*
+		mod.json:
+		"focusUnfocusSearch": {
+			"name": "Focus Search Bar",
+			"description": "Enables a keybind (set to Shift + L by default) to focus the level search menu's search bar.",
+			"type": "bool",
+			"platforms": ["windows"],
+			"default": true
+		},
+		
 		if (getChildByIDRecursive("search-bar")) {
 			this->defineKeybind("level-search-focus-search"_spr, [this]() {
 				if (Utils::isSceneRunning("LevelSearchLayer") && Utils::nothingElse()) {
@@ -315,6 +325,7 @@ class $modify(MyLevelSearchLayer, LevelSearchLayer) {
 				}
 			});
 		}
+		*/
 		return true;
 	}
 };

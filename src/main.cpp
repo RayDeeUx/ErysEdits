@@ -136,6 +136,7 @@ $execute {
 		{ Keybind::create(KEY_C, Modifier::Shift) },
 		"Global/ErysEdits/Browser-like Navigation"
 	});
+	/*
 	BindManager::get()->registerBindable({
 		"level-search-focus-search"_spr,
 		"Focus Search Bar",
@@ -143,6 +144,7 @@ $execute {
 		{ Keybind::create(KEY_L, Modifier::Shift)},
 		"Global/ErysEdits/Level Search Menu Navigation"
 	});
+	*/
 	BindManager::get()->registerBindable({
 		"level-search-clear-filters"_spr,
 		"Clear Search Filters",
