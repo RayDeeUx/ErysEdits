@@ -19,7 +19,7 @@ class $modify(MyEndLevelLayer, EndLevelLayer) {
 		FLAlertLayer::create(
 			"T&^JKIU*HBJUDRFGCHU&^TRDFCGVBJHU*^%RDF",
 			fmt::format(
-				"{}[Brought to you by ErysEdits]",
+				"{}\n[Brought to you by ErysEdits]",
 				Manager::getSharedInstance()->modsInfo
 			),
 			"Close"
