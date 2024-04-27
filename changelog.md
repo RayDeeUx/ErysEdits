@@ -1,6 +1,7 @@
 # ErysEdits Changelog
 ## v1.1.0
 - Add keybinds for the level search menu. *[Windows only.]*
+- Add keybinds when viewing comments in a level/viewing comments by a specific user. *[Windows only.]*
 - Add keybinds to make navigating the gauntlets feel more natural. *[Windows only.]*
 - Add keybinds to open the settings menus for both Geometry Dash and this mod. *[Windows only.]*
 - Add a keybind to open your Geode custom keybinds. *[Windows only.]*
@@ -16,7 +17,7 @@
 - Recategorized a few settings.
 - Added punctuation to changelogs.
 - Bump Node IDs minimum requirement to v1.9.1.
-- [Windows only] Bump Custom Keybinds minimum requirement to v1.5.6.
+- Bump Custom Keybinds minimum requirement to v1.5.6 for Windows users.
 ## v1.0.2
 - Rebuild the mod due to *someone* mangling up `FLAlertLayer` codegen for Android.
 - Fix funky text scaling behavior in `FLAlertLayer`s with scrolling enabled by default.

@@ -44,6 +44,48 @@ class $modify(MyInfoLayer, InfoLayer) {
 				}
 			});
 		}
+		if (auto leftSideMenu = getChildByIDRecursive("left-side-menu")) {
+			if (leftSideMenu->getChildByIDRecursive("sort-likes-button")) {
+				this->defineKeybind("infolayer-sort-likes"_spr, [this]() {
+					if ((Utils::isInfoLayer() || Utils::isInfoLayerRecursive())) {
+						if (Utils::modEnabled() && Utils::get("infoLayerNavigation")) {
+							InfoLayer::toggleCommentMode(
+								getChildByIDRecursive("left-side-menu")->getChildByIDRecursive("sort-likes-button")
+							);
+						} else { Utils::arrowKeyNavDisabled(); }
+					}
+				});
+			}
+			if (leftSideMenu->getChildByIDRecursive("sort-recent-button")) {
+				this->defineKeybind("infolayer-sort-recent"_spr, [this]() {
+					if ((Utils::isInfoLayer() || Utils::isInfoLayerRecursive())) {
+						if (Utils::modEnabled() && Utils::get("infoLayerNavigation")) {
+							InfoLayer::toggleCommentMode(
+								getChildByIDRecursive("left-side-menu")->getChildByIDRecursive("sort-recent-button")
+							);
+						} else { Utils::arrowKeyNavDisabled(); }
+					}
+				});
+			}
+			if (leftSideMenu->getChildByIDRecursive("extend-button")) {
+				this->defineKeybind("infolayer-extend"_spr, [this]() {
+					if ((Utils::isInfoLayer() || Utils::isInfoLayerRecursive())) {
+						if (Utils::modEnabled() && Utils::get("infoLayerNavigation")) {
+							InfoLayer::toggleExtendedMode(nullptr);
+						} else { Utils::arrowKeyNavDisabled(); }
+					}
+				});
+			}
+			if (leftSideMenu->getChildByIDRecursive("small-mode-button")) {
+				this->defineKeybind("infolayer-small-mode"_spr, [this]() {
+					if ((Utils::isInfoLayer() || Utils::isInfoLayerRecursive())) {
+						if (Utils::modEnabled() && Utils::get("infoLayerNavigation")) {
+							InfoLayer::toggleSmallCommentMode(nullptr);
+						} else { Utils::arrowKeyNavDisabled(); }
+					}
+				});
+			}
+		}
 		return true;
 	}
 };

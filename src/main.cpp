@@ -403,6 +403,55 @@ $execute {
 		"Global/ErysEdits/\"My Levels\" Navigation"
 	});
 	BindManager::get()->registerBindable({
+		"more-options-layer"_spr,
+		"More Options Shortcuts",
+		"Use this keybind (set to Ctrl + O by default) to open your GD settings.",
+		{ Keybind::create(KEY_O, Modifier::Control) },
+		"Global/ErysEdits/More Options Navigation"
+	});
+	BindManager::get()->registerBindable({
+		"next-options-page"_spr,
+		"Next Options Page",
+		"Use this keybind (set to Right by default) to view the next Options page.",
+		{ Keybind::create(KEY_Right) },
+		"Global/ErysEdits/More Options Navigation"
+	});
+	BindManager::get()->registerBindable({
+		"previous-options-page"_spr,
+		"Previous Options Page",
+		"Use this keybind (set to Left by default) to view the previous Options page.",
+		{ Keybind::create(KEY_Left) },
+		"Global/ErysEdits/More Options Navigation"
+	});
+	BindManager::get()->registerBindable({
+		"infolayer-sort-likes"_spr,
+		"Sort by Likes",
+		"Use this keybind (set to 1 by default) to sort comments by like count.",
+		{ Keybind::create(KEY_One) },
+		"Global/ErysEdits/InfoLayer Navigation"
+	});
+	BindManager::get()->registerBindable({
+		"infolayer-sort-recent"_spr,
+		"Sort by Recent",
+		"Use this keybind (set to 2 by default) to sort comments by date posted.",
+		{ Keybind::create(KEY_Two) },
+		"Global/ErysEdits/InfoLayer Navigation"
+	});
+	BindManager::get()->registerBindable({
+		"infolayer-extend"_spr,
+		"Show/Hide Level Description",
+		"Use this keybind (set to 3 by default) to show/hide the level description <cy>(if applicable)</c>.",
+		{ Keybind::create(KEY_Three) },
+		"Global/ErysEdits/InfoLayer Navigation"
+	});
+	BindManager::get()->registerBindable({
+		"infolayer-small-mode"_spr,
+		"Compact Comments",
+		"Use this keybind (set to 4 by default) to toggle compact mode when viewing comments.",
+		{ Keybind::create(KEY_Four) },
+		"Global/ErysEdits/InfoLayer Navigation"
+	});
+	BindManager::get()->registerBindable({
 		"next-gauntlet"_spr,
 		"Next Gauntlet",
 		"Use this keybind (set to Right by default) to view the next gauntlet page.",
@@ -436,27 +485,6 @@ $execute {
 		"Use this keybind (set to 3 by default) to enter the third visible gauntlet.\n\n<cy>(Disclaimer: Results may not be accurate.)</c>",
 		{ Keybind::create(KEY_Three) },
 		"Global/ErysEdits/Gauntlets Navigation"
-	});
-	BindManager::get()->registerBindable({
-		"more-options-layer"_spr,
-		"More Options Shortcuts",
-		"Use this keybind (set to Ctrl + O by default) to open your GD settings.",
-		{ Keybind::create(KEY_O, Modifier::Control) },
-		"Global/ErysEdits/More Options Navigation"
-	});
-	BindManager::get()->registerBindable({
-		"next-options-page"_spr,
-		"Next Options Page",
-		"Use this keybind (set to Right by default) to view the next Options page.",
-		{ Keybind::create(KEY_Right) },
-		"Global/ErysEdits/More Options Navigation"
-	});
-	BindManager::get()->registerBindable({
-		"previous-options-page"_spr,
-		"Previous Options Page",
-		"Use this keybind (set to Left by default) to view the previous Options page.",
-		{ Keybind::create(KEY_Left) },
-		"Global/ErysEdits/More Options Navigation"
 	});
 	BindManager::get()->registerBindable({
 		"erysedits-settings"_spr,

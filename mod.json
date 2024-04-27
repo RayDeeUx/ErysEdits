@@ -390,6 +390,13 @@
 			"platforms": ["windows"],
 			"default": true
 		},
+		"infoLayerNavigation": {
+			"name": "InfoLayer Navigation",
+			"description": "Enables several keybinds (1, 2, 3, 4) to toggle various options for viewing comments much like toggling between the \"Build\", \"Edit\", and \"Delete\" modes in the level editor.",
+			"type": "bool",
+			"platforms": ["windows"],
+			"default": true
+		},
 		"navigateGauntlets": {
 			"name": "Gauntlets Navigation",
 			"description": "Enables several keybinds (Left/Right for previous/next pages, 1/2/3 for the first, second, and third gauntlets visible on screen) to navigate the Gauntlets.",
