@@ -15,12 +15,15 @@ class $modify(MyEndLevelLayer, EndLevelLayer) {
 	}
 	void onErysEditsCompleteText(cocos2d::CCObject* sender) {
 		// apparently i can't use nullptr delegate here
-		if (!Utils::modEnabled() || !Utils::get("showModsList")) { return; }
+		if (!Utils::modEnabled() || Utils::getInt("showModsListMode") == 0) { return; }
+		auto manager = Manager::getSharedInstance();
 		FLAlertLayer::create(
 			"T&^JKIU*HBJUDRFGCHU&^TRDFCGVBJHU*^%RDF",
 			fmt::format(
-				"{}\n[Brought to you by ErysEdits]",
-				Manager::getSharedInstance()->modsInfo
+				"<cj>[{}]</c>\n{}\n<cj>[{}]</c>",
+				manager->modsListMode,
+				manager->modsInfo,
+				manager->modsListMode
 			),
 			"Close"
 		)->show();
@@ -28,7 +31,7 @@ class $modify(MyEndLevelLayer, EndLevelLayer) {
 	void customSetup() {
 		EndLevelLayer::customSetup();
 		
-		if (!Utils::modEnabled() || !Utils::get("showModsList")) { return; }
+		if (!Utils::modEnabled() || Utils::getInt("showModsListMode") == 0) { return; }
 		
 		if (auto lvlCompleteText = getChildByIDRecursive("level-complete-text")) {
 			lvlCompleteText->removeFromParent();
