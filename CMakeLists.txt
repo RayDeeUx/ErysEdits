@@ -49,6 +49,7 @@ add_library(
 	src/ProfilePage.cpp
 	src/SecretRewardsLayer.cpp
 	src/SetIDPopup.cpp
+	src/ShardsPage.cpp
 	)
 
 if (NOT DEFINED ENV{GEODE_SDK})

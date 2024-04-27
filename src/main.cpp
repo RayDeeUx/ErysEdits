@@ -80,6 +80,7 @@ $execute {
 		{ Keybind::create(KEY_One, Modifier::Shift) },
 		"Editor/ErysEdits"
 	});
+	
 	BindManager::get()->registerBindable({
 		"refresh-page"_spr,
 		"Refresh Page",
@@ -136,6 +137,7 @@ $execute {
 		{ Keybind::create(KEY_C, Modifier::Shift) },
 		"Global/ErysEdits/Browser-like Navigation"
 	});
+	
 	/*
 	BindManager::get()->registerBindable({
 		"level-search-focus-search"_spr,
@@ -173,6 +175,7 @@ $execute {
 		{ Keybind::create(KEY_Zero, Modifier::Alt) },
 		"Global/ErysEdits/Level Search Menu Navigation"
 	});
+	
 	BindManager::get()->registerBindable({
 		"level-search-quick-downloads"_spr,
 		"Downloads",
@@ -236,6 +239,7 @@ $execute {
 		{ Keybind::create(KEY_I, Modifier::Control), Keybind::create(KEY_I, Modifier::Alt) },
 		"Global/ErysEdits/Level Search Menu Navigation/Quick Search Shortcuts"
 	});
+	
 	BindManager::get()->registerBindable({
 		"level-search-length-tiny"_spr,
 		"Tiny",
@@ -278,6 +282,7 @@ $execute {
 		{ Keybind::create(KEY_Six, Modifier::Alt), Keybind::create(KEY_Nine, Modifier::Alt) },
 		"Global/ErysEdits/Level Search Menu Navigation/Level Length Filters"
 	});
+	
 	BindManager::get()->registerBindable({
 		"level-search-difficulty-na"_spr,
 		"NA",
@@ -341,6 +346,7 @@ $execute {
 		{ Keybind::create(KEY_Nine, Modifier::Control), Keybind::create(KEY_Zero, Modifier::Control) },
 		"Global/ErysEdits/Level Search Menu Navigation/Level Difficulty Filters"
 	});
+	
 	BindManager::get()->registerBindable({
 		"level-search-all-demons"_spr,
 		"Demon",
@@ -383,6 +389,7 @@ $execute {
 		{ Keybind::create(KEY_Six, Modifier::Shift | Modifier::Control) },
 		"Global/ErysEdits/Level Search Menu Navigation/Demon Filters"
 	});
+	
 	BindManager::get()->registerBindable({
 		"new-editor-level"_spr,
 		"Create New Level/List",
@@ -404,18 +411,12 @@ $execute {
 		{ Keybind::create(KEY_L, Modifier::Control | Modifier::Shift | Modifier::Alt) },
 		"Global/ErysEdits/\"My Levels\" Navigation"
 	});
+	
 	BindManager::get()->registerBindable({
 		"more-options-layer"_spr,
 		"More Options Shortcuts",
 		"Use this keybind (set to Ctrl + O by default) to open your GD settings.",
 		{ Keybind::create(KEY_O, Modifier::Control) },
-		"Global/ErysEdits/More Options Navigation"
-	});
-	BindManager::get()->registerBindable({
-		"next-options-page"_spr,
-		"Next Options Page",
-		"Use this keybind (set to Right by default) to view the next Options page.",
-		{ Keybind::create(KEY_Right) },
 		"Global/ErysEdits/More Options Navigation"
 	});
 	BindManager::get()->registerBindable({
@@ -425,6 +426,120 @@ $execute {
 		{ Keybind::create(KEY_Left) },
 		"Global/ErysEdits/More Options Navigation"
 	});
+	BindManager::get()->registerBindable({
+		"next-options-page"_spr,
+		"Next Options Page",
+		"Use this keybind (set to Right by default) to view the next Options page.",
+		{ Keybind::create(KEY_Right) },
+		"Global/ErysEdits/More Options Navigation"
+	});
+	
+	BindManager::get()->registerBindable({
+		"garage-cube"_spr,
+		"Cube Tab",
+		"Use this keybind (set to 1 by default) to view cubes of the icon kit.",
+		{ Keybind::create(KEY_One) },
+		"Global/ErysEdits/Icon Kit Navigation"
+	});
+	BindManager::get()->registerBindable({
+		"garage-ship"_spr,
+		"Ship Tab",
+		"Use this keybind (set to 2 by default) to view ships of the icon kit.",
+		{ Keybind::create(KEY_Two) },
+		"Global/ErysEdits/Icon Kit Navigation"
+	});
+	BindManager::get()->registerBindable({
+		"garage-jetpack"_spr,
+		"Jetpack Tab",
+		"Use this keybind (set to Shift + 2 by default) to view jetpacks of the icon kit.",
+		{ Keybind::create(KEY_Two, Modifier::Shift) },
+		"Global/ErysEdits/Icon Kit Navigation"
+	});
+	BindManager::get()->registerBindable({
+		"garage-ball"_spr,
+		"Ball Tab",
+		"Use this keybind (set to 3 by default) to view balls of the icon kit.",
+		{ Keybind::create(KEY_Three) },
+		"Global/ErysEdits/Icon Kit Navigation"
+	});
+	BindManager::get()->registerBindable({
+		"garage-ufo"_spr,
+		"UFO Tab",
+		"Use this keybind (set to 4 by default) to view UFOs of the icon kit.",
+		{ Keybind::create(KEY_Four) },
+		"Global/ErysEdits/Icon Kit Navigation"
+	});
+	BindManager::get()->registerBindable({
+		"garage-wave"_spr,
+		"Wave Tab",
+		"Use this keybind (set to 5 by default) to view waves of the icon kit.",
+		{ Keybind::create(KEY_Five) },
+		"Global/ErysEdits/Icon Kit Navigation"
+	});
+	BindManager::get()->registerBindable({
+		"garage-robot"_spr,
+		"Robot Tab",
+		"Use this keybind (set to 6 by default) to view robots of the icon kit.",
+		{ Keybind::create(KEY_Six) },
+		"Global/ErysEdits/Icon Kit Navigation"
+	});
+	BindManager::get()->registerBindable({
+		"garage-spider"_spr,
+		"Spider Tab",
+		"Use this keybind (set to 7 by default) to view spiders of the icon kit.",
+		{ Keybind::create(KEY_Seven) },
+		"Global/ErysEdits/Icon Kit Navigation"
+	});
+	BindManager::get()->registerBindable({
+		"garage-swing"_spr,
+		"Swing Tab",
+		"Use this keybind (set to 8 by default) to view swings of the icon kit.",
+		{ Keybind::create(KEY_Eight) },
+		"Global/ErysEdits/Icon Kit Navigation"
+	});
+	BindManager::get()->registerBindable({
+		"garage-trail"_spr,
+		"Trail + Special Animations Tab",
+		"Use this keybind (set to 9 by default) to view trails and special animations of the icon kit.",
+		{ Keybind::create(KEY_Nine) },
+		"Global/ErysEdits/Icon Kit Navigation"
+	});
+	BindManager::get()->registerBindable({
+		"garage-death-effect"_spr,
+		"Death Effect Tab",
+		"Use this keybind (set to 0 by default) to view death effects of the icon kit.",
+		{ Keybind::create(KEY_Zero) },
+		"Global/ErysEdits/Icon Kit Navigation"
+	});
+	BindManager::get()->registerBindable({
+		"garage-shards-page"_spr,
+		"Shards of Power Shortcut",
+		"Use this keybind (set to Alt + S by default) to view your Shards of Power progression.",
+		{ Keybind::create(KEY_S, Modifier::Alt) },
+		"Global/ErysEdits/Icon Kit Navigation"
+	});
+	BindManager::get()->registerBindable({
+		"garage-colors-page"_spr,
+		"Color Customization Shortcut",
+		"Use this keybind (set to Alt + C by default) to open the colors page of the icon kit.",
+		{ Keybind::create(KEY_C, Modifier::Alt) },
+		"Global/ErysEdits/Icon Kit Navigation"
+	});
+	BindManager::get()->registerBindable({
+		"garage-previous-page"_spr,
+		"Previous Page",
+		"Use this keybind (set to Left by default) to view the next page of the icon kit (or the Shards of Power page).",
+		{ Keybind::create(KEY_Left) },
+		"Global/ErysEdits/Icon Kit Navigation"
+	});
+	BindManager::get()->registerBindable({
+		"garage-next-page"_spr,
+		"Next Page",
+		"Use this keybind (set to Right by default) to view the next page of the icon kit (or the Shards of Power page).",
+		{ Keybind::create(KEY_Right) },
+		"Global/ErysEdits/Icon Kit Navigation"
+	});
+	
 	BindManager::get()->registerBindable({
 		"infolayer-sort-likes"_spr,
 		"Sort by Likes",
@@ -453,18 +568,19 @@ $execute {
 		{ Keybind::create(KEY_Four) },
 		"Global/ErysEdits/InfoLayer Navigation"
 	});
-	BindManager::get()->registerBindable({
-		"next-gauntlet"_spr,
-		"Next Gauntlet",
-		"Use this keybind (set to Right by default) to view the next gauntlet page.",
-		{ Keybind::create(KEY_Right) },
-		"Global/ErysEdits/Gauntlets Navigation"
-	});
+	
 	BindManager::get()->registerBindable({
 		"previous-gauntlet"_spr,
 		"Previous Gauntlet",
 		"Use this keybind (set to Left by default) to view the previous gauntlet page.",
 		{ Keybind::create(KEY_Left) },
+		"Global/ErysEdits/Gauntlets Navigation"
+	});
+	BindManager::get()->registerBindable({
+		"next-gauntlet"_spr,
+		"Next Gauntlet",
+		"Use this keybind (set to Right by default) to view the next gauntlet page.",
+		{ Keybind::create(KEY_Right) },
 		"Global/ErysEdits/Gauntlets Navigation"
 	});
 	BindManager::get()->registerBindable({
@@ -488,6 +604,7 @@ $execute {
 		{ Keybind::create(KEY_Three) },
 		"Global/ErysEdits/Gauntlets Navigation"
 	});
+	
 	BindManager::get()->registerBindable({
 		"erysedits-settings"_spr,
 		"ErysEdits Settings",

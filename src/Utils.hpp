@@ -25,6 +25,7 @@ namespace Utils {
 	void levelDifficultyDisabled();
 	void demonFilterDisabled();
 	void quickSearchDisabled();
+	void garageNavigationDisabled();
 	
 	bool isSceneRunning(std::string sceneName);
 	bool isSceneRunningRecursive(std::string sceneName);

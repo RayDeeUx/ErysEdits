@@ -383,9 +383,16 @@
 			"platforms": ["windows"],
 			"default": true
 		},
+		"garageNavigation": {
+			"name": "Icon Kit Navigation",
+			"description": "Enables several keybinds (set to the whole numrow for each gamemode [Shift + 2 for jetpacks], left/right arrow keys, Alt + S(hards) and Alt + C(olor) by default) to navigate the garage/icon kit.",
+			"type": "bool",
+			"platforms": ["windows"],
+			"default": true
+		},
 		"infoLayerNavigation": {
 			"name": "InfoLayer Navigation",
-			"description": "Enables several keybinds (1, 2, 3, 4) to toggle various options for viewing comments much like toggling between the \"Build\", \"Edit\", and \"Delete\" modes in the level editor.",
+			"description": "Enables several keybinds (set to 1, 2, 3, 4 by default) to toggle various options for viewing comments, much like toggling between the \"Build\", \"Edit\", and \"Delete\" modes in the level editor.",
 			"type": "bool",
 			"platforms": ["windows"],
 			"default": true

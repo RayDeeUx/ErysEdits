@@ -1,7 +1,6 @@
 #ifdef GEODE_IS_WINDOWS
 #include <Geode/modify/DemonFilterSelectLayer.hpp>
 #include <geode.custom-keybinds/include/Keybinds.hpp>
-#include "Manager.hpp"
 #include "Utils.hpp"
 
 using namespace geode::prelude;
@@ -28,6 +27,7 @@ class $modify(MyDemonFilterSelectLayer, DemonFilterSelectLayer) {
 			for (int i = ccLayer->getChildrenCount(); i-- > 0; ) {
 				if (auto ccMenu = typeinfo_cast<CCMenu*>(ccLayerChildren->objectAtIndex(i))) {
 					ccMenu->setID("demon-filters");
+					break;
 				}
 			}
 		} else {
@@ -59,36 +59,48 @@ class $modify(MyDemonFilterSelectLayer, DemonFilterSelectLayer) {
 		} else {
 			return true;
 		}
-		this->defineKeybind("level-search-all-demons"_spr, [this]() {
-			if (Utils::modEnabled() && Utils::get("demonFilter")) {
-				DemonFilterSelectLayer::selectRating(getChildByIDRecursive("all-demon-filter-button"));
-			} else { Utils::demonFilterDisabled(); }
-		});
-		this->defineKeybind("level-search-easy-demon"_spr, [this]() {
-			if (Utils::modEnabled() && Utils::get("demonFilter")) {
-				DemonFilterSelectLayer::selectRating(getChildByIDRecursive("easy-demon-filter-button"));
-			} else { Utils::demonFilterDisabled(); }
-		});
-		this->defineKeybind("level-search-medium-demon"_spr, [this]() {
-			if (Utils::modEnabled() && Utils::get("demonFilter")) {
-				DemonFilterSelectLayer::selectRating(getChildByIDRecursive("medium-demon-filter-button"));
-			} else { Utils::demonFilterDisabled(); }
-		});
-		this->defineKeybind("level-search-hard-demon"_spr, [this]() {
-			if (Utils::modEnabled() && Utils::get("demonFilter")) {
-				DemonFilterSelectLayer::selectRating(getChildByIDRecursive("hard-demon-filter-button"));
-			} else { Utils::demonFilterDisabled(); }
-		});
-		this->defineKeybind("level-search-insane-demon"_spr, [this]() {
-			if (Utils::modEnabled() && Utils::get("demonFilter")) {
-				DemonFilterSelectLayer::selectRating(getChildByIDRecursive("insane-demon-filter-button"));
-			} else { Utils::demonFilterDisabled(); }
-		});
-		this->defineKeybind("level-search-extreme-demon"_spr, [this]() {
-			if (Utils::modEnabled() && Utils::get("demonFilter")) {
-				DemonFilterSelectLayer::selectRating(getChildByIDRecursive("extreme-demon-filter-button"));
-			} else { Utils::demonFilterDisabled(); }
-		});
+		if (getChildByIDRecursive("all-demon-filter-button")) {
+			this->defineKeybind("level-search-all-demons"_spr, [this]() {
+				if (Utils::modEnabled() && Utils::get("demonFilter")) {
+					DemonFilterSelectLayer::selectRating(getChildByIDRecursive("all-demon-filter-button"));
+				} else { Utils::demonFilterDisabled(); }
+			});
+		}
+		if (getChildByIDRecursive("easy-demon-filter-button")) {
+			this->defineKeybind("level-search-easy-demon"_spr, [this]() {
+				if (Utils::modEnabled() && Utils::get("demonFilter")) {
+					DemonFilterSelectLayer::selectRating(getChildByIDRecursive("easy-demon-filter-button"));
+				} else { Utils::demonFilterDisabled(); }
+			});
+		}
+		if (getChildByIDRecursive("medium-demon-filter-button")) {
+			this->defineKeybind("level-search-medium-demon"_spr, [this]() {
+				if (Utils::modEnabled() && Utils::get("demonFilter")) {
+					DemonFilterSelectLayer::selectRating(getChildByIDRecursive("medium-demon-filter-button"));
+				} else { Utils::demonFilterDisabled(); }
+			});
+		}
+		if (getChildByIDRecursive("hard-demon-filter-button")) {
+			this->defineKeybind("level-search-hard-demon"_spr, [this]() {
+				if (Utils::modEnabled() && Utils::get("demonFilter")) {
+					DemonFilterSelectLayer::selectRating(getChildByIDRecursive("hard-demon-filter-button"));
+				} else { Utils::demonFilterDisabled(); }
+			});
+		}
+		if (getChildByIDRecursive("insane-demon-filter-button")) {
+			this->defineKeybind("level-search-insane-demon"_spr, [this]() {
+				if (Utils::modEnabled() && Utils::get("demonFilter")) {
+					DemonFilterSelectLayer::selectRating(getChildByIDRecursive("insane-demon-filter-button"));
+				} else { Utils::demonFilterDisabled(); }
+			});
+		}
+		if (getChildByIDRecursive("extreme-demon-filter-button")) {
+			this->defineKeybind("level-search-extreme-demon"_spr, [this]() {
+				if (Utils::modEnabled() && Utils::get("demonFilter")) {
+					DemonFilterSelectLayer::selectRating(getChildByIDRecursive("extreme-demon-filter-button"));
+				} else { Utils::demonFilterDisabled(); }
+			});
+		}
 		return true;
 	}
 };
