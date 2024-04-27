@@ -19,20 +19,6 @@ class $modify(MyGJBaseGameLayer, GJBaseGameLayer) {
 			// i've had horror stories of hooking playlayer onentertransitiondidfinish so im hooking it here instead
 			if (Utils::get("hideLevelCompleteVisuals")) { manager->isLevelComplete = false; }
 			manager->isPlayerDead = false;
-			if (manager->canCall && Utils::get("modLoaderInfo")) {
-				auto geode = Loader::get();
-
-				std::vector<Mod*> installedModsVector = geode->getAllMods();
-				std::vector<Mod*> loadedModsVector;
-				std::copy_if(installedModsVector.begin(), installedModsVector.end(), std::back_inserter(loadedModsVector), [](Mod* m) {
-					return m->isEnabled();
-				});
-
-				manager->installedMods = installedModsVector.size();
-				manager->loadedMods = loadedModsVector.size();
-				manager->disabledMods = manager->installedMods - manager->loadedMods;
-				manager->problems = geode->getProblems().size();
-			}
 		}
 	}
 };

@@ -40,6 +40,7 @@ add_library(
 	src/LevelPage.cpp
 	src/LevelSearchLayer.cpp
 	src/LikeItemLayer.cpp
+	src/MenuLayer.cpp
 	src/MoreOptionsLayer.cpp
 	src/MoreSearchLayer.cpp
 	src/OptionsLayer.cpp
