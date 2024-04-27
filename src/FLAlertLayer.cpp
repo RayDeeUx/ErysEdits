@@ -24,7 +24,7 @@ class $modify(MyFLAlertLayer, FLAlertLayer) {
 					btn2,
 					420.f,
 					true,
-					height * 4.f,
+					height,
 					1.f
 				);
 			} else {
