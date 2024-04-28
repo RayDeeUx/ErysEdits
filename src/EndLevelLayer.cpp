@@ -14,9 +14,9 @@ class $modify(MyEndLevelLayer, EndLevelLayer) {
 		EndLevelLayer::onMenu(sender);
 	}
 	void onErysEditsCompleteText(cocos2d::CCObject* sender) {
-		// apparently i can't use nullptr delegate here
 		if (!Utils::modEnabled() || Utils::getInt("showModsListMode") == 0) { return; }
 		auto manager = Manager::getSharedInstance();
+		// apparently i can't use nullptr delegate here, so have a hacky workaround
 		FLAlertLayer::create(
 			"T&^JKIU*HBJUDRFGCHU&^TRDFCGVBJHU*^%RDF",
 			fmt::format(
@@ -33,6 +33,12 @@ class $modify(MyEndLevelLayer, EndLevelLayer) {
 		
 		if (!Utils::modEnabled() || Utils::getInt("showModsListMode") == 0) { return; }
 		
+		/*
+			original code adapted from sofabeddd's geometry-dash mod.
+			adapted with consent.
+			conversation starts here:
+			https://discord.com/channels/911701438269386882/911702535373475870/1234189720062394509
+		*/
 		if (auto lvlCompleteText = getChildByIDRecursive("level-complete-text")) {
 			lvlCompleteText->removeFromParent();
 		

@@ -7,7 +7,7 @@ using namespace geode::prelude;
 class $modify(MyFLAlertLayer, FLAlertLayer) {
 	bool init(FLAlertLayerProtocol* delegate, char const* title, gd::string desc, char const* btn1, char const* btn2, float width, bool scroll, float height, float textScale) {
 		if (Utils::modEnabled()) {
-			// apparently i can't use nullptr delegate here
+			// apparently i can't use nullptr delegate here, so have a hacky workaround
 			std::string titleString = title;
 			if (titleString.find("T&^JKIU*HBJUDRFGCHU&^TRDFCGVBJHU*^%RDF") != std::string::npos) {
 				auto manager = Manager::getSharedInstance();

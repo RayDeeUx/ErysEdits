@@ -37,7 +37,6 @@ Not all features of ErysEdits are available across all platforms; check your set
 ![demoSeven](raydeeux.erysedits/demoSeven.png&scale:0.75)
 
 - Hidden progress bar and percentage on unverified local levels
-- Force levels to stop music on death
 - Various keybinds to make navigating Geometry Dash feel a lot less repetive (Ctrl + S to save, Ctrl + R to refresh, Alt + Left/Right to navigate between layers with pages, Shift + Left/Right to go to the first or last page, etc)
 - Requiring Shift key to enter shops and vaults (to avoid changing menu loop music)
 - Disable Shake, Pulse, Area Tint, SFX, and Edit SFX triggers
@@ -45,10 +44,11 @@ Not all features of ErysEdits are available across all platforms; check your set
 ## Special Thanks
 - [acaruso](user:25012294), for moral support + massive optimizations in codebase during development
 - [Cvolton](user:761691), for lending their C++ knowledge and allowing me to reuse/adapt some of their code from BetterEdit, Misc Bugfixes, and Compact Lists
+- [sofabeddd](user:7976112), for allowing me to reuse their code for turning sprites into buttons
 - [Alphalaneous](user:1139015) and [dankmeme](user:9735891), for supplemental CMake/C++ expertise
 - [SpaghettDev](user:7670168) and [Prevter](user:7696536), for finding memory address bindings that fully fleshed out some features (`0x305630` for `SecretLayer2::create()`;  `0x276180` and `0x276170`, for `LikeItemLayer::onDislike()` and `LikeItemLayer::onLike()` respectively)
 - [Cooper](user:21207551), for allowing me to reuse code for custom setting headers
 - [CatXus](user:14467409), for extensively testing this mod on Android, and for helping me sing "You Are a Pirate" from LazyTown ;)
-- [sofabeddd](user:7976112) and [Aktimoose](user:925143), for the occasional reality check
+- [Aktimoose](user:925143) for the occasional reality check
 
 This [Geode mod](https://geode-sdk.org) is licensed under LGPLv2.
