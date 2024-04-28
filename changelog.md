@@ -5,6 +5,9 @@
 - Remove forcing player death SFX settings. Please use v1.1.0 of Adam729's Random Death Sounds mod instead.
 - Clarify descriptions when levels appear to have an empty description despite proven otherwise, especially when browsing level lists.
 - Fix an issue where SFX in some levels would infinitely loop. Thank you, Aktimoose, for bringing this to my attention, and deepest apologies for rejecting your original claims. I hope this apology and this update is compensation enough for my harsh behavior at the time.
+- Recategorized a few settings.
+- Added punctuation to changelogs.
+- Bump Node IDs minimum requirement to v1.9.1.
 - Add keybinds for the level search menu, gauntlets menu, and icon kit. *[Windows only.]*
 - Add keybinds when viewing comments in a level/viewing comments by a specific user. *[Windows only.]*
 - Add keybinds to open the settings menus for both Geometry Dash and this mod. *[Windows only.]*
@@ -14,10 +17,7 @@
 - Add keybinds to (toggle between viewing, creating new, or viewing uploaded) custom levels and level lists. *[Windows only.]*
 - Add a keybind to close the level editor's pause menu. *[Windows only.]*
 - Categorized keybinds properly. *[Windows only.]*
-- Recategorized a few settings.
-- Added punctuation to changelogs.
-- Bump Node IDs minimum requirement to v1.9.1.
-- Bump Custom Keybinds minimum requirement to v1.5.6 for Windows users.
+- Bump Custom Keybinds minimum requirement to v1.5.6. *[Windows only.]*
 ## v1.0.2
 - Rebuild the mod due to *someone* mangling up `FLAlertLayer` codegen for Android.
 - Fix funky text scaling behavior in `FLAlertLayer`s with scrolling enabled by default.
