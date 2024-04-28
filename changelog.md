@@ -1,8 +1,7 @@
 # ErysEdits Changelog
 ## v1.1.0
-- Add keybinds for the level search menu. *[Windows only.]*
+- Add keybinds for the level search menu, gauntlets menu, and icon kit. *[Windows only.]*
 - Add keybinds when viewing comments in a level/viewing comments by a specific user. *[Windows only.]*
-- Add keybinds to make navigating the gauntlets feel more natural. *[Windows only.]*
 - Add keybinds to open the settings menus for both Geometry Dash and this mod. *[Windows only.]*
 - Add a keybind to open your Geode custom keybinds. *[Windows only.]*
 - Add an additional keybind to save and exit an editor level. *[Windows only.]*
