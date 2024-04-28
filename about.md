@@ -37,9 +37,19 @@ Not all features of ErysEdits are available across all platforms; check your set
 ![demoSeven](raydeeux.erysedits/demoSeven.png&scale:0.75)
 
 - Hidden progress bar and percentage on unverified local levels
-- Various keybinds to make navigating Geometry Dash feel a lot less repetive (Ctrl + S to save, Ctrl + R to refresh, Alt + Left/Right to navigate between layers with pages, Shift + Left/Right to go to the first or last page, etc)
-- Requiring Shift key to enter shops and vaults (to avoid changing menu loop music)
 - Disable Shake, Pulse, Area Tint, SFX, and Edit SFX triggers
+- [Windows only] Various keybinds to make navigating Geometry Dash feel a lot less repetitive, including for:
+	- Level Editor
+	- Level/profile browsing menus and leaderboards
+	- Level Search Menu
+	- "My Levels" Menu
+	- "More Options" Menu
+	- Icon Kit
+	- Comment Viewing
+	- Gauntlets
+	- ErysEdits Settings
+	- Geode mods list
+- [Windows only] Requiring Shift key to enter shops and vaults (to avoid changing menu loop music)
 
 ## Special Thanks
 - [acaruso](user:25012294), for moral support + massive optimizations in codebase during development

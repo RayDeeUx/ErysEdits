@@ -545,28 +545,28 @@ $execute {
 		"Sort by Likes",
 		"Use this keybind (set to 1 by default) to sort comments by like count.",
 		{ Keybind::create(KEY_One) },
-		"Global/ErysEdits/InfoLayer Navigation"
+		"Global/ErysEdits/Comment Viewing Shortcuts"
 	});
 	BindManager::get()->registerBindable({
 		"infolayer-sort-recent"_spr,
 		"Sort by Recent",
 		"Use this keybind (set to 2 by default) to sort comments by date posted.",
 		{ Keybind::create(KEY_Two) },
-		"Global/ErysEdits/InfoLayer Navigation"
+		"Global/ErysEdits/Comment Viewing Shortcuts"
 	});
 	BindManager::get()->registerBindable({
 		"infolayer-extend"_spr,
 		"Show/Hide Level Description",
 		"Use this keybind (set to 3 by default) to show/hide the level description <cy>(if applicable)</c>.",
 		{ Keybind::create(KEY_Three) },
-		"Global/ErysEdits/InfoLayer Navigation"
+		"Global/ErysEdits/Comment Viewing Shortcuts"
 	});
 	BindManager::get()->registerBindable({
 		"infolayer-small-mode"_spr,
 		"Compact Comments",
 		"Use this keybind (set to 4 by default) to toggle compact mode when viewing comments.",
 		{ Keybind::create(KEY_Four) },
-		"Global/ErysEdits/InfoLayer Navigation"
+		"Global/ErysEdits/Comment Viewing Shortcuts"
 	});
 	
 	BindManager::get()->registerBindable({

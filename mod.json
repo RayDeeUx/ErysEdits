@@ -391,7 +391,7 @@
 			"default": true
 		},
 		"infoLayerNavigation": {
-			"name": "InfoLayer Navigation",
+			"name": "Comment Viewing Shortcuts",
 			"description": "Enables several keybinds (set to 1, 2, 3, 4 by default) to toggle various options for viewing comments, much like toggling between the \"Build\", \"Edit\", and \"Delete\" modes in the level editor.",
 			"type": "bool",
 			"platforms": ["windows"],
