@@ -506,7 +506,7 @@
 		},
 		"showModsListMode": {
 			"name": "Level End Screen: Show Mods List",
-			"description": "<cp>RESTARTS REQUIRED TO APPLY CHANGES.</c>\n<cl>Original idea by ItzKiba, original code by sofabeddd.</c>\nTurns the \"Level Complete\" or \"Practice Complete\" text into a button that shows all of your installed Geode mods.\n\n0: Disables this setting.\n1: Developer name, mod name, version number\n2: Developer name and mod name only\n3: Mod name and version number only\n4: Mod name only\n\n<cy>Disclaimer: This feature is closer to a proof-of-concept than a concrete product. Not all of your installed mods will show up (especially if you have a lot of mods).</c>",
+			"description": "<cp>RESTARTS REQUIRED TO APPLY CHANGES.</c>\n<cl>Original idea by ItzKiba, original code by sofabeddd.</c>\nTurns the \"Level Complete\" or \"Practice Complete\" text into a button that shows all of your installed Geode mods.\n\n0: Disables this setting.\n1: Developer name, mod name, version number\n2: Developer name and mod name only\n3: Mod name and version number only\n4: Mod name only\n\n<cy>Disclaimer: This feature is closer to a proof-of-concept than a concrete product. Not all of your installed mods will show up (especially if you have a lot of mods). By setting this value to anything besides the default (0), you assume full responsibility for the consequences.</c>",
 			"type": "int",
 			"default": 0,
 			"min": 0,
