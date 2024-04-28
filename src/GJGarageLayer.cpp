@@ -20,6 +20,10 @@ class $modify(MyGJGarageLayer, GJGarageLayer) {
 	}
 	bool init() {
 		if (!GJGarageLayer::init()) { return false; }
+		if (Utils::modEnabled()) {
+			if (auto floorLine = getChildByIDRecursive("floor-line")) { floorLine->setVisible(!Utils::get("slightlyCleanerGarage")); }
+			if (auto usernameLock = getChildByIDRecursive("username-lock")) { usernameLock->setVisible(!Utils::get("slightlyCleanerGarage")); }
+		}
 		if (getChildByIDRecursive("category-menu")) {
 			if (getChildByIDRecursive("cube-button")) {
 				this->defineKeybind("garage-cube"_spr, [this]() {
@@ -170,6 +174,10 @@ class $modify(MyGJGarageLayer, GJGarageLayer) {
 			}
 		}
 		if (auto shardsMenu = getChildByIDRecursive("shards-menu")) {
+			if (Utils::getDouble("garageShardsMenu") != 1.f) {
+				shardsMenu->setScale(Utils::getDouble("garageShardsMenu"));
+				shardsMenu->setAnchorPoint({0.5f, (float) (Utils::getDouble("garageShardsMenu") - .45)});
+			}
 			if (shardsMenu->getChildByIDRecursive("shards-button")) {
 				this->defineKeybind("garage-shards-page"_spr, [this]() {
 					if (Utils::isSceneRunning("GJGarageLayer") && Utils::nothingElse()) {

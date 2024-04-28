@@ -482,6 +482,28 @@
 			"type": "bool",
 			"default": true
 		},
+		"slightlyCleanerGarage": {
+			"name": "Icon Kit: Cleanup",
+			"description": "Hides the ground line and random gray lock from the icon kit.",
+			"type": "bool",
+			"default": true
+		},
+		"garageShardsMenu": {
+			"name": "Icon Kit: Shards Menu Scale",
+			"description": "Set the scaling of the shards menu of the icon kit. Useful as more mods begin hooking the icon kit screen.",
+			"type": "float",
+			"default": 0.9,
+			"min": 0.5,
+			"max": 1.0,
+			"control": {
+				"input": true,
+				"slider": true,
+				"arrows": false,
+				"arrow-step": 0,
+				"big-arrow-step": 0,
+				"slider-step": 0.01
+			}
+		},
 		"showModsListMode": {
 			"name": "Level End Screen: Show Mods List",
 			"description": "<cp>RESTARTS REQUIRED TO APPLY CHANGES.</c>\n<cl>Original idea by ItzKiba.</c>\nTurns the \"Level Complete\" or \"Practice Complete\" text into a button that shows all of your installed Geode mods.\n\n0: Disables this setting.\n1: Developer name, mod name, version number\n2: Developer name and mod name only\n3: Mod name and version number only\n4: Mod name only\n\n<cy>Disclaimer: This feature is closer to a proof-of-concept than a concrete product. Not all of your installed mods will show up (especially if you have a lot of mods).</c>",
