@@ -1,12 +1,16 @@
-#ifdef GEODE_IS_WINDOWS
 #include <Geode/modify/GJGarageLayer.hpp>
+#ifdef GEODE_IS_WINDOWS
 #include <geode.custom-keybinds/include/Keybinds.hpp>
+#endif
 #include "Utils.hpp"
 
 using namespace geode::prelude;
+#ifdef GEODE_IS_WINDOWS
 using namespace keybinds;
+#endif
 
 class $modify(MyGJGarageLayer, GJGarageLayer) {
+	#ifdef GEODE_IS_WINDOWS
 	void defineKeybind(const char* id, std::function<void()> callback) {
 		this->template addEventListener<InvokeBindFilter>([=](InvokeBindEvent* event) {
 			if (event->isDown()) {
@@ -18,12 +22,14 @@ class $modify(MyGJGarageLayer, GJGarageLayer) {
 	void onShop(cocos2d::CCObject* sender) {
 		if (Utils::shiftDown()) { GJGarageLayer::onShop(sender); }
 	}
+	#endif
 	bool init() {
 		if (!GJGarageLayer::init()) { return false; }
 		if (Utils::modEnabled()) {
 			if (auto floorLine = getChildByIDRecursive("floor-line")) { floorLine->setVisible(!Utils::get("slightlyCleanerGarage")); }
 			if (auto usernameLock = getChildByIDRecursive("username-lock")) { usernameLock->setVisible(!Utils::get("slightlyCleanerGarage")); }
 		}
+		#ifdef GEODE_IS_WINDOWS
 		if (getChildByIDRecursive("category-menu")) {
 			if (getChildByIDRecursive("cube-button")) {
 				this->defineKeybind("garage-cube"_spr, [this]() {
@@ -173,11 +179,13 @@ class $modify(MyGJGarageLayer, GJGarageLayer) {
 				});
 			}
 		}
+		#endif
 		if (auto shardsMenu = getChildByIDRecursive("shards-menu")) {
 			if (Utils::getDouble("garageShardsMenu") != 1.f) {
 				shardsMenu->setScale(Utils::getDouble("garageShardsMenu"));
 				shardsMenu->setAnchorPoint({0.5f, (float) (Utils::getDouble("garageShardsMenu") - .45)});
 			}
+			#ifdef GEODE_IS_WINDOWS
 			if (shardsMenu->getChildByIDRecursive("shards-button")) {
 				this->defineKeybind("garage-shards-page"_spr, [this]() {
 					if (Utils::isSceneRunning("GJGarageLayer") && Utils::nothingElse()) {
@@ -196,8 +204,8 @@ class $modify(MyGJGarageLayer, GJGarageLayer) {
 					}
 				});
 			}
+			#endif
 		}
 		return true;
 	}
 };
-#endif
