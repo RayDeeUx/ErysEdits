@@ -45,7 +45,7 @@ class $modify(MyEndLevelLayer, EndLevelLayer) {
 			lvlCompleteTextMenuBtn->setPosition(lvlCompleteText->getPosition());
 			
 			lvlCompleteTextMenu->addChild(lvlCompleteTextMenuBtn);
-			addChild(lvlCompleteTextMenu);
+			getChildByID("main-layer")->addChild(lvlCompleteTextMenu);
 		} else if (auto practiceCompleteText = getChildByIDRecursive("practice-complete-text")) {
 			practiceCompleteText->removeFromParent();
 		
@@ -58,7 +58,7 @@ class $modify(MyEndLevelLayer, EndLevelLayer) {
 			practiceCompleteTextMenuBtn->setPosition(practiceCompleteText->getPosition());
 			
 			practiceCompleteTextMenu->addChild(practiceCompleteTextMenuBtn);
-			addChild(practiceCompleteTextMenu);
+			getChildByID("main-layer")->addChild(practiceCompleteTextMenu);
 		}
 	}
 };
