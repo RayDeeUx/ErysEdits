@@ -24,7 +24,7 @@ namespace Utils {
 	void keybindDisabledGeneric(std::string titleTemplate, std::string keybindDesc) {
 		FLAlertLayer::create(
 			fmt::format("{} Disabled!", titleTemplate).c_str(),
-			fmt::format("You have either disabled the softtoggle for the ErysEdits mod, or you have disabled the keybind to {}. Please double-check your mod configs and try again.", keybindDesc),
+			fmt::format("You have either disabled the softtoggle for the ErysEdits mod, or you have disabled the keybind(s) to {}. Please double-check your mod configs and try again.", keybindDesc),
 			"OK"
 		)->show();
 	}
