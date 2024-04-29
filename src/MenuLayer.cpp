@@ -1,4 +1,5 @@
 #include <Geode/modify/MenuLayer.hpp>
+#include <Geode/modify/SongInfoLayer.hpp>
 #include "Manager.hpp"
 #include "Utils.hpp"
 
@@ -28,6 +29,8 @@ class $modify(MyMenuLayer, MenuLayer) {
 			} else {
 				activeMods++;
 			}
+			
+			manager->modsInfoForClipboard = manager->modsInfoForClipboard + fmt::format("- ({}) {} by {} [{}]\n", mod->getID(), mod->getName(), mod->getDeveloper(), mod->getVersion().toString());
 			
 			if (Utils::getInt("showModsListMode") == 4) { // mod name only
 				manager->modsListMode = "Mod names only";
@@ -61,7 +64,9 @@ class $modify(MyMenuLayer, MenuLayer) {
 		
 		manager->modsInfo = modsString;
 		
-		// log::info("modsString: {}", modsString);
+		manager->modsInfoForClipboard = fmt::format("--- {} mods | {} loaded | {} disabled | {} problems ---\n", mods.size(), activeMods, disabledMods, problems) + manager->modsInfoForClipboard + fmt::format("--- {} mods | {} loaded | {} disabled | {} problems ---", mods.size(), activeMods, disabledMods, problems);
+		
+		// log::info("modsInfoForClipboard: {}", manager->modsInfoForClipboard);
 		
 		return true;
 	}
