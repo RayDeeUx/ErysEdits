@@ -1,8 +1,9 @@
 # ErysEdits Changelog
 ## v1.1.0
-- New slider settings: `Always Active LDM`, `Level End Screen: Show Mods List`. Make sure to read their config descriptions!
+- New slider settings: `Always Active LDM` and `Level End Screen: Show Mods List`. Make sure to read their config descriptions!
 - A few miscellaneous settings for tidying up the icon kit. 
-- Remove forcing player death SFX settings. Please use v1.1.0 of Adam729's Random Death Sounds mod instead.
+- Removed the setting that forces the player death SFX to play. Please use similar settings in v1.1.0 of Adam729's Random Death Sounds mod instead.
+- Remove disabling the platformer cube jump squishing animation. Please use similar settings in v1.2.0 of RayDeeUx's BreakingPlatforming mod instead.
 - Clarify descriptions when levels appear to have an empty description despite proven otherwise, especially when browsing level lists.
 - Fix an issue where SFX in some levels would infinitely loop. Thank you, Aktimoose, for bringing this to my attention, and deepest apologies for rejecting your original claims. I hope this apology and this update is compensation enough for my harsh behavior at the time.
 - Recategorized a few settings.

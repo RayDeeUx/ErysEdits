@@ -1,5 +1,4 @@
 #include <Geode/modify/PlayerObject.hpp>
-#include <regex>
 #include "Manager.hpp"
 #include "Utils.hpp"
 
@@ -9,9 +8,6 @@ class $modify(MyPlayerObject, PlayerObject) {
 	static void onModify(auto & self)
 	{
 		(void) self.setHookPriority("PlayerObject::playerDestroyed", INT64_MAX - 1);
-	}
-	void animatePlatformerJump(float p0) {
-		if (!(Utils::modEnabled() && Utils::get("disablePlatformerJumpAnim"))) { PlayerObject::animatePlatformerJump(p0); }
 	}
 	void playerDestroyed(bool p0) {
 		Manager::getSharedInstance()->isPlayerDead = true;
