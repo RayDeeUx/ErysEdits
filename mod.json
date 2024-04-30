@@ -550,6 +550,12 @@
 			"version": "<1.1.0",
 			"importance": "breaking",
 			"platforms": ["windows"]
+		},
+		{
+			"id": "raydeeux.breakingplatforming",
+			"version": "<1.2.0",
+			"importance": "conflicting",
+			"platforms": ["windows", "android32", "android64"]
 		}
 	]
 }
