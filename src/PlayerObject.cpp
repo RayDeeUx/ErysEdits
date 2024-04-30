@@ -15,13 +15,17 @@ class $modify(MyPlayerObject, PlayerObject) {
 	}
 	void playerDestroyed(bool p0) {
 		Manager::getSharedInstance()->isPlayerDead = true;
-		if (Utils::modEnabled() && GameManager::get()->getPlayLayer()) {
-			auto fmod = FMODAudioEngine::sharedEngine();
-			auto pl = PlayLayer::get();
+		if (Utils::modEnabled() && PlayLayer::get()) {
 			if (Utils::get("forceStopMusicOnDeath")) {
-				if (pl && this == pl->m_player2 && !pl->m_level->m_twoPlayerMode) { return; } // avoid stopping sfx twice -- thank you clicksounds
+				auto pl = PlayLayer::get();
+				auto fmod = FMODAudioEngine::sharedEngine();
 				fmod->stopAllMusic();
-				fmod->stopAllEffects();
+				if (this == pl->m_player2 && pl->m_level->m_twoPlayerMode) {
+					PlayerObject::playerDestroyed(p0);
+					return; // avoid stopping sfx twice -- thank you clicksounds
+				} else {
+					fmod->stopAllEffects();
+				}
 			}
 		}
 		PlayerObject::playerDestroyed(p0);
