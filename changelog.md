@@ -6,6 +6,7 @@
 - Remove disabling the platformer cube jump squishing animation. Please use similar settings in v1.2.0 of RayDeeUx's BreakingPlatforming mod instead.
 - Clarify descriptions when levels appear to have an empty description despite proven otherwise, especially when browsing level lists.
 - Fix an issue where SFX in some levels would infinitely loop. Thank you, Aktimoose, for bringing this to my attention, and deepest apologies for rejecting your original claims. I hope this apology and this update is compensation enough for my harsh behavior at the time.
+- Unfortunately, there's still incredibly specific edge cases where SFX *can* loop infinitely while using this mod, so a config description has been added to the relevant spot.
 - Recategorized a few settings.
 - Added punctuation to changelogs.
 - Bump Node IDs minimum requirement to v1.9.1.

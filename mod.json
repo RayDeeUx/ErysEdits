@@ -211,7 +211,8 @@
 			"default": false
 		},
 		"disableEditSFX": {
-			"name": "No Edit SFX Triggers",
+			"name": "No Edit SFX Triggers (READ!)",
+			"description": "Disables Edit SFX triggers in levels. <cy>If you toggle this, it is</c> <cr>STRONGLY RECOMMENDED</c> <cy>that you enable the \"No SFX Triggers\" option above this setting as well, unless if you're a fan of infinitely looping SFX playing in your eardrums in rare cases such as the platformer level/war crime \"Evasion\" by YunHaSeu14.</c>",
 			"type": "bool",
 			"default": false
 		},
