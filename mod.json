@@ -212,7 +212,7 @@
 		},
 		"disableEditSFX": {
 			"name": "No Edit SFX Triggers (READ!)",
-			"description": "Disables Edit SFX triggers in levels. <cy>If you toggle this, it is</c> <cr>STRONGLY RECOMMENDED</c> <cy>that you enable the \"No SFX Triggers\" option above this setting as well, unless if you're a fan of infinitely looping SFX playing in your eardrums in rare cases such as the platformer level/war crime \"Evasion\" by YunHaSeu14.</c>",
+			"description": "Disables Edit SFX triggers in levels.\n\n<cy>If you toggle this, it is</c> <cr>STRONGLY RECOMMENDED</c> <cy>that you enable the \"No SFX Triggers\" option above this setting as well, unless if you're a fan of infinitely looping SFX playing in your eardrums in rare cases such as the platformer level/war crime \"Evasion\" by YunHaSeu14.</c>",
 			"type": "bool",
 			"default": false
 		},
@@ -491,7 +491,7 @@
 		},
 		"garageShardsMenu": {
 			"name": "Icon Kit: Shards Menu Scale",
-			"description": "Set the scaling of the shards menu of the icon kit. Useful as more mods begin hooking the icon kit screen.",
+			"description": "Set the scaling of the shards menu of the icon kit. Useful as more mods begin hooking the icon kit menu to add their own buttons.",
 			"type": "float",
 			"default": 0.9,
 			"min": 0.5,
