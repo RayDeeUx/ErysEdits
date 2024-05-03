@@ -168,11 +168,6 @@
 			"type": "bool",
 			"default": false
 		},
-		"disablePlatformerJumpAnim": {
-			"name": "No Platformer Cube Animation",
-			"type": "bool",
-			"default": false
-		},
 		"disableRewardsSFX": {
 			"name": "Disable Rewards SFX on Death",
 			"description": "Silences all SFX related to gaining diamonds/orbs/keys on player death.",
