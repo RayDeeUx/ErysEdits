@@ -87,8 +87,8 @@ class $modify(MyPlayLayer, PlayLayer) {
 					debugText = std::regex_replace(debugText, std::regex("\nY: (\\d)+\n"), fmt::format("\nY: {:.{}f}\n", m_player1->m_position.y, 4));
 				}
 				if (Utils::get("conditionalValues")) {
-					debugText = std::regex_replace(debugText, std::regex("\nTimeWarp: 1"), "");
-					debugText = std::regex_replace(debugText, std::regex("\nGravity: 1"), "");
+					debugText = std::regex_replace(debugText, std::regex("\nTimeWarp: 1\n"), "\n");
+					debugText = std::regex_replace(debugText, std::regex("\nGravity: 1\n"), "\n");
 					debugText = std::regex_replace(debugText, std::regex("\nGradients: 0"), "");
 					debugText = std::regex_replace(debugText, std::regex("\nParticles: 0"), "");
 					debugText = std::regex_replace(debugText, std::regex("\nChannel: 0"), "");
