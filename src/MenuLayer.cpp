@@ -28,14 +28,16 @@ class $modify(MyMenuLayer, MenuLayer) {
 		
 		std::for_each(mods.begin(), mods.end(), [&](const Mod *mod) {
 			std::string isEnabled = "<cg>";
+			std::string isEnabledClipboard = "{Enabled}";
 			if (!mod->isEnabled()) {
 				isEnabled = "<cr>";
+				isEnabledClipboard = "{Disabled}";
 				disabledMods++;
 			} else {
 				activeMods++;
 			}
 			
-			manager->modsInfoForClipboard = manager->modsInfoForClipboard + fmt::format("- ({}) {} by {} [{}]\n", mod->getID(), mod->getName(), mod->getDeveloper(), mod->getVersion().toString());
+			manager->modsInfoForClipboard = manager->modsInfoForClipboard + fmt::format("- {} ({}) {} by {} [{}]\n", isEnabledClipboard, mod->getID(), mod->getName(), mod->getDeveloper(), mod->getVersion().toString());
 			
 			if (Utils::getInt("showModsListMode") == 4) { // mod name only
 				manager->modsListMode = "Mod names only";
