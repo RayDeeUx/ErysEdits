@@ -11,7 +11,6 @@
 	"developers": ["RayDeeUx", "acaruso"],
 	"description": "Just a few of my tweaks that were better off under one mod instead of standalone mods.",
 	"repository": "https://github.com/RayDeeUx/ErysEdits",
-	"early-load": true,
 	"settings": {
 		"erysedits": {
 			"name": "ErysEdits",
