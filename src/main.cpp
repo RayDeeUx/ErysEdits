@@ -12,13 +12,9 @@ SettingNode* SectionSettingValue::createNode(float width) {
 }
 
 $on_mod(Loaded) {
-	auto gameManager = GameManager::get();
 	auto manager = Manager::getSharedInstance();
 	auto geode = Loader::get();
 
-	manager->originalShowProgressBarValue = gameManager->m_showProgressBar;
-	manager->originalShowPercentageValue = gameManager->getGameVariable("0040");
-	
 	manager->geodeVer = geode->getVersion().toString();
 	manager->gameVer = fmt::format("{:.3f}", GEODE_GD_VERSION);
 	manager->platform = GEODE_PLATFORM_NAME;

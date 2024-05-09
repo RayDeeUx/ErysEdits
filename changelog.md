@@ -1,4 +1,8 @@
 # ErysEdits Changelog
+## v1.1.2
+- (Hopefully) fix a rare crash with LoadingLayer
+- Bump Geode minimum version to 2.0.0-beta.26
+- Bump Custom Keybinds minimum version to 1.5.7 *[Windows only.]*
 ## v1.1.1
 - Fix a silly bug with the debug text's `Compact "Gameplay" Section` setting. Oops!
 ## v1.1.0

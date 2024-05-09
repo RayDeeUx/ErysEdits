@@ -12,6 +12,11 @@ class $modify(MyMenuLayer, MenuLayer) {
 		if (manager->hasCalledAlready) { return true; }
 		manager->hasCalledAlready = true;
 		
+		auto gameManager = GameManager::get();
+	
+		manager->originalShowProgressBarValue = gameManager->m_showProgressBar;
+		manager->originalShowPercentageValue = gameManager->getGameVariable("0040");
+		
 		auto geode = Loader::get();
 		auto mods = geode->getAllMods();
 		
