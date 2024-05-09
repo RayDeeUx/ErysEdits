@@ -27,6 +27,18 @@ class $modify(MyFLAlertLayer, FLAlertLayer) {
 					height,
 					1.f
 				);
+			} else if (titleString == "Always Active LDM (READ!)" || titleString.find("Show Mods List") != std::string::npos) {
+				return FLAlertLayer::init(
+					delegate,
+					title,
+					desc,
+					btn1,
+					btn2,
+					420.f,
+					true,
+					height,
+					1.f
+				);
 			} else {
 				bool desiredScroll = scroll;
 				float desiredScale = textScale;

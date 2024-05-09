@@ -17,6 +17,7 @@ class $modify(MyEndLevelLayer, EndLevelLayer) {
 		if (!Utils::modEnabled() || Utils::getInt("showModsListMode") == 0) { return; }
 		auto manager = Manager::getSharedInstance();
 		// apparently i can't use nullptr delegate here, so have a hacky workaround
+		clipboard::write(manager->modsInfoForClipboard);
 		FLAlertLayer::create(
 			"T&^JKIU*HBJUDRFGCHU&^TRDFCGVBJHU*^%RDF",
 			fmt::format(
