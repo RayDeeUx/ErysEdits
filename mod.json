@@ -5,7 +5,7 @@
 		"android": "2.205",
 		"win": "2.204"
 	},
-	"version": "v1.1.2",
+	"version": "v1.1.3",
 	"id": "raydeeux.erysedits",
 	"name": "ErysEdits",
 	"developers": ["RayDeeUx", "acaruso"],
@@ -193,6 +193,18 @@
 				"arrow-step": 0,
 				"big-arrow-step": 0
 			}
+		},
+		"forceAudioScale": {
+			"name": "Force Audio Scale",
+			"type": "bool",
+			"description": "Forces objects to pulse with the music.\n\n<cy>For platformer levels ONLY: If you have RayDeeUx's BreakingPlatforming mod loaded/enabled, this setting will be ignored in favor of whatever Audio Scale preference you've set in there.</c>",
+			"default": false
+		},
+		"forceVisibleEffect": {
+			"name": "Force Visible Effect",
+			"type": "bool",
+			"default": false,
+			"description": "Forces objects to activate usage effects (those translucent scaling circles when you interact with them).\n\n<cy>Unfortunately, this applies to all objects even if they are marked invisible, and enabling this will count as cheating.</c>"
 		},
 		"disableShake": {
 			"name": "No Shake Triggers",

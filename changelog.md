@@ -1,4 +1,9 @@
 # ErysEdits Changelog
+## v1.1.3
+- New settings: `Force Audio Scale` and `Force Visible Effect`. Because the orbs in Zeniux's levels started becoming cringe.
+- Fix crash with the debug text. Not sure how or why it kept happening, to be honest.
+	- If the debug text features from this mod suddenly stop working, please let me know and ping me in the Geode SDK Discord.
+- Fix a silly mistake from the previous update where an FLAlertLayer wasn't scrollable like originally intended.
 ## v1.1.2
 - (Hopefully) fix a rare crash with LoadingLayer.
 - Added mods list copying functionality to the `Level End Screen: Show Mods List` setting.

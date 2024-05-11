@@ -30,16 +30,25 @@ class $modify(MyPlayLayer, PlayLayer) {
 		PlayLayer::onExit();
 	}
 	#endif
-	void addObject(GameObject* p0) {
+	void addObject(GameObject* theObject) {
 		bool dontSkip = true;
 		if (Utils::modEnabled()) {
+			auto manager = Manager::getSharedInstance();
 			#ifdef __APPLE__
-			auto mTS = Manager::getSharedInstance()->miscIDToSetting;
-			if (mTS.find(p0->m_objectID) != mTS.end() && Utils::get(mTS.find(p0->m_objectID)->second)) { dontSkip = false; }
+			auto mTS = manager->miscIDToSetting;
+			if (mTS.find(theObject->m_objectID) != mTS.end() && Utils::get(mTS.find(theObject->m_objectID)->second)) { dontSkip = false; }
 			#endif
-			if (m_level->m_levelType == GJLevelType::Saved && p0->m_isHighDetail && GameManager::get()->getGameVariable("0108") && (Utils::getInt("alwaysLDM") == 3 || (Utils::getInt("alwaysLDM") == 2 && m_level->m_stars.value() != 0) || (Utils::getInt("alwaysLDM") == 1 && m_level->m_stars.value() == 0))) { dontSkip = false; }
+			if (m_level->m_levelType == GJLevelType::Saved && theObject->m_isHighDetail && GameManager::get()->getGameVariable("0108") && (Utils::getInt("alwaysLDM") == 3 || (Utils::getInt("alwaysLDM") == 2 && m_level->m_stars.value() != 0) || (Utils::getInt("alwaysLDM") == 1 && m_level->m_stars.value() == 0))) {
+				dontSkip = false;
+			}
+			if (Utils::get("forceVisibleEffect") && theObject->m_hasNoEffects) {
+				theObject->m_hasNoEffects = false;
+			}
+			if (Utils::get("forceAudioScale") && theObject->m_hasNoAudioScale && (!manager->isBreakingPlatforming || !m_level->isPlatformer())) {
+				theObject->m_hasNoAudioScale = false;
+			}
 		}
-		if (dontSkip) { PlayLayer::addObject(p0); }
+		if (dontSkip) { PlayLayer::addObject(theObject); }
 	}
 	void postUpdate(float dt) {
 		PlayLayer::postUpdate(dt);

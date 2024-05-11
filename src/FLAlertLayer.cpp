@@ -27,7 +27,7 @@ class $modify(MyFLAlertLayer, FLAlertLayer) {
 					height,
 					1.f
 				);
-			} else if (titleString == "Always Active LDM (READ!)" || titleString.find("Show Mods List") != std::string::npos) {
+			} else if (titleString == "Always Active LDM (READ!)" || titleString.find("Show/Copy Mods List") != std::string::npos) {
 				return FLAlertLayer::init(
 					delegate,
 					title,

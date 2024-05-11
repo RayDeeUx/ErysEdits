@@ -83,6 +83,16 @@ namespace Utils {
 			gameManager->setGameVariable("0040", manager->originalShowPercentageValue);
 		}
 		if (changeCanCall) { manager->canCall = true; }
+		
+		if (auto breakingPlatforming = Loader::get()->getLoadedMod("raydeeux.breakingplatforming")) {
+			if (breakingPlatforming->getSettingValue<bool>("enabled")) {
+				manager->isBreakingPlatforming = true;
+			} else {
+				manager->isBreakingPlatforming = false;
+			}
+		} else {
+			manager->isBreakingPlatforming = false;
+		}
 	}
 
 	void applyGMGVs(bool isLevelVerified) {
