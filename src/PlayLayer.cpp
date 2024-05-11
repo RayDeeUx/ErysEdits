@@ -54,7 +54,7 @@ class $modify(MyPlayLayer, PlayLayer) {
 			> whether its before or after original depends on where you put your code
 			> if its before the call to original or after the call to original
 		*/
-		if (Utils::get("debugTextToggle")) {
+		if (Utils::get("debugTextToggle") && getChildByIDRecursive("debug-text")) {
 			auto theLevel = this->m_level;
 			std::string status = Utils::buildPlayerStatusString(m_player1, theLevel, this, false);
 			std::string statusTwo = "";
@@ -71,7 +71,7 @@ class $modify(MyPlayLayer, PlayLayer) {
 				}
 			}
 			auto debugTextNode = typeinfo_cast<CCLabelBMFont*>(getChildByIDRecursive("debug-text"));
-			if (debugTextNode->isVisible()) {
+			if (debugTextNode && debugTextNode->isVisible()) {
 				std::string debugText = debugTextNode->getString();
 				if (Utils::get("logDebugText")) { log::info("--- LOGGED DEBUG TEXT [BEFORE ERYSEDITS] ---:\n{}", debugText); }
 				#ifndef __APPLE__
