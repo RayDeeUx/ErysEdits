@@ -9,39 +9,42 @@ static std::regex songEffectRegex(R"(.*(?:\\|\/)(\S+)\.(mp3|ogg|wav|flac))", std
 static std::regex geodeAudioRegex(R"(([a-z0-9\-_]+\.[a-z0-9\-_]+)(?:\\|\/)([\S ]+)\.(mp3|ogg|wav|flac))", std::regex::optimize | std::regex::icase);
 
 class $modify(MyFMODAudioEngine, FMODAudioEngine) {
+	struct Fields {
+		Manager* manager = Manager::getSharedInstance();
+	};
+	std::string parsePath(std::string path) {
+		auto vanillaSFX = m_fields->manager->vanillaSFX;
+		std::smatch match;
+		std::smatch geodeMatch;
+		std::string result = "";
+		if (path.find("geode") != std::string::npos && (path.find("mods") != std::string::npos || path.find("config") != std::string::npos)) {
+			if (std::regex_search(path, geodeMatch, geodeAudioRegex)) {
+				if (auto mod = Loader::get()->getLoadedMod(geodeMatch[1].str())) {
+					result = fmt::format("[From {}]", mod->getName());
+				} else {
+					result = "[From another Geode mod]";
+				}
+			}
+		} else if (std::regex_match(path, match, songEffectRegex)) {
+			if (std::regex_search(path, geodeMatch, geodeAudioRegex)) {
+				if (auto mod = Loader::get()->getLoadedMod(geodeMatch[1].str())) {
+					result = fmt::format("[From {}]", mod->getName());
+				} else {
+					result = "[From another Geode mod]";
+				}
+			} else {
+				result = fmt::format("{}.{}", match[1].str(), match[2].str());
+			}
+		} else {
+			result = fmt::format("{}", path);
+		}
+		return result;
+	}
 	#ifndef __APPLE__
 	void preloadEffect(gd::string p0) {
 		FMODAudioEngine::sharedEngine()->preloadEffect(p0);
 		if (!PlayLayer::get()) return; // dont record files outside of playlayer
-		auto manager = Manager::getSharedInstance();
-		auto vanillaSFX = manager->vanillaSFX;
-		std::string path = p0;
-		std::smatch match;
-		std::smatch geodeMatch;
-		// log::info("the path: {}", path);
-		if (path.find("geode") != std::string::npos && (path.find("mods") != std::string::npos || path.find("config") != std::string::npos)) {
-			if (std::regex_search(path, geodeMatch, geodeAudioRegex)) {
-				if (auto mod = Loader::get()->getLoadedMod(geodeMatch[1].str())) {
-					manager->lastPlayedEffect = fmt::format("[From {}]", mod->getName());
-				} else {
-					manager->lastPlayedEffect = "[From another Geode mod]";
-				}
-			}
-		} else if (std::find(vanillaSFX.begin(), vanillaSFX.end(), path) == vanillaSFX.end()) {
-			if (std::regex_match(path, match, songEffectRegex)) {
-				if (std::regex_search(path, geodeMatch, geodeAudioRegex)) {
-					if (auto mod = Loader::get()->getLoadedMod(geodeMatch[1].str())) {
-						manager->lastPlayedEffect = fmt::format("[From {}]", mod->getName());
-					} else {
-						manager->lastPlayedEffect = "[From another Geode mod]";
-					}
-				} else {
-					manager->lastPlayedEffect = fmt::format("{}.{}", match[1].str(), match[2].str());
-				}
-			} else {
-				manager->lastPlayedEffect = fmt::format("{}", path);
-			}
-		}
+		m_fields->manager->lastPlayedEffect = parsePath(p0);
 	}
 	#endif
 	void playEffect(gd::string p0, float p1, float p2, float p3) {
@@ -54,31 +57,7 @@ class $modify(MyFMODAudioEngine, FMODAudioEngine) {
 	void loadMusic(gd::string p0, float p1, float p2, float p3, bool p4, int p5, int p6) {
 		FMODAudioEngine::loadMusic(p0, p1, p2, p3, p4, p5, p6);
 		if (!PlayLayer::get()) return; // dont record files outside of playlayer
-		auto manager = Manager::getSharedInstance();
-		std::string path = p0;
-		std::smatch match;
-		std::smatch geodeMatch;
-		// log::info("the path: {}", path);
-		if (path.find("geode") != std::string::npos && (path.find("mods") != std::string::npos || path.find("config") != std::string::npos)) {
-			if (std::regex_search(path, match, geodeAudioRegex)) {
-				if (auto mod = Loader::get()->getLoadedMod(match[1].str())) {
-					manager->lastPlayedSong = fmt::format("[From {}]", mod->getName());
-				} else {
-					manager->lastPlayedSong = "[From another Geode mod]";
-				}
-			}
-		} else if (std::regex_match(path, match, songEffectRegex)) {
-			if (std::regex_search(path, geodeMatch, geodeAudioRegex)) {
-				if (auto mod = Loader::get()->getLoadedMod(geodeMatch[1].str())) {
-					manager->lastPlayedSong = fmt::format("[From {}]", mod->getName());
-				} else {
-					manager->lastPlayedSong = "[From another Geode mod]";
-				}
-			} else {
-				manager->lastPlayedSong = fmt::format("{}.{}", match[1].str(), match[2].str());
-			}
-		} else {
-			manager->lastPlayedSong = fmt::format("{}", path);
-		}
+		if (std::find(m_fields->manager->vanillaSFX.begin(), m_fields->manager->vanillaSFX.end(), p0) != m_fields->manager->vanillaSFX.end()) return;
+		m_fields->manager->lastPlayedSong = parsePath(p0);
 	}
 };
