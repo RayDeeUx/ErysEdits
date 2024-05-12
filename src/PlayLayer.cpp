@@ -5,7 +5,12 @@
 
 using namespace geode::prelude;
 
+static std::regex tapsCountRegex(R"(Taps: (\d+)\n)", std::regex::optimize | std::regex::icase);
+
 class $modify(MyPlayLayer, PlayLayer) {
+	struct Fields{
+		int jumps = 0;
+	};
 	void levelComplete() {
 		PlayLayer::levelComplete();
 		Utils::restoreOrigGMGVs(GameManager::get());
@@ -23,6 +28,15 @@ class $modify(MyPlayLayer, PlayLayer) {
 		manager->lastPlayedEffect = "[MacOS issue]";
 		#endif
 		PlayLayer::onQuit();
+		m_fields->jumps = 0;
+	}
+	void fullReset() {
+		PlayLayer::fullReset();
+		m_fields->jumps = 0;
+	}
+	void incrementJumps() {
+		PlayLayer::incrementJumps();
+		m_fields->jumps += 1;
 	}
 	#ifndef __APPLE__
 	void onExit() {
@@ -89,6 +103,12 @@ class $modify(MyPlayLayer, PlayLayer) {
 							#endif
 							if (Utils::get("lastPlayedSong")) {
 								debugText = std::regex_replace(debugText, std::regex("\n(\r)?-- Audio --\nSongs: "), fmt::format("\n-- Audio --\nLast Song: {}\nLast SFX: {}\nSongs: ", manager->lastPlayedSong, manager->lastPlayedEffect));
+							}
+							if (Utils::get("includeJumps")) {
+								std::smatch match;
+								if (std::regex_search(debugText, match, tapsCountRegex)) {
+									debugText = std::regex_replace(debugText, std::regex("Taps: \\d+\nTimeWarp: "), fmt::format("Taps: {} [{}]\nTimeWarp: ", match[1].str(), m_fields->jumps)); // jump
+								}
 							}
 							if (Utils::get("accuratePosition")) {
 								debugText = std::regex_replace(debugText, std::regex("\nX: (\\d)+\n"), fmt::format("\nX: {:.{}f}\n", m_player1->m_position.x, 4));

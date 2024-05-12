@@ -40,92 +40,99 @@
 		},
 		"tapsToClicks": {
 			"name": "\"Taps\" -> \"Clicks\"/\"Actions\"",
-			"description": "\"Taps\" becomes \"Clicks\" (\"Actions\" in platformer levels) in the info label of PlayLayer.",
+			"description": "\"Taps\" becomes \"Clicks\" (\"Actions\" in platformer levels).",
+			"type": "bool",
+			"default": true
+		},
+		"includeJumps": {
+			"name": "Include Jumps",
+			"description": "Includes your current session's jump count (stylized like <cy>[this]</c>) next to your \"Taps\"/\"Clicks\"/\"Actions\" label.",
 			"type": "bool",
 			"default": true
 		},
 		"pluralAttempts": {
 			"name": "Plural Attempts",
-			"description": "\"Attempt\" becomes \"Attempts\" in the info label of PlayLayer.",
+			"description": "\"Attempt\" becomes \"Attempts\".",
 			"type": "bool",
 			"default": true
 		},
 		"fixLevelIDLabel": {
 			"name": "Fix \"LevelID:\" Label",
-			"description": "\"LevelID:\" becomes \"Level ID:\" in the info label of PlayLayer.",
+			"description": "\"LevelID:\" becomes \"Level ID:\".",
 			"type": "bool",
 			"default": true
 		},
 		"expandPerformance": {
 			"name": "Expand \"Perf\" Header",
-			"description": "\"-- Perf --\" becomes \"-- Performance --\" in the info label of PlayLayer.",
+			"description": "\"-- Perf --\" becomes \"-- Performance --\".",
 			"type": "bool",
 			"default": true
 		},
 		"addGameplayHeader": {
 			"name": "Add \"Gameplay\" Header",
-			"description": "Adds a \"-- Gameplay --\" header to the first section of the info label of PlayLayer.",
+			"description": "Adds a \"-- Gameplay --\" header to the first section.",
 			"type": "bool",
 			"platforms": ["windows", "android32", "android64"],
 			"default": true
 		},
 		"addCurrentChannel": {
 			"name": "Show Current Channel",
-			"description": "Shows the currently active channel in the first section of the info label of PlayLayer.",
+			"description": "Shows the currently active channel in the first section.\n\n<cy>(Currently unavailable for macOS.)</c>",
 			"type": "bool",
-			"default": true
+			"default": true,
+			"platforms": ["windows", "android64", "android32"]
 		},
 		"accuratePosition": {
 			"name": "Accurate Player Position",
-			"description": "Adds four more decimal points to the player's X and Y positions in the first section of the info label of PlayLayer.",
+			"description": "Adds four more decimal points to the player's X and Y positions in the first section.",
 			"type": "bool",
 			"default": true
 		},
 		"lastPlayedSong": {
 			"name": "Show Most Recent Song/Effect",
-			"description": "Includes the filename of the most recently loaded song <cy>(and sound effect, if not on macOS)</c> in the Audio section of the info label of PlayLayer.",
+			"description": "Includes the filename of the most recently loaded song <cy>(and sound effect, if not on macOS)</c> in the Audio section.",
 			"type": "bool",
 			"default": true
 		},
 		"compactAudioSection": {
 			"name": "Compact \"Audio\" Section",
-			"description": "Condenses Song and SFX counts from the Audio section of the info label of PlayLayer into one line.",
+			"description": "Condenses Song and SFX counts from the Audio section  into one line.",
 			"type": "bool",
 			"default": true
 		},
 		"compactGameplaySection": {
 			"name": "Compact \"Gameplay\" Section",
-			"description": "Condenses several pieces of information in the first section of the info label of PlayLayer into one line, including:\n- Attempts and taps/clicks.\n- TimeWarp and Gravity.\n-X and Y position.\n- Gradients and Particles.",
+			"description": "Condenses several pieces of information in the first section  into one line, including:\n- Attempts and taps/clicks.\n- TimeWarp and Gravity.\n-X and Y position.\n- Gradients and Particles.",
 			"type": "bool",
 			"default": true
 		},
 		"conditionalValues": {
 			"name": "Conditional Labels",
-			"description": "Hides various values in the info label of PlayLayer if unmodified. For reference:\n- TimeWarp if currently equal to 1.\n- Gravity if currently equal to 1.\n- Pretty much anything else you can think of if it's currently equal to either \"0\" or \"0 / 0\".",
+			"description": "Hides various values if unmodified. For reference:\n- TimeWarp if currently equal to 1.\n- Gravity if currently equal to 1.\n- Pretty much anything else you can think of if it's currently equal to either \"0\" or \"0 / 0\".",
 			"type": "bool",
 			"default": false
 		},
 		"addPlayerInfo": {
 			"name": "Add Player Info",
-			"description": "Includes additional info about the player's current state in the info label of PlayLayer.",
+			"description": "Includes additional info about the player's current state.",
 			"type": "bool",
 			"default": false
 		},
 		"compactDirections": {
 			"name": "Player Direction as Emoticons",
-			"description": "Replaces word descriptions of the player's current direction in the info label of PlayLayer with emoticon alternatives.\n\n<cy>Requires the previous setting (\"Add Player Info\") to be enabled; otherwise you won't see it.</c>",
+			"description": "Replaces word descriptions of the player's current direction with emoticon alternatives.\n\n<cy>Requires the previous setting (\"Add Player Info\") to be enabled; otherwise you won't see it.</c>",
 			"type": "bool",
 			"default": false
 		},
 		"addLevelTraits": {
 			"name": "Add Level Traits",
-			"description": "Includes additional info about the current level's traits in the info label of PlayLayer.",
+			"description": "Includes additional info about the current level's traits.",
 			"type": "bool",
 			"default": false
 		},
 		"modLoaderInfo": {
 			"name": "Geode Mod Loader Info",
-			"description": "Adds an additional section of info related to your Geode setup named \"Geode\" to the info label of PlayLayer.",
+			"description": "Adds an additional section of info related to your Geode setup named \"Geode\".",
 			"type": "bool",
 			"default": false
 		},
