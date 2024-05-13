@@ -94,8 +94,15 @@ class $modify(MyPlayLayer, PlayLayer) {
 					}
 					if (auto debugTextNode = typeinfo_cast<CCLabelBMFont*>(debugText)) {
 						if (debugTextNode->isVisible()) {
+							if (Utils::get("maxAlphaDebugText")) {
+								debugTextNode->setOpacity(255);
+							} else {
+								debugTextNode->setOpacity(Utils::getInt("debugTextAlpha"));
+							}
 							std::string debugText = debugTextNode->getString();
-							if (Utils::get("logDebugText")) { log::info("--- LOGGED DEBUG TEXT [BEFORE ERYSEDITS] ---:\n{}", debugText); }
+							if (Utils::get("logDebugText")) {
+								log::info("--- LOGGED DEBUG TEXT [BEFORE ERYSEDITS] ---:\n{}", debugText);
+							}
 							#ifndef __APPLE__
 							if (Utils::get("addCurrentChannel")) {
 								debugText = std::regex_replace(debugText, std::regex("\n-- Audio --"), fmt::format("\nChannel: {}\n\r-- Audio --", manager->currentChannel));
@@ -160,21 +167,42 @@ class $modify(MyPlayLayer, PlayLayer) {
 							}
 							if (Utils::get("compactGameplaySection")) {
 								debugText = std::regex_replace(debugText, std::regex("\nTaps: "), " | Taps: "); // Attempt and Taps
-								if (debugText.find("TimeWarp: ") != std::string::npos) { debugText = std::regex_replace(debugText, std::regex("\nGravity: "), " | Gravity: "); } // TimeWarp and Gravity
-								if (debugText.find("Gradients: ") != std::string::npos) { debugText = std::regex_replace(debugText, std::regex("\nParticles: "), " | Particles: "); } // Gradients and Particles
+								if (debugText.find("TimeWarp: ") != std::string::npos) {
+									debugText = std::regex_replace(debugText, std::regex("\nGravity: "), " | Gravity: "); // TimeWarp and Gravity
+								}
+								if (debugText.find("Gradients: ") != std::string::npos) {
+									debugText = std::regex_replace(debugText, std::regex("\nParticles: "), " | Particles: "); // Gradients and Particles
+								}
 								debugText = std::regex_replace(debugText, std::regex("\nY: "), " | Y: "); // X and Y position
 							}
-							if (Utils::get("compactAudioSection") && debugText.find("Songs: ") != std::string::npos) { debugText = std::regex_replace(debugText, std::regex("\nSFX: "), " | SFX: "); }
-							if (Utils::get("expandPerformance")) { debugText = std::regex_replace(debugText, std::regex("-- Perf --"), "-- Performance --"); }
-							if (Utils::get("tapsToClicks")) {
-								if (theLevel->isPlatformer()) { debugText = std::regex_replace(debugText, std::regex("Taps: "), "Actions: "); }
-								else { debugText = std::regex_replace(debugText, std::regex("Taps: "), "Clicks: "); }
+							if (Utils::get("compactAudioSection") && debugText.find("Songs: ") != std::string::npos) {
+								debugText = std::regex_replace(debugText, std::regex("\nSFX: "), " | SFX: ");
 							}
-							if (Utils::get("fixLevelIDLabel")) { debugText = std::regex_replace(debugText, std::regex("LevelID: "), "Level ID: "); }
-							if (Utils::get("pluralAttempts")) { debugText = std::regex_replace(debugText, std::regex("Attempt: "), "Attempts: "); }
-							if (Utils::get("addGameplayHeader")) { debugText = std::string("-- Gameplay --\n") + debugText; }
-							if (Utils::get("logDebugText")) { log::info("--- LOGGED DEBUG TEXT [AFTER ERYSEDITS] ---:\n{}", debugText); }
-							if (Utils::get("blendingDebugText")) { debugTextNode->setBlendFunc({GL_ONE_MINUS_DST_COLOR, GL_ONE_MINUS_SRC_ALPHA}); } // Manager::glBlendFuncs[5], Manager::glBlendFuncs[7]
+							if (Utils::get("expandPerformance")) {
+								debugText = std::regex_replace(debugText, std::regex("-- Perf --"), "-- Performance --");
+							}
+							if (Utils::get("tapsToClicks")) {
+								if (theLevel->isPlatformer()) {
+									debugText = std::regex_replace(debugText, std::regex("Taps: "), "Actions: ");
+								} else {
+									debugText = std::regex_replace(debugText, std::regex("Taps: "), "Clicks: ");
+								}
+							}
+							if (Utils::get("fixLevelIDLabel")) {
+								debugText = std::regex_replace(debugText, std::regex("LevelID: "), "Level ID: ");
+							}
+							if (Utils::get("pluralAttempts")) {
+								debugText = std::regex_replace(debugText, std::regex("Attempt: "), "Attempts: ");
+							}
+							if (Utils::get("addGameplayHeader")) {
+								debugText = std::string("-- Gameplay --\n") + debugText;
+							}
+							if (Utils::get("logDebugText")) {
+								log::info("--- LOGGED DEBUG TEXT [AFTER ERYSEDITS] ---:\n{}", debugText);
+							}
+							if (Utils::get("blendingDebugText")) {
+								debugTextNode->setBlendFunc({GL_ONE_MINUS_DST_COLOR, GL_ONE_MINUS_SRC_ALPHA}); // Manager::glBlendFuncs[5], Manager::glBlendFuncs[7]
+							}
 							if (Utils::get("modLoaderInfo")) {
 								debugText = debugText +
 								fmt::format(

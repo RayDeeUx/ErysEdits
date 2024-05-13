@@ -38,6 +38,52 @@
 			"type": "bool",
 			"default": true
 		},
+		"debugTextAlpha": {
+			"name": "Adjust Alpha/Opacity",
+			"description": "Sets the debug text's opacity. Minimum is 150 (as seen in vanilla Geometry Dash).",
+			"type": "int",
+			"default": 150,
+			"min": 150,
+			"max": 255,
+			"control": {
+				"input": false,
+				"slider": true,
+				"arrows": false,
+				"big-arrows": false,
+				"slider-step": 1,
+				"arrow-step": 0,
+				"big-arrow-step": 0
+			}
+		},
+		"maxAlphaDebugText": {
+			"name": "Max Opacity",
+			"description": "Maxes the debug text's opacity.\n\n<cy>(If this is enabled, your setting for \"Adjust Alpha/Opacity\" will be ignored.)</c>",
+			"type": "bool",
+			"default": false
+		},
+		"chromaDebugText": {
+			"name": "Chroma Mode",
+			"description": "Sets the color of the debug text to that of a rainbow, as a last ditch effort to make the debug text readable under every imaginable circumstance without flooding your Geode logs.",
+			"type": "bool",
+			"default": false
+		},
+		"chromaDebugTextSpeed": {
+			"name": "Chroma Mode Speed",
+			"description": "Sets how quickly (lower value)/slowly (higher value) the debug text's \"Chroma Mode\" changes color.",
+			"type": "float",
+			"default": 0.5,
+			"min": 0.1,
+			"max": 2.0,
+			"control": {
+				"input": false,
+				"slider": true,
+				"arrows": false,
+				"big-arrows": false,
+				"slider-step": 0.1,
+				"arrow-step": 0,
+				"big-arrow-step": 0
+			}
+		},
 		"tapsToClicks": {
 			"name": "\"Taps\" -> \"Clicks\"/\"Actions\"",
 			"description": "\"Taps\" becomes \"Clicks\" (\"Actions\" in platformer levels).",
@@ -138,7 +184,7 @@
 		},
 		"logDebugText": {
 			"name": "Enable Logging",
-			"description": "Logs the debug text into your Geode logs folder as a last resort.\n\n<cr>By enabling this option, you agree to hold harmless the mod developer (RayDeeUx) or any lead developer of Geode and assume all responsibility for any resulting damages, including incredibly large log files.</c>",
+			"description": "Logs the debug text into your Geode logs folder.\n\n<cr>By enabling this option, you agree to hold harmless the mod developer (RayDeeUx) or any lead developer of Geode and assume all responsibility for any resulting damages, including incredibly large log files.</c>",
 			"type": "bool",
 			"default": false
 		},

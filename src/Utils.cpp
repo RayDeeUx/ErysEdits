@@ -93,6 +93,9 @@ namespace Utils {
 		} else {
 			manager->isBreakingPlatforming = false;
 		}
+		if (manager->chromaStarted) {
+			manager->chromaStarted = false;
+		}
 	}
 
 	void applyGMGVs(bool isLevelVerified) {
