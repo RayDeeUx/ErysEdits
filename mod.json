@@ -34,7 +34,7 @@
 		},
 		"blendingDebugText": {
 			"name": "Readable Mode",
-			"description": "Make the info label easier to read across a far larger variety of scenarios.",
+			"description": "Make the info label easier to read across a far larger variety of scenarios.\n\n<cy>(Make sure to check out the other options below this one!)</c>",
 			"type": "bool",
 			"default": true
 		},
@@ -68,7 +68,7 @@
 			"default": false
 		},
 		"chromaDebugTextSpeed": {
-			"name": "Chroma Mode Speed",
+			"name": "Chroma Speed",
 			"description": "Sets how quickly (lower value)/slowly (higher value) the debug text's \"Chroma Mode\" changes color.",
 			"type": "float",
 			"default": 0.5,
@@ -130,7 +130,7 @@
 		},
 		"accuratePosition": {
 			"name": "Accurate Player Position",
-			"description": "Adds four more decimal points to the player's X and Y positions in the first section.",
+			"description": "Adds four more decimal points to the player's X and Y positions in the first section.\n\n<cy>(If you want accurate player positions while your player's X or Y position is in the negatives, consider buying MegaHack v8 instead; levels won't let you get there anyways without a start position.)</c>",
 			"type": "bool",
 			"default": true
 		},
@@ -142,13 +142,13 @@
 		},
 		"compactAudioSection": {
 			"name": "Compact \"Audio\" Section",
-			"description": "Condenses Song and SFX counts from the Audio section  into one line.",
+			"description": "Condenses Song and SFX counts from the Audio section into one line.",
 			"type": "bool",
 			"default": true
 		},
 		"compactGameplaySection": {
 			"name": "Compact \"Gameplay\" Section",
-			"description": "Condenses several pieces of information in the first section  into one line, including:\n- Attempts and taps/clicks.\n- TimeWarp and Gravity.\n-X and Y position.\n- Gradients and Particles.",
+			"description": "Condenses several pieces of information in the first section into one line, including:\n- Attempts and taps/clicks.\n- TimeWarp and Gravity.\n- X and Y position.\n- Gradients and Particles.",
 			"type": "bool",
 			"default": true
 		},
@@ -194,7 +194,7 @@
 		},
 		"compactEditorLevels": {
 			"name": "My Levels",
-			"description": "<cl>Original code by Cvolton.</c>Compacts your editor levels in \"My Levels\" menu.\n\n<cy>Due to how this feature is implemented, enabling this option also disables selecting multiple levels for deletion.</c>",
+			"description": "<cl>Original code by Cvolton.</c>\n\nCompacts your editor levels in \"My Levels\" menu.\n\n<cy>Due to how this feature is implemented, enabling this option also disables selecting multiple levels for deletion.</c>",
 			"type": "bool",
 			"default": true
 		},
@@ -522,7 +522,7 @@
 		},
 		"textScroll": {
 			"name": "Text Scroll",
-			"description": "Enable (with 1), ignore (with 0), or disable (with -1) text scrolling in <cy>most</c> Alert Layers\n(such as this one you're viewing).\n\n<cy>Note that enabling text scroll will override your \"Width Multiplier\"  and \"Text Scale\" settings above this one.</c>",
+			"description": "Enable (with 1), ignore (with 0), or disable (with -1) text scrolling in <cy>most</c> Alert Layers\n(such as this one you're viewing).\n\n<cy>Note that enabling text scroll will override your \"Width Multiplier\" and \"Text Scale\" settings above this one.</c>",
 			"type": "int",
 			"default": 0,
 			"min": -1,
