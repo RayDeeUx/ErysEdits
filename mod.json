@@ -57,13 +57,13 @@
 		},
 		"maxAlphaDebugText": {
 			"name": "Max Opacity",
-			"description": "Maxes the debug text's opacity.\n\n<cy>(If this is enabled, your setting for \"Adjust Alpha/Opacity\" will be ignored.)</c>",
+			"description": "Maxes the debug text's opacity. This serves as a quick toggle in case you'd like to briefly see your debug text at maximum opacity without having to remember what your preferred value for the \"Adjust Alpha/Opacity\" setting was.\n\n<cy>(If this is enabled, your setting for \"Adjust Alpha/Opacity\" will be ignored.)</c>",
 			"type": "bool",
 			"default": false
 		},
 		"chromaDebugText": {
 			"name": "Chroma Mode",
-			"description": "Sets the color of the debug text to that of a rainbow, as a last ditch effort to make the debug text readable under every imaginable circumstance without flooding your Geode logs.",
+			"description": "<cl>Original code by ItzKiba.</c>\n\nSets the color of the debug text to that of a rainbow, as a last ditch effort to make the debug text readable under every imaginable circumstance without flooding your Geode logs.",
 			"type": "bool",
 			"default": false
 		},
@@ -194,7 +194,7 @@
 		},
 		"compactEditorLevels": {
 			"name": "My Levels",
-			"description": "Compacts your editor levels in \"My Levels\" menu.\n\n<cy>Due to how this feature is implemented, enabling this option also disables selecting multiple levels for deletion.</c>\n\nOriginal code by Cvolton.",
+			"description": "<cl>Original code by Cvolton.</c>Compacts your editor levels in \"My Levels\" menu.\n\n<cy>Due to how this feature is implemented, enabling this option also disables selecting multiple levels for deletion.</c>",
 			"type": "bool",
 			"default": true
 		},

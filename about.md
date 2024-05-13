@@ -58,6 +58,7 @@ Not all features of ErysEdits are available across all platforms; check your set
 - [Alphalaneous](user:1139015) and [dankmeme](user:9735891), for supplemental CMake/C++ expertise
 - [SpaghettDev](user:7670168) and [Prevter](user:7696536), for finding memory address bindings that fully fleshed out some features (`0x305630` for `SecretLayer2::create()`;  `0x276180` and `0x276170`, for `LikeItemLayer::onDislike()` and `LikeItemLayer::onLike()` respectively)
 - [Cooper](user:21207551), for allowing me to reuse code for custom setting headers
+- [ItzKiba](user:4569963) for allowing me to reuse their chroma code from FormattedPlatformerTime
 - [CatXus](user:14467409), for extensively testing this mod on Android, and for helping me sing "You Are a Pirate" from LazyTown ;)
 - [Aktimoose](user:925143) for the occasional reality check
 

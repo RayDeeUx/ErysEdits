@@ -18,7 +18,7 @@ class $modify(MyFMODAudioEngine, FMODAudioEngine) {
 		std::string result = "";
 		if (path.find("geode") != std::string::npos && (path.find("mods") != std::string::npos || path.find("config") != std::string::npos)) {
 			if (std::regex_search(path, geodeMatch, geodeAudioRegex)) {
-				if (auto mod = Loader::get()->getLoadedMod(geodeMatch[1].str())) {
+				if (auto mod = Utils::getMod(geodeMatch[1].str())) {
 					result = fmt::format("[From {}]", mod->getName());
 				} else {
 					result = "[From another Geode mod]";
@@ -26,7 +26,7 @@ class $modify(MyFMODAudioEngine, FMODAudioEngine) {
 			}
 		} else if (std::regex_match(path, match, songEffectRegex)) {
 			if (std::regex_search(path, geodeMatch, geodeAudioRegex)) {
-				if (auto mod = Loader::get()->getLoadedMod(geodeMatch[1].str())) {
+				if (auto mod = Utils::getMod(geodeMatch[1].str())) {
 					result = fmt::format("[From {}]", mod->getName());
 				} else {
 					result = "[From another Geode mod]";

@@ -76,6 +76,7 @@ namespace Utils {
 	bool nothingElse() { return noProfilePage() && noInfoLayer() && noLevelLeaderboard() && noMoreOptionsLayer() && !isSceneRunningRecursive("DemonFilterSelectLayer") && !isSceneRunningRecursive("MoreSearchLayer") && !isSceneRunningRecursive("ShardsPage") && !isSceneRunningRecursive("CharacterColorPage"); }
 
 	void restoreOrigGMGVs(GameManager* gameManager, bool changeCanCall, bool isEnteringLevel) {
+		// do NOT touch isEnteringLevel param. it is unused but i don't want to remove it and break everything
 		auto manager = Manager::getSharedInstance();
 		
 		if (Utils::modEnabled() && Utils::get("unverifiedPercent")) {
@@ -84,7 +85,7 @@ namespace Utils {
 		}
 		if (changeCanCall) { manager->canCall = true; }
 		
-		if (auto breakingPlatforming = Loader::get()->getLoadedMod("raydeeux.breakingplatforming")) {
+		if (auto breakingPlatforming = Utils::getMod("raydeeux.breakingplatforming")) {
 			if (breakingPlatforming->getSettingValue<bool>("enabled")) {
 				manager->isBreakingPlatforming = true;
 			} else {
@@ -233,4 +234,8 @@ namespace Utils {
 		return (Manager::getSharedInstance()->isShiftKeyDown || !(Utils::modEnabled() && Utils::get("shiftForVault")));
 	}
 	#endif
+	
+	Mod* getMod(std::string modID) {
+		return Loader::get()->getLoadedMod(modID);
+	}
 }

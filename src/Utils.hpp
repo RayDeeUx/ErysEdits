@@ -52,4 +52,6 @@ namespace Utils {
 	#ifdef GEODE_IS_WINDOWS
 	bool shiftDown();
 	#endif
+	
+	Mod* getMod(std::string modID);
 }
