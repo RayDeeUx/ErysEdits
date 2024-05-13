@@ -8,7 +8,7 @@ using namespace keybinds;
 
 class $modify(MyShardsPage, ShardsPage) {
 	static void onModify(auto& self) {
-		(void) self.setHookPriority("ShardsPage::init", INT64_MIN + 1);
+		(void) self.setHookPriority("ShardsPage::init", INT32_MIN + 1);
 	}
 	void defineKeybind(const char* id, std::function<void()> callback) {
 		this->template addEventListener<InvokeBindFilter>([=](InvokeBindEvent* event) {

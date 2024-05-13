@@ -7,7 +7,7 @@ using namespace geode::prelude;
 
 class $modify(MyEndLevelLayer, EndLevelLayer) {
 	static void onModify(auto& self) {
-		(void) self.setHookPriority("EndLevelLayer::customSetup", INT64_MIN + 1);
+		(void) self.setHookPriority("EndLevelLayer::customSetup", INT32_MIN + 1);
 	}
 	void onMenu(cocos2d::CCObject* sender) {
 		if (Utils::modEnabled() && Utils::get("hideLevelCompleteVisuals")) { Manager::getSharedInstance()->isLevelComplete = false; }

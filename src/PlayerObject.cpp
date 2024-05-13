@@ -7,7 +7,7 @@ using namespace geode::prelude;
 class $modify(MyPlayerObject, PlayerObject) {
 	static void onModify(auto & self)
 	{
-		(void) self.setHookPriority("PlayerObject::playerDestroyed", INT64_MAX - 1);
+		(void) self.setHookPriority("PlayerObject::playerDestroyed", INT32_MAX - 1);
 	}
 	void playerDestroyed(bool p0) {
 		Manager::getSharedInstance()->isPlayerDead = true;

@@ -94,6 +94,9 @@ class $modify(MyPlayLayer, PlayLayer) {
 					}
 					if (auto debugTextNode = typeinfo_cast<CCLabelBMFont*>(debugText)) {
 						if (debugTextNode->isVisible()) {
+							if (!Utils::get("chromaDebugText")) {
+								debugTextNode->setColor({255, 255, 255}); // ensure that node color is white in case someone turns off chroma mode mid-session
+							}
 							if (Utils::get("maxAlphaDebugText")) {
 								debugTextNode->setOpacity(255);
 							} else {
