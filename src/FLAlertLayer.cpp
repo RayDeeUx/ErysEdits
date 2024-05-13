@@ -5,19 +5,21 @@
 using namespace geode::prelude;
 
 class $modify(MyFLAlertLayer, FLAlertLayer) {
+	struct Fields {
+		Manager* manager = Manager::getSharedInstance();
+	};
 	bool init(FLAlertLayerProtocol* delegate, char const* title, gd::string desc, char const* btn1, char const* btn2, float width, bool scroll, float height, float textScale) {
 		if (Utils::modEnabled()) {
 			// apparently i can't use nullptr delegate here, so have a hacky workaround
 			std::string titleString = title;
 			if (titleString.find("T&^JKIU*HBJUDRFGCHU&^TRDFCGVBJHU*^%RDF") != std::string::npos) {
-				auto manager = Manager::getSharedInstance();
 				return FLAlertLayer::init(
 					delegate,
 					fmt::format(
 						"{} mods, {} disabled, {} problems",
-						manager->installedMods,
-						manager->disabledMods,
-						manager->problems
+						m_fields->manager->installedMods,
+						m_fields->manager->disabledMods,
+						m_fields->manager->problems
 					).c_str(),
 					desc,
 					btn1,

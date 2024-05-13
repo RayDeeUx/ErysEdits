@@ -12,12 +12,15 @@ using namespace geode::prelude;
 	so restoring gamevar values it is
 */
 class $modify(MyGameManager, GameManager) {
+	struct Fields {
+		Manager* manager = Manager::getSharedInstance();
+	};
 // first idea that comes to mind is hooking gamemanager encodedatato
 	void encodeDataTo(DS_Dictionary* p0) {
 		// and resetting the value to what its supposed to be
 		if (Utils::modEnabled() && Utils::get("unverifiedPercent")) {
-			m_showProgressBar = Manager::getSharedInstance()->originalShowProgressBarValue; // [or in this case, what i want it to be]
-			setGameVariable("0040", Manager::getSharedInstance()->originalShowPercentageValue); // [or in this case, what i want it to be]
+			m_showProgressBar = m_fields->manager->originalShowProgressBarValue; // [or in this case, what i want it to be]
+			setGameVariable("0040", m_fields->manager->originalShowPercentageValue); // [or in this case, what i want it to be]
 		}
 
 		// before calling the original

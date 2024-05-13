@@ -8,24 +8,24 @@ using namespace geode::prelude;
 static std::regex tapsCountRegex(R"(Taps: (\d+)\n)", std::regex::optimize | std::regex::icase);
 
 class $modify(MyPlayLayer, PlayLayer) {
-	struct Fields{
+	struct Fields {
 		int jumps = 0;
+		Manager* manager = Manager::getSharedInstance();
 	};
 	void levelComplete() {
 		PlayLayer::levelComplete();
 		Utils::restoreOrigGMGVs(GameManager::get());
-		if (Utils::modEnabled() && Utils::get("hideLevelCompleteVisuals")) { Manager::getSharedInstance()->isLevelComplete = true; }
+		if (Utils::modEnabled() && Utils::get("hideLevelCompleteVisuals")) { m_fields->manager->isLevelComplete = true; }
 	}
 	void onQuit() {
 		Utils::restoreOrigGMGVs(GameManager::get(), true, false);
-		auto manager = Manager::getSharedInstance();
-		if (Utils::modEnabled() && Utils::get("hideLevelCompleteVisuals")) { manager->isLevelComplete = false; }
-		manager->lastPlayedSong = "N/A";
+		if (Utils::modEnabled() && Utils::get("hideLevelCompleteVisuals")) { m_fields->manager->isLevelComplete = false; }
+		m_fields->manager->lastPlayedSong = "N/A";
 		#ifndef __APPLE__
-		manager->lastPlayedEffect = "N/A";
-		manager->currentChannel = 0;
+		m_fields->manager->lastPlayedEffect = "N/A";
+		m_fields->manager->currentChannel = 0;
 		#else
-		manager->lastPlayedEffect = "[MacOS issue]";
+		m_fields->manager->lastPlayedEffect = "[MacOS issue]";
 		#endif
 		PlayLayer::onQuit();
 		m_fields->jumps = 0;
@@ -47,9 +47,8 @@ class $modify(MyPlayLayer, PlayLayer) {
 	void addObject(GameObject* theObject) {
 		bool dontSkip = true;
 		if (Utils::modEnabled()) {
-			auto manager = Manager::getSharedInstance();
 			#ifdef __APPLE__
-			auto mTS = manager->miscIDToSetting;
+			auto mTS = m_fields->manager->miscIDToSetting;
 			if (mTS.find(theObject->m_objectID) != mTS.end() && Utils::get(mTS.find(theObject->m_objectID)->second)) { dontSkip = false; }
 			#endif
 			if (m_level->m_levelType == GJLevelType::Saved && theObject->m_isHighDetail && GameManager::get()->getGameVariable("0108") && (Utils::getInt("alwaysLDM") == 3 || (Utils::getInt("alwaysLDM") == 2 && m_level->m_stars.value() != 0) || (Utils::getInt("alwaysLDM") == 1 && m_level->m_stars.value() == 0))) {
@@ -58,7 +57,7 @@ class $modify(MyPlayLayer, PlayLayer) {
 			if (Utils::get("forceVisibleEffect") && theObject->m_hasNoEffects) {
 				theObject->m_hasNoEffects = false;
 			}
-			if (Utils::get("forceAudioScale") && theObject->m_hasNoAudioScale && (!manager->isBreakingPlatforming || !m_level->isPlatformer())) {
+			if (Utils::get("forceAudioScale") && theObject->m_hasNoAudioScale && (!m_fields->manager->isBreakingPlatforming || !m_level->isPlatformer())) {
 				theObject->m_hasNoAudioScale = false;
 			}
 		}
@@ -69,18 +68,13 @@ class $modify(MyPlayLayer, PlayLayer) {
 		if (!Utils::modEnabled()) {
 			return;
 		} else {
-			auto manager = Manager::getSharedInstance();
-			/*
-				calling the original function in this specific position per cvolton's advice in https://discord.com/channels/911701438269386882/979402752121765898/1213615245260627999
-				> whether its before or after original depends on where you put your code
-				> if its before the call to original or after the call to original
-			*/
 			if (Utils::get("debugTextToggle")) {
 				if (auto debugText = getChildByID("debug-text")) {
 					auto theLevel = this->m_level;
+					
 					std::string status = Utils::buildPlayerStatusString(m_player1, theLevel, this, false);
 					std::string statusTwo = "";
-					if (manager->isDualsTime) { statusTwo = Utils::buildPlayerStatusString(m_player2, theLevel, this, true); }
+					if (m_fields->manager->isDualsTime) { statusTwo = Utils::buildPlayerStatusString(m_player2, theLevel, this, true); }
 					std::string level = Utils::buildLevelTraitsString(theLevel);
 					
 					std::string ending = "\n-- Area --\n";
@@ -108,11 +102,11 @@ class $modify(MyPlayLayer, PlayLayer) {
 							}
 							#ifndef __APPLE__
 							if (Utils::get("addCurrentChannel")) {
-								debugText = std::regex_replace(debugText, std::regex("\n-- Audio --"), fmt::format("\nChannel: {}\n\r-- Audio --", manager->currentChannel));
+								debugText = std::regex_replace(debugText, std::regex("\n-- Audio --"), fmt::format("\nChannel: {}\n\r-- Audio --", m_fields->manager->currentChannel));
 							}
 							#endif
 							if (Utils::get("lastPlayedSong")) {
-								debugText = std::regex_replace(debugText, std::regex("\n(\r)?-- Audio --\nSongs: "), fmt::format("\n-- Audio --\nLast Song: {}\nLast SFX: {}\nSongs: ", manager->lastPlayedSong, manager->lastPlayedEffect));
+								debugText = std::regex_replace(debugText, std::regex("\n(\r)?-- Audio --\nSongs: "), fmt::format("\n-- Audio --\nLast Song: {}\nLast SFX: {}\nSongs: ", m_fields->manager->lastPlayedSong, m_fields->manager->lastPlayedEffect));
 							}
 							if (Utils::get("includeJumps")) {
 								std::smatch match;
@@ -147,7 +141,7 @@ class $modify(MyPlayLayer, PlayLayer) {
 								}
 							}
 							if (Utils::get("addPlayerInfo")) {
-								if (manager->isDualsTime) {
+								if (m_fields->manager->isDualsTime) {
 									debugText = std::regex_replace(
 										debugText,
 										std::regex("\n-- Audio --"),
@@ -210,15 +204,15 @@ class $modify(MyPlayLayer, PlayLayer) {
 								debugText = debugText +
 								fmt::format(
 									"-- Geode --\nVersion: {}\nGD: {} for {}\nMods: {} + {} = {} ({}){}\nForward Compat: {}",
-									manager->geodeVer,
-									manager->gameVer,
-									manager->platform,
-									manager->loadedMods,
-									manager->disabledMods,
-									manager->installedMods,
-									manager->problems,
-									manager->fourGBStatus,
-									manager->forwardCompat
+									m_fields->manager->geodeVer,
+									m_fields->manager->gameVer,
+									m_fields->manager->platform,
+									m_fields->manager->loadedMods,
+									m_fields->manager->disabledMods,
+									m_fields->manager->installedMods,
+									m_fields->manager->problems,
+									m_fields->manager->fourGBStatus,
+									m_fields->manager->forwardCompat
 								);
 							}
 							debugTextNode->setString(debugText.c_str()); // set the string
@@ -228,7 +222,7 @@ class $modify(MyPlayLayer, PlayLayer) {
 					}
 				}
 			}
-			if (Utils::get("hideLevelCompleteVisuals") && manager->isLevelComplete) {
+			if (Utils::get("hideLevelCompleteVisuals") && m_fields->manager->isLevelComplete) {
 				auto mainNode = getChildByIDRecursive("main-node");
 				for (int k = 0; k < mainNode->getChildrenCount(); k++) {
 					if (auto whereEverythingIs = typeinfo_cast<CCLayer*>(mainNode->getChildren()->objectAtIndex(k))) {

@@ -7,6 +7,9 @@ using namespace geode::prelude;
 using namespace keybinds;
 
 class $modify(MyLevelBrowserLayer, LevelBrowserLayer) {
+	struct Fields {
+		Manager* manager = Manager::getSharedInstance();
+	};
 	#ifdef GEODE_IS_WINDOWS
 	void defineKeybind(const char* id, std::function<void()> callback) {
 		this->template addEventListener<InvokeBindFilter>([=](InvokeBindEvent* event) {
@@ -20,9 +23,9 @@ class $modify(MyLevelBrowserLayer, LevelBrowserLayer) {
 	bool init(GJSearchObject* searchObject) {
 		if (!LevelBrowserLayer::init(searchObject)) { return false; }
 		if (getChildByIDRecursive("saved-menu")) {
-			Manager::getSharedInstance()->isInSavedLevels = true;
+			m_fields->manager->isInSavedLevels = true;
 		} else {
-			Manager::getSharedInstance()->isInSavedLevels = false;
+			m_fields->manager->isInSavedLevels = false;
 		}
 		if (searchObject->m_searchType == SearchType::MyLevels && Utils::modEnabled() && Utils::get("compactEditorLevels")) {
 			if (auto deleteMenu = getChildByIDRecursive("delete-menu")) {

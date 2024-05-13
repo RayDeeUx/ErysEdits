@@ -5,12 +5,15 @@
 using namespace geode::prelude;
 
 class $modify(MyPlayerObject, PlayerObject) {
+	struct Fields {
+		Manager* manager = Manager::getSharedInstance();
+	};
 	static void onModify(auto & self)
 	{
 		(void) self.setHookPriority("PlayerObject::playerDestroyed", INT32_MAX - 1);
 	}
 	void playerDestroyed(bool p0) {
-		Manager::getSharedInstance()->isPlayerDead = true;
+		m_fields->manager->isPlayerDead = true;
 		if (Utils::modEnabled() && PlayLayer::get()) {
 			if (Utils::get("forceStopMusicOnDeath")) {
 				auto pl = PlayLayer::get();

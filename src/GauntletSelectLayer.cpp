@@ -8,6 +8,9 @@ using namespace geode::prelude;
 using namespace keybinds;
 
 class $modify(MyGauntletSelectLayer, GauntletSelectLayer) {
+	struct Fields {
+		Manager* manager = Manager::getSharedInstance();
+	};
 	void defineKeybind(const char* id, std::function<void()> callback) {
 		this->template addEventListener<InvokeBindFilter>([=](InvokeBindEvent* event) {
 			if (event->isDown()) {
@@ -20,7 +23,7 @@ class $modify(MyGauntletSelectLayer, GauntletSelectLayer) {
 		for (int i = 0; i < pageButtons->getChildrenCount(); i++) {
 			if (auto ccSprite = typeinfo_cast<CCSprite*>(pageButtons->getChildren()->objectAtIndex(i))) {
 				if (ccSprite->getDisplayedColor() == ccColor3B({255, 255, 255})) {
-					Manager::getSharedInstance()->currentGauntletPage = (i + 1);
+					m_fields->manager->currentGauntletPage = (i + 1);
 				}
 			}
 		}
@@ -42,7 +45,7 @@ class $modify(MyGauntletSelectLayer, GauntletSelectLayer) {
 		});
 		this->defineKeybind("first-visible-gauntlet"_spr, [this]() {
 			if (Utils::modEnabled() && Utils::get("navigateGauntlets") && Utils::nothingElse()) {
-				std::string nodeID = fmt::format("gauntlet-page-{}", Manager::getSharedInstance()->currentGauntletPage);
+				std::string nodeID = fmt::format("gauntlet-page-{}", m_fields->manager->currentGauntletPage);
 				if (auto theGauntlet = getChildByIDRecursive(nodeID)->getChildByIDRecursive("gauntlet-button-1")) {
 					GauntletSelectLayer::onPlay(theGauntlet);
 				}
@@ -50,7 +53,7 @@ class $modify(MyGauntletSelectLayer, GauntletSelectLayer) {
 		});
 		this->defineKeybind("second-visible-gauntlet"_spr, [this]() {
 			if (Utils::modEnabled() && Utils::get("navigateGauntlets") && Utils::nothingElse()) {
-				std::string nodeID = fmt::format("gauntlet-page-{}", Manager::getSharedInstance()->currentGauntletPage);
+				std::string nodeID = fmt::format("gauntlet-page-{}", m_fields->manager->currentGauntletPage);
 				if (auto theGauntlet = getChildByIDRecursive(nodeID)->getChildByIDRecursive("gauntlet-button-2")) {
 					GauntletSelectLayer::onPlay(theGauntlet);
 				}
@@ -58,7 +61,7 @@ class $modify(MyGauntletSelectLayer, GauntletSelectLayer) {
 		});
 		this->defineKeybind("third-visible-gauntlet"_spr, [this]() {
 			if (Utils::modEnabled() && Utils::get("navigateGauntlets") && Utils::nothingElse()) {
-				std::string nodeID = fmt::format("gauntlet-page-{}", Manager::getSharedInstance()->currentGauntletPage);
+				std::string nodeID = fmt::format("gauntlet-page-{}", m_fields->manager->currentGauntletPage);
 				if (auto theGauntlet = getChildByIDRecursive(nodeID)->getChildByIDRecursive("gauntlet-button-3")) {
 					GauntletSelectLayer::onPlay(theGauntlet);
 				}
@@ -72,7 +75,7 @@ class $modify(MyGauntletSelectLayer, GauntletSelectLayer) {
 		}
 	}
 	void onBack(cocos2d::CCObject* sender){
-		Manager::getSharedInstance()->currentGauntletPage = 0;
+		m_fields->manager->currentGauntletPage = 0;
 		GauntletSelectLayer::onBack(sender);
 	}
 };

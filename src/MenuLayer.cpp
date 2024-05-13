@@ -6,16 +6,18 @@
 using namespace geode::prelude;
 
 class $modify(MyMenuLayer, MenuLayer) {
+	struct Fields {
+		Manager* manager = Manager::getSharedInstance();
+	};
 	bool init() {
 		if (!MenuLayer::init()) { return false; }
-		auto manager = Manager::getSharedInstance();
-		if (manager->hasCalledAlready) { return true; }
-		manager->hasCalledAlready = true;
+		if (m_fields->manager->hasCalledAlready) { return true; }
+		m_fields->manager->hasCalledAlready = true;
 		
 		auto gameManager = GameManager::get();
 	
-		manager->originalShowProgressBarValue = gameManager->m_showProgressBar;
-		manager->originalShowPercentageValue = gameManager->getGameVariable("0040");
+		m_fields->manager->originalShowProgressBarValue = gameManager->m_showProgressBar;
+		m_fields->manager->originalShowPercentageValue = gameManager->getGameVariable("0040");
 		
 		auto geode = Loader::get();
 		auto mods = geode->getAllMods();
@@ -37,19 +39,19 @@ class $modify(MyMenuLayer, MenuLayer) {
 				activeMods++;
 			}
 			
-			manager->modsInfoForClipboard = manager->modsInfoForClipboard + fmt::format("- {} ({}) {} by {} [{}]\n", isEnabledClipboard, mod->getID(), mod->getName(), mod->getDeveloper(), mod->getVersion().toString());
+			m_fields->manager->modsInfoForClipboard = m_fields->manager->modsInfoForClipboard + fmt::format("- {} ({}) {} by {} [{}]\n", isEnabledClipboard, mod->getID(), mod->getName(), mod->getDeveloper(), mod->getVersion().toString());
 			
 			if (Utils::getInt("showModsListMode") == 4) { // mod name only
-				manager->modsListMode = "Mod names only";
+				m_fields->manager->modsListMode = "Mod names only";
 				modsString = modsString + fmt::format("{}{}</c>, ", isEnabled, mod->getName());
 			} else if (Utils::getInt("showModsListMode") == 3) { // mod name and ver number only
-				manager->modsListMode = "Mod names + version numbers only";
+				m_fields->manager->modsListMode = "Mod names + version numbers only";
 				modsString = modsString + fmt::format("{}{} [{}]</c>, ", isEnabled, mod->getName(), mod->getVersion().toString());
 			} else if (Utils::getInt("showModsListMode") == 2) { // developer name and mod name only
-				manager->modsListMode = "Dev names + mod names only";
+				m_fields->manager->modsListMode = "Dev names + mod names only";
 				modsString = modsString + fmt::format("{}{}'s {}</c>, ", isEnabled, mod->getDeveloper(), mod->getName());
 			} else if (Utils::getInt("showModsListMode") == 1) { // dev name, mod name, ver number
-				manager->modsListMode = "Dev names, mod names, and version numbers";
+				m_fields->manager->modsListMode = "Dev names, mod names, and version numbers";
 				modsString = modsString + fmt::format("{}{}'s {} [{}]</c>, ", isEnabled, mod->getDeveloper(), mod->getName(), mod->getVersion().toString());
 			}
 		
@@ -64,16 +66,16 @@ class $modify(MyMenuLayer, MenuLayer) {
 		
 		// log::info("FOUND {} INSTALLED MODS (OF WHICH {} ARE ACTIVE and {} ARE DISABLED WITH {} PROBLEMS PRESENT):\n{}", mods.size(), activeMods, disabledMods, problems, modsString);
 		
-		manager->installedMods = mods.size();
-		manager->loadedMods = activeMods;
-		manager->disabledMods = disabledMods;
-		manager->problems = problems;
+		m_fields->manager->installedMods = mods.size();
+		m_fields->manager->loadedMods = activeMods;
+		m_fields->manager->disabledMods = disabledMods;
+		m_fields->manager->problems = problems;
 		
-		manager->modsInfo = modsString;
+		m_fields->manager->modsInfo = modsString;
 		
-		manager->modsInfoForClipboard = fmt::format("--- {} mods | {} loaded | {} disabled | {} problems ---\n", mods.size(), activeMods, disabledMods, problems) + manager->modsInfoForClipboard + fmt::format("--- {} mods | {} loaded | {} disabled | {} problems ---", mods.size(), activeMods, disabledMods, problems);
+		m_fields->manager->modsInfoForClipboard = fmt::format("--- {} mods | {} loaded | {} disabled | {} problems ---\n", mods.size(), activeMods, disabledMods, problems) + m_fields->manager->modsInfoForClipboard + fmt::format("--- {} mods | {} loaded | {} disabled | {} problems ---", mods.size(), activeMods, disabledMods, problems);
 		
-		// log::info("modsInfoForClipboard: {}", manager->modsInfoForClipboard);
+		// log::info("modsInfoForClipboard: {}", m_fields->manager->modsInfoForClipboard);
 		
 		return true;
 	}

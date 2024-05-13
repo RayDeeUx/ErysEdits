@@ -6,25 +6,27 @@
 using namespace geode::prelude;
 
 class $modify(MyEndLevelLayer, EndLevelLayer) {
+	struct Fields {
+		Manager* manager = Manager::getSharedInstance();
+	};
 	static void onModify(auto& self) {
 		(void) self.setHookPriority("EndLevelLayer::customSetup", INT32_MIN + 1);
 	}
 	void onMenu(cocos2d::CCObject* sender) {
-		if (Utils::modEnabled() && Utils::get("hideLevelCompleteVisuals")) { Manager::getSharedInstance()->isLevelComplete = false; }
+		if (Utils::modEnabled() && Utils::get("hideLevelCompleteVisuals")) { m_fields->manager->isLevelComplete = false; }
 		EndLevelLayer::onMenu(sender);
 	}
 	void onErysEditsCompleteText(cocos2d::CCObject* sender) {
 		if (!Utils::modEnabled() || Utils::getInt("showModsListMode") == 0) { return; }
-		auto manager = Manager::getSharedInstance();
 		// apparently i can't use nullptr delegate here, so have a hacky workaround
-		clipboard::write(manager->modsInfoForClipboard);
+		clipboard::write(m_fields->manager->modsInfoForClipboard);
 		FLAlertLayer::create(
 			"T&^JKIU*HBJUDRFGCHU&^TRDFCGVBJHU*^%RDF",
 			fmt::format(
 				"<cj>[{}]</c>\n{}\n<cj>[{}]</c>",
-				manager->modsListMode,
-				manager->modsInfo,
-				manager->modsListMode
+				m_fields->manager->modsListMode,
+				m_fields->manager->modsInfo,
+				m_fields->manager->modsListMode
 			),
 			"Close"
 		)->show();

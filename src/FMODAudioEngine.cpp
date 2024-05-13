@@ -47,9 +47,8 @@ class $modify(MyFMODAudioEngine, FMODAudioEngine) {
 	}
 	#endif
 	void playEffect(gd::string p0, float p1, float p2, float p3) {
-		auto manager = Manager::getSharedInstance();
-		auto badSFX = manager->badSFX;
-		if (std::find(badSFX.begin(), badSFX.end(), std::string(p0)) == badSFX.end() || Utils::isSceneRunning("PauseLayer") || !(Utils::modEnabled() && Utils::get("disableRewardsSFX")) || !manager->isPlayerDead) {
+		auto badSFX = m_fields->manager->badSFX;
+		if (std::find(badSFX.begin(), badSFX.end(), std::string(p0)) == badSFX.end() || Utils::isSceneRunning("PauseLayer") || !(Utils::modEnabled() && Utils::get("disableRewardsSFX")) || !m_fields->manager->isPlayerDead) {
 			FMODAudioEngine::sharedEngine()->playEffect(p0, p1, p2, p3);
 		}
 	}

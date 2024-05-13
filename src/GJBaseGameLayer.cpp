@@ -5,13 +5,15 @@
 using namespace geode::prelude;
 
 class $modify(MyGJBaseGameLayer, GJBaseGameLayer) {
+	struct Fields {
+		Manager* manager = Manager::getSharedInstance();
+	};
 	void update(float dt) {
 		GJBaseGameLayer::update(dt);
-		auto manager = Manager::getSharedInstance();
 		#ifndef __APPLE__
-		manager->currentChannel = m_gameState.m_currentChannel;
+		m_fields->manager->currentChannel = m_gameState.m_currentChannel;
 		#endif
-		if (Utils::get("debugTextToggle") && Utils::get("chromaDebugText") && !manager->chromaStarted) {
+		if (Utils::get("debugTextToggle") && Utils::get("chromaDebugText") && !m_fields->manager->chromaStarted) {
 			if (auto pl = PlayLayer::get()) {
 				if (auto debugTextNode = pl->getChildByID("debug-text")) {
 					if (typeinfo_cast<CCLabelBMFont*>(debugTextNode) && debugTextNode->isVisible()) {
@@ -30,7 +32,7 @@ class $modify(MyGJBaseGameLayer, GJBaseGameLayer) {
 						auto sequence = CCSequence::create(tintOne, tintTwo, tintThree, tintFour, tintFive, tintSix, nullptr);
 						auto repeat = CCRepeatForever::create(sequence);
 						debugTextNode->runAction(repeat);
-						manager->chromaStarted = true;
+						m_fields->manager->chromaStarted = true;
 					}
 				}
 			}
@@ -39,11 +41,10 @@ class $modify(MyGJBaseGameLayer, GJBaseGameLayer) {
 	void toggleDualMode(GameObject * p0, bool p1, PlayerObject * p2, bool p3) {
 		GJBaseGameLayer::toggleDualMode(p0, p1, p2, p3);
 		if (Utils::modEnabled()) {
-			auto manager = Manager::getSharedInstance();
-			if (Utils::get("addPlayerInfo")) { manager->isDualsTime = p1; }
+			if (Utils::get("addPlayerInfo")) { m_fields->manager->isDualsTime = p1; }
 			// i've had horror stories of hooking playlayer onentertransitiondidfinish so im hooking it here instead
-			if (Utils::get("hideLevelCompleteVisuals")) { manager->isLevelComplete = false; }
-			manager->isPlayerDead = false;
+			if (Utils::get("hideLevelCompleteVisuals")) { m_fields->manager->isLevelComplete = false; }
+			m_fields->manager->isPlayerDead = false;
 		}
 	}
 };
