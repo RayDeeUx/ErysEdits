@@ -18,7 +18,7 @@ class $modify(MyPlayerObject, PlayerObject) {
 			if (Utils::get("forceStopMusicOnDeath")) {
 				auto pl = PlayLayer::get();
 				auto fmod = FMODAudioEngine::sharedEngine();
-				fmod->stopAllMusic();
+				fmod->pauseAllMusic();
 				if (this == pl->m_player2 && pl->m_level->m_twoPlayerMode) {
 					PlayerObject::playerDestroyed(p0);
 					return; // avoid stopping sfx twice -- thank you clicksounds
