@@ -6,7 +6,7 @@
 using namespace geode::prelude;
 
 static std::regex songEffectRegex(R"(.*(?:\\|\/)(\S+)\.(mp3|ogg|wav|flac))", std::regex::optimize | std::regex::icase);
-static std::regex geodeAudioRegex(R"(([a-z0-9\-_]+\.[a-z0-9\-_]+)(?:\\|\/)([\S ]+)\.(mp3|ogg|wav|flac))", std::regex::optimize | std::regex::icase);
+static std::regex geodeAudioRegex(R"(((?!\S+geode)(?:([a-z0-9\-_]+\.[a-z0-9\-_]+)(?:\\|\/))([\S ]+)\.(mp3|ogg|wav|flac)$)", std::regex::optimize | std::regex::icase);
 
 class $modify(MyFMODAudioEngine, FMODAudioEngine) {
 	struct Fields {
@@ -21,7 +21,7 @@ class $modify(MyFMODAudioEngine, FMODAudioEngine) {
 				if (auto mod = Utils::getMod(geodeMatch[1].str())) {
 					result = fmt::format("[From {}]", mod->getName());
 				} else {
-					result = fmt::format("[From {}'s config]", geodeMatch[1].str());
+					result = "[From another Geode mod]";
 				}
 			}
 		} else if (std::regex_match(path, match, songEffectRegex)) {
@@ -29,7 +29,7 @@ class $modify(MyFMODAudioEngine, FMODAudioEngine) {
 				if (auto mod = Utils::getMod(geodeMatch[1].str())) {
 					result = fmt::format("[From {}]", mod->getName());
 				} else {
-					result = fmt::format("[From {}]", geodeMatch[1].str());
+					result = "[From another Geode mod]";
 				}
 			} else {
 				result = fmt::format("{}.{}", match[1].str(), match[2].str());
