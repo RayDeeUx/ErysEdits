@@ -13,6 +13,7 @@ class $modify(MyFMODAudioEngine, FMODAudioEngine) {
 		Manager* manager = Manager::getSharedInstance();
 	};
 	std::string parsePath(std::string path) {
+		log::info("path: {}", path);
 		std::smatch match;
 		std::smatch geodeMatch;
 		std::string result = "";
