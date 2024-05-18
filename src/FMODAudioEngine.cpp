@@ -17,7 +17,7 @@ class $modify(MyFMODAudioEngine, FMODAudioEngine) {
 		std::smatch match;
 		std::smatch geodeMatch;
 		std::string result = "";
-		path = std::regex_replace(path, std::regex("com\\.geode\\.launcher"), "");
+		path = std::regex_replace(path, std::regex("com\.geode\.launcher"), "");
 		if (path.find("geode") != std::string::npos && (path.find("mods") != std::string::npos || path.find("config") != std::string::npos)) {
 			if (std::regex_search(path, geodeMatch, geodeAudioRegex)) {
 				if (auto mod = Utils::getMod(geodeMatch[1].str())) {
