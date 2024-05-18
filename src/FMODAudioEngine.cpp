@@ -6,7 +6,7 @@
 using namespace geode::prelude;
 
 static std::regex songEffectRegex(R"(.*(?:\\|\/)(\S+)\.(mp3|ogg|wav|flac))", std::regex::optimize | std::regex::icase);
-static std::regex geodeAudioRegex(R"(((?!\S+geode)(?:([a-z0-9\-_]+\.[a-z0-9\-_]+)(?:\\|\/))([\S ]+)\.(mp3|ogg|wav|flac)))", std::regex::optimize | std::regex::icase);
+static std::regex geodeAudioRegex(R"(((?!\S+geode)(?:\\|\/)(?:([a-z0-9\-_]+\.[a-z0-9\-_]+)(?:\\|\/))([\S ]+)\.(mp3|ogg|wav|flac))$)", std::regex::optimize | std::regex::icase);
 
 class $modify(MyFMODAudioEngine, FMODAudioEngine) {
 	struct Fields {
@@ -17,7 +17,7 @@ class $modify(MyFMODAudioEngine, FMODAudioEngine) {
 		std::smatch match;
 		std::smatch geodeMatch;
 		std::string result = "";
-		if (path.find("geode") != std::string::npos && (path.find("mods") != std::string::npos || path.find("config") != std::string::npos) && path.find("geode.launcher") == std::string::npos) {
+		if (path.find("geode") != std::string::npos && (path.find("mods") != std::string::npos || path.find("config") != std::string::npos)) {
 			if (std::regex_search(path, geodeMatch, geodeAudioRegex)) {
 				if (auto mod = Utils::getMod(geodeMatch[1].str())) {
 					result = fmt::format("[From {}]", mod->getName());
