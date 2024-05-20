@@ -7,9 +7,6 @@ using namespace geode::prelude;
 using namespace keybinds;
 
 class $modify(MyDemonFilterSelectLayer, DemonFilterSelectLayer) {
-	static void onModify(auto& self) {
-		(void) self.setHookPriority("DemonFilterSelectLayer::init", INT32_MIN + 1);
-	}
 	void defineKeybind(const char* id, std::function<void()> callback) {
 		this->template addEventListener<InvokeBindFilter>([=](InvokeBindEvent* event) {
 			if (event->isDown()) {
@@ -20,45 +17,6 @@ class $modify(MyDemonFilterSelectLayer, DemonFilterSelectLayer) {
 	}
 	bool init() {
 		if (!DemonFilterSelectLayer::init()) { return false; }
-		this->setID("DemonFilterSelectLayer");
-		if (auto ccLayer = getChildOfType<CCLayer>(this, 0)) {
-			ccLayer->setID("main-menu");
-			auto ccLayerChildren = ccLayer->getChildren();
-			for (int i = ccLayer->getChildrenCount(); i-- > 0; ) {
-				if (auto ccMenu = typeinfo_cast<CCMenu*>(ccLayerChildren->objectAtIndex(i))) {
-					ccMenu->setID("demon-filters");
-					break;
-				}
-			}
-		} else {
-			return true;
-		}
-		if (auto demonFilters = getChildByIDRecursive("demon-filters")) {
-			auto demonFiltersChildren = demonFilters->getChildren();
-			if (auto child = demonFiltersChildren->objectAtIndex(0)) {
-				if (child->getTag() == 0) typeinfo_cast<CCMenuItemSpriteExtra*>(child)->setID("all-demon-filter-button");
-			}
-			if (auto child = demonFiltersChildren->objectAtIndex(1)) {
-				if (child->getTag() == 7) typeinfo_cast<CCMenuItemSpriteExtra*>(child)->setID("easy-demon-filter-button");
-			}
-			if (auto child = demonFiltersChildren->objectAtIndex(2)) {
-				if (child->getTag() == 8) typeinfo_cast<CCMenuItemSpriteExtra*>(child)->setID("medium-demon-filter-button");
-			}
-			if (auto child = demonFiltersChildren->objectAtIndex(3)) {
-				if (child->getTag() == 6) typeinfo_cast<CCMenuItemSpriteExtra*>(child)->setID("hard-demon-filter-button");
-			}
-			if (auto child = demonFiltersChildren->objectAtIndex(4)) {
-				if (child->getTag() == 9) typeinfo_cast<CCMenuItemSpriteExtra*>(child)->setID("insane-demon-filter-button");
-			}
-			if (auto child = demonFiltersChildren->objectAtIndex(5)) {
-				if (child->getTag() == 10) typeinfo_cast<CCMenuItemSpriteExtra*>(child)->setID("extreme-demon-filter-button");
-			}
-			if (auto child = demonFiltersChildren->objectAtIndex(6)) {
-				typeinfo_cast<CCMenuItemSpriteExtra*>(child)->setID("close-button");
-			}
-		} else {
-			return true;
-		}
 		if (getChildByIDRecursive("all-demon-filter-button")) {
 			this->defineKeybind("level-search-all-demons"_spr, [this]() {
 				if (Utils::modEnabled() && Utils::get("demonFilter")) {

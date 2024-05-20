@@ -42,7 +42,6 @@ add_library(
 	src/LikeItemLayer.cpp
 	src/MenuLayer.cpp
 	src/MoreOptionsLayer.cpp
-	src/MoreSearchLayer.cpp
 	src/OptionsLayer.cpp
 	src/PlayerObject.cpp
 	src/PlayLayer.cpp
