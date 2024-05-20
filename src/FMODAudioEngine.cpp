@@ -13,11 +13,12 @@ class $modify(MyFMODAudioEngine, FMODAudioEngine) {
 		Manager* manager = Manager::getSharedInstance();
 	};
 	std::string parsePath(std::string path) {
-		log::info("path: {}", path);
+		log::info("path before: {}", path);
 		std::smatch match;
 		std::smatch geodeMatch;
 		std::string result = "";
 		path = std::regex_replace(path, std::regex("com\.geode\.launcher"), "");
+		log::info("path after: {}", path);
 		if (path.find("geode") != std::string::npos && (path.find("mods") != std::string::npos || path.find("config") != std::string::npos)) {
 			if (std::regex_search(path, geodeMatch, geodeAudioRegex)) {
 				if (auto mod = Utils::getMod(geodeMatch[1].str())) {
@@ -25,6 +26,7 @@ class $modify(MyFMODAudioEngine, FMODAudioEngine) {
 				} else {
 					result = "[From another Geode mod]";
 				}
+				log::info("geodeMatch[1].str(): {}", geodeMatch[1].str());
 			}
 		} else if (std::regex_match(path, match, songEffectRegex)) {
 			if (std::regex_search(path, geodeMatch, geodeAudioRegex)) {
@@ -33,6 +35,7 @@ class $modify(MyFMODAudioEngine, FMODAudioEngine) {
 				} else {
 					result = "[From another Geode mod]";
 				}
+				log::info("geodeMatch[1].str(): {}", geodeMatch[1].str());
 			} else {
 				result = fmt::format("{}.{}", match[1].str(), match[2].str());
 			}
