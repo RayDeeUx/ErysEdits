@@ -37,9 +37,9 @@ class $modify(MyFLAlertLayer, FLAlertLayer) {
 					btn1,
 					btn2,
 					420.f,
-					true,
+					false,
 					height,
-					1.f
+					.69f
 				);
 			} else {
 				bool desiredScroll = scroll;
