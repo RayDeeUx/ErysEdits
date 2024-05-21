@@ -19,8 +19,9 @@ class $modify(MyGauntletSelectLayer, GauntletSelectLayer) {
 		}, id);
 	}
 	void findCurrentGauntletPageUsing(CCNode* pageButtons) {
-		for (int i = 0; i < pageButtons->getChildrenCount(); i++) {
-			if (const auto ccSprite = typeinfo_cast<CCSprite*>(pageButtons->getChildren()->objectAtIndex(i))) {
+		auto pageButtonsChildren = CCArrayExt<CCNode*>(pageButtons->getChildren());
+		for (int i = 0; i < pageButtonsChildren.size(); i++) {
+			if (const auto ccSprite = typeinfo_cast<CCSprite*>(pageButtonsChildren[i])) {
 				if (ccSprite->getDisplayedColor() == ccColor3B({255, 255, 255})) {
 					m_fields->currentGauntletPage = (i + 1);
 				}

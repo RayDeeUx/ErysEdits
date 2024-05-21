@@ -77,7 +77,7 @@ namespace Utils {
 
 	void restoreOrigGMGVs(GameManager* gameManager, bool changeCanCall, bool isEnteringLevel) {
 		// do NOT touch isEnteringLevel param. it is unused but i don't want to remove it and break everything
-		auto manager = Manager::getSharedInstance();
+		Manager* manager = Manager::getSharedInstance();
 		
 		if (Utils::modEnabled() && Utils::get("unverifiedPercent")) {
 			gameManager->m_showProgressBar = manager->originalShowProgressBarValue;
@@ -99,9 +99,9 @@ namespace Utils {
 		}
 	}
 
-	void applyGMGVs(bool isLevelVerified) {
-		auto manager = Manager::getSharedInstance();
-		auto gameManager = GameManager::get();
+	void applyGMGVs(const bool isLevelVerified) {
+		Manager* manager = Manager::getSharedInstance();
+		GameManager* gameManager = GameManager::get();
 		if (Utils::modEnabled() && Utils::get("unverifiedPercent")) {
 			if (isLevelVerified) {
 				gameManager->m_showProgressBar = manager->originalShowProgressBarValue;

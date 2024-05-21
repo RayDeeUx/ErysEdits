@@ -11,6 +11,7 @@ class $modify(MyPlayLayer, PlayLayer) {
 	struct Fields {
 		int jumps = 0;
 		Manager* manager = Manager::getSharedInstance();
+		GameManager* gameManager = GameManager::get();
 		#ifdef __APPLE__
 		const std::map<int, std::string> miscIDToSetting = {
 			{ 1006, "disablePulse" },
@@ -21,10 +22,10 @@ class $modify(MyPlayLayer, PlayLayer) {
 		};
 		#endif
 	};
-	std::string buildPlayerStatusString(PlayerObject* thePlayer, GJGameLevel* theLevel, bool isPlayerTwo) {
+	std::string buildPlayerStatusString(PlayerObject* thePlayer) {
 		std::string status = "Unknown";
 		if (thePlayer->m_isShip) {
-			if (theLevel->isPlatformer()) { status = "Jetpack"; }
+			if (m_level->isPlatformer()) { status = "Jetpack"; }
 			else { status = "Ship"; }
 		}
 		else if (thePlayer->m_isBall) { status = "Ball"; }
@@ -68,7 +69,7 @@ class $modify(MyPlayLayer, PlayLayer) {
 
 		if (thePlayer->m_isDashing) { status = "<" + status + ">"; }
 
-		if (!isPlayerTwo) {
+		if (thePlayer == m_player2) {
 			if (m_fields->manager->isDualsTime) { status = status + " [Dual]"; }
 
 			if (m_isPracticeMode) { status = status + " {Practice}"; }
@@ -79,33 +80,33 @@ class $modify(MyPlayLayer, PlayLayer) {
 
 		return fmt::format("{:.1f}x ", thePlayer->m_playerSpeed) + status;
 	}
-	std::string buildLevelTraitsString(GJGameLevel* theLevel) {
+	std::string buildLevelTraitsString() {
 		std::string level = "Unknown";
-		if (theLevel->isPlatformer()) {
+		if (m_level->isPlatformer()) {
 			level = "Platformer";
 		} else {
 			level = "Classic";
-			if (theLevel->m_levelLength == 0.f) { level = level + " [Tiny]"; }
-			else if (theLevel->m_levelLength == 1.f) { level = level + " [Short]"; }
-			else if (theLevel->m_levelLength == 2.f) { level = level + " [Medium]"; }
-			else if (theLevel->m_levelLength == 3.f) { level = level + " [Long]"; }
+			if (m_level->m_levelLength == 0.f) { level = level + " [Tiny]"; }
+			else if (m_level->m_levelLength == 1.f) { level = level + " [Short]"; }
+			else if (m_level->m_levelLength == 2.f) { level = level + " [Medium]"; }
+			else if (m_level->m_levelLength == 3.f) { level = level + " [Long]"; }
 			else { level = level + " [XL]"; }
 		}
 
-		if (theLevel->m_levelType == GJLevelType::Editor) {
-			if (theLevel->m_isVerifiedRaw) { level = level + " (Verified)";}
+		if (m_level->m_levelType == GJLevelType::Editor) {
+			if (m_level->m_isVerifiedRaw) { level = level + " (Verified)";}
 			else { level = level + " (Unverified)"; }
 		} else {
-			if (theLevel->m_levelType == GJLevelType::Saved) { level = level + " (Online)"; }
-			else if (theLevel->m_levelType == GJLevelType::Local) { level = level + " (Official)"; }
+			if (m_level->m_levelType == GJLevelType::Saved) { level = level + " (Online)"; }
+			else if (m_level->m_levelType == GJLevelType::Local) { level = level + " (Official)"; }
 			else { level = level + " (Unknown)"; }
 		}
 
-		if (theLevel->m_twoPlayerMode) { level = level + " {2P}"; }
+		if (m_level->m_twoPlayerMode) { level = level + " {2P}"; }
 
 		if (
-			(theLevel->m_accountID.value() == 13950148 && theLevel->m_levelType == GJLevelType::Saved)
-		    || GameManager::get()->m_playerUserID.value() == 128138354 && theLevel->m_levelType != GJLevelType::Saved
+			(m_level->m_accountID.value() == 13950148 && m_level->m_levelType == GJLevelType::Saved)
+		    || m_fields->gameManager->m_playerUserID.value() == 128138354 && m_level->m_levelType != GJLevelType::Saved
 		) { level = level + " <HOMOPHOBIC>"; }
 
 		if (m_fields->manager->isLevelComplete) { level = level + " <Completed>"; }
@@ -114,11 +115,11 @@ class $modify(MyPlayLayer, PlayLayer) {
 	}
 	void levelComplete() {
 		PlayLayer::levelComplete();
-		Utils::restoreOrigGMGVs(GameManager::get());
+		Utils::restoreOrigGMGVs(m_fields->gameManager);
 		if (Utils::modEnabled() && Utils::get("hideLevelCompleteVisuals")) { m_fields->manager->isLevelComplete = true; }
 	}
 	void onQuit() {
-		Utils::restoreOrigGMGVs(GameManager::get(), true, false);
+		Utils::restoreOrigGMGVs(m_fields->gameManager, true, false);
 		if (Utils::modEnabled() && Utils::get("hideLevelCompleteVisuals")) { m_fields->manager->isLevelComplete = false; }
 		m_fields->manager->lastPlayedSong = "N/A";
 		#ifndef __APPLE__
@@ -139,7 +140,7 @@ class $modify(MyPlayLayer, PlayLayer) {
 	}
 	#ifndef __APPLE__
 	void onExit() {
-		Utils::restoreOrigGMGVs(GameManager::get(), false);
+		Utils::restoreOrigGMGVs(m_fields->gameManager, false);
 		PlayLayer::onExit();
 	}
 	#endif
@@ -147,10 +148,9 @@ class $modify(MyPlayLayer, PlayLayer) {
 		bool dontSkip = true;
 		if (Utils::modEnabled()) {
 			#ifdef __APPLE__
-			const auto mTS = m_fields->miscIDToSetting;
-			if (mTS.contains(theObject->m_objectID) && Utils::get(mTS.find(theObject->m_objectID)->second)) { dontSkip = false; }
+			if (m_fields->miscIDToSetting.contains(theObject->m_objectID) && Utils::get(m_fields->miscIDToSetting.find(theObject->m_objectID)->second)) { dontSkip = false; }
 			#endif
-			if (m_level->m_levelType == GJLevelType::Saved && theObject->m_isHighDetail && GameManager::get()->getGameVariable("0108") && (Utils::getInt("alwaysLDM") == 3 || (Utils::getInt("alwaysLDM") == 2 && m_level->m_stars.value() != 0) || (Utils::getInt("alwaysLDM") == 1 && m_level->m_stars.value() == 0))) {
+			if (m_level->m_levelType == GJLevelType::Saved && theObject->m_isHighDetail && m_fields->gameManager->getGameVariable("0108") && (Utils::getInt("alwaysLDM") == 3 || (Utils::getInt("alwaysLDM") == 2 && m_level->m_stars.value() != 0) || (Utils::getInt("alwaysLDM") == 1 && m_level->m_stars.value() == 0))) {
 				dontSkip = false;
 			}
 			if (Utils::get("forceVisibleEffect") && theObject->m_hasNoEffects) {
@@ -164,26 +164,35 @@ class $modify(MyPlayLayer, PlayLayer) {
 	}
 	void postUpdate(float dt) {
 		PlayLayer::postUpdate(dt);
-		if (!Utils::modEnabled()) {
-			return;
-		} else {
-			if (Utils::get("debugTextToggle")) {
-				if (const auto debugText = getChildByID("debug-text")) {
-					auto theLevel = m_level;
-					
-					std::string status = MyPlayLayer::buildPlayerStatusString(m_player1, theLevel, false);
+		if (!Utils::modEnabled() || !Utils::get("debugTextToggle")) {
+			// in case either softtoggle is disabled
+			if (const auto debugText = getChildByID("debug-text")) {
+				if (const auto debugTextNode = typeinfo_cast<CCLabelBMFont*>(debugText)) {
+					debugTextNode->setColor(ccColor3B(255, 255, 255));
+					debugTextNode->setOpacity(150);
+				}
+			}
+		} else if (Utils::modEnabled()) {
+			if (const auto debugText = getChildByID("debug-text")) {
+				if (Utils::get("debugTextToggle")) {
+					std::string status = MyPlayLayer::buildPlayerStatusString(m_player1);
 					std::string statusTwo = "";
-					if (m_fields->manager->isDualsTime) { statusTwo = MyPlayLayer::buildPlayerStatusString(m_player2, theLevel, true); }
-					std::string level = MyPlayLayer::buildLevelTraitsString(theLevel);
+					if (m_fields->manager->isDualsTime) { statusTwo = MyPlayLayer::buildPlayerStatusString(m_player2); }
+					std::string level = MyPlayLayer::buildLevelTraitsString();
 					
 					std::string ending = "\n-- Area --\n";
-					std::string endingTwo = "\n-- Perf --\n--";
+
+					/*
+					forgor what this was used for
+
 					for (unsigned int i = getChildrenCount(); i-- > 0; ) {
 						auto theObject = getChildren()->objectAtIndex(i);
 						if (const auto ccCircleWave = typeinfo_cast<CCCircleWave*>(theObject)) {
 							ccCircleWave->setVisible(false);
 						}
 					}
+					*/
+
 					if (const auto debugTextNode = typeinfo_cast<CCLabelBMFont*>(debugText)) {
 						if (debugTextNode->isVisible()) {
 							if (!Utils::get("chromaDebugText")) {
@@ -228,7 +237,7 @@ class $modify(MyPlayLayer, PlayLayer) {
 								debugTextContents = std::regex_replace(debugTextContents, std::regex("\nRotate: 0\n"), "\n");
 								debugTextContents = std::regex_replace(debugTextContents, std::regex("\nScale: 0\n"), "\n");
 								debugTextContents = std::regex_replace(debugTextContents, std::regex("\nFollow: 0\n"), "\n");
-								debugTextContents = std::regex_replace(debugTextContents, std::regex(endingTwo), "\n--");
+								debugTextContents = std::regex_replace(debugTextContents, std::regex("\n-- Perf --\n--"), "\n--");
 								debugTextContents = std::regex_replace(debugTextContents, std::regex("\nMove: 0 / 0"), "");
 								debugTextContents = std::regex_replace(debugTextContents, std::regex("\nRotate: 0 / 0"), "");
 								debugTextContents = std::regex_replace(debugTextContents, std::regex("\nScale: 0 / 0"), "");
@@ -277,7 +286,7 @@ class $modify(MyPlayLayer, PlayLayer) {
 								debugTextContents = std::regex_replace(debugTextContents, std::regex("-- Perf --"), "-- Performance --");
 							}
 							if (Utils::get("tapsToClicks")) {
-								if (theLevel->isPlatformer()) {
+								if (m_level->isPlatformer()) {
 									debugTextContents = std::regex_replace(debugTextContents, std::regex("Taps: "), "Actions: ");
 								} else {
 									debugTextContents = std::regex_replace(debugTextContents, std::regex("Taps: "), "Clicks: ");
@@ -321,14 +330,15 @@ class $modify(MyPlayLayer, PlayLayer) {
 				}
 			}
 			if (Utils::get("hideLevelCompleteVisuals") && m_fields->manager->isLevelComplete) {
-				auto mainNode = getChildByIDRecursive("main-node");
-				for (int k = 0; k < mainNode->getChildrenCount(); k++) {
-					if (const auto whereEverythingIs = typeinfo_cast<CCLayer*>(mainNode->getChildren()->objectAtIndex(k))) {
-						for (int j = 0; j < whereEverythingIs->getChildrenCount(); j++) {
-							if (const auto ccCircleWave = typeinfo_cast<CCCircleWave*>(whereEverythingIs->getChildren()->objectAtIndex(j))) {
-								ccCircleWave->setVisible(false);
-							} else if (const auto ccLightFlash = typeinfo_cast<CCLightFlash*>(whereEverythingIs->getChildren()->objectAtIndex(j))) {
-								ccLightFlash->setVisible(false);
+				if (const auto mainNode = getChildByIDRecursive("main-node")) {
+					for (CCNode* mainNodeChild : mainNode->getChildren()) {
+						if (const auto whereEverythingIs = typeinfo_cast<CCLayer*>(mainNodeChild)) {
+							for (CCNode* childTwo : whereEverythingIs->getChildren()) {
+								if (const auto ccCircleWave = typeinfo_cast<CCCircleWave*>(childTwo)) {
+									ccCircleWave->setVisible(false);
+								} else if (const auto ccLightFlash = typeinfo_cast<CCLightFlash*>(childTwo)) {
+									ccLightFlash->setVisible(false);
+								}
 							}
 						}
 					}

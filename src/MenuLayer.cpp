@@ -8,16 +8,15 @@ using namespace geode::prelude;
 class $modify(MyMenuLayer, MenuLayer) {
 	struct Fields {
 		Manager* manager = Manager::getSharedInstance();
+		GameManager* gameManager = GameManager::get();
 	};
 	bool init() {
 		if (!MenuLayer::init()) { return false; }
 		if (m_fields->manager->hasCalledAlready) { return true; }
 		m_fields->manager->hasCalledAlready = true;
 
-		const auto gameManager = GameManager::get();
-	
-		m_fields->manager->originalShowProgressBarValue = gameManager->m_showProgressBar;
-		m_fields->manager->originalShowPercentageValue = gameManager->getGameVariable("0040");
+		m_fields->manager->originalShowProgressBarValue = m_fields->gameManager->m_showProgressBar;
+		m_fields->manager->originalShowPercentageValue = m_fields->gameManager->getGameVariable("0040");
 		
 		const auto geode = Loader::get();
 		auto mods = geode->getAllMods();
