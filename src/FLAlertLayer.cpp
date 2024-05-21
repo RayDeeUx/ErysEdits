@@ -46,14 +46,14 @@ class $modify(MyFLAlertLayer, FLAlertLayer) {
 				desiredScroll = (Utils::getInt("textScroll") != -1);
 			}
 		}
-		log::info("title: {}", title);
+		log::info("titleString: {}", titleString);
 		log::info("desc: {}", desc);
 		if (btn1) log::info("btn1: {}", btn1);
 		if (btn2) log::info("btn2: {}", btn2);
-		log::info("width: {}", width);
-		log::info("scroll: {}", scroll);
+		log::info("desiredWidth: {}", desiredWidth);
+		log::info("desiredScroll: {}", desiredScroll);
 		log::info("height: {}", height);
-		log::info("textScale: {}", textScale);
+		log::info("desiredScale: {}", desiredScale);
 		return FLAlertLayer::init(delegate, title, desc, btn1, btn2, desiredWidth, desiredScroll, height, desiredScale);
 	}
 };
