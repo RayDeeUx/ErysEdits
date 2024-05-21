@@ -21,7 +21,7 @@ class $modify(MyFLAlertLayer, FLAlertLayer) {
 				manager->installedMods,
 				manager->disabledMods,
 				manager->problems
-			);
+			).c_str();
 		} else if (titleString == "Always Active LDM (READ!)" || titleString.find("Show/Copy Mods List") != std::string::npos) {
 			desiredScroll = true;
 			desiredScale = 1.f;
