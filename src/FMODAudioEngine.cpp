@@ -14,13 +14,6 @@ class $modify(MyFMODAudioEngine, FMODAudioEngine) {
 		int desiredIndex = 2; // easier place to change index
 	};
 	std::string extractModID(const std::smatch& theMatch) {
-		/*
-		log::info("{}", theMatch.size());
-		for (auto matchString& : theMatch) {
-			log::info("matchString: {}", matchString.str());
-		}
-		log::info("theMatch[m_fields->desiredIndex].str(): {}", theMatch[m_fields->desiredIndex].str());
-		*/
 		if (const Mod* mod = Utils::getMod(theMatch[m_fields->desiredIndex].str())) {
 			return fmt::format("[From {}]", mod->getName());
 		} else {
@@ -36,12 +29,22 @@ class $modify(MyFMODAudioEngine, FMODAudioEngine) {
 		// log::info("path after: {}", path);
 		if (path.find("geode") != std::string::npos && (path.find("mods") != std::string::npos || path.find("config") != std::string::npos)) {
 			if (std::regex_search(path, geodeMatch, geodeAudioRegex)) {
+				log::info("{}", geodeMatch.size());
+				for (auto matchString& : geodeMatch) {
+					log::info("matchString: {}", matchString.str());
+				}
+				log::info("theMatch[m_fields->desiredIndex].str(): {}", geodeMatch[m_fields->desiredIndex].str());
 				result = extractModID(geodeMatch);
 			} else {
 				result = "[Something went wrong...]";
 			}
 		} else if (std::regex_match(path, match, songEffectRegex)) {
 			if (std::regex_search(path, geodeMatch, geodeAudioRegex)) {
+				log::info("{}", geodeMatch.size());
+				for (auto matchString& : geodeMatch) {
+					log::info("matchString: {}", matchString.str());
+				}
+				log::info("theMatch[m_fields->desiredIndex].str(): {}", geodeMatch[m_fields->desiredIndex].str());
 				result = extractModID(geodeMatch);
 			} else {
 				result = fmt::format("{}.{}", match[1].str(), match[2].str());
