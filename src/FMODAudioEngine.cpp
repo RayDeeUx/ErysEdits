@@ -11,35 +11,36 @@ static std::regex geodeAudioRegex(R"(((?!\S+geode)(?:\\|\/)(?:([a-z0-9\-_]+\.[a-
 class $modify(MyFMODAudioEngine, FMODAudioEngine) {
 	struct Fields {
 		Manager* manager = Manager::getSharedInstance();
+		int desiredIndex = 2; // easier place to change index
 	};
+	std::string extractModID(const std::smatch& theMatch) {
+		log::info("{}", theMatch.size());
+		for (auto matchString& : theMatch) {
+			log::info("matchString: {}", matchString.str());
+		}
+		log::info("theMatch[m_fields->desiredIndex].str(): {}", theMatch[m_fields->desiredIndex].str());
+		if (const Mod* mod = Utils::getMod(theMatch[m_fields->desiredIndex].str())) {
+			return fmt::format("[From {}]", mod->getName());
+		} else {
+			return "[From another Geode mod]";
+		}
+	}
 	std::string parsePath(std::string path) {
 		log::info("path before: {}", path);
 		std::smatch match;
 		std::smatch geodeMatch;
 		std::string result = "";
-		int desiredIndex = 1;
-		#ifdef GEODE_IS_ANDROID
-		desiredIndex = 2;
-		#endif
-		path = std::regex_replace(path, std::regex("com\.geode\.launcher\."), "");
+		path = std::regex_replace(path, std::regex("com\.geode\.launcher\/"), ""); // android is cring
 		log::info("path after: {}", path);
 		if (path.find("geode") != std::string::npos && (path.find("mods") != std::string::npos || path.find("config") != std::string::npos)) {
 			if (std::regex_search(path, geodeMatch, geodeAudioRegex)) {
-				if (auto mod = Utils::getMod(geodeMatch[desiredIndex].str())) {
-					result = fmt::format("[From {}]", mod->getName());
-				} else {
-					result = "[From another Geode mod]";
-				}
-				log::info("geodeMatch[desiredIndex].str(): {}", geodeMatch[desiredIndex].str());
+				result = extractModID(geodeMatch);
+			} else {
+				result = "[Something went wrong...]";
 			}
 		} else if (std::regex_match(path, match, songEffectRegex)) {
 			if (std::regex_search(path, geodeMatch, geodeAudioRegex)) {
-				if (auto mod = Utils::getMod(geodeMatch[desiredIndex].str())) {
-					result = fmt::format("[From {}]", mod->getName());
-				} else {
-					result = "[From another Geode mod]";
-				}
-				log::info("geodeMatch[desiredIndex].str(): {}", geodeMatch[desiredIndex].str());
+				result = extractModID(geodeMatch);
 			} else {
 				result = fmt::format("{}.{}", match[1].str(), match[2].str());
 			}
@@ -52,6 +53,7 @@ class $modify(MyFMODAudioEngine, FMODAudioEngine) {
 	void preloadEffect(gd::string p0) {
 		FMODAudioEngine::sharedEngine()->preloadEffect(p0);
 		if (!PlayLayer::get()) return; // dont record files outside of playlayer
+		if (!Utils::modEnabled()) return; // ignore if mod disabled. should've done this sooner
 		m_fields->manager->lastPlayedEffect = parsePath(p0);
 	}
 	#endif
@@ -64,6 +66,7 @@ class $modify(MyFMODAudioEngine, FMODAudioEngine) {
 	void loadMusic(gd::string p0, float p1, float p2, float p3, bool p4, int p5, int p6) {
 		FMODAudioEngine::loadMusic(p0, p1, p2, p3, p4, p5, p6);
 		if (!PlayLayer::get()) return; // dont record files outside of playlayer
+		if (!Utils::modEnabled()) return; // ignore if mod disabled. should've done this sooner
 		if (std::find(m_fields->manager->vanillaSFX.begin(), m_fields->manager->vanillaSFX.end(), p0) != m_fields->manager->vanillaSFX.end()) return;
 		m_fields->manager->lastPlayedSong = parsePath(p0);
 	}
