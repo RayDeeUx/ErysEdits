@@ -19,7 +19,7 @@ class $modify(MyFMODAudioEngine, FMODAudioEngine) {
 		std::string result = "";
 		int desiredIndex = 1;
 		#ifdef GEODE_IS_ANDROID
-		desiredIndex = 3;
+		desiredIndex = 2;
 		#endif
 		path = std::regex_replace(path, std::regex("com\.geode\.launcher\."), "");
 		log::info("path after: {}", path);
