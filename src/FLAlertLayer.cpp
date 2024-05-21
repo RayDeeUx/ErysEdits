@@ -27,12 +27,12 @@ class $modify(MyFLAlertLayer, FLAlertLayer) {
 		float desiredHeight = height;
 		if (titleString.find("BRYCETANKTHRUSTBRYCETANKTHRUSTBRYCETANKTHRUST") != std::string::npos) {
 			auto manager = Manager::getSharedInstance();
-			title = fmt::format(
+			titleString = fmt::format(
 				"{} mods, {} disabled, {} problems",
 				manager->installedMods,
 				manager->disabledMods,
 				manager->problems
-			).c_str();
+			);
 			desiredHeight = 300.f;
 		} else if (titleString == "Always Active LDM (READ!)" || titleString.find("Show/Copy Mods List") != std::string::npos) {
 			desiredScroll = true;
@@ -65,6 +65,6 @@ class $modify(MyFLAlertLayer, FLAlertLayer) {
 		log::info("desiredHeight: {}", desiredHeight);
 		log::info("desiredScale: {}", desiredScale);
 		*/
-		return FLAlertLayer::init(delegate, title, desc, btn1, btn2, desiredWidth, desiredScroll, desiredHeight, desiredScale);
+		return FLAlertLayer::init(delegate, titleString.c_str(), desc, btn1, btn2, desiredWidth, desiredScroll, desiredHeight, desiredScale);
 	}
 };
