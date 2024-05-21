@@ -25,7 +25,7 @@ class $modify(MyFLAlertLayer, FLAlertLayer) {
 		float desiredScale = textScale;
 		float desiredWidth = width;
 		float desiredHeight = height;
-		if (titleString.find("T&^JKIU*HBJUDRFGCHU&^TRDFCGVBJHU*^%RDF") != std::string::npos) {
+		if (titleString.find("BRYCETANKTHRUSTBRYCETANKTHRUSTBRYCETANKTHRUST") != std::string::npos) {
 			auto manager = Manager::getSharedInstance();
 			title = fmt::format(
 				"{} mods, {} disabled, {} problems",

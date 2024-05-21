@@ -16,7 +16,7 @@ class $modify(MyEndLevelLayer, EndLevelLayer) {
 		// apparently i can't use nullptr delegate here, so have a hacky workaround
 		clipboard::write(m_fields->manager->modsInfoForClipboard);
 		FLAlertLayer::create(
-			"T&^JKIU*HBJUDRFGCHU&^TRDFCGVBJHU*^%RDF",
+			"BRYCETANKTHRUSTBRYCETANKTHRUSTBRYCETANKTHRUST",
 			fmt::format(
 				"<cj>[{}]</c>\n{}\n<cj>[{}]</c>",
 				m_fields->manager->modsListMode,
