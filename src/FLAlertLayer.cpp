@@ -22,6 +22,7 @@ class $modify(MyFLAlertLayer, FLAlertLayer) {
 		bool desiredScroll = scroll;
 		float desiredScale = textScale;
 		float desiredWidth = width;
+		float desiredHeight = height;
 		if (titleString.find("T&^JKIU*HBJUDRFGCHU&^TRDFCGVBJHU*^%RDF") != std::string::npos) {
 			auto manager = Manager::getSharedInstance();
 			title = fmt::format(
@@ -30,13 +31,19 @@ class $modify(MyFLAlertLayer, FLAlertLayer) {
 				manager->disabledMods,
 				manager->problems
 			).c_str();
+			desiredHeight = 300.f;
 		} else if (titleString == "Always Active LDM (READ!)" || titleString.find("Show/Copy Mods List") != std::string::npos) {
 			desiredScroll = true;
 			desiredScale = 1.f;
 			desiredWidth = 420.f;
+			desiredHeight = 300.f;
 		} else {
 			if (Utils::getInt("textScroll") < 1) {
-				if (!desiredScroll) { desiredScale = static_cast<float>(Utils::getDouble("textScale")); }
+				if (!desiredScroll) {
+					desiredScale = static_cast<float>(Utils::getDouble("textScale"));
+				} else {
+					desiredHeight = 300.f;
+				}
 				if (width <= 420.f) {
 					desiredWidth = static_cast<float>(width * Utils::getDouble("flAlertWidthMultiplier"));
 					if (desiredWidth >= 420.f) { desiredWidth = 420.f; }
@@ -52,8 +59,8 @@ class $modify(MyFLAlertLayer, FLAlertLayer) {
 		if (btn2) log::info("btn2: {}", btn2);
 		log::info("desiredWidth: {}", desiredWidth);
 		log::info("desiredScroll: {}", desiredScroll);
-		log::info("height: {}", height);
+		log::info("desiredHeight: {}", desiredHeight);
 		log::info("desiredScale: {}", desiredScale);
-		return FLAlertLayer::init(delegate, title, desc, btn1, btn2, desiredWidth, desiredScroll, height, desiredScale);
+		return FLAlertLayer::init(delegate, title, desc, btn1, btn2, desiredWidth, desiredScroll, desiredHeight, desiredScale);
 	}
 };
