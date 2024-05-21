@@ -41,7 +41,7 @@ class $modify(MyFMODAudioEngine, FMODAudioEngine) {
 				}
 				log::info("geodeMatch[desiredIndex].str(): {}", geodeMatch[desiredIndex].str());
 			} else {
-				result = fmt::format("{}.{}", match[desiredIndex].str(), match[2].str());
+				result = fmt::format("{}.{}", match[1].str(), match[2].str());
 			}
 		} else {
 			result = fmt::format("{}", path);
