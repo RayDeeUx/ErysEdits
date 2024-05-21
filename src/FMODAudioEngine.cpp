@@ -14,11 +14,13 @@ class $modify(MyFMODAudioEngine, FMODAudioEngine) {
 		int desiredIndex = 2; // easier place to change index
 	};
 	std::string extractModID(const std::smatch& theMatch) {
+		/*
 		log::info("{}", theMatch.size());
 		for (auto matchString& : theMatch) {
 			log::info("matchString: {}", matchString.str());
 		}
 		log::info("theMatch[m_fields->desiredIndex].str(): {}", theMatch[m_fields->desiredIndex].str());
+		*/
 		if (const Mod* mod = Utils::getMod(theMatch[m_fields->desiredIndex].str())) {
 			return fmt::format("[From {}]", mod->getName());
 		} else {
@@ -26,12 +28,12 @@ class $modify(MyFMODAudioEngine, FMODAudioEngine) {
 		}
 	}
 	std::string parsePath(std::string path) {
-		log::info("path before: {}", path);
+		// log::info("path before: {}", path);
 		std::smatch match;
 		std::smatch geodeMatch;
 		std::string result = "";
 		path = std::regex_replace(path, std::regex("com\.geode\.launcher\/"), ""); // android is cring
-		log::info("path after: {}", path);
+		// log::info("path after: {}", path);
 		if (path.find("geode") != std::string::npos && (path.find("mods") != std::string::npos || path.find("config") != std::string::npos)) {
 			if (std::regex_search(path, geodeMatch, geodeAudioRegex)) {
 				result = extractModID(geodeMatch);
