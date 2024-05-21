@@ -38,8 +38,8 @@ class $modify(MyMenuLayer, MenuLayer) {
 				activeMods++;
 			}
 			
-			m_fields->manager->modsInfoForClipboard = m_fields->manager->modsInfoForClipboard + fmt::format("- {} ({}) {} by {} [{}]\n", isEnabledClipboard, mod->getID(), mod->getName(), mod->getDevelopers().front(), mod->getVersion().toString());
-			
+			m_fields->manager->modsInfoForClipboard = m_fields->manager->modsInfoForClipboard + fmt::format("- {} ({}) {} by {} [{}]\n", isEnabledClipboard, mod->getID(), mod->getName(), mod->getDevelopers()[0], mod->getVersion().toString());
+
 			if (Utils::getInt("showModsListMode") == 4) { // mod name only
 				m_fields->manager->modsListMode = "Mod names only";
 				modsString = modsString + fmt::format("{}{}</c>, ", isEnabled, mod->getName());
@@ -48,10 +48,10 @@ class $modify(MyMenuLayer, MenuLayer) {
 				modsString = modsString + fmt::format("{}{} [{}]</c>, ", isEnabled, mod->getName(), mod->getVersion().toString());
 			} else if (Utils::getInt("showModsListMode") == 2) { // developer name and mod name only
 				m_fields->manager->modsListMode = "Dev names + mod names only";
-				modsString = modsString + fmt::format("{}{}'s {}</c>, ", isEnabled, mod->getDevelopers().front(), mod->getName());
+				modsString = modsString + fmt::format("{}{}'s {}</c>, ", isEnabled, mod->getDevelopers()[0], mod->getName());
 			} else if (Utils::getInt("showModsListMode") == 1) { // dev name, mod name, ver number
 				m_fields->manager->modsListMode = "Dev names, mod names, and version numbers";
-				modsString = modsString + fmt::format("{}{}'s {} [{}]</c>, ", isEnabled, mod->getDevelopers().front(), mod->getName(), mod->getVersion().toString());
+				modsString = modsString + fmt::format("{}{}'s {} [{}]</c>, ", isEnabled, mod->getDevelopers()[0], mod->getName(), mod->getVersion().toString());
 			}
 		
 		});

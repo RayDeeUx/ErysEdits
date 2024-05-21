@@ -5,10 +5,6 @@
 using namespace geode::prelude;
 
 class $modify(MyFLAlertLayer, FLAlertLayer) {
-	static void onModify(auto & self)
-	{
-		(void) self.setHookPriority("FLAlertLayer::init", INT32_MAX - 1);
-	}
 	bool init(FLAlertLayerProtocol* delegate, char const* title, gd::string desc, char const* btn1, char const* btn2, float width, bool scroll, float height, float textScale) {
 		if (!Utils::modEnabled()) {
 			return FLAlertLayer::init(delegate, title, desc, btn1, btn2, width, scroll, height, textScale);
