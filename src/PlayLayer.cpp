@@ -331,9 +331,9 @@ class $modify(MyPlayLayer, PlayLayer) {
 			}
 			if (Utils::get("hideLevelCompleteVisuals") && m_fields->manager->isLevelComplete) {
 				if (const auto mainNode = getChildByIDRecursive("main-node")) {
-					for (CCNode* mainNodeChild : mainNode->getChildren()) {
+					for (CCNode* mainNodeChild : CCArrayExt<CCNode*>(mainNode->getChildren())) {
 						if (const auto whereEverythingIs = typeinfo_cast<CCLayer*>(mainNodeChild)) {
-							for (CCNode* childTwo : whereEverythingIs->getChildren()) {
+							for (CCNode* childTwo : CCArrayExt<CCNode*>(whereEverythingIs->getChildren())) {
 								if (const auto ccCircleWave = typeinfo_cast<CCCircleWave*>(childTwo)) {
 									ccCircleWave->setVisible(false);
 								} else if (const auto ccLightFlash = typeinfo_cast<CCLightFlash*>(childTwo)) {

@@ -61,6 +61,6 @@ Not all features of ErysEdits are available across all platforms; check your set
 - [Cooper](https://gdbrowser.com/u/21207551), for allowing me to reuse code for custom setting headers
 - [ItzKiba](https://gdbrowser.com/u/4569963) for allowing me to reuse their chroma code from FormattedPlatformerTime
 - [CatXus](https://gdbrowser.com/u/14467409), for extensively testing this mod on Android, and for helping me sing "You Are a Pirate" from LazyTown ;)
-- [Aktimoose](https://gdbrowser.com/u/925143) for the occasional reality check
+- [Aktimoose](https://gdbrowser.com/u/925143) for extensively testing this mod on Windows, and the occasional reality check
 
 This [Geode mod](https://geode-sdk.org) is licensed under LGPLv2.
