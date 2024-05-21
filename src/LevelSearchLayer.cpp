@@ -30,7 +30,7 @@ class $modify(MyLevelSearchLayer, LevelSearchLayer) {
 			}
 			if (otherFilters->getChildByIDRecursive("advanced-filters-button")) {
 				this->defineKeybind("level-search-open-filters"_spr, [this]() {
-					if (Utils::isSceneRunning("LevelSearchLayer") && Utils::nothingElse() && typeinfo_cast<CCSprite*>(getChildByIDRecursive("other-filter-menu")->getChildByIDRecursive("advanced-filters-button")->getChildren()->objectAtIndex(0))->getColor() == ccColor3B(255, 255, 255)) {
+					if (Utils::isSceneRunning("LevelSearchLayer") && Utils::nothingElse() && typeinfo_cast<CCSprite*>(getChildByIDRecursive("other-filter-menu")->getChildByIDRecursive("advanced-filters-button")->getChildren()->objectAtIndex(0))->getColor() == ccColor3B({255, 255, 255})) {
 						if (Utils::modEnabled() && Utils::get("openFilters")) {
 							LevelSearchLayer::onMoreOptions(nullptr);
 						} else { Utils::keybindDisabledGeneric("Open Search Filters", "open advanced search filters"); }

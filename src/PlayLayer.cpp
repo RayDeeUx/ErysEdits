@@ -168,7 +168,7 @@ class $modify(MyPlayLayer, PlayLayer) {
 			// in case either softtoggle is disabled
 			if (const auto debugText = getChildByID("debug-text")) {
 				if (const auto debugTextNode = typeinfo_cast<CCLabelBMFont*>(debugText)) {
-					debugTextNode->setColor(ccColor3B(255, 255, 255));
+					debugTextNode->setColor(ccColor3B({255, 255, 255}));
 					debugTextNode->setOpacity(150);
 				}
 			}
