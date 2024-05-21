@@ -9,6 +9,15 @@ class $modify(MyFLAlertLayer, FLAlertLayer) {
 		if (!Utils::modEnabled()) {
 			return FLAlertLayer::init(delegate, title, desc, btn1, btn2, width, scroll, height, textScale);
 		}
+		log::info("delegate: {}", delegate);
+		log::info("title: {}", title);
+		log::info("desc: {}", desc);
+		log::info("btn1: {}", btn1);
+		log::info("btn2: {}", btn2);
+		log::info("width: {}", width);
+		log::info("scroll: {}", scroll);
+		log::info("height: {}", height);
+		log::info("textScale: {}", textScale);
 		// apparently i can't use nullptr delegate here, so have a hacky workaround
 		std::string titleString = title;
 		bool desiredScroll = scroll;
