@@ -14,11 +14,13 @@ class $modify(MyFMODAudioEngine, FMODAudioEngine) {
 		int desiredIndex = 2; // easier place to change index
 	};
 	std::string extractModID(const std::smatch& theMatch) {
+		/*
 		log::info("{}", theMatch.size());
 		for (auto matchString : theMatch) {
 			log::info("matchString: {}", matchString.str());
 		}
 		log::info("theMatch[m_fields->desiredIndex].str(): {}", theMatch[m_fields->desiredIndex].str());
+		*/
 		if (const Mod* mod = Utils::getMod(theMatch[m_fields->desiredIndex].str())) {
 			return fmt::format("[From {}]", mod->getName());
 		} else {
@@ -52,8 +54,8 @@ class $modify(MyFMODAudioEngine, FMODAudioEngine) {
 	#ifndef __APPLE__
 	void preloadEffect(gd::string p0) {
 		FMODAudioEngine::sharedEngine()->preloadEffect(p0);
-		if (!PlayLayer::get()) return; // dont record files outside of playlayer
 		if (!Utils::modEnabled()) return; // ignore if mod disabled. should've done this sooner
+		if (!PlayLayer::get()) return; // dont record files outside of playlayer
 		m_fields->manager->lastPlayedEffect = parsePath(p0);
 	}
 	#endif
@@ -65,8 +67,8 @@ class $modify(MyFMODAudioEngine, FMODAudioEngine) {
 	}
 	void loadMusic(gd::string p0, float p1, float p2, float p3, bool p4, int p5, int p6) {
 		FMODAudioEngine::loadMusic(p0, p1, p2, p3, p4, p5, p6);
-		if (!PlayLayer::get()) return; // dont record files outside of playlayer
 		if (!Utils::modEnabled()) return; // ignore if mod disabled. should've done this sooner
+		if (!PlayLayer::get()) return; // dont record files outside of playlayer
 		if (std::find(m_fields->manager->vanillaSFX.begin(), m_fields->manager->vanillaSFX.end(), p0) != m_fields->manager->vanillaSFX.end()) return;
 		m_fields->manager->lastPlayedSong = parsePath(p0);
 	}
