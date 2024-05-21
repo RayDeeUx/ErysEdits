@@ -28,7 +28,7 @@
 		},
 		"debugTextToggle": {
 			"name": "Enable Debug Text Changes",
-			"description": "A soft toggle for this mod's edits to the info label in PlayLayer.\n(Useful to prevent massive FPS loss for the small population of users who still have Zilko's xdBot installed before it was de-listed from the Geode index.)",
+			"description": "A soft toggle for this mod's edits to the info label in PlayLayer.\n(Useful to prevent massive FPS loss for the small population of users who have Viper's Oppenheimer mod menu installed, or still have Zilko's xdBot installed before it was de-listed from the Geode index.)",
 			"type": "bool",
 			"default": true
 		},
