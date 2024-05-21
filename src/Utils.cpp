@@ -13,11 +13,11 @@ namespace Utils {
 		});
 	}
 	
-	bool get(const std::string &setting) { return Mod::get()->getSettingValue<bool>(setting); }
+	bool get(std::string setting) { return Mod::get()->getSettingValue<bool>(setting); }
 	
-	int64_t getInt(const std::string &setting) { return Mod::get()->getSettingValue<int64_t>(setting); }
+	int64_t getInt(std::string setting) { return Mod::get()->getSettingValue<int64_t>(setting); }
 	
-	double getDouble(const std::string &setting) { return Mod::get()->getSettingValue<double>(setting); }
+	double getDouble(std::string setting) { return Mod::get()->getSettingValue<double>(setting); }
 	
 	bool modEnabled() { return Utils::get("enabled"); }
 	
@@ -51,9 +51,9 @@ namespace Utils {
 	
 	void garageNavigationDisabled() { keybindDisabledGeneric("Icon Kit Navigation", "navigate the icon kit"); }
 
-	bool isSceneRunning(const std::string &sceneName) { return CCDirector::get()->getRunningScene()->getChildByID(sceneName.c_str()); }
+	bool isSceneRunning(std::string sceneName) { return CCDirector::get()->getRunningScene()->getChildByID(sceneName.c_str()); }
 	
-	bool isSceneRunningRecursive(const std::string &sceneNameRecursive) { return CCDirector::get()->getRunningScene()->getChildByIDRecursive(sceneNameRecursive.c_str()); }
+	bool isSceneRunningRecursive(std::string sceneNameRecursive) { return CCDirector::get()->getRunningScene()->getChildByIDRecursive(sceneNameRecursive.c_str()); }
 
 	bool isProfilePage() { return isSceneRunning("ProfilePage"); }
 
@@ -144,7 +144,7 @@ namespace Utils {
 	}
 #endif
 	
-	Mod* getMod(const std::string &modID) {
+	Mod* getMod(std::string modID) {
 		return Loader::get()->getLoadedMod(modID);
 	}
 }

@@ -183,7 +183,7 @@ class $modify(MyGJGarageLayer, GJGarageLayer) {
 		if (const auto shardsMenu = getChildByIDRecursive("shards-menu")) {
 			if (Utils::getDouble("garageShardsMenu") != 1.f) {
 				shardsMenu->setScale(Utils::getDouble("garageShardsMenu"));
-				shardsMenu->setAnchorPoint({0.5f, static_cast<float>(Utils::getDouble("garageShardsMenu") - .45)});
+				shardsMenu->setAnchorPoint({0.5f, static_cast<float>(Utils::getDouble("garageShardsMenu") - .45f)});
 			}
 			#ifdef GEODE_IS_WINDOWS
 			if (shardsMenu->getChildByIDRecursive("shards-button")) {

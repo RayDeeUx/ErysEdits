@@ -61,12 +61,12 @@ class $modify(MyFMODAudioEngine, FMODAudioEngine) {
 		m_fields->manager->lastPlayedEffect = parsePath(p0);
 	}
 	#endif
-	void playEffect(const gd::string& p0, const float p1, const float p2, const float p3) {
+	void playEffect(gd::string p0, float p1, float p2, float p3) {
 		if (std::find(m_fields->badSFX.begin(), m_fields->badSFX.end(), std::string(p0)) == m_fields->badSFX.end() || Utils::isSceneRunning("PauseLayer") || !(Utils::modEnabled() && Utils::get("disableRewardsSFX")) || !m_fields->manager->isPlayerDead) {
 			FMODAudioEngine::sharedEngine()->playEffect(p0, p1, p2, p3);
 		}
 	}
-	void loadMusic(const gd::string &p0, const float p1, const float p2, const float p3, const bool p4, const int p5, const int p6) {
+	void loadMusic(gd::string p0, float p1, float p2, float p3, bool p4, int p5, int p6) {
 		FMODAudioEngine::loadMusic(p0, p1, p2, p3, p4, p5, p6);
 		if (!Utils::modEnabled()) return; // ignore if mod disabled. should've done this sooner
 		if (!PlayLayer::get()) return; // dont record files outside of playlayer

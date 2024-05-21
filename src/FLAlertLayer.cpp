@@ -8,10 +8,10 @@ class $modify(MyFLAlertLayer, FLAlertLayer) {
 	struct Fields {
 		Manager* manager = Manager::getSharedInstance();
 	};
-	bool init(FLAlertLayerProtocol* delegate, char const* title, const gd::string &desc, char const* btn1, char const* btn2, const float width, const bool scroll, const float height, const float textScale) {
+	bool init(FLAlertLayerProtocol* delegate, char const* title, gd::string desc, char const* btn1, char const* btn2, float width, bool scroll, float height, float textScale) {
 		if (Utils::modEnabled()) {
 			// apparently i can't use nullptr delegate here, so have a hacky workaround
-			const std::string titleString = title;
+			std::string titleString = title;
 			if (titleString.find("T&^JKIU*HBJUDRFGCHU&^TRDFCGVBJHU*^%RDF") != std::string::npos) {
 				return FLAlertLayer::init(
 					delegate,
@@ -46,9 +46,9 @@ class $modify(MyFLAlertLayer, FLAlertLayer) {
 				float desiredScale = textScale;
 				float desiredWidth = width;
 				if (Utils::getInt("textScroll") < 1) {
-					if (!desiredScroll) { desiredScale = static_cast<float>(Utils::getDouble("textScale")); }
+					if (!desiredScroll) { desiredScale = Utils::getDouble("textScale"); }
 					if (width <= 420.f) {
-						desiredWidth = static_cast<float>(width * Utils::getDouble("flAlertWidthMultiplier"));
+						desiredWidth = width * Utils::getDouble("flAlertWidthMultiplier");
 						if (desiredWidth >= 420.f) { desiredWidth = 420.f; }
 					}
 				} else {
