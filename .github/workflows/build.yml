@@ -38,8 +38,8 @@ jobs:
         with:
           # build-config: RelWithDebInfo # comment out to Release mode
           # export-pdb: true # comment out to Release mode
-          bindings: "RayDeeUx/bindings" # comment this out to swap to "geode-sdk/bindings"
-          bindings-ref: "erysedits" # comment this out to use default branch
+          # bindings: "RayDeeUx/bindings" # comment this out to swap to "geode-sdk/bindings"
+          # bindings-ref: "erysedits" # comment this out to use default branch
           combine: true
           target: ${{ matrix.config.target }}
 
