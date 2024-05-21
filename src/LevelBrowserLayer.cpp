@@ -28,7 +28,7 @@ class $modify(MyLevelBrowserLayer, LevelBrowserLayer) {
 			m_fields->manager->isInSavedLevels = false;
 		}
 		if (searchObject->m_searchType == SearchType::MyLevels && Utils::modEnabled() && Utils::get("compactEditorLevels")) {
-			if (auto deleteMenu = getChildByIDRecursive("delete-menu")) {
+			if (const auto deleteMenu = getChildByIDRecursive("delete-menu")) {
 				// hide the deletion checkboxes because every level in the list has been cast to BoomListType::Level4
 				deleteMenu->setVisible(false);
 				getChildByIDRecursive("select-all-text")->setVisible(false);

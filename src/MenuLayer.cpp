@@ -13,13 +13,13 @@ class $modify(MyMenuLayer, MenuLayer) {
 		if (!MenuLayer::init()) { return false; }
 		if (m_fields->manager->hasCalledAlready) { return true; }
 		m_fields->manager->hasCalledAlready = true;
-		
-		auto gameManager = GameManager::get();
+
+		const auto gameManager = GameManager::get();
 	
 		m_fields->manager->originalShowProgressBarValue = gameManager->m_showProgressBar;
 		m_fields->manager->originalShowPercentageValue = gameManager->getGameVariable("0040");
 		
-		auto geode = Loader::get();
+		const auto geode = Loader::get();
 		auto mods = geode->getAllMods();
 		
 		auto activeMods = 0;
@@ -28,7 +28,7 @@ class $modify(MyMenuLayer, MenuLayer) {
 		
 		std::string modsString = "";
 		
-		std::for_each(mods.begin(), mods.end(), [&](const Mod *mod) {
+		std::ranges::for_each(mods, [&](const Mod *mod) {
 			std::string isEnabled = "<cg>";
 			std::string isEnabledClipboard = "{Enabled}";
 			if (!mod->isEnabled()) {
@@ -39,7 +39,7 @@ class $modify(MyMenuLayer, MenuLayer) {
 				activeMods++;
 			}
 			
-			m_fields->manager->modsInfoForClipboard = m_fields->manager->modsInfoForClipboard + fmt::format("- {} ({}) {} by {} [{}]\n", isEnabledClipboard, mod->getID(), mod->getName(), mod->getDeveloper(), mod->getVersion().toString());
+			m_fields->manager->modsInfoForClipboard = m_fields->manager->modsInfoForClipboard + fmt::format("- {} ({}) {} by {} [{}]\n", isEnabledClipboard, mod->getID(), mod->getName(), mod->getDevelopers().front(), mod->getVersion().toString());
 			
 			if (Utils::getInt("showModsListMode") == 4) { // mod name only
 				m_fields->manager->modsListMode = "Mod names only";
@@ -49,10 +49,10 @@ class $modify(MyMenuLayer, MenuLayer) {
 				modsString = modsString + fmt::format("{}{} [{}]</c>, ", isEnabled, mod->getName(), mod->getVersion().toString());
 			} else if (Utils::getInt("showModsListMode") == 2) { // developer name and mod name only
 				m_fields->manager->modsListMode = "Dev names + mod names only";
-				modsString = modsString + fmt::format("{}{}'s {}</c>, ", isEnabled, mod->getDeveloper(), mod->getName());
+				modsString = modsString + fmt::format("{}{}'s {}</c>, ", isEnabled, mod->getDevelopers().front(), mod->getName());
 			} else if (Utils::getInt("showModsListMode") == 1) { // dev name, mod name, ver number
 				m_fields->manager->modsListMode = "Dev names, mod names, and version numbers";
-				modsString = modsString + fmt::format("{}{}'s {} [{}]</c>, ", isEnabled, mod->getDeveloper(), mod->getName(), mod->getVersion().toString());
+				modsString = modsString + fmt::format("{}{}'s {} [{}]</c>, ", isEnabled, mod->getDevelopers().front(), mod->getName(), mod->getVersion().toString());
 			}
 		
 		});

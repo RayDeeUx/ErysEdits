@@ -21,7 +21,7 @@ class $modify(MyGauntletSelectLayer, GauntletSelectLayer) {
 	}
 	void findCurrentGauntletPageUsing(CCNode* pageButtons) {
 		for (int i = 0; i < pageButtons->getChildrenCount(); i++) {
-			if (auto ccSprite = typeinfo_cast<CCSprite*>(pageButtons->getChildren()->objectAtIndex(i))) {
+			if (const auto ccSprite = typeinfo_cast<CCSprite*>(pageButtons->getChildren()->objectAtIndex(i))) {
 				if (ccSprite->getDisplayedColor() == ccColor3B({255, 255, 255})) {
 					m_fields->manager->currentGauntletPage = (i + 1);
 				}
@@ -30,7 +30,7 @@ class $modify(MyGauntletSelectLayer, GauntletSelectLayer) {
 	}
 	void setupGauntlets() {
 		GauntletSelectLayer::setupGauntlets();
-		if (auto pageButtons = getChildByIDRecursive("page-buttons")) {
+		if (const auto pageButtons = getChildByIDRecursive("page-buttons")) {
 			MyGauntletSelectLayer::findCurrentGauntletPageUsing(pageButtons);
 		}
 		this->defineKeybind("next-gauntlet"_spr, [this]() {
@@ -46,7 +46,7 @@ class $modify(MyGauntletSelectLayer, GauntletSelectLayer) {
 		this->defineKeybind("first-visible-gauntlet"_spr, [this]() {
 			if (Utils::modEnabled() && Utils::get("navigateGauntlets") && Utils::nothingElse()) {
 				std::string nodeID = fmt::format("gauntlet-page-{}", m_fields->manager->currentGauntletPage);
-				if (auto theGauntlet = getChildByIDRecursive(nodeID)->getChildByIDRecursive("gauntlet-button-1")) {
+				if (const auto theGauntlet = getChildByIDRecursive(nodeID)->getChildByIDRecursive("gauntlet-button-1")) {
 					GauntletSelectLayer::onPlay(theGauntlet);
 				}
 			} else { Utils::navigateGauntletsDisabled(); }
@@ -54,7 +54,7 @@ class $modify(MyGauntletSelectLayer, GauntletSelectLayer) {
 		this->defineKeybind("second-visible-gauntlet"_spr, [this]() {
 			if (Utils::modEnabled() && Utils::get("navigateGauntlets") && Utils::nothingElse()) {
 				std::string nodeID = fmt::format("gauntlet-page-{}", m_fields->manager->currentGauntletPage);
-				if (auto theGauntlet = getChildByIDRecursive(nodeID)->getChildByIDRecursive("gauntlet-button-2")) {
+				if (const auto theGauntlet = getChildByIDRecursive(nodeID)->getChildByIDRecursive("gauntlet-button-2")) {
 					GauntletSelectLayer::onPlay(theGauntlet);
 				}
 			} else { Utils::navigateGauntletsDisabled(); }
@@ -62,7 +62,7 @@ class $modify(MyGauntletSelectLayer, GauntletSelectLayer) {
 		this->defineKeybind("third-visible-gauntlet"_spr, [this]() {
 			if (Utils::modEnabled() && Utils::get("navigateGauntlets") && Utils::nothingElse()) {
 				std::string nodeID = fmt::format("gauntlet-page-{}", m_fields->manager->currentGauntletPage);
-				if (auto theGauntlet = getChildByIDRecursive(nodeID)->getChildByIDRecursive("gauntlet-button-3")) {
+				if (const auto theGauntlet = getChildByIDRecursive(nodeID)->getChildByIDRecursive("gauntlet-button-3")) {
 					GauntletSelectLayer::onPlay(theGauntlet);
 				}
 			} else { Utils::navigateGauntletsDisabled(); }
@@ -70,7 +70,7 @@ class $modify(MyGauntletSelectLayer, GauntletSelectLayer) {
 	}
 	void scrollLayerWillScrollToPage(BoomScrollLayer* p0, int p1) {
 		GauntletSelectLayer::scrollLayerWillScrollToPage(p0, p1);
-		if (auto pageButtons = getChildByIDRecursive("page-buttons")) {
+		if (const auto pageButtons = getChildByIDRecursive("page-buttons")) {
 			MyGauntletSelectLayer::findCurrentGauntletPageUsing(pageButtons);
 		}
 	}

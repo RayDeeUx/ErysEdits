@@ -47,7 +47,6 @@ add_library(
 	src/PlayLayer.cpp
 	src/ProfilePage.cpp
 	src/SecretRewardsLayer.cpp
-	src/SetIDPopup.cpp
 	src/ShardsPage.cpp
 	)
 

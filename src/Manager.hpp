@@ -62,10 +62,6 @@ public:
 	std::string lastPlayedEffect = "[MacOS issue]";
 	#endif
 	
-	#ifndef __APPLE__
-	int currentChannel = 0;
-	#endif
-	
 	bool isInSavedLevels = false;
 	
 	#ifdef GEODE_IS_WINDOWS

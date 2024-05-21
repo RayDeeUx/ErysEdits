@@ -18,7 +18,7 @@ class $modify(MyLevelSearchLayer, LevelSearchLayer) {
 	}
 	bool init(int p0) {
 		if (!LevelSearchLayer::init(p0)) { return false; }
-		if (auto otherFilters = getChildByIDRecursive("other-filter-menu")) {
+		if (const auto otherFilters = getChildByIDRecursive("other-filter-menu")) {
 			if (otherFilters->getChildByIDRecursive("clear-filters-button")) {
 				this->defineKeybind("level-search-clear-filters"_spr, [this]() {
 					if (Utils::isSceneRunning("LevelSearchLayer") && Utils::nothingElse()) {
@@ -47,7 +47,7 @@ class $modify(MyLevelSearchLayer, LevelSearchLayer) {
 				});
 			}
 		}
-		if (auto lengthFilterMenu = getChildByIDRecursive("length-filter-menu")) {
+		if (const auto lengthFilterMenu = getChildByIDRecursive("length-filter-menu")) {
 			if (lengthFilterMenu->getChildByIDRecursive("tiny-filter-button")) {
 				this->defineKeybind("level-search-length-tiny"_spr, [this]() {
 					if (Utils::isSceneRunning("LevelSearchLayer") && Utils::nothingElse()) {
@@ -124,7 +124,7 @@ class $modify(MyLevelSearchLayer, LevelSearchLayer) {
 				});
 			}
 		}
-		if (auto difficultyFilterMenu = getChildByIDRecursive("difficulty-filter-menu")) {
+		if (const auto difficultyFilterMenu = getChildByIDRecursive("difficulty-filter-menu")) {
 			if (difficultyFilterMenu->getChildByIDRecursive("na-filter-button")) {
 				this->defineKeybind("level-search-difficulty-na"_spr, [this]() {
 					if (Utils::isSceneRunning("LevelSearchLayer") && Utils::nothingElse()) {

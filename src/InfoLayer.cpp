@@ -44,7 +44,7 @@ class $modify(MyInfoLayer, InfoLayer) {
 				}
 			});
 		}
-		if (auto leftSideMenu = getChildByIDRecursive("left-side-menu")) {
+		if (const auto leftSideMenu = getChildByIDRecursive("left-side-menu")) {
 			if (leftSideMenu->getChildByIDRecursive("sort-likes-button")) {
 				this->defineKeybind("infolayer-sort-likes"_spr, [this]() {
 					if ((Utils::isInfoLayer() || Utils::isInfoLayerRecursive())) {

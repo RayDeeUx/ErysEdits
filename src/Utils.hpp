@@ -9,9 +9,9 @@ using namespace geode::cocos;
 namespace Utils {
 	cocos2d::CCNode* getChildBySpriteFrameNameRecursive(cocos2d::CCNode* parent, char const* name);
 	
-	bool get(std::string setting);
-	int64_t getInt(std::string setting);
-	double getDouble(std::string setting);
+	bool get(const std::string &setting);
+	int64_t getInt(const std::string &setting);
+	double getDouble(const std::string &setting);
 	bool modEnabled();
 	
 	void keybindDisabledGeneric(std::string titleTemplate, std::string keybindDesc);
@@ -27,8 +27,8 @@ namespace Utils {
 	void quickSearchDisabled();
 	void garageNavigationDisabled();
 	
-	bool isSceneRunning(std::string sceneName);
-	bool isSceneRunningRecursive(std::string sceneName);
+	bool isSceneRunning(const std::string &sceneName);
+	bool isSceneRunningRecursive(const std::string &sceneNameRecursive);
 	bool isProfilePage();
 	bool noProfilePage();
 	bool isLevelLeaderboard();
@@ -42,9 +42,6 @@ namespace Utils {
 	void restoreOrigGMGVs(GameManager* gameManager, bool changeCanCall = true, bool isEnteringLevel = false);
 	void applyGMGVs(bool isLevelVerified);
 
-	std::string buildPlayerStatusString(PlayerObject* thePlayer, GJGameLevel* theLevel, PlayLayer* playLayer, bool isPlayerTwo);
-	std::string buildLevelTraitsString(GJGameLevel* theLevel);
-
 	#ifdef GEODE_IS_WINDOWS
 	bool is4GBPatchEnabled();
 	#endif
@@ -53,5 +50,5 @@ namespace Utils {
 	bool shiftDown();
 	#endif
 	
-	Mod* getMod(std::string modID);
+	Mod* getMod(const std::string &modID);
 }

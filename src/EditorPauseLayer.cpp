@@ -29,7 +29,6 @@ class $modify(MyEditorPauseLayer, EditorPauseLayer) {
 	}
 	#endif
 	void onSaveAndPlay(CCObject* sender) {
-		auto gameManager = GameManager::get();
 		Utils::applyGMGVs(m_editorLayer->m_level->m_isVerifiedRaw);
 		EditorPauseLayer::onSaveAndPlay(sender);
 	}

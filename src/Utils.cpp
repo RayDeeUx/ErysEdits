@@ -13,11 +13,11 @@ namespace Utils {
 		});
 	}
 	
-	bool get(std::string setting) { return Mod::get()->getSettingValue<bool>(setting); }
+	bool get(const std::string &setting) { return Mod::get()->getSettingValue<bool>(setting); }
 	
-	int64_t getInt(std::string setting) { return Mod::get()->getSettingValue<int64_t>(setting); }
+	int64_t getInt(const std::string &setting) { return Mod::get()->getSettingValue<int64_t>(setting); }
 	
-	double getDouble(std::string setting) { return Mod::get()->getSettingValue<double>(setting); }
+	double getDouble(const std::string &setting) { return Mod::get()->getSettingValue<double>(setting); }
 	
 	bool modEnabled() { return Utils::get("enabled"); }
 	
@@ -51,9 +51,9 @@ namespace Utils {
 	
 	void garageNavigationDisabled() { keybindDisabledGeneric("Icon Kit Navigation", "navigate the icon kit"); }
 
-	bool isSceneRunning(std::string sceneName) { return CCDirector::get()->getRunningScene()->getChildByID(sceneName.c_str()); }
+	bool isSceneRunning(const std::string &sceneName) { return CCDirector::get()->getRunningScene()->getChildByID(sceneName.c_str()); }
 	
-	bool isSceneRunningRecursive(std::string sceneName) { return CCDirector::get()->getRunningScene()->getChildByIDRecursive(sceneName.c_str()); }
+	bool isSceneRunningRecursive(const std::string &sceneNameRecursive) { return CCDirector::get()->getRunningScene()->getChildByIDRecursive(sceneNameRecursive.c_str()); }
 
 	bool isProfilePage() { return isSceneRunning("ProfilePage"); }
 
@@ -85,7 +85,7 @@ namespace Utils {
 		}
 		if (changeCanCall) { manager->canCall = true; }
 		
-		if (auto breakingPlatforming = Utils::getMod("raydeeux.breakingplatforming")) {
+		if (const auto breakingPlatforming = Utils::getMod("raydeeux.breakingplatforming")) {
 			if (breakingPlatforming->getSettingValue<bool>("enabled")) {
 				manager->isBreakingPlatforming = true;
 			} else {
@@ -113,99 +113,8 @@ namespace Utils {
 		}
 		manager->canCall = true;
 	}
-
-	std::string buildPlayerStatusString(PlayerObject* thePlayer, GJGameLevel* theLevel, PlayLayer* playLayer, bool isPlayerTwo) {
-		std::string status = "Unknown";
-		if (thePlayer->m_isShip) {
-			if (theLevel->isPlatformer()) { status = "Jetpack"; }
-			else { status = "Ship"; }
-		}
-		else if (thePlayer->m_isBall) { status = "Ball"; }
-		else if (thePlayer->m_isBird) { status = "UFO"; }
-		else if (thePlayer->m_isDart) { status = "Wave"; }
-		else if (thePlayer->m_isRobot) { status = "Robot"; }
-		else if (thePlayer->m_isSpider) { status = "Spider"; }
-		else if (thePlayer->m_isSwing) { status = "Swing"; }
-		else { status = "Cube"; }
-
-		if (thePlayer->m_vehicleSize == .6f) { status = "Mini " + status; }
-		else if (thePlayer->m_vehicleSize != 1.f) { status = status + " of unknown size"; }
-		
-		if (thePlayer->m_isPlatformer) {
-			if (thePlayer->m_isUpsideDown) {
-				if (thePlayer->m_isSideways) {
-					if (Utils::get("compactDirections")) {status = "->] " + status;}
-					else { status = "Rightwards " + status; }
-				}
-				else { status = "Flipped " + status; }
-			} else if (thePlayer->m_isSideways) {
-				if (Utils::get("compactDirections")) {status = "[<- " + status;}
-				else { status = "Leftwards " + status; }
-			}
-		} else {
-			if (thePlayer->m_isUpsideDown) { status = "Flipped " + status; }
-			if (thePlayer->m_isSideways) {
-				if (thePlayer->m_isGoingLeft) {
-					if (Utils::get("compactDirections")) {status = "\\/ " + status;}
-					else { status = "Downwards " + status; }
-				}
-				else {
-					if (Utils::get("compactDirections")) {status = "/\\ " + status;}
-					else { status = "Upwards " + status; }
-				}
-			} else if (thePlayer->m_isGoingLeft) {
-				if (Utils::get("compactDirections")) {status = "<- " + status;}
-				else { status = "Reversed " + status; }
-			}
-		}
-
-		if (thePlayer->m_isDashing) { status = "<" + status + ">"; }
-
-		if (!isPlayerTwo) {
-			if (Manager::getSharedInstance()->isDualsTime) { status = status + " [Dual]"; }
-
-			if (playLayer->m_isPracticeMode) { status = status + " {Practice}"; }
-			else if (playLayer->m_isTestMode) { status = status + " {Testmode}"; }
-		}
-
-		if (thePlayer->m_isDead) { status = status + " (Dead)"; }
-
-		return fmt::format("{:.1f}x ", thePlayer->m_playerSpeed) + status;
-	}
-
-	std::string buildLevelTraitsString(GJGameLevel* theLevel) {
-		std::string level = "Unknown";
-		if (theLevel->isPlatformer()) {
-			level = "Platformer";
-		} else {
-			level = "Classic";
-			if (theLevel->m_levelLength == 0.f) { level = level + " [Tiny]"; }
-			else if (theLevel->m_levelLength == 1.f) { level = level + " [Short]"; }
-			else if (theLevel->m_levelLength == 2.f) { level = level + " [Medium]"; }
-			else if (theLevel->m_levelLength == 3.f) { level = level + " [Long]"; }
-			else { level = level + " [XL]"; }
-		}
-
-		if (theLevel->m_levelType == GJLevelType::Editor) {
-			if (theLevel->m_isVerifiedRaw) { level = level + " (Verified)";}
-			else { level = level + " (Unverified)"; }
-		} else {
-			if (theLevel->m_levelType == GJLevelType::Saved) { level = level + " (Online)"; }
-			else if (theLevel->m_levelType == GJLevelType::Local) { level = level + " (Official)"; }
-			else { level = level + " (Unknown)"; }
-		}
-
-		if (theLevel->m_twoPlayerMode) { level = level + " {2P}"; }
-		
-		if ((theLevel->m_accountID.value() == 13950148 && theLevel->m_levelType == GJLevelType::Saved)
-		|| GameManager::get()->m_playerUserID.value() == 128138354 && theLevel->m_levelType != GJLevelType::Saved) { level = level + " <HOMOPHOBIC>"; }
-
-		if (Manager::getSharedInstance()->isLevelComplete) { level = level + " <Completed>"; }
-		
-		return level;
-	}
 	
-	#ifdef GEODE_IS_WINDOWS
+#ifdef GEODE_IS_WINDOWS
 	// 4GB Patch detection code written by cvolton
 	// code reuse consent implied from here: https://discord.com/channels/911701438269386882/911702535373475870/1221183808708153444
 
@@ -215,7 +124,7 @@ namespace Utils {
 		wchar_t result[MAX_PATH];
 		GetModuleFileNameW(NULL, result, MAX_PATH);
 
-		if(!std::filesystem::exists(result)) { return true; }
+		if (!std::filesystem::exists(result)) { return true; }
 			
 		std::ifstream file(result, std::ios::binary);
 		std::vector<char> buffer(std::istreambuf_iterator<char>(file), {});
@@ -227,15 +136,15 @@ namespace Utils {
 		manager->fourGBChecked = true;
 		return manager->isFourGB;
 	}
-	#endif
+#endif
 	
-	#ifdef GEODE_IS_WINDOWS
+#ifdef GEODE_IS_WINDOWS
 	bool shiftDown() {
 		return (Manager::getSharedInstance()->isShiftKeyDown || !(Utils::modEnabled() && Utils::get("shiftForVault")));
 	}
-	#endif
+#endif
 	
-	Mod* getMod(std::string modID) {
+	Mod* getMod(const std::string &modID) {
 		return Loader::get()->getLoadedMod(modID);
 	}
 }

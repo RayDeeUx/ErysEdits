@@ -26,8 +26,8 @@ class $modify(MyGJGarageLayer, GJGarageLayer) {
 	bool init() {
 		if (!GJGarageLayer::init()) { return false; }
 		if (Utils::modEnabled()) {
-			if (auto floorLine = getChildByIDRecursive("floor-line")) { floorLine->setVisible(!Utils::get("slightlyCleanerGarage")); }
-			if (auto usernameLock = getChildByIDRecursive("username-lock")) { usernameLock->setVisible(!Utils::get("slightlyCleanerGarage")); }
+			if (const auto floorLine = getChildByIDRecursive("floor-line")) { floorLine->setVisible(!Utils::get("slightlyCleanerGarage")); }
+			if (const auto usernameLock = getChildByIDRecursive("username-lock")) { usernameLock->setVisible(!Utils::get("slightlyCleanerGarage")); }
 		}
 		#ifdef GEODE_IS_WINDOWS
 		if (getChildByIDRecursive("category-menu")) {
@@ -153,7 +153,7 @@ class $modify(MyGJGarageLayer, GJGarageLayer) {
 				});
 			}
 		}
-		if (auto prevPageMenu = getChildByIDRecursive("prev-page-menu")) {
+		if (const auto prevPageMenu = getChildByIDRecursive("prev-page-menu")) {
 			if (prevPageMenu->getChildByIDRecursive("prev-button")) {
 				this->defineKeybind("garage-previous-page"_spr, [this]() {
 					if (Utils::isSceneRunning("GJGarageLayer") && Utils::nothingElse() && getChildByIDRecursive("prev-page-menu")->getChildByIDRecursive("prev-button")->isVisible()) {
@@ -166,7 +166,7 @@ class $modify(MyGJGarageLayer, GJGarageLayer) {
 				});
 			}
 		}
-		if (auto nextPageMenu = getChildByIDRecursive("next-page-menu")) {
+		if (const auto nextPageMenu = getChildByIDRecursive("next-page-menu")) {
 			if (nextPageMenu->getChildByIDRecursive("next-button")) {
 				this->defineKeybind("garage-next-page"_spr, [this]() {
 					if (Utils::isSceneRunning("GJGarageLayer") && Utils::nothingElse() && getChildByIDRecursive("next-page-menu")->getChildByIDRecursive("next-button")->isVisible()) {
@@ -180,10 +180,10 @@ class $modify(MyGJGarageLayer, GJGarageLayer) {
 			}
 		}
 		#endif
-		if (auto shardsMenu = getChildByIDRecursive("shards-menu")) {
+		if (const auto shardsMenu = getChildByIDRecursive("shards-menu")) {
 			if (Utils::getDouble("garageShardsMenu") != 1.f) {
 				shardsMenu->setScale(Utils::getDouble("garageShardsMenu"));
-				shardsMenu->setAnchorPoint({0.5f, (float) (Utils::getDouble("garageShardsMenu") - .45)});
+				shardsMenu->setAnchorPoint({0.5f, static_cast<float>(Utils::getDouble("garageShardsMenu") - .45)});
 			}
 			#ifdef GEODE_IS_WINDOWS
 			if (shardsMenu->getChildByIDRecursive("shards-button")) {
