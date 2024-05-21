@@ -25,16 +25,17 @@ class $modify(MyFLAlertLayer, FLAlertLayer) {
 		float desiredScale = textScale;
 		float desiredWidth = width;
 		float desiredHeight = height;
-		if (titleString.find("BRYCETANKTHRUSTBRYCETANKTHRUSTBRYCETANKTHRUST") != std::string::npos) {
-			auto manager = Manager::getSharedInstance();
-			titleString = fmt::format(
-				"{} mods, {} disabled, {} problems",
-				manager->installedMods,
-				manager->disabledMods,
-				manager->problems
-			);
-			desiredHeight = 300.f;
-		} else if (titleString == "Always Active LDM (READ!)" || titleString.find("Show/Copy Mods List") != std::string::npos) {
+		bool isFromLevelEndModsList = titleString.find("BRYCETANKTHRUSTBRYCETANKTHRUSTBRYCETANKTHRUST") != std::string::npos;
+		if (isFromLevelEndModsList || (titleString == "Always Active LDM (READ!)" || titleString.find("Show/Copy Mods List") != std::string::npos)) {
+			if (isFromLevelEndModsList) {
+				auto manager = Manager::getSharedInstance();
+				titleString = fmt::format(
+					"{} mods, {} disabled, {} problems",
+					manager->installedMods,
+					manager->disabledMods,
+					manager->problems
+				);
+			}
 			desiredScroll = true;
 			desiredScale = 1.f;
 			desiredWidth = 420.f;
