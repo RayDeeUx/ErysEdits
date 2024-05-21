@@ -11,8 +11,17 @@ class $modify(MyPlayLayer, PlayLayer) {
 	struct Fields {
 		int jumps = 0;
 		Manager* manager = Manager::getSharedInstance();
+		#ifdef __APPLE__
+		const std::map<int, std::string> miscIDToSetting = {
+			{ 1006, "disablePulse" },
+			{ 3010, "disableAreaTint" },
+			{ 1520, "disableShake" },
+			{ 3602, "disableSFX" },
+			{ 3603, "disableEditSFX" }
+		};
+		#endif
 	};
-	static std::string buildPlayerStatusString(PlayerObject* thePlayer, GJGameLevel* theLevel, PlayLayer* playLayer, bool isPlayerTwo) {
+	std::string buildPlayerStatusString(PlayerObject* thePlayer, GJGameLevel* theLevel, bool isPlayerTwo) {
 		std::string status = "Unknown";
 		if (thePlayer->m_isShip) {
 			if (theLevel->isPlatformer()) { status = "Jetpack"; }
@@ -60,17 +69,17 @@ class $modify(MyPlayLayer, PlayLayer) {
 		if (thePlayer->m_isDashing) { status = "<" + status + ">"; }
 
 		if (!isPlayerTwo) {
-			if (Manager::getSharedInstance()->isDualsTime) { status = status + " [Dual]"; }
+			if (m_fields->manager->isDualsTime) { status = status + " [Dual]"; }
 
-			if (playLayer->m_isPracticeMode) { status = status + " {Practice}"; }
-			else if (playLayer->m_isTestMode) { status = status + " {Testmode}"; }
+			if (m_isPracticeMode) { status = status + " {Practice}"; }
+			else if (m_isTestMode) { status = status + " {Testmode}"; }
 		}
 
 		if (thePlayer->m_isDead) { status = status + " (Dead)"; }
 
 		return fmt::format("{:.1f}x ", thePlayer->m_playerSpeed) + status;
 	}
-	static std::string buildLevelTraitsString(GJGameLevel* theLevel) {
+	std::string buildLevelTraitsString(GJGameLevel* theLevel) {
 		std::string level = "Unknown";
 		if (theLevel->isPlatformer()) {
 			level = "Platformer";
@@ -94,10 +103,12 @@ class $modify(MyPlayLayer, PlayLayer) {
 
 		if (theLevel->m_twoPlayerMode) { level = level + " {2P}"; }
 
-		if ((theLevel->m_accountID.value() == 13950148 && theLevel->m_levelType == GJLevelType::Saved)
-		    || GameManager::get()->m_playerUserID.value() == 128138354 && theLevel->m_levelType != GJLevelType::Saved) { level = level + " <HOMOPHOBIC>"; }
+		if (
+			(theLevel->m_accountID.value() == 13950148 && theLevel->m_levelType == GJLevelType::Saved)
+		    || GameManager::get()->m_playerUserID.value() == 128138354 && theLevel->m_levelType != GJLevelType::Saved
+		) { level = level + " <HOMOPHOBIC>"; }
 
-		if (Manager::getSharedInstance()->isLevelComplete) { level = level + " <Completed>"; }
+		if (m_fields->manager->isLevelComplete) { level = level + " <Completed>"; }
 
 		return level;
 	}
@@ -136,7 +147,7 @@ class $modify(MyPlayLayer, PlayLayer) {
 		bool dontSkip = true;
 		if (Utils::modEnabled()) {
 			#ifdef __APPLE__
-			const auto mTS = m_fields->manager->miscIDToSetting;
+			const auto mTS = m_fields->miscIDToSetting;
 			if (mTS.contains(theObject->m_objectID) && Utils::get(mTS.find(theObject->m_objectID)->second)) { dontSkip = false; }
 			#endif
 			if (m_level->m_levelType == GJLevelType::Saved && theObject->m_isHighDetail && GameManager::get()->getGameVariable("0108") && (Utils::getInt("alwaysLDM") == 3 || (Utils::getInt("alwaysLDM") == 2 && m_level->m_stars.value() != 0) || (Utils::getInt("alwaysLDM") == 1 && m_level->m_stars.value() == 0))) {
@@ -160,9 +171,9 @@ class $modify(MyPlayLayer, PlayLayer) {
 				if (const auto debugText = getChildByID("debug-text")) {
 					auto theLevel = m_level;
 					
-					std::string status = MyPlayLayer::buildPlayerStatusString(m_player1, theLevel, this, false);
+					std::string status = MyPlayLayer::buildPlayerStatusString(m_player1, theLevel, false);
 					std::string statusTwo = "";
-					if (m_fields->manager->isDualsTime) { statusTwo = MyPlayLayer::buildPlayerStatusString(m_player2, theLevel, this, true); }
+					if (m_fields->manager->isDualsTime) { statusTwo = MyPlayLayer::buildPlayerStatusString(m_player2, theLevel, true); }
 					std::string level = MyPlayLayer::buildLevelTraitsString(theLevel);
 					
 					std::string ending = "\n-- Area --\n";
@@ -171,7 +182,6 @@ class $modify(MyPlayLayer, PlayLayer) {
 						auto theObject = getChildren()->objectAtIndex(i);
 						if (const auto ccCircleWave = typeinfo_cast<CCCircleWave*>(theObject)) {
 							ccCircleWave->setVisible(false);
-							continue;
 						}
 					}
 					if (const auto debugTextNode = typeinfo_cast<CCLabelBMFont*>(debugText)) {

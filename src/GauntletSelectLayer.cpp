@@ -1,7 +1,6 @@
 #ifdef GEODE_IS_WINDOWS
 #include <Geode/modify/GauntletSelectLayer.hpp>
 #include <geode.custom-keybinds/include/Keybinds.hpp>
-#include "Manager.hpp"
 #include "Utils.hpp"
 
 using namespace geode::prelude;
@@ -9,7 +8,7 @@ using namespace keybinds;
 
 class $modify(MyGauntletSelectLayer, GauntletSelectLayer) {
 	struct Fields {
-		Manager* manager = Manager::getSharedInstance();
+		int currentGauntletPage = 0;
 	};
 	void defineKeybind(const char* id, std::function<void()> callback) {
 		this->template addEventListener<InvokeBindFilter>([=](InvokeBindEvent* event) {
@@ -23,10 +22,29 @@ class $modify(MyGauntletSelectLayer, GauntletSelectLayer) {
 		for (int i = 0; i < pageButtons->getChildrenCount(); i++) {
 			if (const auto ccSprite = typeinfo_cast<CCSprite*>(pageButtons->getChildren()->objectAtIndex(i))) {
 				if (ccSprite->getDisplayedColor() == ccColor3B({255, 255, 255})) {
-					m_fields->manager->currentGauntletPage = (i + 1);
+					m_fields->currentGauntletPage = (i + 1);
 				}
 			}
 		}
+	}
+	void pressGauntlet(int desiredGauntlet) {
+		if (Utils::modEnabled() && Utils::get("navigateGauntlets") && Utils::nothingElse()) {
+			if (const auto theGauntletPage = getChildByIDRecursive(fmt::format("gauntlet-page-{}", m_fields->currentGauntletPage))) {
+				if (const auto theGauntlet = theGauntletPage->getChildByIDRecursive(fmt::format("gauntlet-button-{}", desiredGauntlet))) {
+					GauntletSelectLayer::onPlay(theGauntlet);
+				}
+			}
+		} else { Utils::navigateGauntletsDisabled(); }
+	}
+	void scrollLayerWillScrollToPage(BoomScrollLayer* p0, int p1) {
+		GauntletSelectLayer::scrollLayerWillScrollToPage(p0, p1);
+		if (const auto pageButtons = getChildByIDRecursive("page-buttons")) {
+			MyGauntletSelectLayer::findCurrentGauntletPageUsing(pageButtons);
+		}
+	}
+	void onBack(cocos2d::CCObject* sender){
+		m_fields->currentGauntletPage = 0;
+		GauntletSelectLayer::onBack(sender);
 	}
 	void setupGauntlets() {
 		GauntletSelectLayer::setupGauntlets();
@@ -44,39 +62,14 @@ class $modify(MyGauntletSelectLayer, GauntletSelectLayer) {
 			} else { Utils::navigateGauntletsDisabled(); }
 		});
 		this->defineKeybind("first-visible-gauntlet"_spr, [this]() {
-			if (Utils::modEnabled() && Utils::get("navigateGauntlets") && Utils::nothingElse()) {
-				std::string nodeID = fmt::format("gauntlet-page-{}", m_fields->manager->currentGauntletPage);
-				if (const auto theGauntlet = getChildByIDRecursive(nodeID)->getChildByIDRecursive("gauntlet-button-1")) {
-					GauntletSelectLayer::onPlay(theGauntlet);
-				}
-			} else { Utils::navigateGauntletsDisabled(); }
+			MyGauntletSelectLayer::pressGauntlet(1);
 		});
 		this->defineKeybind("second-visible-gauntlet"_spr, [this]() {
-			if (Utils::modEnabled() && Utils::get("navigateGauntlets") && Utils::nothingElse()) {
-				std::string nodeID = fmt::format("gauntlet-page-{}", m_fields->manager->currentGauntletPage);
-				if (const auto theGauntlet = getChildByIDRecursive(nodeID)->getChildByIDRecursive("gauntlet-button-2")) {
-					GauntletSelectLayer::onPlay(theGauntlet);
-				}
-			} else { Utils::navigateGauntletsDisabled(); }
+			MyGauntletSelectLayer::pressGauntlet(2);
 		});
 		this->defineKeybind("third-visible-gauntlet"_spr, [this]() {
-			if (Utils::modEnabled() && Utils::get("navigateGauntlets") && Utils::nothingElse()) {
-				std::string nodeID = fmt::format("gauntlet-page-{}", m_fields->manager->currentGauntletPage);
-				if (const auto theGauntlet = getChildByIDRecursive(nodeID)->getChildByIDRecursive("gauntlet-button-3")) {
-					GauntletSelectLayer::onPlay(theGauntlet);
-				}
-			} else { Utils::navigateGauntletsDisabled(); }
+			MyGauntletSelectLayer::pressGauntlet(3);
 		});
-	}
-	void scrollLayerWillScrollToPage(BoomScrollLayer* p0, int p1) {
-		GauntletSelectLayer::scrollLayerWillScrollToPage(p0, p1);
-		if (const auto pageButtons = getChildByIDRecursive("page-buttons")) {
-			MyGauntletSelectLayer::findCurrentGauntletPageUsing(pageButtons);
-		}
-	}
-	void onBack(cocos2d::CCObject* sender){
-		m_fields->manager->currentGauntletPage = 0;
-		GauntletSelectLayer::onBack(sender);
 	}
 };
 #endif
