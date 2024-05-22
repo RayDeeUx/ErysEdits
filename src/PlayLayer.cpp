@@ -179,7 +179,7 @@ class $modify(MyPlayLayer, PlayLayer) {
 	void postUpdate(float dt) {
 		PlayLayer::postUpdate(dt);
 		if (!Utils::modEnabled() || !Utils::get("debugTextToggle")) {
-			// in case either softtoggle is disabled
+			// in case either softtoggle is disabled mid-session, restore original colors
 			if (const auto debugText = getChildByID("debug-text")) {
 				if (const auto debugTextNode = typeinfo_cast<CCLabelBMFont*>(debugText)) {
 					debugTextNode->setColor(ccColor3B({255, 255, 255}));
@@ -195,17 +195,6 @@ class $modify(MyPlayLayer, PlayLayer) {
 					std::string level = MyPlayLayer::buildLevelTraitsString();
 					
 					std::string ending = "\n-- Area --\n";
-
-					/*
-					forgor what this was used for
-
-					for (unsigned int i = getChildrenCount(); i-- > 0; ) {
-						auto theObject = getChildren()->objectAtIndex(i);
-						if (const auto ccCircleWave = typeinfo_cast<CCCircleWave*>(theObject)) {
-							ccCircleWave->setVisible(false);
-						}
-					}
-					*/
 
 					if (const auto debugTextNode = typeinfo_cast<CCLabelBMFont*>(debugText)) {
 						if (debugTextNode->isVisible()) {
@@ -343,7 +332,23 @@ class $modify(MyPlayLayer, PlayLayer) {
 					}
 				}
 			}
+
 			if (Utils::get("hideLevelCompleteVisuals") && m_fields->manager->isLevelComplete) {
+				/*
+				forgor what this was used for
+
+				update: sike, i just remembered.
+				sometimes they aren't children of "main-node"
+				but rather direct children of playlayer itself,
+				so a second for loop is necessary.
+				apparently i had it under the wrong toggle this whole time, oops!
+				*/
+				for (unsigned int i = getChildrenCount(); i-- > 0; ) {
+					auto theObject = getChildren()->objectAtIndex(i);
+					if (const auto ccCircleWave = typeinfo_cast<CCCircleWave*>(theObject)) {
+						ccCircleWave->setVisible(false);
+					}
+				}
 				if (const auto mainNode = getChildByIDRecursive("main-node")) {
 					for (CCNode* mainNodeChild : CCArrayExt<CCNode*>(mainNode->getChildren())) {
 						if (const auto whereEverythingIs = typeinfo_cast<CCLayer*>(mainNodeChild)) {
