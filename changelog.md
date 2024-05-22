@@ -3,6 +3,7 @@
 - New settings: `Force Audio Scale` and `Force Visible Effect`. Because the orbs in Zeniux's levels started becoming cringe.
 - More new settings for the debug text: `Adjust Alpha/Opacity`, `Max Opacity`, `Chroma Mode`, `Chroma Speed`, `Include Jumps`. Hopefully the debug text should be readable under every imaginable circumstance now.
 - Fix a silly mistake from the previous update where an FLAlertLayer from the mod settings wasn't scrollable like originally intended.
+- Fix another silly mistake where some "Level Complete!" visuals were being hidden under the wrong conditions.
 - Fix crash with the debug text. Not sure how or why it kept happening, to be honest.
 	- If the debug text features from this mod suddenly stop working, please let me know and ping me in the Geode SDK Discord. (Nine to one odds says it's a mod conflict that I personally haven't experienced.)
 - Fix new crashes with *this mod's* custom `FLAlertLayer`s crashing on macOS when descriptions are too long.
