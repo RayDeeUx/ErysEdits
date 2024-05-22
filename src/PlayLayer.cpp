@@ -24,20 +24,33 @@ class $modify(MyPlayLayer, PlayLayer) {
 	};
 	std::string buildPlayerStatusString(PlayerObject* thePlayer) {
 		std::string status = "Unknown";
+		bool isPlat = m_level->isPlatformer();
 		if (thePlayer->m_isShip) {
-			if (m_level->isPlatformer()) { status = "Jetpack"; }
-			else { status = "Ship"; }
+			if (!isPlat) { status = "Ship"; }
+			else { status = "Jetpack"; }
+		}
+		else if (thePlayer->m_isDart) {
+			if (!isPlat) { status = "Wave"; }
+			else {
+				if (GEODE_COMP_GD_VERSION > 22050) { status = "Wave?"; }
+				else { status = "Wave*"; }
+			}
+		}
+		else if (thePlayer->m_isSwing) {
+			if (!isPlat) { status = "Swing"; }
+			else {
+				if (GEODE_COMP_GD_VERSION > 22050) { status = "Swing?"; }
+				else { status = "Swing*"; }
+			}
 		}
 		else if (thePlayer->m_isBall) { status = "Ball"; }
 		else if (thePlayer->m_isBird) { status = "UFO"; }
-		else if (thePlayer->m_isDart) { status = "Wave"; }
 		else if (thePlayer->m_isRobot) { status = "Robot"; }
 		else if (thePlayer->m_isSpider) { status = "Spider"; }
-		else if (thePlayer->m_isSwing) { status = "Swing"; }
 		else { status = "Cube"; }
 
 		if (thePlayer->m_vehicleSize == .6f) { status = "Mini " + status; }
-		else if (thePlayer->m_vehicleSize != 1.f) { status = status + " of unknown size"; }
+		else if (thePlayer->m_vehicleSize != 1.f) { status = status + " of strange size"; }
 
 		if (thePlayer->m_isPlatformer) {
 			if (thePlayer->m_isUpsideDown) {
@@ -69,7 +82,7 @@ class $modify(MyPlayLayer, PlayLayer) {
 
 		if (thePlayer->m_isDashing) { status = "<" + status + ">"; }
 
-		if (thePlayer == m_player2) {
+		if (thePlayer != m_player2) {
 			if (m_fields->manager->isDualsTime) { status = status + " [Dual]"; }
 
 			if (m_isPracticeMode) { status = status + " {Practice}"; }
