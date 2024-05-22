@@ -25,6 +25,7 @@ class $modify(MyPlayLayer, PlayLayer) {
 	std::string buildPlayerStatusString(PlayerObject* thePlayer) {
 		std::string status = "Unknown";
 		bool isPlat = m_level->isPlatformer();
+		bool compactDirs = Utils::get("compactDirections");
 		if (thePlayer->m_isShip) {
 			if (!isPlat) { status = "Ship"; }
 			else { status = "Jetpack"; }
@@ -55,27 +56,27 @@ class $modify(MyPlayLayer, PlayLayer) {
 		if (thePlayer->m_isPlatformer) {
 			if (thePlayer->m_isUpsideDown) {
 				if (thePlayer->m_isSideways) {
-					if (Utils::get("compactDirections")) {status = "->] " + status;}
+					if (compactDirs) {status = "->] " + status;}
 					else { status = "Rightwards " + status; }
 				}
 				else { status = "Flipped " + status; }
 			} else if (thePlayer->m_isSideways) {
-				if (Utils::get("compactDirections")) {status = "[<- " + status;}
+				if (compactDirs) {status = "[<- " + status;}
 				else { status = "Leftwards " + status; }
 			}
 		} else {
 			if (thePlayer->m_isUpsideDown) { status = "Flipped " + status; }
 			if (thePlayer->m_isSideways) {
 				if (thePlayer->m_isGoingLeft) {
-					if (Utils::get("compactDirections")) {status = "\\/ " + status;}
+					if (compactDirs) {status = "\\/ " + status;}
 					else { status = "Downwards " + status; }
 				}
 				else {
-					if (Utils::get("compactDirections")) {status = "/\\ " + status;}
+					if (compactDirs) {status = "/\\ " + status;}
 					else { status = "Upwards " + status; }
 				}
 			} else if (thePlayer->m_isGoingLeft) {
-				if (Utils::get("compactDirections")) {status = "<- " + status;}
+				if (compactDirs) {status = "<- " + status;}
 				else { status = "Reversed " + status; }
 			}
 		}
