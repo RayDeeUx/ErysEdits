@@ -1,3 +1,4 @@
+#include <regex>
 #include <Geode/modify/MenuLayer.hpp>
 #include <Geode/modify/SongInfoLayer.hpp>
 #include "Manager.hpp"
@@ -24,13 +25,15 @@ class $modify(MyMenuLayer, MenuLayer) {
 		auto activeMods = 0;
 		auto disabledMods = 0;
 		auto problems = geode->getProblems().size();
-		
+
+		const int modsListModeConfig = Utils::getInt("showModsListMode");
+
 		std::string modsString = "";
 		std::string modsStringForClipboard = "";
 		#ifdef __APPLE__
 		std::map<std::string, int> devNameToModCount{};
 		#else
-		switch (Utils::getInt("showModsListMode")) {
+		switch (modsListModeConfig) {
 			case 1:
 				m_fields->manager->modsListMode = "Mod names only";
 				break;
@@ -63,19 +66,19 @@ class $modify(MyMenuLayer, MenuLayer) {
 			modsStringForClipboard = modsStringForClipboard + fmt::format("- {} ({}) {} by {} [{}]\n", isEnabledClipboard, mod->getID(), mod->getName(), mod->getDevelopers()[0], mod->getVersion().toString());
 
 			#ifndef __APPLE__
-			if (Utils::getInt("showModsListMode") == 4) { // mod name only
+			if (modsListModeConfig == 4) { // mod name only
 				modsString = modsString + fmt::format("{}{}</c>, ", isEnabled, mod->getName());
-			} else if (Utils::getInt("showModsListMode") == 3) { // mod name and ver number only
+			} else if (modsListModeConfig == 3) { // mod name and ver number only
 				modsString = modsString + fmt::format("{}{} [{}]</c>, ", isEnabled, mod->getName(), mod->getVersion().toString());
-			} else if (Utils::getInt("showModsListMode") == 2) { // developer name and mod name only
+			} else if (modsListModeConfig == 2) { // developer name and mod name only
 				modsString = modsString + fmt::format("{}{}'s {}</c>, ", isEnabled, mod->getDevelopers()[0], mod->getName());
-			} else if (Utils::getInt("showModsListMode") == 1) { // dev name, mod name, ver number
+			} else if (modsListModeConfig == 1) { // dev name, mod name, ver number
 				modsString = modsString + fmt::format("{}{}'s {} [{}]</c>, ", isEnabled, mod->getDevelopers()[0], mod->getName(), mod->getVersion().toString());
 			} else { // fallback. because some people need to behave
 				modsString = modsString + fmt::format("- {} ({}) {} by {} [{}]\n", isEnabledClipboard, mod->getID(), mod->getName(), mod->getDevelopers()[0], mod->getVersion().toString());
 			}
 			#else
-			if (0 < Utils::getInt("showModsListMode") && Utils::getInt("showModsListMode") < 5) {
+			if (0 < modsListModeConfig && modsListModeConfig < 5) {
 				auto modDevName = mod->getDevelopers()[0];
 			   if (!devNameToModCount.contains(modDevName)) {
 				   devNameToModCount.insert(std::make_pair(modDevName, 1));
@@ -89,11 +92,14 @@ class $modify(MyMenuLayer, MenuLayer) {
 
 		#ifdef __APPLE__
 		m_fields->manager->modsListMode = "macOS Compat Mode";
-		if (0 < Utils::getInt("showModsListMode") && Utils::getInt("showModsListMode") < 5) {
+		if (0 < modsListModeConfig && modsListModeConfig < 5) {
 			for (auto const& [modDevName, numMods] : devNameToModCount) {
 				modsString.append(fmt::format("{}: {}, ", modDevName, numMods));
 			}
-		} else if (Utils::getInt("showModsListMode") != 0) {
+			if (2 < modsListModeConfig) {
+				modsString = std::regex_replace(modsString, std::regex(", "), "\n");
+			}
+		} else if (modsListModeConfig != 0) {
 			modsString = "Installed mods list breakdown currently unavailable.\n<cr>Maybe don't break the settings file next time.</c>, ";
 		}
 		#endif

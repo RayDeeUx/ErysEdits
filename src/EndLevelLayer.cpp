@@ -11,8 +11,11 @@ class $modify(MyEndLevelLayer, EndLevelLayer) {
 	static void onModify(auto& self) {
 		(void) self.setHookPriority("EndLevelLayer::customSetup", INT32_MIN + 1);
 	}
+	bool doNotShowModsList() {
+		return (!Utils::modEnabled() || Utils::getInt("showModsListMode") == 0 || m_fields->manager->modsInfoForClipboard == "N/A");
+	}
 	void onErysEditsCompleteText(cocos2d::CCObject* sender) {
-		if (!Utils::modEnabled() || Utils::getInt("showModsListMode") == 0) { return; }
+		if (MyEndLevelLayer::doNotShowModsList()) { return; }
 		// apparently i can't use nullptr delegate here, so have a hacky workaround
 		clipboard::write(m_fields->manager->modsInfoForClipboard);
 		FLAlertLayer::create(
@@ -33,7 +36,7 @@ class $modify(MyEndLevelLayer, EndLevelLayer) {
 	void customSetup() {
 		EndLevelLayer::customSetup();
 		
-		if (!Utils::modEnabled() || Utils::getInt("showModsListMode") == 0) { return; }
+		if (MyEndLevelLayer::doNotShowModsList()) { return; }
 		
 		/*
 			original code adapted from sofabeddd's geometry-dash mod.
