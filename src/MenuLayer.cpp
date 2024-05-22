@@ -96,9 +96,6 @@ class $modify(MyMenuLayer, MenuLayer) {
 			for (auto const& [modDevName, numMods] : devNameToModCount) {
 				modsString.append(fmt::format("{}: {}, ", modDevName, numMods));
 			}
-			if (2 < modsListModeConfig) {
-				modsString = std::regex_replace(modsString, std::regex(", "), "\n");
-			}
 		} else if (modsListModeConfig != 0) {
 			modsString = "Installed mods list breakdown currently unavailable.\n<cr>Maybe don't break the settings file next time.</c>, ";
 		}
@@ -109,6 +106,11 @@ class $modify(MyMenuLayer, MenuLayer) {
 		{
 			modsString.pop_back();
 			modsString.pop_back();
+			#ifdef __APPLE__
+			if (2 < modsListModeConfig) {
+				modsString = std::regex_replace(modsString, std::regex(", "), "\n");
+			}
+			#endif
 		}
 		
 		// log::info("FOUND {} INSTALLED MODS (OF WHICH {} ARE ACTIVE and {} ARE DISABLED WITH {} PROBLEMS PRESENT):\n{}", mods.size(), activeMods, disabledMods, problems, modsString);

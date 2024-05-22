@@ -106,7 +106,7 @@ class $modify(MyPlayLayer, PlayLayer) {
 
 		if (
 			(m_level->m_accountID.value() == 13950148 && m_level->m_levelType == GJLevelType::Saved)
-		    || m_fields->gameManager->m_playerUserID.value() == 128138354 && m_level->m_levelType != GJLevelType::Saved
+			|| m_fields->gameManager->m_playerUserID.value() == 128138354 && m_level->m_levelType != GJLevelType::Saved
 		) { level = level + " <HOMOPHOBIC>"; }
 
 		if (m_fields->manager->isLevelComplete) { level = level + " <Completed>"; }
