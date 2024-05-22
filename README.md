@@ -1,7 +1,7 @@
 # ErysEdits
 Several mods I would've made into smaller standalone mods when I was an ignorant Geode developer. (And I still probably am by several accounts, but who's keeping track? `/j`)
 
-Not all features of ErysEdits are available across all platforms; check your settings for this mod after installing to verify.
+Not all features of ErysEdits are available (or behave the same way) across all platforms; check your settings for this mod after installing to verify.
 
 ## Features
 - Various Info Label tweaks, including improved readibility, conditional displays, and debug text logging

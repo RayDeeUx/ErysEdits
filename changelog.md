@@ -1,5 +1,5 @@
 # ErysEdits Changelog
-## v1.1.3 - "Sponsored" by CLion
+## v1.2.0 - "Sponsored" by CLion (rewrites and whatnot)
 - New settings: `Force Audio Scale` and `Force Visible Effect`. Because the orbs in Zeniux's levels started becoming cringe.
 - More new settings for the debug text: `Adjust Alpha/Opacity`, `Max Opacity`, `Chroma Mode`, `Chroma Speed`, `Include Jumps`. Hopefully the debug text should be readable under every imaginable circumstance now.
 - Fix a silly mistake from the previous update where an FLAlertLayer from the mod settings wasn't scrollable like originally intended.
