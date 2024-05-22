@@ -5,7 +5,8 @@
 - Fix a silly mistake from the previous update where an FLAlertLayer from the mod settings wasn't scrollable like originally intended.
 - Fix crash with the debug text. Not sure how or why it kept happening, to be honest.
 	- If the debug text features from this mod suddenly stop working, please let me know and ping me in the Geode SDK Discord. (Nine to one odds says it's a mod conflict that I personally haven't experienced.)
-- Rewrote how music/SFX files from other mods are detected for the debug menu, as well as a lot of other things related to C++ syntax (Thank you, CLion).
+- Fix new crashes with *this mod's* custom `FLAlertLayer`s crashing on macOS when descriptions are too long.
+- Rewrote how music/SFX files from other mods are detected for the debug menu, as well as several other things related to C++ syntax (Thank you, CLion).
 - Titled each release, because why not.
 ## v1.1.2 - Housekeeping
 - (Hopefully) fix a rare crash with LoadingLayer.
