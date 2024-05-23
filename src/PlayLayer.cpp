@@ -20,13 +20,6 @@ class $modify(MyPlayLayer, PlayLayer) {
 			{ 3602, "disableSFX" },
 			{ 3603, "disableEditSFX" }
 		};
-		const std::list<int> gameplayElements = {
-			10, 11, 12, 13, 35, 36, 45, 46, 47, 67, 84,
-			99, 101, 111, 140, 141, 200, 201, 202, 203,
-			286, 287, 660, 745, 746, 747, 748, 1022, 1330,
-			1331, 1332, 1333, 1334, 1594, 1704, 1751, 1933,
-			2063, 2064, 2902, 2926, 3004, 3005, 3027
-		};
 		#endif
 	};
 	std::string buildPlayerStatusString(PlayerObject* thePlayer) {
@@ -136,11 +129,11 @@ class $modify(MyPlayLayer, PlayLayer) {
 	}
 	void levelComplete() {
 		PlayLayer::levelComplete();
-		Utils::restoreOrigGMGVs(m_fields->gameManager);
+		Utils::restoreOrigGMGVs(GameManager::get());
 		if (Utils::modEnabled() && Utils::getBool("hideLevelCompleteVisuals")) { m_fields->manager->isLevelComplete = true; }
 	}
 	void onQuit() {
-		Utils::restoreOrigGMGVs(m_fields->gameManager, true, false);
+		Utils::restoreOrigGMGVs(GameManager::get(), true, false);
 		if (Utils::modEnabled() && Utils::getBool("hideLevelCompleteVisuals")) { m_fields->manager->isLevelComplete = false; }
 		m_fields->manager->lastPlayedSong = "N/A";
 		#ifndef __APPLE__
@@ -161,7 +154,7 @@ class $modify(MyPlayLayer, PlayLayer) {
 	}
 	#ifndef __APPLE__
 	void onExit() {
-		Utils::restoreOrigGMGVs(m_fields->gameManager, false);
+		Utils::restoreOrigGMGVs(GameManager::get(), false);
 		PlayLayer::onExit();
 	}
 	#endif
@@ -176,9 +169,6 @@ class $modify(MyPlayLayer, PlayLayer) {
 			}
 			if (Utils::getBool("forceVisibleEffect") && theObject->m_hasNoEffects) {
 				theObject->m_hasNoEffects = false;
-			}
-			if (Utils::getBool("forceNoParticles") && !theObject->m_hasNoParticles) {
-				theObject->m_hasNoParticles = true;
 			}
 			if (Utils::getBool("forceAudioScale") && theObject->m_hasNoAudioScale && (!m_fields->manager->isBreakingPlatforming || !m_level->isPlatformer())) {
 				theObject->m_hasNoAudioScale = false;

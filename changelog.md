@@ -11,6 +11,8 @@
 - Fix new crashes with *this mod's* custom `FLAlertLayer`s crashing on macOS when descriptions are too long.
 - Rewrote how music/SFX files from other mods are detected for the debug menu, as well as several other things related to C++ syntax (Thank you, CLion).
 - Titled each release, because why not.
+- Bump Geode minimum version to 2.0.0-beta.26.
+- Bump Node IDs minimum requirement to v1.11.0.
 ## v1.1.2 - Housekeeping
 - (Hopefully) fix a rare crash with LoadingLayer.
 - Added mods list copying functionality to the `Level End Screen: Show Mods List` setting.
