@@ -22,7 +22,7 @@ class $modify(MyLevelInfoLayer, LevelInfoLayer) {
 		if (getChildByIDRecursive("refresh-button")) {
 			this->defineKeybind("refresh-page"_spr, [this]() {
 				if (Utils::isSceneRunning("LevelInfoLayer") && Utils::nothingElse()) {
-					if (Utils::modEnabled() && Utils::get("refreshAnywhere")) {
+					if (Utils::modEnabled() && Utils::getBool("refreshAnywhere")) {
 						LevelInfoLayer::onUpdate(nullptr);
 					} else { Utils::refreshKeybindDisabled(); }
 				}
@@ -31,7 +31,7 @@ class $modify(MyLevelInfoLayer, LevelInfoLayer) {
 		if (getChildByIDRecursive("info-button")) {
 			this->defineKeybind("comments"_spr, [this]() {
 				if (Utils::isSceneRunning("LevelInfoLayer") && Utils::nothingElse()) {
-					if (Utils::modEnabled() && Utils::get("viewCommentsAnywhere")) {
+					if (Utils::modEnabled() && Utils::getBool("viewCommentsAnywhere")) {
 						LevelInfoLayer::onInfo(nullptr);
 					} else { Utils::viewCommentsDisabled(); }
 				}

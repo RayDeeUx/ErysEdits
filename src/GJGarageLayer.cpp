@@ -26,15 +26,15 @@ class $modify(MyGJGarageLayer, GJGarageLayer) {
 	bool init() {
 		if (!GJGarageLayer::init()) { return false; }
 		if (Utils::modEnabled()) {
-			if (const auto floorLine = getChildByIDRecursive("floor-line")) { floorLine->setVisible(!Utils::get("slightlyCleanerGarage")); }
-			if (const auto usernameLock = getChildByIDRecursive("username-lock")) { usernameLock->setVisible(!Utils::get("slightlyCleanerGarage")); }
+			if (const auto floorLine = getChildByIDRecursive("floor-line")) { floorLine->setVisible(!Utils::getBool("slightlyCleanerGarage")); }
+			if (const auto usernameLock = getChildByIDRecursive("username-lock")) { usernameLock->setVisible(!Utils::getBool("slightlyCleanerGarage")); }
 		}
 		#ifdef GEODE_IS_WINDOWS
 		if (getChildByIDRecursive("category-menu")) {
 			if (getChildByIDRecursive("cube-button")) {
 				this->defineKeybind("garage-cube"_spr, [this]() {
 					if (Utils::isSceneRunning("GJGarageLayer") && Utils::nothingElse()) {
-						if (Utils::modEnabled() && Utils::get("garageNavigation")) {
+						if (Utils::modEnabled() && Utils::getBool("garageNavigation")) {
 							GJGarageLayer::onSelectTab(
 								getChildByIDRecursive("category-menu")->getChildByIDRecursive("cube-button")
 							);
@@ -45,7 +45,7 @@ class $modify(MyGJGarageLayer, GJGarageLayer) {
 			if (getChildByIDRecursive("ship-button")) {
 				this->defineKeybind("garage-ship"_spr, [this]() {
 					if (Utils::isSceneRunning("GJGarageLayer") && Utils::nothingElse()) {
-						if (Utils::modEnabled() && Utils::get("garageNavigation")) {
+						if (Utils::modEnabled() && Utils::getBool("garageNavigation")) {
 							GJGarageLayer::onSelectTab(
 								getChildByIDRecursive("category-menu")->getChildByIDRecursive("ship-button")
 							);
@@ -56,7 +56,7 @@ class $modify(MyGJGarageLayer, GJGarageLayer) {
 			if (getChildByIDRecursive("jetpack-button")) {
 				this->defineKeybind("garage-jetpack"_spr, [this]() {
 					if (Utils::isSceneRunning("GJGarageLayer") && Utils::nothingElse()) {
-						if (Utils::modEnabled() && Utils::get("garageNavigation")) {
+						if (Utils::modEnabled() && Utils::getBool("garageNavigation")) {
 							GJGarageLayer::onSelectTab(
 								getChildByIDRecursive("category-menu")->getChildByIDRecursive("jetpack-button")
 							);
@@ -67,7 +67,7 @@ class $modify(MyGJGarageLayer, GJGarageLayer) {
 			if (getChildByIDRecursive("ball-button")) {
 				this->defineKeybind("garage-ball"_spr, [this]() {
 					if (Utils::isSceneRunning("GJGarageLayer") && Utils::nothingElse()) {
-						if (Utils::modEnabled() && Utils::get("garageNavigation")) {
+						if (Utils::modEnabled() && Utils::getBool("garageNavigation")) {
 							GJGarageLayer::onSelectTab(
 								getChildByIDRecursive("category-menu")->getChildByIDRecursive("ball-button")
 							);
@@ -78,7 +78,7 @@ class $modify(MyGJGarageLayer, GJGarageLayer) {
 			if (getChildByIDRecursive("ufo-button")) {
 				this->defineKeybind("garage-ufo"_spr, [this]() {
 					if (Utils::isSceneRunning("GJGarageLayer") && Utils::nothingElse()) {
-						if (Utils::modEnabled() && Utils::get("garageNavigation")) {
+						if (Utils::modEnabled() && Utils::getBool("garageNavigation")) {
 							GJGarageLayer::onSelectTab(
 								getChildByIDRecursive("category-menu")->getChildByIDRecursive("ufo-button")
 							);
@@ -89,7 +89,7 @@ class $modify(MyGJGarageLayer, GJGarageLayer) {
 			if (getChildByIDRecursive("wave-button")) {
 				this->defineKeybind("garage-wave"_spr, [this]() {
 					if (Utils::isSceneRunning("GJGarageLayer") && Utils::nothingElse()) {
-						if (Utils::modEnabled() && Utils::get("garageNavigation")) {
+						if (Utils::modEnabled() && Utils::getBool("garageNavigation")) {
 							GJGarageLayer::onSelectTab(
 								getChildByIDRecursive("category-menu")->getChildByIDRecursive("wave-button")
 							);
@@ -100,7 +100,7 @@ class $modify(MyGJGarageLayer, GJGarageLayer) {
 			if (getChildByIDRecursive("robot-button")) {
 				this->defineKeybind("garage-robot"_spr, [this]() {
 					if (Utils::isSceneRunning("GJGarageLayer") && Utils::nothingElse()) {
-						if (Utils::modEnabled() && Utils::get("garageNavigation")) {
+						if (Utils::modEnabled() && Utils::getBool("garageNavigation")) {
 							GJGarageLayer::onSelectTab(
 								getChildByIDRecursive("category-menu")->getChildByIDRecursive("robot-button")
 							);
@@ -111,7 +111,7 @@ class $modify(MyGJGarageLayer, GJGarageLayer) {
 			if (getChildByIDRecursive("spider-button")) {
 				this->defineKeybind("garage-spider"_spr, [this]() {
 					if (Utils::isSceneRunning("GJGarageLayer") && Utils::nothingElse()) {
-						if (Utils::modEnabled() && Utils::get("garageNavigation")) {
+						if (Utils::modEnabled() && Utils::getBool("garageNavigation")) {
 							GJGarageLayer::onSelectTab(
 								getChildByIDRecursive("category-menu")->getChildByIDRecursive("spider-button")
 							);
@@ -122,7 +122,7 @@ class $modify(MyGJGarageLayer, GJGarageLayer) {
 			if (getChildByIDRecursive("swing-button")) {
 				this->defineKeybind("garage-swing"_spr, [this]() {
 					if (Utils::isSceneRunning("GJGarageLayer") && Utils::nothingElse()) {
-						if (Utils::modEnabled() && Utils::get("garageNavigation")) {
+						if (Utils::modEnabled() && Utils::getBool("garageNavigation")) {
 							GJGarageLayer::onSelectTab(
 								getChildByIDRecursive("category-menu")->getChildByIDRecursive("swing-button")
 							);
@@ -133,7 +133,7 @@ class $modify(MyGJGarageLayer, GJGarageLayer) {
 			if (getChildByIDRecursive("trail-button")) {
 				this->defineKeybind("garage-trail"_spr, [this]() {
 					if (Utils::isSceneRunning("GJGarageLayer") && Utils::nothingElse()) {
-						if (Utils::modEnabled() && Utils::get("garageNavigation")) {
+						if (Utils::modEnabled() && Utils::getBool("garageNavigation")) {
 							GJGarageLayer::onSelectTab(
 								getChildByIDRecursive("category-menu")->getChildByIDRecursive("trail-button")
 							);
@@ -144,7 +144,7 @@ class $modify(MyGJGarageLayer, GJGarageLayer) {
 			if (getChildByIDRecursive("death-effect-button")) {
 				this->defineKeybind("garage-death-effect"_spr, [this]() {
 					if (Utils::isSceneRunning("GJGarageLayer") && Utils::nothingElse()) {
-						if (Utils::modEnabled() && Utils::get("garageNavigation")) {
+						if (Utils::modEnabled() && Utils::getBool("garageNavigation")) {
 							GJGarageLayer::onSelectTab(
 								getChildByIDRecursive("category-menu")->getChildByIDRecursive("death-effect-button")
 							);
@@ -157,7 +157,7 @@ class $modify(MyGJGarageLayer, GJGarageLayer) {
 			if (prevPageMenu->getChildByIDRecursive("prev-button")) {
 				this->defineKeybind("garage-previous-page"_spr, [this]() {
 					if (Utils::isSceneRunning("GJGarageLayer") && Utils::nothingElse() && getChildByIDRecursive("prev-page-menu")->getChildByIDRecursive("prev-button")->isVisible()) {
-						if (Utils::modEnabled() && Utils::get("garageNavigation")) {
+						if (Utils::modEnabled() && Utils::getBool("garageNavigation")) {
 							GJGarageLayer::onArrow(
 								getChildByIDRecursive("prev-page-menu")->getChildByIDRecursive("prev-button")
 							);
@@ -170,7 +170,7 @@ class $modify(MyGJGarageLayer, GJGarageLayer) {
 			if (nextPageMenu->getChildByIDRecursive("next-button")) {
 				this->defineKeybind("garage-next-page"_spr, [this]() {
 					if (Utils::isSceneRunning("GJGarageLayer") && Utils::nothingElse() && getChildByIDRecursive("next-page-menu")->getChildByIDRecursive("next-button")->isVisible()) {
-						if (Utils::modEnabled() && Utils::get("garageNavigation")) {
+						if (Utils::modEnabled() && Utils::getBool("garageNavigation")) {
 							GJGarageLayer::onArrow(
 								getChildByIDRecursive("next-page-menu")->getChildByIDRecursive("next-button")
 							);
@@ -189,7 +189,7 @@ class $modify(MyGJGarageLayer, GJGarageLayer) {
 			if (shardsMenu->getChildByIDRecursive("shards-button")) {
 				this->defineKeybind("garage-shards-page"_spr, [this]() {
 					if (Utils::isSceneRunning("GJGarageLayer") && Utils::nothingElse()) {
-						if (Utils::modEnabled() && Utils::get("garageNavigation")) {
+						if (Utils::modEnabled() && Utils::getBool("garageNavigation")) {
 							GJGarageLayer::onShards(nullptr);
 						} else { Utils::garageNavigationDisabled(); }
 					}
@@ -198,7 +198,7 @@ class $modify(MyGJGarageLayer, GJGarageLayer) {
 			if (shardsMenu->getChildByIDRecursive("color-button")) {
 				this->defineKeybind("garage-colors-page"_spr, [this]() {
 					if (Utils::isSceneRunning("GJGarageLayer") && Utils::nothingElse()) {
-						if (Utils::modEnabled() && Utils::get("garageNavigation")) {
+						if (Utils::modEnabled() && Utils::getBool("garageNavigation")) {
 							GJGarageLayer::onPaint(nullptr);
 						} else { Utils::garageNavigationDisabled(); }
 					}

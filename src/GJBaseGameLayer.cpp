@@ -10,7 +10,7 @@ class $modify(MyGJBaseGameLayer, GJBaseGameLayer) {
 	};
 	void update(float dt) {
 		GJBaseGameLayer::update(dt);
-		if (Utils::get("debugTextToggle") && Utils::get("chromaDebugText") && !m_fields->manager->chromaStarted) {
+		if (Utils::getBool("debugTextToggle") && Utils::getBool("chromaDebugText") && !m_fields->manager->chromaStarted) {
 			if (const auto pl = PlayLayer::get()) {
 				if (const auto debugTextNode = pl->getChildByID("debug-text")) {
 					if (typeinfo_cast<CCLabelBMFont*>(debugTextNode) && debugTextNode->isVisible()) {
@@ -38,9 +38,9 @@ class $modify(MyGJBaseGameLayer, GJBaseGameLayer) {
 	void toggleDualMode(GameObject * p0, bool p1, PlayerObject * p2, bool p3) {
 		GJBaseGameLayer::toggleDualMode(p0, p1, p2, p3);
 		if (Utils::modEnabled()) {
-			if (Utils::get("addPlayerInfo")) { m_fields->manager->isDualsTime = p1; }
+			if (Utils::getBool("addPlayerInfo")) { m_fields->manager->isDualsTime = p1; }
 			// i've had horror stories of hooking playlayer onentertransitiondidfinish so im hooking it here instead
-			if (Utils::get("hideLevelCompleteVisuals")) { m_fields->manager->isLevelComplete = false; }
+			if (Utils::getBool("hideLevelCompleteVisuals")) { m_fields->manager->isLevelComplete = false; }
 			m_fields->manager->isPlayerDead = false;
 		}
 	}

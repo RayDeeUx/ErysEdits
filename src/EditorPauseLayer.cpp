@@ -20,7 +20,7 @@ class $modify(MyEditorPauseLayer, EditorPauseLayer) {
 		if (!EditorPauseLayer::init(p0)) { return false; }
 		if (getChildByIDRecursive("resume-button")) {
 			this->defineKeybind("resume-editor"_spr, [this]() {
-				if (Utils::modEnabled() && Utils::get("resumeShortcut")) {
+				if (Utils::modEnabled() && Utils::getBool("resumeShortcut")) {
 					EditorPauseLayer::onResume(nullptr);
 				} else { Utils::keybindDisabledGeneric("Resume Editor", "resume editing a level"); }
 			});

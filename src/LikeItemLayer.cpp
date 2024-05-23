@@ -18,14 +18,14 @@ class $modify(MyLikeItemLayer, LikeItemLayer) {
 	bool init(LikeItemType p0, int p1, int p2) {
 		if (!LikeItemLayer::init(p0, p1, p2)) { return false; }
 		this->defineKeybind("like"_spr, [this]() {
-			if (Utils::modEnabled() && Utils::get("likeDislikeShortcut")) {
+			if (Utils::modEnabled() && Utils::getBool("likeDislikeShortcut")) {
 				LikeItemLayer::onLike(nullptr);
 			} else {
 				Utils::likeDislikeShortcutDisabled();
 			}
 		});
 		this->defineKeybind("dislike"_spr, [this]() {
-			if (Utils::modEnabled() && Utils::get("likeDislikeShortcut")) {
+			if (Utils::modEnabled() && Utils::getBool("likeDislikeShortcut")) {
 				LikeItemLayer::onDislike(nullptr);
 			} else {
 				Utils::likeDislikeShortcutDisabled();

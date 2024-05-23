@@ -13,13 +13,19 @@ namespace Utils {
 		});
 	}
 	
-	bool get(std::string setting) { return Mod::get()->getSettingValue<bool>(setting); }
+	bool getBool(std::string setting) { return Mod::get()->getSettingValue<bool>(setting); }
 	
 	int64_t getInt(std::string setting) { return Mod::get()->getSettingValue<int64_t>(setting); }
 	
 	double getDouble(std::string setting) { return Mod::get()->getSettingValue<double>(setting); }
-	
-	bool modEnabled() { return Utils::get("enabled"); }
+
+	std::string getString(std::string setting) { return Mod::get()->getSettingValue<std::string>(setting); }
+
+	ccColor3B getColor(std::string setting) { return Mod::get()->getSettingValue<ccColor3B>(setting); }
+
+	ccColor4B getColorAlpha(std::string setting) { return Mod::get()->getSettingValue<ccColor4B>(setting); }
+
+	bool modEnabled() { return Utils::getBool("enabled"); }
 	
 	void keybindDisabledGeneric(std::string titleTemplate, std::string keybindDesc) {
 		FLAlertLayer::create(
@@ -79,7 +85,7 @@ namespace Utils {
 		// do NOT touch isEnteringLevel param. it is unused but i don't want to remove it and break everything
 		Manager* manager = Manager::getSharedInstance();
 		
-		if (Utils::modEnabled() && Utils::get("unverifiedPercent")) {
+		if (Utils::modEnabled() && Utils::getBool("unverifiedPercent")) {
 			gameManager->m_showProgressBar = manager->originalShowProgressBarValue;
 			gameManager->setGameVariable("0040", manager->originalShowPercentageValue);
 		}
@@ -102,7 +108,7 @@ namespace Utils {
 	void applyGMGVs(const bool isLevelVerified) {
 		Manager* manager = Manager::getSharedInstance();
 		GameManager* gameManager = GameManager::get();
-		if (Utils::modEnabled() && Utils::get("unverifiedPercent")) {
+		if (Utils::modEnabled() && Utils::getBool("unverifiedPercent")) {
 			if (isLevelVerified) {
 				gameManager->m_showProgressBar = manager->originalShowProgressBarValue;
 				gameManager->setGameVariable("0040", manager->originalShowPercentageValue);
@@ -140,7 +146,7 @@ namespace Utils {
 	
 #ifdef GEODE_IS_WINDOWS
 	bool shiftDown() {
-		return (Manager::getSharedInstance()->isShiftKeyDown || !(Utils::modEnabled() && Utils::get("shiftForVault")));
+		return (Manager::getSharedInstance()->isShiftKeyDown || !(Utils::modEnabled() && Utils::getBool("shiftForVault")));
 	}
 #endif
 	

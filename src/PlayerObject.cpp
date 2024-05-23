@@ -15,7 +15,7 @@ class $modify(MyPlayerObject, PlayerObject) {
 	void playerDestroyed(const bool p0) {
 		m_fields->manager->isPlayerDead = true;
 		if (Utils::modEnabled() && PlayLayer::get()) {
-			if (Utils::get("forceStopMusicOnDeath")) {
+			if (Utils::getBool("forceStopMusicOnDeath")) {
 				const auto pl = PlayLayer::get();
 				const auto fmod = FMODAudioEngine::sharedEngine();
 				fmod->pauseAllMusic();

@@ -27,7 +27,7 @@ class $modify(MyLevelBrowserLayer, LevelBrowserLayer) {
 		} else {
 			m_fields->manager->isInSavedLevels = false;
 		}
-		if (searchObject->m_searchType == SearchType::MyLevels && Utils::modEnabled() && Utils::get("compactEditorLevels")) {
+		if (searchObject->m_searchType == SearchType::MyLevels && Utils::modEnabled() && Utils::getBool("compactEditorLevels")) {
 			if (const auto deleteMenu = getChildByIDRecursive("delete-menu")) {
 				// hide the deletion checkboxes because every level in the list has been cast to BoomListType::Level4
 				deleteMenu->setVisible(false);
@@ -38,7 +38,7 @@ class $modify(MyLevelBrowserLayer, LevelBrowserLayer) {
 		else if (getChildByIDRecursive("refresh-button")) {
 			this->defineKeybind("refresh-page"_spr, [this]() {
 				if (Utils::isSceneRunning("LevelBrowserLayer") && Utils::nothingElse()) {
-					if (Utils::modEnabled() && Utils::get("refreshAnywhere")) {
+					if (Utils::modEnabled() && Utils::getBool("refreshAnywhere")) {
 						LevelBrowserLayer::onRefresh(nullptr);
 					} else { Utils::refreshKeybindDisabled(); }
 				}
@@ -47,7 +47,7 @@ class $modify(MyLevelBrowserLayer, LevelBrowserLayer) {
 		if (getChildByIDRecursive("prev-page-button")) {
 			this->defineKeybind("first-page"_spr, [this]() {
 				if (Utils::isSceneRunning("LevelBrowserLayer") && Utils::nothingElse()) {
-					if (Utils::modEnabled() && Utils::get("pageNavAnywhere")) {
+					if (Utils::modEnabled() && Utils::getBool("pageNavAnywhere")) {
 						LevelBrowserLayer::setIDPopupClosed(
 							SetIDPopup::create(
 								1,
@@ -62,7 +62,7 @@ class $modify(MyLevelBrowserLayer, LevelBrowserLayer) {
 		if (getChildByIDRecursive("next-page-button")) {
 			this->defineKeybind("last-page"_spr, [this]() {
 				if (Utils::isSceneRunning("LevelBrowserLayer") && Utils::nothingElse()) {
-					if (Utils::modEnabled() && Utils::get("pageNavAnywhere")) {
+					if (Utils::modEnabled() && Utils::getBool("pageNavAnywhere")) {
 					float lastPage = ceil(m_itemCount / (float) m_pageEndIdx);
 						LevelBrowserLayer::setIDPopupClosed(
 							SetIDPopup::create(
@@ -78,14 +78,14 @@ class $modify(MyLevelBrowserLayer, LevelBrowserLayer) {
 		if (getChildByIDRecursive("new-level-menu")) {
 			this->defineKeybind("new-editor-level"_spr, [this]() {
 				if (Utils::isSceneRunning("LevelBrowserLayer") && Utils::nothingElse()) {
-					if (Utils::modEnabled() && Utils::get("newEditorLevel")) {
+					if (Utils::modEnabled() && Utils::getBool("newEditorLevel")) {
 						LevelBrowserLayer::onNew(nullptr);
 					} else { Utils::keybindDisabledGeneric("Create New Level/List", "create a new level/list"); }
 				}
 			});
 			this->defineKeybind("toggle-level-lists"_spr, [this]() {
 				if (Utils::isSceneRunning("LevelBrowserLayer") && Utils::nothingElse()) {
-					if (Utils::modEnabled() && Utils::get("toggleLevelLists")) {
+					if (Utils::modEnabled() && Utils::getBool("toggleLevelLists")) {
 						LevelBrowserLayer::onLocalMode(nullptr);
 					} else { Utils::keybindDisabledGeneric("Toggle Levels/Lists Mode", "toggle between viewing local editor levels and local level lists"); }
 				}
@@ -94,7 +94,7 @@ class $modify(MyLevelBrowserLayer, LevelBrowserLayer) {
 		if (getChildByIDRecursive("my-levels-button")) {
 			this->defineKeybind("view-uploaded"_spr, [this]() {
 				if (Utils::isSceneRunning("LevelBrowserLayer") && Utils::nothingElse()) {
-					if (Utils::modEnabled() && Utils::get("viewUploaded")) {
+					if (Utils::modEnabled() && Utils::getBool("viewUploaded")) {
 						LevelBrowserLayer::onMyOnlineLevels(nullptr);
 					} else { Utils::keybindDisabledGeneric("View Uploaded Levels/Lists", "view uploaded levels/level lists"); }
 				}

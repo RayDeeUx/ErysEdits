@@ -22,7 +22,7 @@ class $modify(MyShardsPage, ShardsPage) {
 		if (!ShardsPage::init()) { return false; }
 		if (getChildByIDRecursive("arrow-buttons-menu")->getChildByIDRecursive("prev-button")) {
 			this->defineKeybind("garage-previous-page"_spr, [this]() {
-				if (Utils::modEnabled() && Utils::get("garageNavigation")) {
+				if (Utils::modEnabled() && Utils::getBool("garageNavigation")) {
 					ShardsPage::onSwitchPage(
 						getChildByIDRecursive("arrow-buttons-menu")->getChildByIDRecursive("prev-button")
 					);
@@ -31,7 +31,7 @@ class $modify(MyShardsPage, ShardsPage) {
 		}
 		if (getChildByIDRecursive("arrow-buttons-menu")->getChildByIDRecursive("next-button")) {
 			this->defineKeybind("garage-next-page"_spr, [this]() {
-				if (Utils::modEnabled() && Utils::get("garageNavigation")) {
+				if (Utils::modEnabled() && Utils::getBool("garageNavigation")) {
 					ShardsPage::onSwitchPage(
 						getChildByIDRecursive("arrow-buttons-menu")->getChildByIDRecursive("next-button")
 					);

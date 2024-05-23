@@ -29,7 +29,7 @@ class $modify(MyGauntletSelectLayer, GauntletSelectLayer) {
 		}
 	}
 	void pressGauntlet(int desiredGauntlet) {
-		if (Utils::modEnabled() && Utils::get("navigateGauntlets") && Utils::nothingElse()) {
+		if (Utils::modEnabled() && Utils::getBool("navigateGauntlets") && Utils::nothingElse()) {
 			if (const auto theGauntletPage = getChildByIDRecursive(fmt::format("gauntlet-page-{}", m_fields->currentGauntletPage))) {
 				if (const auto theGauntlet = theGauntletPage->getChildByIDRecursive(fmt::format("gauntlet-button-{}", desiredGauntlet))) {
 					GauntletSelectLayer::onPlay(theGauntlet);
@@ -53,12 +53,12 @@ class $modify(MyGauntletSelectLayer, GauntletSelectLayer) {
 			MyGauntletSelectLayer::findCurrentGauntletPageUsing(pageButtons);
 		}
 		this->defineKeybind("next-gauntlet"_spr, [this]() {
-			if (Utils::modEnabled() && Utils::get("navigateGauntlets") && Utils::nothingElse()) {
+			if (Utils::modEnabled() && Utils::getBool("navigateGauntlets") && Utils::nothingElse()) {
 				GauntletSelectLayer::onNext(nullptr);
 			} else { Utils::navigateGauntletsDisabled(); }
 		});
 		this->defineKeybind("previous-gauntlet"_spr, [this]() {
-			if (Utils::modEnabled() && Utils::get("navigateGauntlets") && Utils::nothingElse()) {
+			if (Utils::modEnabled() && Utils::getBool("navigateGauntlets") && Utils::nothingElse()) {
 				GauntletSelectLayer::onPrev(nullptr);
 			} else { Utils::navigateGauntletsDisabled(); }
 		});

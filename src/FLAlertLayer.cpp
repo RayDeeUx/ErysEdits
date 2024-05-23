@@ -6,8 +6,14 @@ using namespace geode::prelude;
 
 class $modify(MyFLAlertLayer, FLAlertLayer) {
 	bool init(FLAlertLayerProtocol* delegate, char const* title, gd::string desc, char const* btn1, char const* btn2, float width, bool scroll, float height, float textScale) {
+		std::string titleString = title;
+		std::string descString = desc;
+		bool shouldBeScrollable = (titleString == "Always Active LDM (READ!)" || titleString.find("Show/Copy Mods List") != std::string::npos);
 		if (!Utils::modEnabled()) {
-			return FLAlertLayer::init(delegate, title, desc, btn1, btn2, width, scroll, height, textScale);
+			if (shouldBeScrollable) {
+				descString = "<cy>(Please enable the softtoggle for the ErysEdits mod; your screen won't fit this setting's description.)</c>";
+			}
+			return FLAlertLayer::init(delegate, titleString.c_str(), descString.c_str(), btn1, btn2, width, scroll, height, textScale);
 		}
 		/*
 		log::info("title: {}", title);
@@ -20,13 +26,12 @@ class $modify(MyFLAlertLayer, FLAlertLayer) {
 		log::info("textScale: {}", textScale);
 		*/
 		// apparently i can't use nullptr delegate here, so have a hacky workaround
-		std::string titleString = title;
+		bool isFromLevelEndModsList = titleString.find("BRYCETANKTHRUSTBRYCETANKTHRUSTBRYCETANKTHRUST") != std::string::npos;
 		bool desiredScroll = scroll;
 		float desiredScale = textScale;
 		float desiredWidth = width;
 		float desiredHeight = height;
-		bool isFromLevelEndModsList = titleString.find("BRYCETANKTHRUSTBRYCETANKTHRUSTBRYCETANKTHRUST") != std::string::npos;
-		if (isFromLevelEndModsList || (titleString == "Always Active LDM (READ!)" || titleString.find("Show/Copy Mods List") != std::string::npos)) {
+		if (isFromLevelEndModsList || shouldBeScrollable) {
 			if (isFromLevelEndModsList) {
 				auto manager = Manager::getSharedInstance();
 				titleString = fmt::format(
@@ -58,7 +63,7 @@ class $modify(MyFLAlertLayer, FLAlertLayer) {
 		}
 		/*
 		log::info("titleString: {}", titleString);
-		log::info("desc: {}", desc);
+		log::info("descString: {}", descString);
 		if (btn1) log::info("btn1: {}", btn1);
 		if (btn2) log::info("btn2: {}", btn2);
 		log::info("desiredWidth: {}", desiredWidth);
@@ -66,6 +71,6 @@ class $modify(MyFLAlertLayer, FLAlertLayer) {
 		log::info("desiredHeight: {}", desiredHeight);
 		log::info("desiredScale: {}", desiredScale);
 		*/
-		return FLAlertLayer::init(delegate, titleString.c_str(), desc, btn1, btn2, desiredWidth, desiredScroll, desiredHeight, desiredScale);
+		return FLAlertLayer::init(delegate, titleString.c_str(), descString.c_str(), btn1, btn2, desiredWidth, desiredScroll, desiredHeight, desiredScale);
 	}
 };

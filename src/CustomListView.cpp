@@ -10,8 +10,8 @@ using namespace geode::prelude;
 class $modify(MyCustomListView, CustomListView) {
 	static CustomListView* create(cocos2d::CCArray* a, TableViewCellDelegate* b, float c, float d, int e, BoomListType f, float g) {
 		if (Utils::modEnabled()) {
-			if (f == BoomListType::Level2 && Utils::get("compactEditorLevels")) { f = BoomListType::Level4; }
-			if (f == BoomListType::Comment4 && Utils::get("compactProfileComments")) { f = BoomListType::Comment2; }
+			if (f == BoomListType::Level2 && Utils::getBool("compactEditorLevels")) { f = BoomListType::Level4; }
+			if (f == BoomListType::Comment4 && Utils::getBool("compactProfileComments")) { f = BoomListType::Comment2; }
 		}
 		return CustomListView::create(a, b, c, d, e, f, g);
 	}

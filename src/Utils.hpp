@@ -9,9 +9,12 @@ using namespace geode::cocos;
 namespace Utils {
 	cocos2d::CCNode* getChildBySpriteFrameNameRecursive(cocos2d::CCNode* parent, char const* name);
 	
-	bool get(std::string setting);
+	bool getBool(std::string setting);
 	int64_t getInt(std::string setting);
 	double getDouble(std::string setting);
+	std::string getString(std::string setting);
+	ccColor3B getColor(std::string setting);
+	ccColor4B getColorAlpha(std::string setting);
 	bool modEnabled();
 	
 	void keybindDisabledGeneric(std::string titleTemplate, std::string keybindDesc);

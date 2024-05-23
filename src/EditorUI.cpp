@@ -18,7 +18,7 @@ class $modify(MyEditorUI, EditorUI) {
 	bool init(LevelEditorLayer* p0) {
 		if (!EditorUI::init(p0)) { return false; }
 		this->defineKeybind("save-editor-level"_spr, [this]() {
-			if (Utils::modEnabled() && Utils::get("saveEditorLevel")) {
+			if (Utils::modEnabled() && Utils::getBool("saveEditorLevel")) {
 				auto editorPauseLayer = EditorPauseLayer::create(this->m_editorLayer);
 				if (editorPauseLayer) {
 					editorPauseLayer->saveLevel();
@@ -41,7 +41,7 @@ class $modify(MyEditorUI, EditorUI) {
 		});
 		/*
 			this->defineKeybind("save-and-play-editor"_spr, [this]() {
-				if (Utils::modEnabled() && Utils::get("saveAndPlay")) {
+				if (Utils::modEnabled() && Utils::getBool("saveAndPlay")) {
 					auto editorPauseLayer = EditorPauseLayer::create(this->m_editorLayer);
 					if (editorPauseLayer) {
 						editorPauseLayer->onSaveAndPlay(nullptr);
@@ -58,7 +58,7 @@ class $modify(MyEditorUI, EditorUI) {
 			});
 		*/
 		this->defineKeybind("save-and-exit-editor"_spr, [this]() {
-			if (Utils::modEnabled() && Utils::get("saveAndExit")) {
+			if (Utils::modEnabled() && Utils::getBool("saveAndExit")) {
 				auto editorPauseLayer = EditorPauseLayer::create(this->m_editorLayer);
 				if (editorPauseLayer) {
 					editorPauseLayer->onSaveAndExit(nullptr);

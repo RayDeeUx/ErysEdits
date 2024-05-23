@@ -14,6 +14,7 @@
 	"settings": {
 		"erysedits": {
 			"name": "ErysEdits",
+			"desc": "Settings for the ErysEdits mod itself.",
 			"type": "custom"
 		},
 		"enabled": {
@@ -24,6 +25,7 @@
 		},
 		"debug-text": {
 			"name": "Info Label / Debug Text",
+			"desc": "Settings for editing the info label in PlayLayer.",
 			"type": "custom"
 		},
 		"debugTextToggle": {
@@ -40,7 +42,7 @@
 		},
 		"debugTextAlpha": {
 			"name": "Adjust Alpha/Opacity",
-			"description": "Sets the debug text's opacity. Minimum is 150 (as seen in vanilla Geometry Dash).",
+			"description": "Sets the info label's opacity. Minimum is 150 (as seen in vanilla Geometry Dash).",
 			"type": "int",
 			"default": 150,
 			"min": 150,
@@ -57,19 +59,19 @@
 		},
 		"maxAlphaDebugText": {
 			"name": "Max Opacity",
-			"description": "Maxes the debug text's opacity. This serves as a quick toggle in case you'd like to briefly see your debug text at maximum opacity without having to remember what your preferred value for the \"Adjust Alpha/Opacity\" setting was.\n\n<cy>(If this is enabled, your setting for \"Adjust Alpha/Opacity\" will be ignored.)</c>",
+			"description": "Maxes the info label's opacity. This quick toggle is here in case you'd like to briefly see your debug text at maximum opacity without having to remember what your preferred value for the \"Adjust Alpha/Opacity\" setting was.\n\n<cy>(If this is enabled, your setting for \"Adjust Alpha/Opacity\" will be ignored.)</c>",
 			"type": "bool",
 			"default": false
 		},
 		"chromaDebugText": {
 			"name": "Chroma Mode",
-			"description": "<cl>Original code by ItzKiba.</c>\n\nSets the color of the debug text to that of a rainbow, as a last ditch effort to make the debug text readable under every imaginable circumstance without flooding your Geode logs.",
+			"description": "<cl>Original code by ItzKiba.</c>\n\nSets the color of the info label to that of a rainbow, as a last ditch effort to make the debug text readable under every imaginable circumstance without flooding your Geode logs.",
 			"type": "bool",
 			"default": false
 		},
 		"chromaDebugTextSpeed": {
 			"name": "Chroma Speed",
-			"description": "Sets how quickly (lower value)/slowly (higher value) the debug text's \"Chroma Mode\" changes color.",
+			"description": "Sets how quickly (lower value)/slowly (higher value) the info label changes color if \"Chroma Mode\" is enabled.",
 			"type": "float",
 			"default": 0.5,
 			"min": 0.1,
@@ -123,7 +125,7 @@
 		},
 		"addCurrentChannel": {
 			"name": "Show Current Channel",
-			"description": "Shows the currently active channel in the first section.\n\n<cy>(Currently unavailable for macOS.)</c>",
+			"description": "Shows the currently active channel.\n\n<cy>(Currently unavailable for macOS.)</c>",
 			"type": "bool",
 			"default": true,
 			"platforms": ["windows", "android64", "android32"]
@@ -190,6 +192,7 @@
 		},
 		"compact": {
 			"name": "Compact View",
+			"desc": "Enable compact view in these lesser known areas.",
 			"type": "custom"
 		},
 		"compactEditorLevels": {
@@ -206,6 +209,7 @@
 		},
 		"gameplay": {
 			"name": "Gameplay",
+			"desc": "Settings for tweaking gameplay as you please.\n\n<cy>Note that some of these settings can get you banned from the leaderboards; enable them at your own risk.</c>",
 			"type": "custom"
 		},
 		"unverifiedPercent": {
@@ -273,7 +277,7 @@
 		},
 		"disableEditSFX": {
 			"name": "No Edit SFX Triggers (READ!)",
-			"description": "Disables Edit SFX triggers in levels.\n\n<cy>If you toggle this, it is</c> <cr>STRONGLY RECOMMENDED</c> <cy>that you enable the \"No SFX Triggers\" option above this setting as well, unless if you're a fan of infinitely looping SFX playing in your eardrums in rare cases such as the platformer level/war crime \"Evasion\" by YunHaSeu14.</c>",
+			"description": "Disables Edit SFX triggers in levels.\n\n<cy>If you toggle this, it is</c> <cr>STRONGLY RECOMMENDED</c> <cy>that you enable the \"No SFX Triggers\" option above this setting as well, unless if you're a fan of infinitely looping SFX playing in your eardrums in rare cases such as the war crime \"Evasion\" by YunHaSeu14.</c>",
 			"type": "bool",
 			"default": false
 		},
@@ -287,8 +291,9 @@
 			"type": "bool",
 			"default": false
 		},
-		"levelEditor": {
+		"level-editor": {
 			"name": "Level Editor Keybinds",
+			"desc": "Keybinds for the level editor.",
 			"type": "custom",
 			"platforms": ["windows"]
 		},
@@ -315,6 +320,7 @@
 		},
 		"browser": {
 			"name": "Browser-like Navigation Keybinds",
+			"desc": "Keybinds for navigating most menus related to browsing/viewing online levels.",
 			"type": "custom",
 			"platforms": ["windows"]
 		},
@@ -348,6 +354,7 @@
 		},
 		"level-search-layer": {
 			"name": "Level Search Menu Navigation",
+			"desc": "Keybinds for the level search menu.",
 			"type": "custom",
 			"platforms": ["windows"]
 		},
@@ -409,6 +416,7 @@
 		},
 		"my-levels": {
 			"name": "\"My Levels\" Navigation",
+			"desc": "Keybinds for navigating your own editor levels/level lists.",
 			"type": "custom",
 			"platforms": ["windows"]
 		},
@@ -435,6 +443,7 @@
 		},
 		"misc-keybinds": {
 			"name": "Misc. Keybinds",
+			"desc": "Keybind-related toggles for navigating all sorts of menus.",
 			"type": "custom",
 			"platforms": ["windows"]
 		},
@@ -496,6 +505,7 @@
 		},
 		"alert-layers": {
 			"name": "Alert Layers",
+			"desc": "Settings for messing with the appearances of FLAlertLayers.",
 			"type": "custom"
 		},
 		"flAlertWidthMultiplier": {
@@ -549,24 +559,19 @@
 				"slider-step": 1
 			}
 		},
-		"misc": {
-			"name": "Miscellaneous",
+		"garage": {
+			"name": "Icon Kit",
+			"desc": "Settings for the Icon Kit.",
 			"type": "custom"
 		},
-		"levelDescFromList": {
-			"name": "Level Lists: View Level Desc",
-			"description": "View an online level's description from the level list menu (and potentially without downloading the level first).",
-			"type": "bool",
-			"default": true
-		},
 		"slightlyCleanerGarage": {
-			"name": "Icon Kit: Cleanup",
+			"name": "Cleanup",
 			"description": "Hides the ground line and random gray lock from the icon kit.",
 			"type": "bool",
 			"default": true
 		},
 		"garageShardsMenu": {
-			"name": "Icon Kit: Shards Menu Scale",
+			"name": "Shards Menu Scale",
 			"description": "Set the scaling of the shards menu of the icon kit. Useful as more mods begin hooking the icon kit menu to add their own buttons.",
 			"type": "float",
 			"default": 0.9,
@@ -581,6 +586,17 @@
 				"big-arrow-step": 0,
 				"slider-step": 0.01
 			}
+		},
+		"misc": {
+			"name": "Miscellaneous",
+			"desc": "Settings that couldn't fit into any other category.",
+			"type": "custom"
+		},
+		"levelDescFromList": {
+			"name": "Level Lists: View Level Desc",
+			"description": "View an online level's description from the level list menu (and potentially without downloading the level first).",
+			"type": "bool",
+			"default": true
 		},
 		"showModsListMode": {
 			"name": "Level End Screen: Show/Copy Mods List",
@@ -614,7 +630,7 @@
 	"dependencies": [
 		{
 			"id": "geode.node-ids",
-			"version": ">1.10.1",
+			"version": ">=1.11.0",
 			"importance": "required"
 		},
 		{

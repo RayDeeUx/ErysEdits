@@ -20,7 +20,7 @@ class $modify(MyLevelLeaderboard, LevelLeaderboard) {
 		if (getChildByIDRecursive("update-button")) {
 			this->defineKeybind("refresh-page"_spr, [this]() {
 				if (Utils::isLevelLeaderboard()) { // infoLayerRecursive because sometimes it's a child of profilePage
-					if (Utils::modEnabled() && Utils::get("refreshAnywhere")) {
+					if (Utils::modEnabled() && Utils::getBool("refreshAnywhere")) {
 						LevelLeaderboard::onUpdate(nullptr);
 					} else { Utils::refreshKeybindDisabled(); }
 				}

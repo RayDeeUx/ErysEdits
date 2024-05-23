@@ -19,7 +19,7 @@ class $modify(MyLeaderboardsLayer, LeaderboardsLayer) {
 		if (!LeaderboardsLayer::init(p0)) { return false; }
 		this->defineKeybind("refresh-page"_spr, [this]() {
 			if (Loader::get()->isModLoaded("cvolton.betterinfo") && getChildByIDRecursive("cvolton.betterinfo/refresh-button") && Utils::isSceneRunning("LeaderboardsLayer") && Utils::noProfilePage() && Utils::noInfoLayer() && !Utils::isInfoLayerRecursive()) {
-				if (Utils::modEnabled() && Utils::get("refreshAnywhere")) {
+				if (Utils::modEnabled() && Utils::getBool("refreshAnywhere")) {
 					// code from cvolton's betterinfo reused with permission
 					// consent: https://discord.com/channels/911701438269386882/911702535373475870/1220852637608448050
 					auto GLM = GameLevelManager::sharedState();

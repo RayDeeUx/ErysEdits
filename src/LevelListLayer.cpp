@@ -21,7 +21,7 @@ class $modify(MyLevelListLayer, LevelListLayer) {
 		if (Utils::getChildBySpriteFrameNameRecursive(this, "GJ_updateBtn_001.png")) {
 			this->defineKeybind("refresh-page"_spr, [this]() {
 				if (Utils::isSceneRunning("LevelListLayer") && Utils::nothingElse()) {
-					if (Utils::modEnabled() && Utils::get("refreshAnywhere")) {
+					if (Utils::modEnabled() && Utils::getBool("refreshAnywhere")) {
 						LevelListLayer::onRefresh(nullptr);
 					} else { Utils::refreshKeybindDisabled(); }
 				}

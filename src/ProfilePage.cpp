@@ -20,7 +20,7 @@ class $modify(MyProfilePage, ProfilePage) {
 		if (getChildByIDRecursive("refresh-button")) {
 			this->defineKeybind("refresh-page"_spr, [this]() {
 				if (Utils::isProfilePage()) {
-					if (Utils::modEnabled() && Utils::get("refreshAnywhere")) {
+					if (Utils::modEnabled() && Utils::getBool("refreshAnywhere")) {
 						ProfilePage::onUpdate(nullptr);
 					} else { Utils::refreshKeybindDisabled(); }
 				}
@@ -29,7 +29,7 @@ class $modify(MyProfilePage, ProfilePage) {
 		if (getChildByIDRecursive("prev-page-button")) {
 			this->defineKeybind("previous-page"_spr, [this]() {
 				if (Utils::isProfilePage() && getChildByIDRecursive("prev-page-button")->isVisible()) {
-					if (Utils::modEnabled() && Utils::get("pageNavAnywhere")) {
+					if (Utils::modEnabled() && Utils::getBool("pageNavAnywhere")) {
 						ProfilePage::onPrevPage(nullptr);
 					} else { Utils::arrowKeyNavDisabled(); }
 				}
@@ -38,7 +38,7 @@ class $modify(MyProfilePage, ProfilePage) {
 		if (getChildByIDRecursive("next-page-button")) {
 			this->defineKeybind("next-page"_spr, [this]() {
 				if (Utils::isProfilePage() && getChildByIDRecursive("next-page-button")->isVisible()) {
-					if (Utils::modEnabled() && Utils::get("pageNavAnywhere")) {
+					if (Utils::modEnabled() && Utils::getBool("pageNavAnywhere")) {
 						ProfilePage::onNextPage(nullptr);
 					} else { Utils::arrowKeyNavDisabled(); }
 				}
@@ -46,7 +46,7 @@ class $modify(MyProfilePage, ProfilePage) {
 		}
 		this->defineKeybind("comments"_spr, [this]() {
 			if (Utils::isProfilePage() && !Utils::isInfoLayerRecursive() && getChildByIDRecursive("comment-history-button")->isVisible()) {
-				if (Utils::modEnabled() && Utils::get("viewCommentsAnywhere")) {
+				if (Utils::modEnabled() && Utils::getBool("viewCommentsAnywhere")) {
 					ProfilePage::onCommentHistory(nullptr);
 				} else { Utils::viewCommentsDisabled(); }
 			}

@@ -30,7 +30,7 @@ class $modify(MyEndLevelLayer, EndLevelLayer) {
 		)->show();
 	}
 	void onMenu(cocos2d::CCObject* sender) {
-		if (Utils::modEnabled() && Utils::get("hideLevelCompleteVisuals")) { m_fields->manager->isLevelComplete = false; }
+		if (Utils::modEnabled() && Utils::getBool("hideLevelCompleteVisuals")) { m_fields->manager->isLevelComplete = false; }
 		EndLevelLayer::onMenu(sender);
 	}
 	void customSetup() {

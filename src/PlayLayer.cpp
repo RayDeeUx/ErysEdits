@@ -20,12 +20,19 @@ class $modify(MyPlayLayer, PlayLayer) {
 			{ 3602, "disableSFX" },
 			{ 3603, "disableEditSFX" }
 		};
+		const std::list<int> gameplayElements = {
+			10, 11, 12, 13, 35, 36, 45, 46, 47, 67, 84,
+			99, 101, 111, 140, 141, 200, 201, 202, 203,
+			286, 287, 660, 745, 746, 747, 748, 1022, 1330,
+			1331, 1332, 1333, 1334, 1594, 1704, 1751, 1933,
+			2063, 2064, 2902, 2926, 3004, 3005, 3027
+		};
 		#endif
 	};
 	std::string buildPlayerStatusString(PlayerObject* thePlayer) {
 		std::string status = "Unknown";
 		bool isPlat = m_level->isPlatformer();
-		bool compactDirs = Utils::get("compactDirections");
+		bool compactDirs = Utils::getBool("compactDirections");
 		if (thePlayer->m_isShip) {
 			if (!isPlat) { status = "Ship"; }
 			else { status = "Jetpack"; }
@@ -130,11 +137,11 @@ class $modify(MyPlayLayer, PlayLayer) {
 	void levelComplete() {
 		PlayLayer::levelComplete();
 		Utils::restoreOrigGMGVs(m_fields->gameManager);
-		if (Utils::modEnabled() && Utils::get("hideLevelCompleteVisuals")) { m_fields->manager->isLevelComplete = true; }
+		if (Utils::modEnabled() && Utils::getBool("hideLevelCompleteVisuals")) { m_fields->manager->isLevelComplete = true; }
 	}
 	void onQuit() {
 		Utils::restoreOrigGMGVs(m_fields->gameManager, true, false);
-		if (Utils::modEnabled() && Utils::get("hideLevelCompleteVisuals")) { m_fields->manager->isLevelComplete = false; }
+		if (Utils::modEnabled() && Utils::getBool("hideLevelCompleteVisuals")) { m_fields->manager->isLevelComplete = false; }
 		m_fields->manager->lastPlayedSong = "N/A";
 		#ifndef __APPLE__
 		m_fields->manager->lastPlayedEffect = "N/A";
@@ -162,15 +169,18 @@ class $modify(MyPlayLayer, PlayLayer) {
 		bool dontSkip = true;
 		if (Utils::modEnabled()) {
 			#ifdef __APPLE__
-			if (m_fields->miscIDToSetting.contains(theObject->m_objectID) && Utils::get(m_fields->miscIDToSetting.find(theObject->m_objectID)->second)) { dontSkip = false; }
+			if (m_fields->miscIDToSetting.contains(theObject->m_objectID) && Utils::getBool(m_fields->miscIDToSetting.find(theObject->m_objectID)->second)) { dontSkip = false; }
 			#endif
 			if (m_level->m_levelType == GJLevelType::Saved && theObject->m_isHighDetail && m_fields->gameManager->getGameVariable("0108") && (Utils::getInt("alwaysLDM") == 3 || (Utils::getInt("alwaysLDM") == 2 && m_level->m_stars.value() != 0) || (Utils::getInt("alwaysLDM") == 1 && m_level->m_stars.value() == 0))) {
 				dontSkip = false;
 			}
-			if (Utils::get("forceVisibleEffect") && theObject->m_hasNoEffects) {
+			if (Utils::getBool("forceVisibleEffect") && theObject->m_hasNoEffects) {
 				theObject->m_hasNoEffects = false;
 			}
-			if (Utils::get("forceAudioScale") && theObject->m_hasNoAudioScale && (!m_fields->manager->isBreakingPlatforming || !m_level->isPlatformer())) {
+			if (Utils::getBool("forceNoParticles") && !theObject->m_hasNoParticles) {
+				theObject->m_hasNoParticles = true;
+			}
+			if (Utils::getBool("forceAudioScale") && theObject->m_hasNoAudioScale && (!m_fields->manager->isBreakingPlatforming || !m_level->isPlatformer())) {
 				theObject->m_hasNoAudioScale = false;
 			}
 		}
@@ -178,7 +188,7 @@ class $modify(MyPlayLayer, PlayLayer) {
 	}
 	void postUpdate(float dt) {
 		PlayLayer::postUpdate(dt);
-		if (!Utils::modEnabled() || !Utils::get("debugTextToggle")) {
+		if (!Utils::modEnabled() || !Utils::getBool("debugTextToggle")) {
 			// in case either softtoggle is disabled mid-session, restore original colors
 			if (const auto debugText = getChildByID("debug-text")) {
 				if (const auto debugTextNode = typeinfo_cast<CCLabelBMFont*>(debugText)) {
@@ -188,7 +198,7 @@ class $modify(MyPlayLayer, PlayLayer) {
 			}
 		} else if (Utils::modEnabled()) {
 			if (const auto debugText = getChildByID("debug-text")) {
-				if (Utils::get("debugTextToggle")) {
+				if (Utils::getBool("debugTextToggle")) {
 					std::string status = MyPlayLayer::buildPlayerStatusString(m_player1);
 					std::string statusTwo = "";
 					if (m_fields->manager->isDualsTime) { statusTwo = MyPlayLayer::buildPlayerStatusString(m_player2); }
@@ -198,37 +208,37 @@ class $modify(MyPlayLayer, PlayLayer) {
 
 					if (const auto debugTextNode = typeinfo_cast<CCLabelBMFont*>(debugText)) {
 						if (debugTextNode->isVisible()) {
-							if (!Utils::get("chromaDebugText")) {
+							if (!Utils::getBool("chromaDebugText")) {
 								debugTextNode->setColor({255, 255, 255}); // ensure that node color is white in case someone turns off chroma mode mid-session
 							}
-							if (Utils::get("maxAlphaDebugText")) {
+							if (Utils::getBool("maxAlphaDebugText")) {
 								debugTextNode->setOpacity(255);
 							} else {
 								debugTextNode->setOpacity(Utils::getInt("debugTextAlpha"));
 							}
 							std::string debugTextContents = debugTextNode->getString();
-							if (Utils::get("logDebugText")) {
+							if (Utils::getBool("logDebugText")) {
 								log::info("--- LOGGED DEBUG TEXT [BEFORE ERYSEDITS] ---:\n{}", debugTextContents);
 							}
 							#ifndef __APPLE__
-							if (Utils::get("addCurrentChannel")) {
+							if (Utils::getBool("addCurrentChannel")) {
 								debugTextContents = std::regex_replace(debugTextContents, std::regex("\n-- Audio --"), fmt::format("\nChannel: {}\n\r-- Audio --", m_gameState.m_currentChannel));
 							}
 							#endif
-							if (Utils::get("lastPlayedSong")) {
+							if (Utils::getBool("lastPlayedSong")) {
 								debugTextContents = std::regex_replace(debugTextContents, std::regex("\n(\r)?-- Audio --\nSongs: "), fmt::format("\n-- Audio --\nLast Song: {}\nLast SFX: {}\nSongs: ", m_fields->manager->lastPlayedSong, m_fields->manager->lastPlayedEffect));
 							}
-							if (Utils::get("includeJumps")) {
+							if (Utils::getBool("includeJumps")) {
 								std::smatch match;
 								if (std::regex_search(debugTextContents, match, tapsCountRegex)) {
 									debugTextContents = std::regex_replace(debugTextContents, std::regex("Taps: \\d+\nTimeWarp: "), fmt::format("Taps: {} [{}]\nTimeWarp: ", match[1].str(), m_fields->jumps)); // jump
 								}
 							}
-							if (Utils::get("accuratePosition")) {
+							if (Utils::getBool("accuratePosition")) {
 								debugTextContents = std::regex_replace(debugTextContents, std::regex("\nX: (\\d)+\n"), fmt::format("\nX: {:.{}f}\n", m_player1->m_position.x, 4));
 								debugTextContents = std::regex_replace(debugTextContents, std::regex("\nY: (\\d)+\n"), fmt::format("\nY: {:.{}f}\n", m_player1->m_position.y, 4));
 							}
-							if (Utils::get("conditionalValues")) {
+							if (Utils::getBool("conditionalValues")) {
 								debugTextContents = std::regex_replace(debugTextContents, std::regex("\nTimeWarp: 1\n"), "\n");
 								debugTextContents = std::regex_replace(debugTextContents, std::regex("\nGravity: 1\n"), "\n");
 								debugTextContents = std::regex_replace(debugTextContents, std::regex("\nGradients: 0"), "");
@@ -250,7 +260,7 @@ class $modify(MyPlayLayer, PlayLayer) {
 									debugTextContents = std::regex_replace(debugTextContents, std::regex(ending), "\n");
 								}
 							}
-							if (Utils::get("addPlayerInfo")) {
+							if (Utils::getBool("addPlayerInfo")) {
 								if (m_fields->manager->isDualsTime) {
 									debugTextContents = std::regex_replace(
 										debugTextContents,
@@ -265,14 +275,14 @@ class $modify(MyPlayLayer, PlayLayer) {
 									);
 								}
 							}
-							if (Utils::get("addLevelTraits")) {
+							if (Utils::getBool("addLevelTraits")) {
 								debugTextContents = std::regex_replace(
 									debugTextContents,
 									std::regex("\n-- Audio --"),
 									fmt::format("\nLevel: {}\n-- Audio --", level)
 								);
 							}
-							if (Utils::get("compactGameplaySection")) {
+							if (Utils::getBool("compactGameplaySection")) {
 								debugTextContents = std::regex_replace(debugTextContents, std::regex("\nTaps: "), " | Taps: "); // Attempt and Taps
 								if (debugTextContents.find("TimeWarp: ") != std::string::npos) {
 									debugTextContents = std::regex_replace(debugTextContents, std::regex("\nGravity: "), " | Gravity: "); // TimeWarp and Gravity
@@ -282,35 +292,35 @@ class $modify(MyPlayLayer, PlayLayer) {
 								}
 								debugTextContents = std::regex_replace(debugTextContents, std::regex("\nY: "), " | Y: "); // X and Y position
 							}
-							if (Utils::get("compactAudioSection") && debugTextContents.find("Songs: ") != std::string::npos) {
+							if (Utils::getBool("compactAudioSection") && debugTextContents.find("Songs: ") != std::string::npos) {
 								debugTextContents = std::regex_replace(debugTextContents, std::regex("\nSFX: "), " | SFX: ");
 							}
-							if (Utils::get("expandPerformance")) {
+							if (Utils::getBool("expandPerformance")) {
 								debugTextContents = std::regex_replace(debugTextContents, std::regex("-- Perf --"), "-- Performance --");
 							}
-							if (Utils::get("tapsToClicks")) {
+							if (Utils::getBool("tapsToClicks")) {
 								if (m_level->isPlatformer()) {
 									debugTextContents = std::regex_replace(debugTextContents, std::regex("Taps: "), "Actions: ");
 								} else {
 									debugTextContents = std::regex_replace(debugTextContents, std::regex("Taps: "), "Clicks: ");
 								}
 							}
-							if (Utils::get("fixLevelIDLabel")) {
+							if (Utils::getBool("fixLevelIDLabel")) {
 								debugTextContents = std::regex_replace(debugTextContents, std::regex("LevelID: "), "Level ID: ");
 							}
-							if (Utils::get("pluralAttempts")) {
+							if (Utils::getBool("pluralAttempts")) {
 								debugTextContents = std::regex_replace(debugTextContents, std::regex("Attempt: "), "Attempts: ");
 							}
-							if (Utils::get("addGameplayHeader")) {
+							if (Utils::getBool("addGameplayHeader")) {
 								debugTextContents = std::string("-- Gameplay --\n") + debugTextContents;
 							}
-							if (Utils::get("logDebugText")) {
+							if (Utils::getBool("logDebugText")) {
 								log::info("--- LOGGED DEBUG TEXT [AFTER ERYSEDITS] ---:\n{}", debugTextContents);
 							}
-							if (Utils::get("blendingDebugText")) {
+							if (Utils::getBool("blendingDebugText")) {
 								debugTextNode->setBlendFunc({GL_ONE_MINUS_DST_COLOR, GL_ONE_MINUS_SRC_ALPHA}); // Manager::glBlendFuncs[5], Manager::glBlendFuncs[7]
 							}
-							if (Utils::get("modLoaderInfo")) {
+							if (Utils::getBool("modLoaderInfo")) {
 								debugTextContents = debugTextContents +
 								fmt::format(
 									"-- Geode --\nVersion: {}\nGD: {} for {}\nMods: {} + {} = {} ({}){}\nForward Compat: {}",
@@ -333,7 +343,7 @@ class $modify(MyPlayLayer, PlayLayer) {
 				}
 			}
 
-			if (Utils::get("hideLevelCompleteVisuals") && m_fields->manager->isLevelComplete) {
+			if (Utils::getBool("hideLevelCompleteVisuals") && m_fields->manager->isLevelComplete) {
 				/*
 				forgor what this was used for
 

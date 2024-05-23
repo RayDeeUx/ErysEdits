@@ -19,7 +19,7 @@ class $modify(MyEffectGameObject, EffectGameObject) {
 	bool init(char const* p0) {
 		if (!EffectGameObject::init(p0)) { return false; }
 		if (!PlayLayer::get() || !Utils::modEnabled()) { return true; }
-		if (m_fields->miscToSetting.find(p0) != m_fields->miscToSetting.end() && Utils::get(m_fields->miscToSetting.find(p0)->second)) { return false; }
+		if (m_fields->miscToSetting.find(p0) != m_fields->miscToSetting.end() && Utils::getBool(m_fields->miscToSetting.find(p0)->second)) { return false; }
 		return true;
 	}
 };

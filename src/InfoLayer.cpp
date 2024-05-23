@@ -20,7 +20,7 @@ class $modify(MyInfoLayer, InfoLayer) {
 		if (getChildByIDRecursive("refresh-button")) {
 			this->defineKeybind("refresh-page"_spr, [this]() {
 				if (Utils::isInfoLayer() || Utils::isInfoLayerRecursive()) { // infoLayerRecursive because sometimes it's a child of profilePage
-					if (Utils::modEnabled() && Utils::get("refreshAnywhere")) {
+					if (Utils::modEnabled() && Utils::getBool("refreshAnywhere")) {
 						InfoLayer::onRefreshComments(nullptr);
 					} else { Utils::refreshKeybindDisabled(); }
 				}
@@ -29,7 +29,7 @@ class $modify(MyInfoLayer, InfoLayer) {
 		if (getChildByIDRecursive("prev-page-button")) {
 			this->defineKeybind("previous-page"_spr, [this]() {
 				if ((Utils::isInfoLayer() || Utils::isInfoLayerRecursive()) && getChildByIDRecursive("prev-page-button")->isVisible()) {
-					if (Utils::modEnabled() && Utils::get("pageNavAnywhere")) {
+					if (Utils::modEnabled() && Utils::getBool("pageNavAnywhere")) {
 						InfoLayer::onPrevPage(nullptr);
 					} else { Utils::arrowKeyNavDisabled(); }
 				}
@@ -38,7 +38,7 @@ class $modify(MyInfoLayer, InfoLayer) {
 		if (getChildByIDRecursive("next-page-button")) {
 			this->defineKeybind("next-page"_spr, [this]() {
 				if ((Utils::isInfoLayer() || Utils::isInfoLayerRecursive()) && getChildByIDRecursive("next-page-button")->isVisible()) {
-					if (Utils::modEnabled() && Utils::get("pageNavAnywhere")) {
+					if (Utils::modEnabled() && Utils::getBool("pageNavAnywhere")) {
 						InfoLayer::onNextPage(nullptr);
 					} else { Utils::arrowKeyNavDisabled(); }
 				}
@@ -48,7 +48,7 @@ class $modify(MyInfoLayer, InfoLayer) {
 			if (leftSideMenu->getChildByIDRecursive("sort-likes-button")) {
 				this->defineKeybind("infolayer-sort-likes"_spr, [this]() {
 					if ((Utils::isInfoLayer() || Utils::isInfoLayerRecursive())) {
-						if (Utils::modEnabled() && Utils::get("infoLayerNavigation")) {
+						if (Utils::modEnabled() && Utils::getBool("infoLayerNavigation")) {
 							InfoLayer::toggleCommentMode(
 								getChildByIDRecursive("left-side-menu")->getChildByIDRecursive("sort-likes-button")
 							);
@@ -59,7 +59,7 @@ class $modify(MyInfoLayer, InfoLayer) {
 			if (leftSideMenu->getChildByIDRecursive("sort-recent-button")) {
 				this->defineKeybind("infolayer-sort-recent"_spr, [this]() {
 					if ((Utils::isInfoLayer() || Utils::isInfoLayerRecursive())) {
-						if (Utils::modEnabled() && Utils::get("infoLayerNavigation")) {
+						if (Utils::modEnabled() && Utils::getBool("infoLayerNavigation")) {
 							InfoLayer::toggleCommentMode(
 								getChildByIDRecursive("left-side-menu")->getChildByIDRecursive("sort-recent-button")
 							);
@@ -70,7 +70,7 @@ class $modify(MyInfoLayer, InfoLayer) {
 			if (leftSideMenu->getChildByIDRecursive("extend-button")) {
 				this->defineKeybind("infolayer-extend"_spr, [this]() {
 					if ((Utils::isInfoLayer() || Utils::isInfoLayerRecursive())) {
-						if (Utils::modEnabled() && Utils::get("infoLayerNavigation")) {
+						if (Utils::modEnabled() && Utils::getBool("infoLayerNavigation")) {
 							InfoLayer::toggleExtendedMode(nullptr);
 						} else { Utils::arrowKeyNavDisabled(); }
 					}
@@ -79,7 +79,7 @@ class $modify(MyInfoLayer, InfoLayer) {
 			if (leftSideMenu->getChildByIDRecursive("small-mode-button")) {
 				this->defineKeybind("infolayer-small-mode"_spr, [this]() {
 					if ((Utils::isInfoLayer() || Utils::isInfoLayerRecursive())) {
-						if (Utils::modEnabled() && Utils::get("infoLayerNavigation")) {
+						if (Utils::modEnabled() && Utils::getBool("infoLayerNavigation")) {
 							InfoLayer::toggleSmallCommentMode(nullptr);
 						} else { Utils::arrowKeyNavDisabled(); }
 					}

@@ -24,7 +24,7 @@ Not all features of ErysEdits are available (or behave the same way) across all 
 
 ![demoFour](raydeeux.erysedits/demoFour.png&scale:0.75)
 
-- Disabling the cube jump animation in platformer levels (hitbox trail for reference)
+- Forcing visible usage effects or music pulsing on gameplay elements
 
 ![demoFive](raydeeux.erysedits/demoFive.png&scale:0.75)
 

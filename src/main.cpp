@@ -32,14 +32,15 @@ $on_mod(Loaded) {
 	Mod::get()->addCustomSetting<SectionSettingValue>("compact", "none");
 	Mod::get()->addCustomSetting<SectionSettingValue>("gameplay", "none");
 	#ifdef GEODE_IS_WINDOWS
-	Mod::get()->addCustomSetting<SectionSettingValue>("levelEditor", "none");
+	Mod::get()->addCustomSetting<SectionSettingValue>("level-editor", "none");
 	Mod::get()->addCustomSetting<SectionSettingValue>("browser", "none");
 	Mod::get()->addCustomSetting<SectionSettingValue>("level-search-layer", "none");
 	Mod::get()->addCustomSetting<SectionSettingValue>("my-levels", "none");
 	Mod::get()->addCustomSetting<SectionSettingValue>("misc-keybinds", "none");
 	#endif
-	Mod::get()->addCustomSetting<SectionSettingValue>("misc", "none");
 	Mod::get()->addCustomSetting<SectionSettingValue>("alert-layers", "none");
+	Mod::get()->addCustomSetting<SectionSettingValue>("garage", "none");
+	Mod::get()->addCustomSetting<SectionSettingValue>("misc", "none");
 	// the above several lines were based on similar lines of code from coopeeo's hide+ mod with full consent
 	// proof of consent: https://discord.com/channels/911701438269386882/911702535373475870/1222262244528754819
 }
@@ -625,7 +626,7 @@ $execute {
 	
 	new EventListener([=](InvokeBindEvent* event) {
 		if (!GJBaseGameLayer::get() && event->isDown()) { // event->isDown() to trigger only once (thank you dankmeme!)
-			if (Utils::modEnabled() && Utils::get("erysEditsSettings")) {
+			if (Utils::modEnabled() && Utils::getBool("erysEditsSettings")) {
 				geode::openSettingsPopup(Mod::get());
 			} else { Utils::keybindDisabledGeneric("ErysEdits Settings", "open the settings menu for ErysEdits"); }
 		}
@@ -633,7 +634,7 @@ $execute {
 	}, InvokeBindFilter(nullptr, "erysedits-settings"_spr));
 	new EventListener([=](InvokeBindEvent* event) {
 		if (!GJBaseGameLayer::get() && event->isDown()) { // event->isDown() to trigger only once (thank you dankmeme!)
-			if (Utils::modEnabled() && Utils::get("geodeModsList")) {
+			if (Utils::modEnabled() && Utils::getBool("geodeModsList")) {
 				geode::openModsList();
 			} else { Utils::keybindDisabledGeneric("Geode Mods List", "open the Geode mods list"); }
 		}
@@ -641,7 +642,7 @@ $execute {
 	}, InvokeBindFilter(nullptr, "geode-mods-list"_spr));
 	new EventListener([=](InvokeBindEvent* event) {
 		if (!GJBaseGameLayer::get() && event->isDown()) { // event->isDown() to trigger only once (thank you dankmeme!)
-			if (Utils::modEnabled() && Utils::get("customKeybinds")) {
+			if (Utils::modEnabled() && Utils::getBool("customKeybinds")) {
 				MoreOptionsLayer::create()->onKeybindings(nullptr); // normally this would just open the vanilla keybinds menu. however since customkeybinds is a required dependency it'll open the one from customkeybinds instead. win-win!
 			} else { Utils::keybindDisabledGeneric("Custom Keybinds", "open your custom keybinds"); }
 		}
@@ -649,7 +650,7 @@ $execute {
 	}, InvokeBindFilter(nullptr, "custom-keybinds"_spr));
 	new EventListener([=](InvokeBindEvent* event) {
 		if (!GJBaseGameLayer::get() && event->isDown() && !Loader::get()->isModLoaded("raydeeux.moreoptionslayerkeybinds")) { // event->isDown() to trigger only once (thank you dankmeme!)
-			if (Utils::modEnabled() && Utils::get("moreOptions")) {
+			if (Utils::modEnabled() && Utils::getBool("moreOptions")) {
 				OptionsLayer::create()->onOptions(nullptr);
 			} else { Utils::moreOptionsDisabled(); }
 		}

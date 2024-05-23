@@ -34,7 +34,7 @@ class $modify(MyLevelCell, LevelCell) {
 	}
 	void onClick(CCObject* sender) {
 		// hooking this function is necessary in order for the "view" button to work while compact mode is active in "my levels"
-		if (this->m_level->m_levelType == GJLevelType::Editor && Utils::modEnabled() && Utils::get("compactEditorLevels")) {
+		if (this->m_level->m_levelType == GJLevelType::Editor && Utils::modEnabled() && Utils::getBool("compactEditorLevels")) {
 			const auto scene = CCScene::create();
 			scene->addChild(EditLevelLayer::create(m_level));
 			CCDirector::sharedDirector()->replaceScene(CCTransitionFade::create(0.5f, scene));
@@ -42,13 +42,13 @@ class $modify(MyLevelCell, LevelCell) {
 	}
 	void loadLocalLevelCell() {
 		LevelCell::loadLocalLevelCell();
-		if (!(Utils::modEnabled() && Utils::get("compactEditorLevels"))) { return; }
+		if (!(Utils::modEnabled() && Utils::getBool("compactEditorLevels"))) { return; }
 		if (const auto localLevelname = typeinfo_cast<CCLabelBMFont*>(getChildByIDRecursive("level-name"))) { localLevelname->limitLabelWidth(200.f, .6f, .01f); }
 		if (const auto mainLayer = typeinfo_cast<CCLayer*>(getChildByIDRecursive("main-layer"))) { mainLayer->setPositionY(-3.5f); }
 	}
 	void loadCustomLevelCell() {
 		LevelCell::loadCustomLevelCell();
-		if (!(Utils::modEnabled() && Utils::get("levelDescFromList"))) { return; }
+		if (!(Utils::modEnabled() && Utils::getBool("levelDescFromList"))) { return; }
 		if (const auto viewButton = getChildByIDRecursive("view-button")) {
 			const auto infoButton = CCSprite::createWithSpriteFrameName("GJ_infoIcon_001.png");
 			infoButton->setScale(.6f);
