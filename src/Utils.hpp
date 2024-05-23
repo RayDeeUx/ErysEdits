@@ -54,4 +54,5 @@ namespace Utils {
 	#endif
 	
 	Mod* getMod(std::string modID);
+	std::string getModVersion(Mod* mod);
 }

@@ -58,7 +58,7 @@ Not all features of ErysEdits are available (or behave the same way) across all 
 - [SpaghettDev](user:7670168) and [Prevter](user:7696536), for finding memory address bindings that fully fleshed out some features
 - [sofabeddd](user:7976112), for allowing me to reuse their code for turning sprites into buttons
 - [Cooper](user:21207551), for allowing me to reuse code for custom setting headers
-- [ItzKiba](user:4569963) for allowing me to reuse their chroma code from FormattedPlatformerTime
+- [ItzKiba](user:4569963), for allowing me to reuse their chroma code from FormattedPlatformerTime
 - [CatXus](user:14467409), for extensively testing this mod on Android, and for helping me sing "You Are a Pirate" from LazyTown ;)
 - [Aktimoose](user:925143) for extensively testing this mod on Windows, and the occasional reality check
 

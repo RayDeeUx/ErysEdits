@@ -17,7 +17,7 @@ class $modify(MyLevelListLayer, LevelListLayer) {
 	}
 	bool init(GJLevelList* p0) {
 		if (!LevelListLayer::init(p0)) { return false; }
-		this->setID("LevelListLayer"); // inspired by thesillydoggo
+		if (Utils::getModVersion(Utils::getMod("geode.node-ids")) == "v1.11.0") this->setID("LevelListLayer");
 		if (Utils::getChildBySpriteFrameNameRecursive(this, "GJ_updateBtn_001.png")) {
 			this->defineKeybind("refresh-page"_spr, [this]() {
 				if (Utils::isSceneRunning("LevelListLayer") && Utils::nothingElse()) {

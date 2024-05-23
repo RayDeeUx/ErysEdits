@@ -150,7 +150,7 @@ namespace Utils {
 	}
 #endif
 	
-	Mod* getMod(std::string modID) {
-		return Loader::get()->getLoadedMod(modID);
-	}
+	Mod* getMod(std::string modID) { return Loader::get()->getLoadedMod(modID); }
+
+	std::string getModVersion(Mod* mod) { return mod->getVersion().toString(); }
 }
