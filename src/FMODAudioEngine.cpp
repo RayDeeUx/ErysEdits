@@ -5,13 +5,14 @@
 
 using namespace geode::prelude;
 
-static std::regex songEffectRegex(R"(.*(?:\\|\/)(\S+)\.(mp3|ogg|wav|flac))", std::regex::optimize | std::regex::icase);
-static std::regex geodeAudioRegex(R"(((?!\S+geode)(?:\\|\/)(?:([a-z0-9\-_]+\.[a-z0-9\-_]+)(?:\\|\/))([\S ]+)\.(mp3|ogg|wav|flac))$)", std::regex::optimize | std::regex::icase);
+static std::regex songEffectRegex(R"(.*(?:\\|\/)(\S+)\.(mp3|ogg|wav|flac))", std::regex::optimize | std::regex::icase); // see https://regex101.com/r/CqvIvI/1.
+static std::regex geodeAudioRegex(R"(((?!\S+geode)(?:\\|\/)(?:([a-z0-9\-_]+\.[a-z0-9\-_]+)(?:\\|\/))([\S ]+)\.(mp3|ogg|wav|flac))$)", std::regex::optimize | std::regex::icase); // see https://regex101.com/r/0b9rY1/1.
 
 class $modify(MyFMODAudioEngine, FMODAudioEngine) {
 	struct Fields {
 		Manager* manager = Manager::getSharedInstance();
-		int desiredIndex = 2; // easier place to change index
+		int desiredIndexForModID = 2; // easier place to change index
+		int desiredIndexForFileName = 1; // easier place to change index
 		const std::list<std::string> vanillaSFX = { "achievement_01.ogg", "buyItem01.ogg", "buyItem03.ogg", "chest07.ogg", "chest08.ogg", "chestClick.ogg", "chestLand.ogg", "chestOpen01.ogg", "counter003.ogg", "crystal01.ogg", "door001.ogg", "door01.ogg", "door02.ogg", "endStart_02.ogg", "explode_11.ogg", "gold01.ogg", "gold02.ogg", "grunt01.ogg", "grunt02.ogg", "grunt03.ogg", "highscoreGet02.ogg", "magicExplosion.ogg", "playSound_01.ogg", "quitSound_01.ogg", "reward01.ogg", "secretKey.ogg", "unlockPath.ogg" };
 		const std::list<std::string> badSFX = { "achievement_01.ogg", "magicExplosion.ogg", "gold02.ogg", "secretKey.ogg" };
 	};
@@ -21,9 +22,9 @@ class $modify(MyFMODAudioEngine, FMODAudioEngine) {
 		for (auto matchString : theMatch) {
 			log::info("matchString: {}", matchString.str());
 		}
-		log::info("theMatch[m_fields->desiredIndex].str(): {}", theMatch[m_fields->desiredIndex].str());
+		log::info("theMatch[m_fields->desiredIndexForModID].str(): {}", theMatch[m_fields->desiredIndexForModID].str());
 		*/
-		if (const Mod* mod = Utils::getMod(theMatch[m_fields->desiredIndex].str())) {
+		if (const Mod* mod = Utils::getMod(theMatch[m_fields->desiredIndexForModID].str())) {
 			return fmt::format("[From {}]", mod->getName());
 		} else {
 			return "[From another Geode mod]";
@@ -35,6 +36,7 @@ class $modify(MyFMODAudioEngine, FMODAudioEngine) {
 		std::smatch geodeMatch;
 		std::string result = "";
 		path = std::regex_replace(path, std::regex("com\.geode\.launcher\/"), ""); // android is cring
+		path = fmt::format("/{}", path); // adding an extra slash to get it working on all possible paths. this is because combo burst does some stuff under the hood i am too scared to look at and i don't want to define more regex than necessary.
 		// log::info("path after: {}", path);
 		if (path.find("geode") != std::string::npos && (path.find("mods") != std::string::npos || path.find("config") != std::string::npos)) {
 			if (std::regex_search(path, geodeMatch, geodeAudioRegex)) {
@@ -46,7 +48,7 @@ class $modify(MyFMODAudioEngine, FMODAudioEngine) {
 			if (std::regex_search(path, geodeMatch, geodeAudioRegex)) {
 				result = extractModID(geodeMatch);
 			} else {
-				result = fmt::format("{}.{}", match[1].str(), match[2].str());
+				result = fmt::format("{}.{}", match[m_fields->desiredIndexForFileName].str(), match[m_fields->desiredIndexForFileName + 1].str());
 			}
 		} else {
 			result = fmt::format("{}", path);
