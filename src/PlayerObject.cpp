@@ -13,6 +13,7 @@ class $modify(MyPlayerObject, PlayerObject) {
 	{
 		(void) self.setHookPriority("PlayerObject::playerDestroyed", INT32_MAX - 1);
 	}
+	/*
 	bool detectGlobed(PlayLayer* pl) {
 		if (Utils::getMod(m_fields->globedModID)) {
 			if (const auto pingLabel = pl->getChildByIDRecursive(fmt::format("{}/ping-label", m_fields->globedModID))) {
@@ -40,22 +41,22 @@ class $modify(MyPlayerObject, PlayerObject) {
 		}
 		return false;
 	}
+	*/
 	void playerDestroyed(bool p0) {
-		m_fields->manager->isPlayerDead = true;
-		if (Utils::modEnabled() && PlayLayer::get()) {
-			if (Utils::getBool("forceStopMusicOnDeath")) {
-				const auto pl = PlayLayer::get();
-				const bool isGlobed = MyPlayerObject::detectGlobed(pl);
-				const auto fmod = FMODAudioEngine::sharedEngine();
-				if (!isGlobed) {
-					fmod->pauseAllMusic();
-				}
-				if (this == pl->m_player2 && pl->m_level->m_twoPlayerMode) {
-					PlayerObject::playerDestroyed(p0);
-					return; // avoid stopping sfx twice -- thank you clicksounds
-				} else {
-					if (!isGlobed) {
-						fmod->stopAllEffects();
+		if (const auto pl = PlayLayer::get()) {
+			if (this != pl->m_player1 && this != pl->m_player2) {
+				return PlayerObject::playerDestroyed(p0);
+			} else {
+				m_fields->manager->isPlayerDead = true;
+				if (Utils::modEnabled()) {
+					if (Utils::getBool("forceStopMusicOnDeath")) {
+						const auto fmod = FMODAudioEngine::sharedEngine();
+						fmod->pauseAllMusic();
+						if (this == pl->m_player2 && pl->m_level->m_twoPlayerMode) {
+							return PlayerObject::playerDestroyed(p0); // avoid stopping sfx twice -- thank you clicksounds
+						} else {
+							fmod->stopAllEffects();
+						}
 					}
 				}
 			}
