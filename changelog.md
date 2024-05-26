@@ -2,8 +2,7 @@
 ## v1.2.0 - "Sponsored" by CLion (rewrites and whatnot)
 - New settings in the "Gameplay" category:
   - `Force Audio Scale`
-  - `Force Visible Effect`
-  - Because the orbs in Zeniux's levels started becoming cringe.
+  - `Force Visible Effect` (The orbs in Zeniux's levels started becoming cringe.)
 - New settings in the "Info Label/Debug Text" category:
   - `Adjust Alpha/Opacity`
   - `Max Opacity`
@@ -12,9 +11,10 @@
   - `Include Jumps`
   - `FPS`
   - Hopefully the debug text should be readable under every imaginable circumstance now.
-- Renamed settings in the "Info Label/Debug Text" category:
-  - `Add Player Info` -> `Player Status`
-  - `Add Level Traits` -> `Level Traits`
+- Revised settings in the "Info Label/Debug Text" category:
+  - `Add Player Info` renamed to `Player Status`.
+  - `Add Level Traits` renamed to `Level Traits`.
+  - `Add "Gameplay" Header` finally comes to macOS! Not sure how I butchered that one, oops!
 - Rewrote how music/SFX files from other mods are detected for the debug text.
   - Also added a toggle to detect music/SFX files from other mods for those who would like their debug text to display audio files from levels *only*.
 - Labels for each settings category now have descriptions. Click each one to learn more.
