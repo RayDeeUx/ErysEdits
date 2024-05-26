@@ -37,10 +37,8 @@ class $modify(MyPlayerObject, PlayerObject) {
 		auto children = CCArrayExt<CCNode*>(node->getChildren());
 		for (CCNode* child : children) {
 			std::string childID = child->getID();
-			if (childID != "") {
-				if (childID.rfind("dankmeme.globed2/remote-player-", 0) == 0) {
-					return true;
-				}
+			if (childID != "" && (childID.rfind("dankmeme.globed2/remote-player-", 0) == 0)) {
+				return true;
 			}
 		}
 		return false;
