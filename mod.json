@@ -232,7 +232,7 @@
 		},
 		"forceStopMusicOnDeath": {
 			"name": "Force Stop Music/SFX on Death",
-			"description": "Stops level music/SFX on player death, even if a level's option triggers demand otherwise.\n\n<cy>Note: In platformer levels, toggling this may force songs to start playing from its very beginning during your next attempt; this is your only warning.</c>",
+			"description": "Stops level music/SFX on player death, even if a level's option triggers demand otherwise.\n\n<cy>Note: This setting will not apply when you are playing in Globed multiplayer.</c>",
 			"type": "bool",
 			"default": true
 		},
