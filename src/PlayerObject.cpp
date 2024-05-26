@@ -18,11 +18,12 @@ class $modify(MyPlayerObject, PlayerObject) {
 				if (const auto pingLabelBMFont = typeinfo_cast<CCLabelBMFont*>(pingLabel)) {
 					std::string pingLabelString = pingLabelBMFont->getString();
 					if (pingLabelString != "Not connected" && pingLabelString != "N/A (Local level)") {
+						return true;
+					} else {
 						return false;
 					}
 				}
-			}
-			if (const auto mainNode = pl->getChildByIDRecursive("main-node")) {
+			} else if (const auto mainNode = pl->getChildByIDRecursive("main-node")) {
 				if (const auto batchLayer = mainNode->getChildByIDRecursive("batch-layer")) {
 					return MyPlayerObject::findGlobedChildren(batchLayer);
 				} else {
