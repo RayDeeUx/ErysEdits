@@ -7,21 +7,18 @@ using namespace geode::prelude;
 class $modify(MyPlayerObject, PlayerObject) {
 	struct Fields {
 		Manager* manager = Manager::getSharedInstance();
+		const std::string globedModID = "dankmeme.globed2";
 	};
 	static void onModify(auto & self)
 	{
 		(void) self.setHookPriority("PlayerObject::playerDestroyed", INT32_MAX - 1);
 	}
 	bool detectGlobed(PlayLayer* pl) {
-		if (Utils::getMod("dankmeme.globed2")) {
-			if (const auto pingLabel = pl->getChildByIDRecursive("dankmeme.globed2/ping-label")) {
+		if (Utils::getMod(m_fields->globedModID)) {
+			if (const auto pingLabel = pl->getChildByIDRecursive(fmt::format("{}/ping-label", m_fields->globedModID))) {
 				if (const auto pingLabelBMFont = typeinfo_cast<CCLabelBMFont*>(pingLabel)) {
 					std::string pingLabelString = pingLabelBMFont->getString();
-					if (pingLabelString != "Not connected" && pingLabelString != "N/A (Local level)") {
-						return true;
-					} else {
-						return false;
-					}
+					return (pingLabelString != "Not connected" && pingLabelString != "N/A (Local level)");
 				}
 			} else if (const auto mainNode = pl->getChildByIDRecursive("main-node")) {
 				if (const auto batchLayer = mainNode->getChildByIDRecursive("batch-layer")) {
@@ -36,8 +33,8 @@ class $modify(MyPlayerObject, PlayerObject) {
 	bool findGlobedChildren(CCNode* node) {
 		auto children = CCArrayExt<CCNode*>(node->getChildren());
 		for (CCNode* child : children) {
-			std::string childID = child->getID();
-			if (childID != "" && (childID.rfind("dankmeme.globed2/remote-player-", 0) == 0)) {
+			std::string childID = child->getID(); // normally i'd just put this in the if statement but getID() returns const char*
+			if (childID.rfind(fmt::format("{}/remote-player-", m_fields->globedModID), 0) == 0) {
 				return true;
 			}
 		}
