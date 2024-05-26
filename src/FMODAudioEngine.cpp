@@ -40,13 +40,17 @@ class $modify(MyFMODAudioEngine, FMODAudioEngine) {
 		// log::info("path after: {}", path);
 		if (path.find("geode") != std::string::npos && (path.find("mods") != std::string::npos || path.find("config") != std::string::npos)) {
 			if (std::regex_search(path, geodeMatch, geodeAudioRegex)) {
-				result = extractModID(geodeMatch);
+				if (Utils::getBool("includeMusicFromMods")){
+					result = extractModID(geodeMatch);
+				}
 			} else {
 				result = "[Something went wrong...]";
 			}
 		} else if (std::regex_match(path, match, songEffectRegex)) {
 			if (std::regex_search(path, geodeMatch, geodeAudioRegex)) {
-				result = extractModID(geodeMatch);
+				if (Utils::getBool("includeMusicFromMods")){
+					result = extractModID(geodeMatch);
+				}
 			} else {
 				result = fmt::format("{}.{}", match[m_fields->desiredIndexForFileName].str(), match[m_fields->desiredIndexForFileName + 1].str());
 			}
@@ -60,6 +64,7 @@ class $modify(MyFMODAudioEngine, FMODAudioEngine) {
 		FMODAudioEngine::sharedEngine()->preloadEffect(p0);
 		if (!Utils::modEnabled()) return; // ignore if mod disabled. should've done this sooner
 		if (!PlayLayer::get()) return; // dont record files outside of playlayer
+		if (std::find(m_fields->vanillaSFX.begin(), m_fields->vanillaSFX.end(), p0) != m_fields->vanillaSFX.end()) return; // ignore vanilla sfx, the debug menu should only record sfx from the level itself
 		m_fields->manager->lastPlayedEffect = parsePath(p0);
 	}
 	#endif
@@ -72,7 +77,6 @@ class $modify(MyFMODAudioEngine, FMODAudioEngine) {
 		FMODAudioEngine::loadMusic(p0, p1, p2, p3, p4, p5, p6);
 		if (!Utils::modEnabled()) return; // ignore if mod disabled. should've done this sooner
 		if (!PlayLayer::get()) return; // dont record files outside of playlayer
-		if (std::find(m_fields->vanillaSFX.begin(), m_fields->vanillaSFX.end(), p0) != m_fields->vanillaSFX.end()) return;
 		m_fields->manager->lastPlayedSong = parsePath(p0);
 	}
 };

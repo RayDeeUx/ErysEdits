@@ -142,6 +142,12 @@
 			"type": "bool",
 			"default": true
 		},
+		"includeMusicFromMods": {
+			"name": "Include Songs/Effects from Mods",
+			"description": "If \"Show Most Recent Song/Effect\" is enabled, songs and SFX file names from other Geode mods will appear in the Audio section.",
+			"type": "bool",
+			"default": true
+		},
 		"compactAudioSection": {
 			"name": "Compact \"Audio\" Section",
 			"description": "Condenses Song and SFX counts from the Audio section into one line.",
@@ -156,13 +162,13 @@
 		},
 		"conditionalValues": {
 			"name": "Conditional Labels",
-			"description": "Hides various values if unmodified. For reference:\n- TimeWarp if currently equal to 1.\n- Gravity if currently equal to 1.\n- Pretty much anything else you can think of if it's currently equal to either \"0\" or \"0 / 0\".",
+			"description": "Hides various values if unmodified. For reference:\n- TimeWarp if currently equal to 1.\n- Gravity if currently equal to 1.\n- Anything equal to either \"0\" or \"0 / 0\".",
 			"type": "bool",
 			"default": false
 		},
 		"addPlayerInfo": {
-			"name": "Add Player Info",
-			"description": "Includes additional info about the player's current state.",
+			"name": "Player Status",
+			"description": "Includes info about the player's current status.",
 			"type": "bool",
 			"default": false
 		},
@@ -173,8 +179,14 @@
 			"default": false
 		},
 		"addLevelTraits": {
-			"name": "Add Level Traits",
-			"description": "Includes additional info about the current level's traits.",
+			"name": "Level Traits",
+			"description": "Includes info about the current level's traits.",
+			"type": "bool",
+			"default": false
+		},
+		"includeFPS": {
+			"name": "FPS",
+			"description": "Includes your FPS count.",
 			"type": "bool",
 			"default": false
 		},

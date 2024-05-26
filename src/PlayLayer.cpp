@@ -301,6 +301,9 @@ class $modify(MyPlayLayer, PlayLayer) {
 							if (Utils::getBool("pluralAttempts")) {
 								debugTextContents = std::regex_replace(debugTextContents, std::regex("Attempt: "), "Attempts: ");
 							}
+							if (Utils::getBool("includeFPS")) {
+								debugTextContents = fmt::format("FPS: {}\n{}", m_fields->manager->fps) + debugTextContents;
+							}
 							if (Utils::getBool("addGameplayHeader")) {
 								debugTextContents = std::string("-- Gameplay --\n") + debugTextContents;
 							}
