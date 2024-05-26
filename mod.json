@@ -120,7 +120,6 @@
 			"name": "Add \"Gameplay\" Header",
 			"description": "Adds a \"-- Gameplay --\" header to the first section.",
 			"type": "bool",
-			"platforms": ["windows", "android32", "android64"],
 			"default": true
 		},
 		"addCurrentChannel": {
