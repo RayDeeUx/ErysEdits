@@ -232,7 +232,7 @@
 		},
 		"forceStopMusicOnDeath": {
 			"name": "Force Stop Music/SFX on Death",
-			"description": "Stops level music/SFX on player death, even if a level's option triggers demand otherwise.\n\n<cy>Note: This setting will not apply when you are playing in Globed multiplayer.</c>",
+			"description": "Stops level music/SFX on player death, even if a level's option triggers demand otherwise.\n\n<cy>Note: This setting will not apply when you are connected to Globed's servers.</c>",
 			"type": "bool",
 			"default": true
 		},
