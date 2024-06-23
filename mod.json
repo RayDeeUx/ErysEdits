@@ -127,7 +127,7 @@
 			"description": "Shows the currently active channel.\n\n<cy>(Currently unavailable for macOS.)</c>",
 			"type": "bool",
 			"default": true,
-			"platforms": ["windows", "android64", "android32"]
+			"platforms": ["windows", "android"]
 		},
 		"accuratePosition": {
 			"name": "Accurate Player Position",
@@ -249,7 +249,7 @@
 		},
 		"alwaysLDM": {
 			"name": "Always Active LDM (READ!)",
-			"description": "<cp>INTENTIONALLY APPLIES TO ONLINE LEVELS ONLY.</c>\n<cp>INTENTIONALLY IGNORED IF \"ENABLE LOW DETAIL\" FROM YOUR PERFORMACE OPTIONS IS DISABLED.</c>\n\nAs of <cc>2.200</c>/<cl>2.204</c>/<cg>2.205</c> (for <cc>macOS</c>, <cl>Windows</c>, and <cg>Android</c> respectively), LDM toggles for individual levels might toggle themselves off after (re)downloading a level. This slider serves to avoid the hassle of opening the level settings to re-enable such toggles.\n\n0: Disables this setting.\n1: Enable on unrated online levels <cr>ONLY</c>.\n2: Enable on rated online levels <cr>ONLY</c>.\n3: Enable on all online levels regardless of star/moon rating.",
+			"description": "<cp>INTENTIONALLY APPLIES TO ONLINE LEVELS ONLY.</c>\n<cp>INTENTIONALLY IGNORED IF \"ENABLE LOW DETAIL\" FROM YOUR PERFORMACE OPTIONS IS DISABLED.</c>\n\nAs of <cc>2.200</c>/<cl>2.204</c>/<cg>2.205</c> (for <cc>macOS</c>, <cl>win</c>, and <cg>Android</c> respectively), LDM toggles for individual levels might toggle themselves off after (re)downloading a level. This slider serves to avoid the hassle of opening the level settings to re-enable such toggles.\n\n0: Disables this setting.\n1: Enable on unrated online levels <cr>ONLY</c>.\n2: Enable on rated online levels <cr>ONLY</c>.\n3: Enable on all online levels regardless of star/moon rating.",
 			"type": "int",
 			"default": 0,
 			"min": 0,
@@ -306,212 +306,212 @@
 			"name": "Level Editor Keybinds",
 			"desc": "Keybinds for the level editor.",
 			"type": "custom",
-			"platforms": ["windows"]
+			"platforms": ["win"]
 		},
 		"saveEditorLevel": {
 			"name": "Save Editor Level",
 			"description": "Enables a keybind (set to Ctrl + S by default) to save your level in the editor immediately <cy>without a confirmation</c>.",
 			"type": "bool",
-			"platforms": ["windows"],
+			"platforms": ["win"],
 			"default": true
 		},
 		"saveAndExit": {
 			"name": "Save And Exit",
 			"description": "Enables a keybind (set to Shift + Ctrl + S by default) to save your level in the editor and exit the editor <cy>without a confirmation</c>.",
 			"type": "bool",
-			"platforms": ["windows"],
+			"platforms": ["win"],
 			"default": true
 		},
 		"resumeShortcut": {
 			"name": "Resume Editor",
 			"description": "Enables a keybind (set to Shift + 1 by default) to resume editing a level.",
 			"type": "bool",
-			"platforms": ["windows"],
+			"platforms": ["win"],
 			"default": true
 		},
 		"browser": {
 			"name": "Browser-like Navigation Keybinds",
 			"desc": "Keybinds for navigating most menus related to browsing/viewing online levels.",
 			"type": "custom",
-			"platforms": ["windows"]
+			"platforms": ["win"]
 		},
 		"pageNavAnywhere": {
 			"name": "Arrow Keys in Pages",
 			"description": "Enables a keybind (set to Alt + Left/Right for previous/next pages, Shift Left/Right for first/last pages) to navigate between pages.\n\nBecause RobTop's infinite wisdom allowed him to implement this feature with the main levels (and level browsing menus) <cr>and literally nowhere else</c> in Geometry Dash.\n\n<cj>No, I'm not mad about this. What makes you think that?</c>",
 			"type": "bool",
-			"platforms": ["windows"],
+			"platforms": ["win"],
 			"default": true
 		},
 		"refreshAnywhere": {
 			"name": "Refresh Anywhere",
 			"description": "Enables a keybind (set to Ctrl + R by default) to refresh the layer you're on.\n<cy>Use this keybind with caution; abusing/spamming this keybind can get you rate-limited or banned from RobTop's servers. By using this keybind for any reason, you agree to hold harmless the mod developer (RayDeeUx) or any lead developer of Geode and assume all responsibility for any consequences.</c>",
 			"type": "bool",
-			"platforms": ["windows"],
+			"platforms": ["win"],
 			"default": false
 		},
 		"viewCommentsAnywhere": {
 			"name": "View Comments",
 			"description": "Enables a keybind (set to Shift + C by default) to view comments (either for a specific profile or for a level).",
 			"type": "bool",
-			"platforms": ["windows"],
+			"platforms": ["win"],
 			"default": true
 		},
 		"likeDislikeShortcut": {
 			"name": "Like/Dislike",
 			"description": "Enables a keybind (set to Left for liking and Right for disliking) to like/dislike content.",
 			"type": "bool",
-			"platforms": ["windows"],
+			"platforms": ["win"],
 			"default": true
 		},
 		"level-search-layer": {
 			"name": "Level Search Menu Navigation",
 			"desc": "Keybinds for the level search menu.",
 			"type": "custom",
-			"platforms": ["windows"]
+			"platforms": ["win"]
 		},
 		"clearFilters": {
 			"name": "Clear Search Filters",
 			"description": "Enables a keybind (set to Shift + Delete by default) to prepare to clear your search filters.",
 			"type": "bool",
-			"platforms": ["windows"],
+			"platforms": ["win"],
 			"default": true
 		},
 		"openFilters": {
 			"name": "Open Search Filters",
 			"description": "Enables a keybind (set to Shift + Minus by default) to open advanced search filters.",
 			"type": "bool",
-			"platforms": ["windows"],
+			"platforms": ["win"],
 			"default": true
 		},
 		"searchMode": {
 			"name": "Toggle Levels/Lists Mode",
 			"description": "Enables a keybind (set to Shift + Backspace by default) to switch between searching for levels and level lists.",
 			"type": "bool",
-			"platforms": ["windows"],
+			"platforms": ["win"],
 			"default": true
 		},
 		"starToggle": {
 			"name": "Star/Moon Rate Filter",
 			"description": "Enables a keybind (set to Alt + 0 by default) to toggle the star rate filter.",
 			"type": "bool",
-			"platforms": ["windows"],
+			"platforms": ["win"],
 			"default": true
 		},
 		"quickSearch": {
 			"name": "Quick Search Shortcuts",
 			"description": "Enables several keybinds (set to Ctrl + D(ownloads), Ctrl + T(rending), Ctrl + A(warded), Ctrl + L(ikes), Ctrl + R(ecent), Ctrl + F(ollowed), Ctrl + S(ent), Ctrl + M(agic), and Ctrl + (Fr)I(ends)) to open a quick search option.",
 			"type": "bool",
-			"platforms": ["windows"],
+			"platforms": ["win"],
 			"default": true
 		},
 		"lengthFilter": {
 			"name": "Level Length Filters",
 			"description": "Enables several keybinds (set to Alt + <cy>[1 through 6]</c> by default) to toggle a level length search filter.",
 			"type": "bool",
-			"platforms": ["windows"],
+			"platforms": ["win"],
 			"default": true
 		},
 		"difficultyFilter": {
 			"name": "Level Difficulty Filters",
 			"description": "Enables several keybinds (set to Ctrl + <cy>[1 through 9]</c> by default) to toggle a level difficulty search filter.",
 			"type": "bool",
-			"platforms": ["windows"],
+			"platforms": ["win"],
 			"default": true
 		},
 		"demonFilter": {
 			"name": "Demon Filters",
 			"description": "Enables several keybinds (set to Shift + Ctrl + <cy>[1 through 6]</c> by default) to toggle a demon search filter.",
 			"type": "bool",
-			"platforms": ["windows"],
+			"platforms": ["win"],
 			"default": true
 		},
 		"my-levels": {
 			"name": "\"My Levels\" Navigation",
 			"desc": "Keybinds for navigating your own editor levels/level lists.",
 			"type": "custom",
-			"platforms": ["windows"]
+			"platforms": ["win"]
 		},
 		"newEditorLevel": {
 			"name": "Create New Level/List",
 			"description": "Enables a keybind (set to Ctrl + N by default) to create a new level/list.",
 			"type": "bool",
-			"platforms": ["windows"],
+			"platforms": ["win"],
 			"default": true
 		},
 		"toggleLevelLists": {
 			"name": "Toggle Levels/Lists Mode",
 			"description": "Enables a keybind (set to Shift + Ctrl + L by default) to toggle between viewing local editor levels and local level lists.",
 			"type": "bool",
-			"platforms": ["windows"],
+			"platforms": ["win"],
 			"default": true
 		},
 		"viewUploaded": {
 			"name": "View Uploaded Levels/Lists",
 			"description": "Enables a keybind (set to Shift + Ctrl + Alt + L by default) to view uploaded levels/level lists.",
 			"type": "bool",
-			"platforms": ["windows"],
+			"platforms": ["win"],
 			"default": true
 		},
 		"misc-keybinds": {
 			"name": "Misc. Keybinds",
 			"desc": "Keybind-related toggles for navigating all sorts of menus.",
 			"type": "custom",
-			"platforms": ["windows"]
+			"platforms": ["win"]
 		},
 		"moreOptions": {
 			"name": "More Options Navigation",
 			"description": "Enables a keybind (set to Ctrl + O by default) to open your Geometry Dash settings.",
 			"type": "bool",
-			"platforms": ["windows"],
+			"platforms": ["win"],
 			"default": true
 		},
 		"garageNavigation": {
 			"name": "Icon Kit Navigation",
 			"description": "Enables several keybinds (set to the whole numrow for each gamemode [Shift + 2 for jetpacks], left/right arrow keys, Alt + S(hards) and Alt + C(olor) by default) to navigate the garage/icon kit.",
 			"type": "bool",
-			"platforms": ["windows"],
+			"platforms": ["win"],
 			"default": true
 		},
 		"infoLayerNavigation": {
 			"name": "Comment Viewing Shortcuts",
 			"description": "Enables several keybinds (set to 1, 2, 3, 4 by default) to toggle various options for viewing comments, much like toggling between the \"Build\", \"Edit\", and \"Delete\" modes in the level editor.",
 			"type": "bool",
-			"platforms": ["windows"],
+			"platforms": ["win"],
 			"default": true
 		},
 		"navigateGauntlets": {
 			"name": "Gauntlets Navigation",
 			"description": "Enables several keybinds (Left/Right for previous/next pages, 1/2/3 for the first, second, and third gauntlets visible on screen) to navigate the Gauntlets.",
 			"type": "bool",
-			"platforms": ["windows"],
+			"platforms": ["win"],
 			"default": true
 		},
 		"shiftForVault": {
 			"name": "Shift Click to Vaults/Chambers/Treasure",
 			"description": "Requires holding the Shift key to enter (vanilla GD) menus that change the menu loop music.\n\nNote that this will not apply to The Tower.",
 			"type": "bool",
-			"platforms": ["windows"],
+			"platforms": ["win"],
 			"default": true
 		},
 		"erysEditsSettings": {
 			"name": "ErysEdits Settings",
 			"description": "Enables a keybind (set to Shift + Alt + Ctrl + E by default) to open the settings menu for ErysEdits.",
 			"type": "bool",
-			"platforms": ["windows"],
+			"platforms": ["win"],
 			"default": true
 		},
 		"geodeModsList": {
 			"name": "Geode Mods List",
 			"description": "Enables a keybind (set to Shift + Alt + Ctrl + G by default) to open the Geode mods list.",
 			"type": "bool",
-			"platforms": ["windows"],
+			"platforms": ["win"],
 			"default": true
 		},
 		"customKeybinds": {
 			"name": "Open Custom Keybinds",
 			"description": "Enables a keybind (set to Shift + Alt + Ctrl + K by default) to open your custom keybinds.",
 			"type": "bool",
-			"platforms": ["windows"],
+			"platforms": ["win"],
 			"default": true
 		},
 		"alert-layers": {
@@ -611,7 +611,7 @@
 		},
 		"showModsListMode": {
 			"name": "Level End Screen: Show/Copy Mods List",
-			"description": "<cp>RESTARTS REQUIRED TO APPLY CHANGES.</c>\n<cl>Original ideas: ItzKiba, Alphalaneous. Adapted code: sofabeddd.</c>\nThe \"Level Complete\"/\"Practice Complete\" text becomes a button that lists your installed mods (and copies it to your clipboard).\n\n0: Disables this feature.\n\n<cc>macOS</c> <cy>users:</c>\n<cy>To minimizes crashes, all values will categorize your installed mods by developer name. Values greater than 2 will separate each developer using new lines instead of commas.</c>\n\n<cl>Windows</c>/<cg>Android</c> users:\n1: Developer name, mod name, version number\n2: Developer name + mod name only\n3: Mod name + version number only\n4: Mod name only\n\n<cy>Disclaimer: This feature is a proof of concept, not a concrete product. Not all installed mods will be visible. By setting this value to anything besides the default (0), you assume full responsibility for all consequences.</c>",
+			"description": "<cp>RESTARTS REQUIRED TO APPLY CHANGES.</c>\n<cl>Original ideas: ItzKiba, Alphalaneous. Adapted code: sofabeddd.</c>\nThe \"Level Complete\"/\"Practice Complete\" text becomes a button that lists your installed mods (and copies it to your clipboard).\n\n0: Disables this feature.\n\n<cc>macOS</c> <cy>users:</c>\n<cy>To minimizes crashes, all values will categorize your installed mods by developer name. Values greater than 2 will separate each developer using new lines instead of commas.</c>\n\n<cl>win</c>/<cg>Android</c> users:\n1: Developer name, mod name, version number\n2: Developer name + mod name only\n3: Mod name + version number only\n4: Mod name only\n\n<cy>Disclaimer: This feature is a proof of concept, not a concrete product. Not all installed mods will be visible. By setting this value to anything besides the default (0), you assume full responsibility for all consequences.</c>",
 			"type": "int",
 			"default": 0,
 			"min": 0,
@@ -648,7 +648,7 @@
 			"id": "geode.custom-keybinds",
 			"version": ">=1.5.7",
 			"importance": "required",
-			"platforms": ["windows"]
+			"platforms": ["win"]
 		}
 	],
 	"incompatibilities": [
@@ -656,13 +656,13 @@
 			"id": "adam_729.randdeathsounds",
 			"version": "<1.1.0",
 			"importance": "breaking",
-			"platforms": ["windows"]
+			"platforms": ["win"]
 		},
 		{
 			"id": "raydeeux.breakingplatforming",
 			"version": "<1.2.0",
 			"importance": "conflicting",
-			"platforms": ["windows", "android32", "android64"]
+			"platforms": ["windows", "android"]
 		}
 	]
 }
