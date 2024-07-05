@@ -1,6 +1,5 @@
-#include <regex>
 #include <Geode/modify/MenuLayer.hpp>
-#include <Geode/modify/SongInfoLayer.hpp>
+#include <regex>
 #include "Manager.hpp"
 #include "Utils.hpp"
 
