@@ -9,7 +9,7 @@ class $modify(MyLevelPage, LevelPage) {
 		Utils::restoreOrigGMGVs(GameManager::get(), true, true);
 		LevelPage::onPlay(sender);
 	}
-	#ifdef GEODE_IS_WINDOWS
+	#ifndef GEODE_IS_MACOS
 	void onSecretDoor(CCObject* sender) {
 		if (Utils::shiftDown()) { LevelPage::onSecretDoor(sender); }
 	}

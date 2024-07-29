@@ -1,4 +1,4 @@
-#ifdef GEODE_IS_WINDOWS
+#ifndef GEODE_IS_MACOS
 #include <Geode/modify/CreatorLayer.hpp>
 #include "Utils.hpp"
 

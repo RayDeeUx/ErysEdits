@@ -10,7 +10,7 @@ class $modify(MyLevelBrowserLayer, LevelBrowserLayer) {
 	struct Fields {
 		Manager* manager = Manager::getSharedInstance();
 	};
-	#ifdef GEODE_IS_WINDOWS
+	#ifndef GEODE_IS_MACOS
 	void defineKeybind(const char* id, std::function<void()> callback) {
 		this->template addEventListener<InvokeBindFilter>([=](InvokeBindEvent* event) {
 			if (event->isDown()) {
@@ -34,7 +34,7 @@ class $modify(MyLevelBrowserLayer, LevelBrowserLayer) {
 				getChildByIDRecursive("select-all-text")->setVisible(false);
 			}
 		}
-		#ifdef GEODE_IS_WINDOWS
+		#ifndef GEODE_IS_MACOS
 		else if (getChildByIDRecursive("refresh-button")) {
 			this->defineKeybind("refresh-page"_spr, [this]() {
 				if (Utils::isSceneRunning("LevelBrowserLayer") && Utils::nothingElse()) {

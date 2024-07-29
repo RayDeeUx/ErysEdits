@@ -1,4 +1,4 @@
-#ifdef GEODE_IS_WINDOWS
+#ifndef GEODE_IS_MACOS
 #include <Geode/modify/CCKeyboardDispatcher.hpp>
 #include "Manager.hpp"
 #include "Utils.hpp"

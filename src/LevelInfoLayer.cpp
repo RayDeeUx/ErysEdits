@@ -6,7 +6,7 @@ using namespace geode::prelude;
 using namespace keybinds;
 
 class $modify(MyLevelInfoLayer, LevelInfoLayer) {
-	#ifdef GEODE_IS_WINDOWS
+	#ifndef GEODE_IS_MACOS
 	void defineKeybind(const char* id, std::function<void()> callback) {
 		this->template addEventListener<InvokeBindFilter>([=](InvokeBindEvent* event) {
 			if (event->isDown()) {
@@ -18,7 +18,7 @@ class $modify(MyLevelInfoLayer, LevelInfoLayer) {
 	#endif
 	bool init(GJGameLevel* p0, bool p1) {
 		if (!LevelInfoLayer::init(p0, p1)) return false;
-		#ifdef GEODE_IS_WINDOWS
+		#ifndef GEODE_IS_MACOS
 		if (getChildByIDRecursive("refresh-button")) {
 			this->defineKeybind("refresh-page"_spr, [this]() {
 				if (Utils::isSceneRunning("LevelInfoLayer") && Utils::nothingElse()) {

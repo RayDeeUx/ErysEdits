@@ -120,31 +120,7 @@ namespace Utils {
 		manager->canCall = true;
 	}
 	
-#ifdef GEODE_IS_WINDOWS
-	// 4GB Patch detection code written by cvolton
-	// code reuse consent implied from here: https://discord.com/channels/911701438269386882/911702535373475870/1221183808708153444
-
-	bool is4GBPatchEnabled() {
-		auto manager = Manager::getSharedInstance();
-		if (manager->fourGBChecked) { return manager->isFourGB; }
-		wchar_t result[MAX_PATH];
-		GetModuleFileNameW(NULL, result, MAX_PATH);
-
-		if (!std::filesystem::exists(result)) { return true; }
-			
-		std::ifstream file(result, std::ios::binary);
-		std::vector<char> buffer(std::istreambuf_iterator<char>(file), {});
-
-		PIMAGE_DOS_HEADER dosHeader = (PIMAGE_DOS_HEADER)buffer.data();
-		PIMAGE_NT_HEADERS imageNTHeaders = (PIMAGE_NT_HEADERS)((DWORD)buffer.data() + dosHeader->e_lfanew);
-		auto characteristics = imageNTHeaders->FileHeader.Characteristics;
-		manager->isFourGB = characteristics & IMAGE_FILE_LARGE_ADDRESS_AWARE;
-		manager->fourGBChecked = true;
-		return manager->isFourGB;
-	}
-#endif
-	
-#ifdef GEODE_IS_WINDOWS
+#ifndef GEODE_IS_MACOS
 	bool shiftDown() {
 		return (Manager::getSharedInstance()->isShiftKeyDown || !(Utils::modEnabled() && Utils::getBool("shiftForVault")));
 	}
@@ -152,5 +128,5 @@ namespace Utils {
 	
 	Mod* getMod(std::string modID) { return Loader::get()->getLoadedMod(modID); }
 
-	std::string getModVersion(Mod* mod) { return mod->getVersion().toString(); }
+	std::string getModVersion(Mod* mod) { return mod->getVersion().toVString(); }
 }

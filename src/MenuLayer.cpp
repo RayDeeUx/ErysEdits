@@ -62,19 +62,19 @@ class $modify(MyMenuLayer, MenuLayer) {
 				activeMods++;
 			}
 			
-			modsStringForClipboard = modsStringForClipboard + fmt::format("- {} ({}) {} by {} [{}]\n", isEnabledClipboard, mod->getID(), mod->getName(), mod->getDevelopers()[0], mod->getVersion().toString());
+			modsStringForClipboard = modsStringForClipboard + fmt::format("- {} ({}) {} by {} [{}]\n", isEnabledClipboard, mod->getID(), mod->getName(), mod->getDevelopers()[0], mod->getVersion().toVString());
 
 			#ifndef __APPLE__
 			if (modsListModeConfig == 4) { // mod name only
 				modsString = modsString + fmt::format("{}{}</c>, ", isEnabled, mod->getName());
 			} else if (modsListModeConfig == 3) { // mod name and ver number only
-				modsString = modsString + fmt::format("{}{} [{}]</c>, ", isEnabled, mod->getName(), mod->getVersion().toString());
+				modsString = modsString + fmt::format("{}{} [{}]</c>, ", isEnabled, mod->getName(), mod->getVersion().toVString());
 			} else if (modsListModeConfig == 2) { // developer name and mod name only
 				modsString = modsString + fmt::format("{}{}'s {}</c>, ", isEnabled, mod->getDevelopers()[0], mod->getName());
 			} else if (modsListModeConfig == 1) { // dev name, mod name, ver number
-				modsString = modsString + fmt::format("{}{}'s {} [{}]</c>, ", isEnabled, mod->getDevelopers()[0], mod->getName(), mod->getVersion().toString());
+				modsString = modsString + fmt::format("{}{}'s {} [{}]</c>, ", isEnabled, mod->getDevelopers()[0], mod->getName(), mod->getVersion().toVString());
 			} else { // fallback. because some people need to behave
-				modsString = modsString + fmt::format("- {} ({}) {} by {} [{}]\n", isEnabledClipboard, mod->getID(), mod->getName(), mod->getDevelopers()[0], mod->getVersion().toString());
+				modsString = modsString + fmt::format("- {} ({}) {} by {} [{}]\n", isEnabledClipboard, mod->getID(), mod->getName(), mod->getDevelopers()[0], mod->getVersion().toVString());
 			}
 			#else
 			if (0 < modsListModeConfig && modsListModeConfig < 5) {

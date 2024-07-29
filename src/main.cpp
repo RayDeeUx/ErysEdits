@@ -1,11 +1,15 @@
+#ifndef GEODE_IS_MACOS
 #include <geode.custom-keybinds/include/Keybinds.hpp>
+#endif
 #include <Geode/ui/GeodeUI.hpp>
 #include "Manager.hpp"
 #include "Utils.hpp"
 #include "Settings.hpp"
 
 using namespace geode::prelude;
+#ifndef GEODE_IS_MACOS
 using namespace keybinds;
+#endif
 
 SettingNode* SectionSettingValue::createNode(float width) {
 	return SectionSettingNode::create(this, width);
@@ -15,13 +19,10 @@ $on_mod(Loaded) {
 	auto manager = Manager::getSharedInstance();
 	auto geode = Loader::get();
 
-	manager->geodeVer = geode->getVersion().toString();
+	manager->geodeVer = geode->getVersion().toVString();
 	manager->gameVer = fmt::format("{:.3f}", GEODE_GD_VERSION);
 	manager->platform = GEODE_PLATFORM_NAME;
 	manager->forwardCompat = geode->isForwardCompatMode() ? "True" : "False";
-	#ifdef GEODE_IS_WINDOWS
-	manager->fourGBStatus = fmt::format("\n4GB Patch: {}", Utils::is4GBPatchEnabled() ? "True" : "False");
-	#endif
 	manager->canCall = false;
 	
 	// the following several lines were based on similar lines of code from coopeeo's hide+ mod with full consent

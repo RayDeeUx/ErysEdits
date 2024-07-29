@@ -1,16 +1,16 @@
 #include <Geode/modify/GJGarageLayer.hpp>
-#ifdef GEODE_IS_WINDOWS
+#ifndef GEODE_IS_MACOS
 #include <geode.custom-keybinds/include/Keybinds.hpp>
 #endif
 #include "Utils.hpp"
 
 using namespace geode::prelude;
-#ifdef GEODE_IS_WINDOWS
+#ifndef GEODE_IS_MACOS
 using namespace keybinds;
 #endif
 
 class $modify(MyGJGarageLayer, GJGarageLayer) {
-	#ifdef GEODE_IS_WINDOWS
+	#ifndef GEODE_IS_MACOS
 	void defineKeybind(const char* id, std::function<void()> callback) {
 		this->template addEventListener<InvokeBindFilter>([=](InvokeBindEvent* event) {
 			if (event->isDown()) {
@@ -29,7 +29,7 @@ class $modify(MyGJGarageLayer, GJGarageLayer) {
 			if (const auto floorLine = getChildByIDRecursive("floor-line")) { floorLine->setVisible(!Utils::getBool("slightlyCleanerGarage")); }
 			if (const auto usernameLock = getChildByIDRecursive("username-lock")) { usernameLock->setVisible(!Utils::getBool("slightlyCleanerGarage")); }
 		}
-		#ifdef GEODE_IS_WINDOWS
+		#ifndef GEODE_IS_MACOS
 		if (getChildByIDRecursive("category-menu")) {
 			if (getChildByIDRecursive("cube-button")) {
 				this->defineKeybind("garage-cube"_spr, [this]() {
@@ -185,7 +185,7 @@ class $modify(MyGJGarageLayer, GJGarageLayer) {
 				shardsMenu->setScale(Utils::getDouble("garageShardsMenu"));
 				shardsMenu->setAnchorPoint({0.5f, static_cast<float>(Utils::getDouble("garageShardsMenu") - .45f)});
 			}
-			#ifdef GEODE_IS_WINDOWS
+			#ifndef GEODE_IS_MACOS
 			if (shardsMenu->getChildByIDRecursive("shards-button")) {
 				this->defineKeybind("garage-shards-page"_spr, [this]() {
 					if (Utils::isSceneRunning("GJGarageLayer") && Utils::nothingElse()) {

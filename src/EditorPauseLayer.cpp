@@ -7,7 +7,7 @@ using namespace keybinds;
 
 // apply the appropriate values to the gamevars for local levels (from "save and play" in level editor)
 class $modify(MyEditorPauseLayer, EditorPauseLayer) {
-	#ifdef GEODE_IS_WINDOWS
+	#ifndef GEODE_IS_MACOS
 	void defineKeybind(const char* id, std::function<void()> callback) {
 		this->template addEventListener<InvokeBindFilter>([=](InvokeBindEvent* event) {
 			if (event->isDown()) {
