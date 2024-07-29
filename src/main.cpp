@@ -31,7 +31,7 @@ $on_mod(Loaded) {
 	Mod::get()->addCustomSetting<SectionSettingValue>("misc", "none");
 	Mod::get()->addCustomSetting<SectionSettingValue>("compact", "none");
 	Mod::get()->addCustomSetting<SectionSettingValue>("gameplay", "none");
-	#ifdef GEODE_IS_WINDOWS
+	#ifndef GEODE_IS_MACOS
 	Mod::get()->addCustomSetting<SectionSettingValue>("level-editor", "none");
 	Mod::get()->addCustomSetting<SectionSettingValue>("browser", "none");
 	Mod::get()->addCustomSetting<SectionSettingValue>("level-search-layer", "none");
@@ -45,7 +45,7 @@ $on_mod(Loaded) {
 	// proof of consent: https://discord.com/channels/911701438269386882/911702535373475870/1222262244528754819
 }
 
-#ifdef GEODE_IS_WINDOWS
+#ifndef GEODE_IS_MACOS
 $execute {
 	BindManager::get()->registerBindable({
 		"save-editor-level"_spr,
