@@ -23,201 +23,6 @@
 			"type": "bool",
 			"default": true
 		},
-		"debug-text": {
-			"name": "Info Label / Debug Text",
-			"desc": "Settings for editing the info label in PlayLayer.",
-			"type": "custom"
-		},
-		"debugTextToggle": {
-			"name": "Enable Debug Text Changes",
-			"description": "A soft toggle for this mod's edits to the info label in PlayLayer.\n(Useful to prevent massive FPS loss for the small population of users who have Viper's Oppenheimer mod menu installed, or still have Zilko's xdBot installed before it was de-listed from the Geode index.)",
-			"type": "bool",
-			"default": true
-		},
-		"blendingDebugText": {
-			"name": "Readable Mode",
-			"description": "Make the info label easier to read across a far larger variety of scenarios.\n\n<cy>(Make sure to check out the other options below this one!)</c>",
-			"type": "bool",
-			"default": true
-		},
-		"debugTextAlpha": {
-			"name": "Adjust Alpha/Opacity",
-			"description": "Sets the info label's opacity. Minimum is 150 (as seen in vanilla Geometry Dash).",
-			"type": "int",
-			"default": 150,
-			"min": 150,
-			"max": 255,
-			"control": {
-				"input": false,
-				"slider": true,
-				"arrows": false,
-				"big-arrows": false,
-				"arrow-step": 0,
-				"big-arrow-step": 0,
-				"slider-step": 1
-			}
-		},
-		"maxAlphaDebugText": {
-			"name": "Max Opacity",
-			"description": "Maxes the info label's opacity. This quick toggle is here in case you'd like to briefly see your debug text at maximum opacity without having to remember what your preferred value for the \"Adjust Alpha/Opacity\" setting was.\n\n<cy>(If this is enabled, your setting for \"Adjust Alpha/Opacity\" will be ignored.)</c>",
-			"type": "bool",
-			"default": false
-		},
-		"chromaDebugText": {
-			"name": "Chroma Mode",
-			"description": "<cl>Original code by ItzKiba.</c>\n\nSets the color of the info label to that of a rainbow, as a last ditch effort to make the debug text readable under every imaginable circumstance without flooding your Geode logs.",
-			"type": "bool",
-			"default": false
-		},
-		"chromaDebugTextSpeed": {
-			"name": "Chroma Speed",
-			"description": "Sets how quickly (lower value)/slowly (higher value) the info label changes color if \"Chroma Mode\" is enabled.",
-			"type": "float",
-			"default": 0.5,
-			"min": 0.1,
-			"max": 2.0,
-			"control": {
-				"input": false,
-				"slider": true,
-				"arrows": false,
-				"big-arrows": false,
-				"arrow-step": 0,
-				"big-arrow-step": 0,
-				"slider-step": 0.1
-			}
-		},
-		"tapsToClicks": {
-			"name": "\"Taps\" -> \"Clicks\"/\"Actions\"",
-			"description": "\"Taps\" becomes \"Clicks\" (\"Actions\" in platformer levels).",
-			"type": "bool",
-			"default": true
-		},
-		"includeJumps": {
-			"name": "Include Jumps",
-			"description": "Includes your current session's jump count (stylized like <cy>[this]</c>) next to your \"Taps\"/\"Clicks\"/\"Actions\" label.",
-			"type": "bool",
-			"default": true
-		},
-		"pluralAttempts": {
-			"name": "Plural Attempts",
-			"description": "\"Attempt\" becomes \"Attempts\".",
-			"type": "bool",
-			"default": true
-		},
-		"fixLevelIDLabel": {
-			"name": "Fix \"LevelID:\" Label",
-			"description": "\"LevelID:\" becomes \"Level ID:\".",
-			"type": "bool",
-			"default": true
-		},
-		"expandPerformance": {
-			"name": "Expand \"Perf\" Header",
-			"description": "\"-- Perf --\" becomes \"-- Performance --\".",
-			"type": "bool",
-			"default": true
-		},
-		"addGameplayHeader": {
-			"name": "Add \"Gameplay\" Header",
-			"description": "Adds a \"-- Gameplay --\" header to the first section.",
-			"type": "bool",
-			"default": true
-		},
-		"addCurrentChannel": {
-			"name": "Show Current Channel",
-			"description": "Shows the currently active channel.\n\n<cy>(Currently unavailable for macOS.)</c>",
-			"type": "bool",
-			"default": true,
-			"platforms": ["windows", "android"]
-		},
-		"accuratePosition": {
-			"name": "Accurate Player Position",
-			"description": "Adds four more decimal points to the player's X and Y positions in the first section.\n\n<cy>(If you want accurate player positions while your player's X or Y position is in the negatives, consider buying MegaHack v8 instead; levels won't let you get there anyways without a start position.)</c>",
-			"type": "bool",
-			"default": true
-		},
-		"lastPlayedSong": {
-			"name": "Show Most Recent Song/Effect",
-			"description": "Includes the filename of the most recently loaded song <cy>(and sound effect, if not on macOS)</c> in the Audio section.",
-			"type": "bool",
-			"default": true
-		},
-		"includeMusicFromMods": {
-			"name": "Include Songs/Effects from Mods",
-			"description": "If \"Show Most Recent Song/Effect\" is enabled, songs and SFX file names from other Geode mods will appear in the Audio section.",
-			"type": "bool",
-			"default": true
-		},
-		"compactAudioSection": {
-			"name": "Compact \"Audio\" Section",
-			"description": "Condenses Song and SFX counts from the Audio section into one line.",
-			"type": "bool",
-			"default": true
-		},
-		"compactGameplaySection": {
-			"name": "Compact \"Gameplay\" Section",
-			"description": "Condenses several pieces of information in the first section into one line, including:\n- Attempts and taps/clicks.\n- TimeWarp and Gravity.\n- X and Y position.\n- Gradients and Particles.",
-			"type": "bool",
-			"default": true
-		},
-		"conditionalValues": {
-			"name": "Conditional Labels",
-			"description": "Hides various values if unmodified. For reference:\n- TimeWarp if currently equal to 1.\n- Gravity if currently equal to 1.\n- Anything equal to either \"0\" or \"0 / 0\".",
-			"type": "bool",
-			"default": false
-		},
-		"addPlayerInfo": {
-			"name": "Player Status",
-			"description": "Includes info about the player's current status.",
-			"type": "bool",
-			"default": false
-		},
-		"compactDirections": {
-			"name": "Player Direction as Emoticons",
-			"description": "Replaces word descriptions of the player's current direction with emoticon alternatives.\n\n<cy>Requires the previous setting (\"Add Player Info\") to be enabled; otherwise you won't see it.</c>",
-			"type": "bool",
-			"default": false
-		},
-		"addLevelTraits": {
-			"name": "Level Traits",
-			"description": "Includes info about the current level's traits.",
-			"type": "bool",
-			"default": false
-		},
-		"includeFPS": {
-			"name": "FPS",
-			"description": "Includes your FPS count.",
-			"type": "bool",
-			"default": false
-		},
-		"modLoaderInfo": {
-			"name": "Geode Mod Loader Info",
-			"description": "Adds an additional section of info related to your Geode setup named \"Geode\".",
-			"type": "bool",
-			"default": false
-		},
-		"logDebugText": {
-			"name": "Enable Logging",
-			"description": "Logs the debug text into your Geode logs folder.\n\n<cr>By enabling this option, you agree to hold harmless the mod developer (RayDeeUx) or any lead developer of Geode and assume all responsibility for any resulting damages, including incredibly large log files.</c>",
-			"type": "bool",
-			"default": false
-		},
-		"compact": {
-			"name": "Compact View",
-			"desc": "Enable compact view in these lesser known areas.",
-			"type": "custom"
-		},
-		"compactEditorLevels": {
-			"name": "My Levels",
-			"description": "<cl>Original code by Cvolton.</c>\n\nCompacts your editor levels in \"My Levels\" menu.\n\n<cy>Due to how this feature is implemented, enabling this option also disables selecting multiple levels for deletion.</c>",
-			"type": "bool",
-			"default": true
-		},
-		"compactProfileComments": {
-			"name": "Profile Comments",
-			"description": "Use the compact view on user profile comments/posts.",
-			"type": "bool",
-			"default": true
-		},
 		"gameplay": {
 			"name": "Gameplay",
 			"desc": "Settings for tweaking gameplay as you please.\n\n<cy>Note that some of these settings can get you banned from the leaderboards; enable them at your own risk.</c>",
@@ -228,41 +33,6 @@
 			"description": "Hides the current percentage text and the progress bar if the level is not verified.\n\nUseful for WIP levels whose percentages are based on time spent and not based on X position.\n\n<cy>Due to how this feature is implemented, you should not close the game while playing a level with this feature active.</c>",
 			"type": "bool",
 			"default": false
-		},
-		"hideLevelCompleteVisuals": {
-			"name": "Hide Level Completion Visuals",
-			"description": "Hides the circles and light flashes during level completions, except particles.\n\n<cy>To hide particles, please use your preferred mod menu (be aware that this hides particles everywhere, including outside of the level completion visuals).</c>",
-			"type": "bool",
-			"default": false
-		},
-		"disableRewardsSFX": {
-			"name": "Disable Rewards SFX on Death",
-			"description": "Silences all SFX related to gaining diamonds/orbs/keys on player death.",
-			"type": "bool",
-			"default": true
-		},
-		"forceStopMusicOnDeath": {
-			"name": "Force Stop Music/SFX on Death",
-			"description": "Stops level music/SFX on player death, even if a level's option triggers demand otherwise.\n\n<cy>Note: This setting will not apply when you are connected to Globed's servers.</c>",
-			"type": "bool",
-			"default": true
-		},
-		"alwaysLDM": {
-			"name": "Always Active LDM (READ!)",
-			"description": "<cp>INTENTIONALLY APPLIES TO ONLINE LEVELS ONLY.</c>\n<cp>INTENTIONALLY IGNORED IF \"ENABLE LOW DETAIL\" FROM YOUR PERFORMACE OPTIONS IS DISABLED.</c>\n\nAs of <cc>2.200</c>/<cl>2.204</c>/<cg>2.205</c> (for <cc>macOS</c>, <cl>win</c>, and <cg>Android</c> respectively), LDM toggles for individual levels might toggle themselves off after (re)downloading a level. This slider serves to avoid the hassle of opening the level settings to re-enable such toggles.\n\n0: Disables this setting.\n1: Enable on unrated online levels <cr>ONLY</c>.\n2: Enable on rated online levels <cr>ONLY</c>.\n3: Enable on all online levels regardless of star/moon rating.",
-			"type": "int",
-			"default": 0,
-			"min": 0,
-			"max": 3,
-			"control": {
-				"input": false,
-				"slider": true,
-				"arrows": false,
-				"big-arrows": false,
-				"arrow-step": 0,
-				"big-arrow-step": 0,
-				"slider-step": 1
-			}
 		},
 		"forceAudioScale": {
 			"name": "Force Audio Scale",
@@ -278,17 +48,6 @@
 		},
 		"disableShake": {
 			"name": "No Shake Triggers",
-			"type": "bool",
-			"default": false
-		},
-		"disableSFX": {
-			"name": "No SFX Triggers",
-			"type": "bool",
-			"default": false
-		},
-		"disableEditSFX": {
-			"name": "No Edit SFX Triggers (READ!)",
-			"description": "Disables Edit SFX triggers in levels.\n\n<cy>If you toggle this, it is</c> <cr>STRONGLY RECOMMENDED</c> <cy>that you enable the \"No SFX Triggers\" option above this setting as well, unless if you're a fan of infinitely looping SFX playing in your eardrums in rare cases such as the war crime \"Evasion\" by YunHaSeu14.</c>",
 			"type": "bool",
 			"default": false
 		},
@@ -641,14 +400,14 @@
 	"dependencies": [
 		{
 			"id": "geode.node-ids",
-			"version": ">=1.13.1",
+			"version": ">1.13.0",
 			"importance": "required"
 		},
 		{
 			"id": "geode.custom-keybinds",
-			"version": ">=1.7.1",
+			"version": ">1.7.0",
 			"importance": "required",
-			"platforms": ["win", "android"]
+			"platforms": ["win"]
 		}
 	],
 	"incompatibilities": [
